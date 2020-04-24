@@ -44,6 +44,9 @@ Ukázky:
 - http://www.newgrounds.com/portal/view/576124
 
 ## Zadání hry Incursion
-Vytvoříme hru, která se spustí v konzoli a můžeme jí ovládat pomocí stisku jednotlivých kláves
+Vytvoříme hru, která se spustí v konzoli a reaguje na stisk jednotlivých kláves, ne celých příkazů. Po startu se spustí úvodní menu ve kterém má hráč několik možností:
+1. **Nová hra** - načte novou hru ze souboru s příponou _map_, který má specifický formát (viz dále)
+2. **Načtení uložené hry** - načte hru, která byla v některém předchozím běhu uložena do souboru. Soubor je zakončen příponou _sav_
+3. **Ukončení** - tato možnost je k dispozici v průběhu celého běhu programu krom zadávání jména mapy pomocí klávesy _q_
 
 
