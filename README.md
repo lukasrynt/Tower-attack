@@ -67,10 +67,10 @@ Po načtení mapy a definice útočníku ze souboru se spustí samotná hra. Ve 
 
 ### Definice souboru
 Soubory ve kterých jsou uložené rozehrané hry nebo nové mapy mají podobnou strukturu. Je pevně daná - každý řádek začíná určitým znakem ve formátu `(C):`, kde C je znak který určuje co načítáme, a končí středníkem. Každý znak se může v souboru vyskytovat jen jednou, to zamezuje redefinici dat. Přípustné jsou následující znaky:
--_M_: __Mapa__, následují dimenze mapy
--_G_: __Gate__, následují životy brány
--_@_, _$_: __Trooper__, následují parametry vojáka, na základě jeho typu
--_%_, _*_: __Tower__, následují parametry věže, na základě jejího typu
+- _M_: __Mapa__, následují dimenze mapy
+- _G_: __Gate__, následují životy brány
+- _@_, _$_: __Trooper__, následují parametry vojáka, na základě jeho typu
+- _%_, _*_: __Tower__, následují parametry věže, na základě jejího typu
 
 Na konci souboru je obsažena samotná mapa, za ní už nesmí následovat nic dalšího. Mapa má přípustné rozdílné hodnoty v případě, že se jedná o rozehranou hru (jsou povoleny rozmístěné věže a útočníci).
 ```
