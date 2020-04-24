@@ -63,13 +63,15 @@ Po načtení mapy a definice útočníku ze souboru se spustí samotná hra. Ve 
 #        #     #            #
 #####################O#######
 ```
-V ukázkové mapě lze vidět útočníky (__@__), věže (__\*__, __%__) a nepřítele (__O__)
+> V ukázkové mapě lze vidět útočníky (__@__), věže (__\*__, __%__) a nepřítele (__O__)
 
 ### Pravidla hry
-Cílem hráče je dostat co největší množství svých jednotek přes věže, které budou na vojáky přirozeně útočit aby jim zabránily v postupu. V průběhu hry hráč střádá prostředky díky kterým může vysílat lepší jednotky do boje. V případě, že útočník dorazí až do cíle, poškodí nepřítele. V případě zabití nepřítele přirozené vyhrává hráč. Prohra nastává v případě, kdy hráči došly všechny `prostředky`.
+Cílem hráče je dostat co největší množství svých jednotek přes věže, které budou na vojáky přirozeně útočit aby jim zabránily v postupu. V průběhu hry hráč střádá prostředky díky kterým může vysílat lepší jednotky do boje. V případě, že útočník dorazí až do cíle, poškodí nepřítele. V případě zabití nepřítele přirozené vyhrává hráč. Prohra nastává v případě, kdy hráči došly všechny prostředky.
 
 ### Nástin implementace
 
+
 ### Kde mám polymorfismus
+Polymorfismus využívám ve třídě `CTower`, která má virtuální metodu `Attack`. Metoda `Attack` simuluje útok věže na vojáka s tím, že `CTower` je pouze jednoduchá věž s jedním lukostřelcem a vysílá tedy pouze jeden šíp s menším poškozením. Tuto metodu přetěžuje její potomek `CMageTower`, která už implementuje sofistikovanější útok s pomocí temných mágů, kteří všude kolem své věže vysílají elektrické paprsky (`Attack` tedy poškozuje jednotky v celém svém okolí).
 
-
+Další příklad polymorfismu je ve třídě `CTrooper`, která má virtuální metodu `Move` a `ReceiveDamage`. Jejím předkem je `CArmoredTrooper`. Metoda `Move`
