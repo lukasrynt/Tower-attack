@@ -65,6 +65,28 @@ Po načtení mapy a definice útočníku ze souboru se spustí samotná hra. Ve 
 ```
 > V ukázkové mapě lze vidět útočníky (__@__), věže (__\*__, __%__) a nepřítele (__O__)
 
+### Definice souboru
+Soubory ve kterých jsou uložené rozehrané hry nebo nové mapy mají podobnou strukturu. Je pevně daná - každý řádek začíná určitým znakem ve formátu `(C):`, kde C je znak který určuje co načítáme, a končí středníkem. Každý znak se může v souboru vyskytovat jen jednou, to zamezuje redefinici dat. Přípustné jsou následující znaky:
+-_M_: __Mapa__, následují dimenze mapy
+-_G_: __Gate__, následují životy brány
+-_@_, _$_: __Trooper__, následují parametry vojáka, na základě jeho typu
+-_%_, _*_: __Tower__, následují parametry věže, na základě jejího typu
+
+Na konci souboru je obsažena samotná mapa, za ní už nesmí následovat nic dalšího. Mapa má přípustné rozdílné hodnoty v případě, že se jedná o rozehranou hru (jsou povoleny rozmístěné věže a útočníci).
+```
+(@): 60, 50, 30;
+($): 80, 40, 40, 90;
+(%): 20, 20, 30, 60;
+(*): 20, 20, 30;
+(G): 2;
+(M): 5,5;
+#####
+1 # O
+# # #
+2   #
+#####
+```
+> Ukázka souboru
 ### Pravidla hry
 Cílem hráče je dostat co největší množství svých jednotek přes věže, které budou na vojáky přirozeně útočit, aby jim zabránily v postupu. V průběhu hry hráč střádá prostředky, díky kterým může vysílat lepší jednotky do boje. V případě, že útočník dorazí až do cíle, poškodí nepřítele. V případě zabití nepřítele přirozené vyhrává hráč. Prohra nastává v případě, kdy hráči došly všechny prostředky.
 
