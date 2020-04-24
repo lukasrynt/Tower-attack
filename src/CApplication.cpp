@@ -17,9 +17,8 @@ using namespace std;
 /**********************************************************************************************************************/
 // TERMIOS
 CApplication::CApplication()
-	: m_Term({0}),
-	  m_WaveOn(false),
-	  m_GameOn(true)
+	: m_Term({0})
+
 {
 	// https://viewsourcecode.org/snaptoken/kilo/02.enteringRawMode.html
 	// get attributes to termios struct
@@ -103,12 +102,12 @@ void CApplication::Run()
 void CApplication::MainLoop()
 {
 	//	http://gameprogrammingpatterns.com/game-loop.html
-	while (m_GameOn)
+	while (m_Game.IsOn())
 	{
 		// get time stamp
 		auto start = GetCurrentTime();
 		ProcessInput();
-		Update();
+		m_Game.Update();
 		RenderGameScreen();
 		Sleep(start - GetCurrentTime() + 30ms);
 	}
@@ -126,15 +125,6 @@ void CApplication::Sleep(std::chrono::milliseconds duration)
 	this_thread::sleep_for(duration);
 }
 
-void CApplication::Update()
-{
-	CTrooper * troop = m_Waves.Update(m_WaveOn);
-	if (troop)
-		m_Map.Spawn(troop);
-	if (!m_Map.Update(m_WaveOn))
-		EndGame();
-}
-
 /**********************************************************************************************************************/
 // INPUT PROCESSING
 void CApplication::ProcessInput()
@@ -144,21 +134,6 @@ void CApplication::ProcessInput()
 	{
 		case 0:
 			break;
-		case '1':
-			m_Waves.CycleWaves();
-			break;
-		case '2':
-			m_Waves.CycleTroops();
-			break;
-		case 'a':
-			AddTroopToWave();
-			break;
-		case 'p':
-			StartWave();
-			break;
-		case 'q':
-			EndGame();
-			break;
 		case 'h':
 			HelpScreen();
 			break;
@@ -166,33 +141,23 @@ void CApplication::ProcessInput()
 			SaveScreen();
 			break;
 		default:
-			InvalidInput("Invalid input, read the options above.");
+			GameInput(ch);
+			break;
 	}
 }
 
-void CApplication::StartWave()
+void CApplication::GameInput(char ch)
 {
-	if (m_WaveOn)
+	try
 	{
-		InvalidInput("Wave already running.");
-		return;
+		m_Game.ProcessInput(ch);
 	}
-	if (m_Waves.ReleaseWave())
-		m_WaveOn = true;
-	else
-		InvalidInput("Cannot start an empty wave.");
+	catch (runtime_error & e)
+	{
+		InvalidInput(e.what());
+	}
 }
 
-void CApplication::EndGame()
-{
-	m_GameOn = false;
-}
-
-void CApplication::AddTroopToWave()
-{
-	if (!m_Waves.AddTroop())
-		InvalidInput("Current wave is full.");
-}
 
 /**********************************************************************************************************************/
 // GAME SCREEN RENDERING
@@ -200,8 +165,7 @@ void CApplication::RenderGameScreen() const
 {
 	ResetScreen();
 	RenderGameOptions();
-	m_Waves.Render();
-	m_Map.Render();
+	m_Game.Render();
 }
 
 void CApplication::RenderGameOptions()
@@ -271,7 +235,7 @@ void CApplication::MenuScreen()
 				SavedGameLoadingScreen();
 				break;
 			case 'q':
-				EndGame();
+				m_Game.EndGame();
 				break;
 			default:
 				end = false;
@@ -331,17 +295,13 @@ void CApplication::NewGameLoadingScreen()
 {
 	while (true)
 	{
-		// welcoming message
-		ResetScreen();
-		cout << Colors::fg_white << "Enter the name of the map that you want to load.\n"
-									"The program will only search for maps in \"maps\" folder so please keep that in mind."
-			 << Colors::color_reset << endl << endl;
-		
 		// get the filename from user;
-		string filename = "maps/" + PromptFileName() + ".map";
+		string filename = "maps/" + PromptFileName("Enter the name of the map that you want to load.\n"
+												   "The program will only search for maps in \"maps\""
+												   "folder so please keep that in mind.") + ".map";
 		try
 		{
-			LoadNewGame(filename.c_str());
+			m_Game.Load(filename);
 		}
 		catch (invalid_argument &e)
 		{
@@ -353,67 +313,17 @@ void CApplication::NewGameLoadingScreen()
 	}
 }
 
-void CApplication::LoadGame(const char * filename, bool saved)
-{
-	ifstream inFile(filename);
-	bool map = false, waves = false, gate = false, end = false;
-	while (!end)
-	{
-		char ch = LoadSignatureChar(inFile);
-		vector<int> specifications = LoadSpecifications(inFile);
-		CTile tile{ch};
-		
-		if (tile.IsTower() || tile.IsTroop())
-			m_Waves.LoadUnitSpecifications(inFile, ch);
-		else if (tile.IsWall() && !map)
-		{
-			if (specifications.size() != 2)
-				throw runtime_error("Map can be only 2D");
-			if (saved)
-				m_Map.LoadSavedMap(inFile);
-			else
-				m_Map.LoadNewMap(inFile);
-			map = true;
-		}
-		else if (tile.IsSpawn() && !waves)
-		{
-			if (specifications.size() != 1)
-				throw runtime_error("Invalid specifications number");
-			m_Waves.SetWavesSpecifications(specifications[0], specifications[1]);
-			waves = true;
-		}
-		else if (tile.IsGate() && !gate)
-		{
-			if (specifications.size() != 1)
-				throw runtime_error("Invalid specifications number");
-			m_Map.SetGateHealth(specifications[0]);
-			gate = true;
-		}
-		else if (inFile.eof())
-		{
-			m_Map.CheckSpawnCount(m_Waves.GetWaveSize());
-			end = true;
-		}
-	}
-	if (!waves || !map || !gate)
-		throw runtime_error("Not all objects have been specified in the file.");
-}
-
 void CApplication::SavedGameLoadingScreen()
 {
 	while (true)
 	{
-		// welcoming message
-		ResetScreen();
-		cout << Colors::fg_white << "Enter the name of saved game you wish to load.\n"
-									"The program will only search for maps in \"saved\" folder so please keep that in mind."
-			 << Colors::color_reset << endl << endl;
-		
 		// get the filename from user;
-		string filename = "saved/" + PromptFileName() + ".sav";
+		string filename = "saved/" + PromptFileName("Enter the name of saved game you wish to load.\n"
+														  "The program will only search for maps in \"saved\" "
+															"folder so please keep that in mind.") + ".sav";
 		try
 		{
-			LoadSavedGame(filename.c_str());
+			m_Game.Load(filename);
 		}
 		catch (runtime_error &e)
 		{
@@ -423,36 +333,6 @@ void CApplication::SavedGameLoadingScreen()
 		cout << Colors::color_reset;
 		break;
 	}
-}
-
-char CApplication::LoadSignatureChar(std::istream &in)
-{
-	char brOp = 0, brCl = 0, div = 0, res = 0;
-	if (!(in >> brOp >> res >> brCl >> div)
-		|| brOp != '('
-		|| brCl != ')'
-		|| div != ':')
-		return 0;
-	return res;
-}
-
-vector<int> CApplication::LoadSpecifications(istream & in)
-{
-	vector<int> specifications;
-	int num = 0;
-	char delimit = 0;
-	while (true)
-	{
-		if (!(in >> num >> delimit)
-			|| num < 0
-			|| delimit != ',')
-			break;
-		specifications.push_back(num);
-	}
-	if (delimit != ';')
-		throw runtime_error("Wrong specifications format");
-	specifications.push_back(num);
-	return specifications;
 }
 
 void CApplication::InvalidInput(const char * message)
@@ -579,7 +459,7 @@ void CApplication::SaveScreen()
 		ch = GetChar();
 		if (ch == 'q')
 		{
-			m_GameOn = false;
+			m_Game.EndGame();
 			break;
 		}
 		else if (ch == 'r')
@@ -591,16 +471,12 @@ void CApplication::SaveMap()
 {
 	while (true)
 	{
-		ResetScreen();
-		cout << Colors::fg_white << "Enter the name of your save file. Press enter to validate the name.\n"
-							  "The file will be automatically appended with .sav"
-			 << Colors::color_reset << endl << endl;
-		
 		// save the map into the file
-		string filename = "saves/" + PromptFileName() + ".sav";
+		string filename = "saves/" + PromptFileName("Enter the name of your save file. Press enter to validate the name.\n"
+													"The file will be automatically appended with .sav") + ".sav";
 		try
 		{
-			m_Map.Save(filename.c_str());
+			m_Game.Save(filename);
 		}
 		catch (runtime_error & e)
 		{
@@ -620,8 +496,14 @@ void CApplication::RenderGameSavedScreen()
 	cout << Colors::fg_blue 	<< "		r - to return to game       " << Colors::color_reset << endl;
 }
 
-string CApplication::PromptFileName()
+string CApplication::PromptFileName(const string & message)
 {
+	// welcome message
+	ResetScreen();
+	cout << Colors::fg_white << message
+		 << Colors::color_reset << endl << endl;
+	
+	
 	// disable raw mode for a while
 	termios orig = {};
 	if (tcgetattr(STDIN_FILENO, &orig) == -1)

@@ -11,6 +11,7 @@
 #include "CMap.hpp"
 #include "Colors.hpp"
 #include "CWaves.hpp"
+#include "CGame.hpp"
 
 class CApplication
 {
@@ -28,11 +29,8 @@ public:
 	
 	void Run();
 private:
-	CWaves m_Waves;	//!< Troops waiting in waves and user's selection of troops and waves
-	CMap m_Map;		//!< Map with tiles occupied by troops, walls or towers
+	CGame m_Game;
 	termios m_Term;	//!< Terminal settings are stored here
-	bool m_WaveOn;	//!< Boolean signalizing start and end of wave
-	bool m_GameOn;
 	static const int DISPLAY_WIDTH = 150;
 	static const int DISPLAY_HEIGHT = 50;
 	
@@ -40,13 +38,10 @@ private:
 	void MainLoop();
 	static std::chrono::milliseconds GetCurrentTime();
 	static void Sleep(std::chrono::milliseconds duration);
-	void Update();
 	
 	// INPUT PROCESSING
 	void ProcessInput();
-	void StartWave();
-	void AddTroopToWave();
-	void EndGame();
+	void GameInput(char ch);
 	
 	// GAME SCREEN RENDERING
 	void RenderGameScreen() const;
@@ -60,12 +55,8 @@ private:
 	static void RenderMenuScreen();
 	
 	// LOADING
-	void SavedGameLoadingScreen();
-	void LoadSavedGame(const char * filename);
 	void NewGameLoadingScreen();
-	void LoadNewGame(const char * filename);
-	static char LoadSignatureChar(std::istream & in);
-	static std::vector<int> LoadSpecifications(std::istream & in);
+	void SavedGameLoadingScreen();
 	static void InvalidInput(const char * message);
 	
 	// HELP SCREEN
@@ -76,10 +67,10 @@ private:
 	static void RenderTrooperLegend();
 	static void RenderTowerLegend();
 	
-	// SAVE SCREEN
+	// SAVING
 	void SaveScreen();
 	void SaveMap();
-	std::string PromptFileName();
+	std::string PromptFileName(const std::string & message);
 	static void RenderGameSavedScreen();
 
 	// TERMIOS
