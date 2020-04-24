@@ -65,3 +65,11 @@ Po načtení mapy a definice útočníku ze souboru se spustí samotná hra. Ve 
 ```
 V ukázkové mapě lze vidět útočníky (__@__), věže (__\*__, __%__) a nepřítele (__O__)
 
+### Pravidla hry
+Cílem hráče je dostat co největší množství svých jednotek přes věže, které budou na vojáky přirozeně útočit aby jim zabránily v postupu. V průběhu hry hráč střádá prostředky díky kterým může vysílat lepší jednotky do boje. V případě, že útočník dorazí až do cíle, poškodí nepřítele. V případě zabití nepřítele přirozené vyhrává hráč. Prohra nastává v případě, kdy hráči došly všechny `prostředky`.
+
+### Nástin implementace
+
+### Kde mám polymorfismus
+
+
