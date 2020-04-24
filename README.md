@@ -1,4 +1,4 @@
-# Tower attack
+# Incursion (téma Tower attack)
 
 ## Téma z progtestu
 Naprogramujte jendoduchou grafickou tower ATTACK hru (nejedná se o tower defense)
@@ -42,3 +42,8 @@ Ukázky:
 - http://store.steampowered.com/app/251530/
 - http://www.youtube.com/watch?v=4eV4918kReE
 - http://www.newgrounds.com/portal/view/576124
+
+## Zadání hry Incursion
+Vytvoříme hru, která se spustí v konzoli a můžeme jí ovládat pomocí stisku jednotlivých kláves
+
+
