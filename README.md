@@ -69,6 +69,7 @@ Po načtení mapy a definice útočníku ze souboru se spustí samotná hra. Ve 
 Soubory ve kterých jsou uložené rozehrané hry nebo nové mapy mají podobnou strukturu. Je pevně daná - každý řádek začíná určitým znakem ve formátu `(C):`, kde C je znak který určuje co načítáme, a končí středníkem. Každý znak se může v souboru vyskytovat jen jednou, to zamezuje redefinici dat. Přípustné jsou následující znaky:
 - _M_: __Mapa__, následují dimenze mapy
 - _G_: __Gate__, následují životy brány
+- _W_, _*_: __Waves__, následuje maximální počet vojáků v jedné vlně a počet vln (musí souhlasit s počtem spawnů na mapě)
 - _@_, _$_: __Trooper__, následují parametry vojáka, na základě jeho typu
 - _%_, _*_: __Tower__, následují parametry věže, na základě jejího typu
 
