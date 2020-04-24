@@ -45,8 +45,23 @@ Ukázky:
 
 ## Zadání hry Incursion
 Vytvoříme hru, která se spustí v konzoli a reaguje na stisk jednotlivých kláves, ne celých příkazů. Po startu se spustí úvodní menu ve kterém má hráč několik možností:
-1. **Nová hra** - načte novou hru ze souboru s příponou _map_, který má specifický formát (viz dále)
-2. **Načtení uložené hry** - načte hru, která byla v některém předchozím běhu uložena do souboru. Soubor je zakončen příponou _sav_
-3. **Ukončení** - tato možnost je k dispozici v průběhu celého běhu programu krom zadávání jména mapy pomocí klávesy _q_
+1. *Nová hra* - načte novou hru ze souboru s příponou _map_, který má specifický formát (viz dále)
+2. *Načtení uložené hry* - načte hru, která byla v některém předchozím běhu uložena do souboru. Soubor je zakončen příponou _sav_
+3. *Ukončení* - tato možnost je k dispozici v průběhu celého běhu programu krom zadávání jména mapy pomocí klávesy _q_
 
+Po načtení mapy a definice útočníku ze souboru se spustí samotná hra. Ve vrchní části obrazovky jsou vidět vlny do kterých může uživatel přidávat útočníky, zároveň je zde výběr útočníků a nakonec současný stav prostředků hráče a životy nepřítele. V dolní části obrazovky je samotná mapa, například v následujícím formátu:
+```
+#############################
+1    #         #            #
+# ## #  #%###  #  #######   #
+# #  #      #     # #       #
+# ######### ##*#  # #    ####
+#  #      #    #    #    #  #
+##     ####    ######    #  #
+#    ###@@@  #   #          #
+#        #   #####    #######
+#        #     #            #
+#####################O#######
+```
+V ukázkové mapě lze vidět útočníky (__@__), věže (__\*__, __%__) a nepřítele (__O__)
 
