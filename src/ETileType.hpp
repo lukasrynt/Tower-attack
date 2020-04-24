@@ -1,5 +1,9 @@
-#pragma once
+/**
+ * @author Lukáš Rynt <ryntluka@fit.cvut.cz>
+ * @date 24.4.2020
+ */
 
+#pragma once
 
 #include <iostream>
 

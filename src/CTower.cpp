@@ -1,3 +1,8 @@
+/**
+ * @author Lukáš Rynt <ryntluka@fit.cvut.cz>
+ * @date 24.4.2020
+ */
+
 #include "CTower.hpp"
 
 using namespace std;

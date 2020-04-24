@@ -1,3 +1,8 @@
+/**
+ * @author Lukáš Rynt <ryntluka@fit.cvut.cz>
+ * @date 24.4.2020
+ */
+
 #include "CArmoredTrooper.hpp"
 
 CArmoredTrooper::CArmoredTrooper(int hp, int speed, int attack, int armor)

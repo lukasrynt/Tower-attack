@@ -1,3 +1,8 @@
+/**
+ * @author Lukáš Rynt <ryntluka@fit.cvut.cz>
+ * @date 24.4.2020
+ */
+
 #include "CFrames.hpp"
 
 CFrames::CFrames(int speed)
