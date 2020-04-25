@@ -10,14 +10,6 @@
 #include "CMap.hpp"
 #include "CWaves.hpp"
 
-class invalid_file : public std::runtime_error
-{
-public:
-	explicit invalid_file(const char * message)
-			: runtime_error(message)
-	{}
-};
-
 /**
  * A single game with map, waves and unit stack
  */
@@ -29,8 +21,8 @@ public:
 	bool IsOn() const;
 	void Update();
 	void Render() const;
-	bool ProcessInput(char ch);
-
+	void ProcessInput(char ch);
+	
 	// INGAME
 	void EndGame();
 
@@ -48,8 +40,7 @@ private:
 	void LoadMapDimensions(std::vector<int> specifications);
 	void LoadGateHealth(std::vector<int> specifications);
 	void LoadWaves(std::vector<int> specifications);
-	void LoadMap(std::istream & in, bool saved);
-	void CheckLoaded();
+	void CheckLoaded(const std::set<char> & signs);
 	
 	// INGAME
 	void AddTroopToWave();

@@ -9,6 +9,7 @@
 #include <zconf.h>
 #include "CMap.hpp"
 #include "CMageTower.hpp"
+#include "EInvalidFile.hpp"
 
 using namespace std;
 /**********************************************************************************************************************/
@@ -27,116 +28,74 @@ CMap::~CMap()
 
 /**********************************************************************************************************************/
 // LOADING
-void CMap::LoadNewMap(istream & in)
+void CMap::LoadMap(std::istream & in, bool saved)
 {
-	// Check input stream
-	if (!in)
-		throw runtime_error("Error loading file.");
+	char ch;
+	int row = 0;
+	// load upper wall line
+	for (int col = 0; col < m_Cols; ++col)
+		LoadWall({row++, col}, in.get());
 	
-	// Load first two numbers defining the size of the map
-	char delimit;
-	if (!(in >> m_Rows >> delimit >> m_Cols) || delimit != ',')
-		throw runtime_error("Wrong dimensions in map descriptions.");
+	for (; row < m_Rows - 2; ++row)
+	{
+		// read left wall boundary - skip enter
+		in.get();
+		LoadWall({row, 0}, in.get());
+		
+		// load characters inside map
+		for (int col = 0; col < m_Cols - 2; ++col)
+			AddToMap({row, col}, in.get(), saved);
+		
+		// load right wall boundary
+		LoadWall({row, m_Cols - 1}, in.get());
+	}
 	
-	// Skip the enter after dimension sequence
-	in.get();
+	// load lower wall line
+	for (int col = 0; col < m_Cols; ++col)
+		LoadWall({row, col}, in.get());
 	
-	m_GateHp = m_MaxGateHp = 200;
+	// check if the file has ended
+	if (cin >> ch)
+		throw invalid_file("");
 	
-	// Load the characters from input, based on the description of the map
-	LoadNewPositions(in);
+	// find paths for troops
 	FindPaths();
 }
 
-void CMap::AddFromNew(pos_t position, char ch)
+void CMap::LoadWall(pos_t position, char ch)
+{
+	CTile tile{ch};
+	if (ch != '#')
+		throw invalid_file("unexpected character read in map.");
+	m_Map.insert({position, tile});
+}
+
+void CMap::AddToMap(pos_t position, char ch, bool saved)
 {
 	// For empty tile just return
 	if (ch == ' ')
 		return;
 	
-	// Add tile to map
 	CTile tile{ch};
 	if (tile.IsGate())
 		m_Gate = position;
 	else if (tile.IsSpawn())
 		InitSpawner(position, ch);
-	else if (tile.IsTower())
-		InitTower(position, ch);
+	else if (saved)
+		AddFromSaved(tile);
 	else
-		throw runtime_error("Invalid character in map.");
-	m_Map.insert({position,tile});
+		throw invalid_file("invalid map character.");
+	m_Map.insert({position, tile});
 }
 
-
-void CMap::LoadSavedMap(istream & in)
+void CMap::AddFromSaved(const CTile & tile)
 {
-	// Check input stream
-	if (!in)
-		throw runtime_error("Error loading file.");
-	
-	// Load first two numbers defining the size of the map
-	char delimit;
-	if (!(in >> m_Rows >> delimit >> m_Cols) || delimit != ',')
-		throw runtime_error("Wrong dimensions in map descriptions.");
-	
-	// Skip the enter after dimension sequence
-	in.get();
-	
-	m_GateHp = m_MaxGateHp = 200;
-	
-	// Load the characters from input, based on the description of the map
-	LoadNewPositions(in);
-	FindPaths();
-}
-
-void CMap::LoadSavedPositions(std::istream &in)
-{
-	char ch = 0;
-	for (int i = 0; i < m_Rows; i++)
-	{
-		for (int j = 0; j < m_Cols; j++)
-		{
-			// try to load character
-			if (!(ch = in.get()))
-				throw runtime_error("Failure during read");
-			
-			// check whether the char is not invalid and add it to map
-			AddFromNew({j,i}, ch);
-			
-		}
-		if (!(ch = in.get()) || ch != '\n')
-			throw runtime_error("Missing enter");
-	}
-}
-
-void CMap::AddFromSaved(pos_t position, char ch)
-{
-	// For empty tile just return
-	if (ch == ' ')
-		return;
-	
-	// Add tile to map
-	CTile tile{ch};
-	if (!tile.IsValid())
-		throw runtime_error("Invalid character.");
-	else if (tile.IsGate())
-		m_Gate = position;
-	else if (tile.IsSpawn())
-		InitSpawner(position, ch);
-	else if (tile.IsTower())
-		InitTower(position, ch);
-	m_Map.insert({position,tile});
-}
-
-
-void CMap::InitTower(pos_t position, char ch)
-{
-	CTower * tower = nullptr;
-	if (ch == '*')
-		tower = new CTower(position, 20, 20);
-	else if (ch == '%')
-		tower = new CMageTower(position, 20, 20, 20, 40);
-	m_Towers.emplace_back(tower);
+	if (tile.IsTower())
+		m_Towers.emplace_back(m_UnitStack->CreateTowerAt(tile.GetRawChar()));
+	else if (tile.IsTroop())
+		m_Troops.emplace_back(m_UnitStack->CreateTrooperAt(tile.GetRawChar()));
+	else
+		throw invalid_file("invalid map character.");
 }
 
 void CMap::InitSpawner(pos_t position, char ch)
@@ -151,12 +110,18 @@ void CMap::CheckSpawnCount(int count) const
 		if (max < it.first)
 			max = it.first;
 	if (max != count)
-		throw runtime_error("The number of spawns and waves are not the same.");
+		throw invalid_file("The number of spawns and waves are not the same.");
 }
 
 void CMap::SetGateHealth(int hp)
 {
 	m_GateHp = hp;
+}
+
+void CMap::SetMapDimensions(int rows, int cols)
+{
+	m_Rows = rows;
+	m_Cols = cols;
 }
 
 /**********************************************************************************************************************/

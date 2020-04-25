@@ -13,10 +13,12 @@
 #include <map>
 #include <queue>
 #include <list>
+#include <memory>
 #include "CTrooper.hpp"
 #include "CTower.hpp"
 #include "Colors.hpp"
 #include "CPath.hpp"
+#include "CUnitStack.hpp"
 
 // Class representing the map
 class CMap
@@ -29,8 +31,7 @@ public:
 	CMap & operator=(const CMap & src) = delete;
 	
 	// LOADING
-	void LoadSavedMap(std::istream & in);
-	void LoadNewMap(std::istream & in);
+	void LoadMap(std::istream & in, bool saved);
 	void CheckSpawnCount(int count) const;
 	void SetMapDimensions(int rows, int cols);
 	void SetGateHealth(int hp);
@@ -58,18 +59,15 @@ private:
 	std::unordered_map<pos_t,CTile> m_Map; //!< two dimensional map
 	std::map<int, pos_t> m_Spawns;			//!< spawns on the map mapped to their indexes
 	std::map<pos_t, std::deque<pos_t>> m_Paths;
+	std::shared_ptr<CUnitStack> m_UnitStack;
 	pos_t m_Gate;							//!< pointer to the gate, to which the troopers must get
 	int m_MaxGateHp;
 	int m_GateHp;
 	
 	// LOADING
-	void LoadSavedPositions(std::istream & in);
-	void AddFromSaved(pos_t position, char ch);
-	
-	void LoadNewPositions(std::istream & in);
-	void AddFromNew(pos_t position, char ch);
-	
-	void InitTower(pos_t position, char ch);
+	void LoadWall(pos_t position, char ch);
+	void AddToMap(pos_t position, char ch, bool saved);
+	void AddFromSaved(const CTile & tile);
 	void InitSpawner(pos_t position, char ch);
 	
 	// UPDATE PHASE

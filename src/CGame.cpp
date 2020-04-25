@@ -3,7 +3,9 @@
  * @date 24.4.2020
  */
 
+#include <algorithm>
 #include "CGame.hpp"
+#include "EInvalidFile.hpp"
 
 using namespace std;
 
@@ -15,6 +17,11 @@ void CGame::Load(const string & filename)
 	while (true)
 	{
 		ifstream inFile(filename);
+		
+		// Check input stream
+		if (!inFile)
+			throw invalid_file("error loading file.");
+		
 		char ch = LoadSignatureChar(inFile);
 		vector<int> specifications = LoadSpecifications(inFile);
 		if (!signs.insert(ch).second)
@@ -31,10 +38,10 @@ void CGame::Load(const string & filename)
 		else if (ch == 'W')
 			LoadWaves(specifications);
 		else if (ch == '#')
-			LoadMap(inFile, filename.find(".sav"));
+			m_Map.LoadMap(inFile, filename.find(".sav"));
 		else if (inFile.eof())
 		{
-			CheckLoaded();
+			CheckLoaded(signs);
 			break;
 		}
 		else
@@ -42,38 +49,36 @@ void CGame::Load(const string & filename)
 	}
 }
 
-void CGame::LoadMapDimensions(std::vector<int> specifications)
+void CGame::LoadMapDimensions(vector<int> specifications)
 {
 	if (specifications.size() != 2)
 		throw invalid_file("Invalid number of arguments for 'M'");
 	m_Map.SetMapDimensions(specifications[0], specifications[1]);
 }
 
-void CGame::LoadGateHealth(std::vector<int> specifications)
+void CGame::LoadGateHealth(vector<int> specifications)
 {
 	if (specifications.size() != 1)
 		throw invalid_file("Invalid number of arguments for 'G'.");
 	m_Map.SetGateHealth(specifications[0]);
 }
 
-void CGame::LoadWaves(std::vector<int> specifications)
+void CGame::LoadWaves(vector<int> specifications)
 {
 	if (specifications.size() != 1)
 		throw invalid_file("Invalid number of arguments for 'W'");
 	m_Waves.SetWavesSpecifications(specifications[0], specifications[1]);
 }
 
-void CGame::LoadMap(std::istream & in, bool saved)
-{
-	if (saved)
-		m_Map.LoadSavedMap(in);
-	else
-		m_Map.LoadNewMap(in);
-}
-
-void CGame::CheckLoaded()
+void CGame::CheckLoaded(const set<char> & signs)
 {
 	m_Map.CheckSpawnCount(m_Waves.GetWaveSize());
+	set<char> check{'M', 'G', 'W', '#', '@', '*'};
+	for (const auto & ch : check)
+	{
+		if (signs.find(ch) == signs.end())
+			throw invalid_file("not all objects have been defined.")
+	}
 }
 
 char CGame::LoadSignatureChar(std::istream &in)
@@ -145,7 +150,7 @@ void CGame::Render() const
 	m_Map.Render();
 }
 
-bool CGame::ProcessInput(char ch)
+void CGame::ProcessInput(char ch)
 {
 	switch (ch)
 	{

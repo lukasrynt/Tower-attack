@@ -158,7 +158,6 @@ void CApplication::GameInput(char ch)
 	}
 }
 
-
 /**********************************************************************************************************************/
 // GAME SCREEN RENDERING
 void CApplication::RenderGameScreen() const
