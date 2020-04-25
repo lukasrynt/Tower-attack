@@ -3,9 +3,8 @@
  * @date 24.4.2020
  */
 
-#include <algorithm>
 #include "CGame.hpp"
-#include "EInvalidFile.hpp"
+#include "ExInvalidInput.hpp"
 
 using namespace std;
 
@@ -77,7 +76,7 @@ void CGame::CheckLoaded(const set<char> & signs)
 	for (const auto & ch : check)
 	{
 		if (signs.find(ch) == signs.end())
-			throw invalid_file("not all objects have been defined.")
+			throw invalid_file("not all objects have been defined.");
 	}
 }
 
@@ -115,7 +114,7 @@ vector<int> CGame::LoadSpecifications(istream & in)
 		specifications.push_back(num);
 	}
 	if (delimit != ';')
-		throw runtime_error("Wrong specifications format");
+		throw invalid_file("Wrong specifications format");
 	specifications.push_back(num);
 	return specifications;
 }
@@ -141,12 +140,13 @@ void CGame::Update()
 	if (troop)
 		m_Map.Spawn(troop);
 	if (!m_Map.Update(m_WaveOn))
-		EndGame();
+		End();
 }
 
 void CGame::Render() const
 {
 	m_Waves.Render();
+	m_UnitStack->Render();
 	m_Map.Render();
 }
 
@@ -157,10 +157,10 @@ void CGame::ProcessInput(char ch)
 		case 0:
 			break;
 		case '1':
-			m_Waves.CycleWaves();
+			m_Waves.Cycle();
 			break;
 		case '2':
-			m_Waves.CycleTroops();
+			m_UnitStack->Cycle();
 			break;
 		case 'a':
 			AddTroopToWave();
@@ -169,30 +169,30 @@ void CGame::ProcessInput(char ch)
 			StartWave();
 			break;
 		case 'q':
-			EndGame();
+			End();
 			break;
 		default:
-			throw runtime_error("Invalid input, read the options above.");
+			throw invalid_input("Invalid input, read the options above.");
 	}
 }
 
 void CGame::StartWave()
 {
 	if (m_WaveOn)
-		throw runtime_error("Wave already running.");
-	if (m_Waves.ReleaseWave())
+		throw invalid_input("Wave already running.");
+	if (m_Waves.Release())
 		m_WaveOn = true;
 	else
-		throw runtime_error("Cannot start an empty wave.");
+		throw invalid_input("Cannot start an empty wave.");
 }
 
 void CGame::AddTroopToWave()
 {
 	if (!m_Waves.AddTroop())
-		throw runtime_error("Current wave is full.");
+		throw invalid_input("Current wave is full.");
 }
 
-void CGame::EndGame()
+void CGame::End()
 {
 	m_GameOn = false;
 }

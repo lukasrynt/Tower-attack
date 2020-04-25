@@ -9,76 +9,82 @@
 #include <zconf.h>
 #include "CMap.hpp"
 #include "CMageTower.hpp"
-#include "EInvalidFile.hpp"
+#include "ExInvalidFile.hpp"
 
 using namespace std;
 /**********************************************************************************************************************/
 // INIT
-CMap::CMap()
+CMap::CMap(shared_ptr<CUnitStack> unitStack)
 	: m_Cols(0),
 	  m_Rows(0),
+	  m_GateMaxHp(0),
 	  m_GateHp(0),
-	  m_MaxGateHp(0)
+	  m_Gate(pos_t::npos),
+	  m_UnitStack(move(unitStack))
 {}
 
 CMap::~CMap()
 {
-	//TODO
+	for (auto & troop : m_Troops)
+		delete troop;
+	for (auto & tower : m_Towers)
+		delete tower;
 }
 
 /**********************************************************************************************************************/
 // LOADING
 void CMap::LoadMap(std::istream & in, bool saved)
 {
-	char ch;
+	char ch = 0;
 	int row = 0;
 	// load upper wall line
 	for (int col = 0; col < m_Cols; ++col)
-		LoadWall({row++, col}, in.get());
+		AddToMap({col, row}, in.get(), false);
+	row++;
 	
-	for (; row < m_Rows - 2; ++row)
+	for (; row < m_Rows - 1; ++row)
 	{
 		// read left wall boundary - skip enter
 		in.get();
-		LoadWall({row, 0}, in.get());
+		AddToMap({0, row}, in.get(), false);
 		
 		// load characters inside map
-		for (int col = 0; col < m_Cols - 2; ++col)
-			AddToMap({row, col}, in.get(), saved);
+		for (int col = 1; col < m_Cols - 1; ++col)
+		{
+			ch = in.get();
+			if (ch == ' ')
+				continue;
+			AddToMap({col, row}, ch, saved);
+		}
 		
 		// load right wall boundary
-		LoadWall({row, m_Cols - 1}, in.get());
+		AddToMap({m_Cols - 1, row}, in.get(), false);
 	}
 	
 	// load lower wall line
+	in.get();
 	for (int col = 0; col < m_Cols; ++col)
-		LoadWall({row, col}, in.get());
+		AddToMap({col, row}, in.get(), false);
 	
 	// check if the file has ended
-	if (cin >> ch)
-		throw invalid_file("");
+	in >> ch;
+	if (!in.eof())
+		throw invalid_file("file not properly ended.");
 	
 	// find paths for troops
 	FindPaths();
 }
 
-void CMap::LoadWall(pos_t position, char ch)
-{
-	CTile tile{ch};
-	if (ch != '#')
-		throw invalid_file("unexpected character read in map.");
-	m_Map.insert({position, tile});
-}
-
 void CMap::AddToMap(pos_t position, char ch, bool saved)
 {
-	// For empty tile just return
-	if (ch == ' ')
-		return;
-	
 	CTile tile{ch};
+	if (tile.IsWall())
+	{
+		m_Map.insert({position, tile});
+		return;
+	}
 	if (tile.IsGate())
-		m_Gate = position;
+		InitGatePosition(position);
 	else if (tile.IsSpawn())
 		InitSpawner(position, ch);
 	else if (saved)
@@ -88,18 +94,37 @@ void CMap::AddToMap(pos_t position, char ch, bool saved)
 	m_Map.insert({position, tile});
 }
 
+void CMap::InitGatePosition(pos_t position)
+{
+	if (m_Gate != pos_t::npos)
+		throw invalid_file("there can't be two gates");
+	m_Gate = position;
+}
+
 void CMap::AddFromSaved(const CTile & tile)
 {
 	if (tile.IsTower())
-		m_Towers.emplace_back(m_UnitStack->CreateTowerAt(tile.GetRawChar()));
+	{
+		CTower * tower = m_UnitStack->CreateTowerAt(tile.GetRawChar());
+		if (!tower)
+			throw invalid_file((string("no tower named '") + tile.GetRawChar() + "' has been defined earlier").c_str());
+		m_Towers.emplace_back(tower);
+	}
 	else if (tile.IsTroop())
-		m_Troops.emplace_back(m_UnitStack->CreateTrooperAt(tile.GetRawChar()));
+	{
+		CTrooper * trooper = m_UnitStack->CreateTrooperAt(tile.GetRawChar());
+		if (!trooper)
+			throw invalid_file((string("no trooper named '") + tile.GetRawChar() + "' has been defined earlier").c_str());
+		m_Troops.emplace_back(trooper);
+	}
 	else
 		throw invalid_file("invalid map character.");
 }
 
 void CMap::InitSpawner(pos_t position, char ch)
 {
+	if (m_Spawns.count(ch - '0'))
+		throw invalid_file("spawner redefinition.");
 	m_Spawns.insert({{ch - '0', position}});
 }
 
@@ -115,7 +140,7 @@ void CMap::CheckSpawnCount(int count) const
 
 void CMap::SetGateHealth(int hp)
 {
-	m_GateHp = hp;
+	m_GateHp = m_GateMaxHp =  hp;
 }
 
 void CMap::SetMapDimensions(int rows, int cols)
@@ -141,7 +166,6 @@ ostream & operator<<(ostream & out, const CMap & map)
 		if (!(out << line << endl))
 			return out;
 	}
-	
 	return out;
 }
 
@@ -189,7 +213,7 @@ void CMap::RenderGate() const
 {
 	int part = 0;
 	if (m_GateHp > 0)
-		part = (m_GateHp / static_cast<double> (m_MaxGateHp)) * 10;
+		part = (m_GateHp / static_cast<double> (m_GateMaxHp)) * 10;
 	cout << "Gate: ["
 		<< Colors::bg_red << string(part, ' ') << Colors::color_reset
 		<< string(10 - part, ' ') << ']' << endl << endl;
@@ -197,7 +221,6 @@ void CMap::RenderGate() const
 
 /**********************************************************************************************************************/
 // UPDATE
-
 void CMap::Spawn(CTrooper * trooper)
 {
 	trooper->SetPath(m_Paths.at(m_Spawns.at(trooper->GetSpawn())));
@@ -259,7 +282,7 @@ bool CMap::GateDefeated() const
 }
 
 /**********************************************************************************************************************/
-// MORE
+// TESTING
 void CMap::VisualizePath(std::queue<pos_t> path)
 {
 	while (!path.empty())

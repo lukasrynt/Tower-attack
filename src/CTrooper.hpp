@@ -46,7 +46,7 @@ public:
 	{m_Path = std::move(path);}
 	
 	friend std::ostream & operator<<(std::ostream & out, const CTrooper & troop)
-	{out << troop.m_Char;}
+	{return out << troop.m_Char;}
 
 protected:
 	char m_Char;

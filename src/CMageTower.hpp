@@ -19,7 +19,7 @@ public:
 	 * @param attackSpeed
 	 * @param maxMana
 	 */
-	explicit CMageTower(pos_t position, int attackDamage = 0, int attackSpeed = 0, int mana = 0, int magicAttack = 0);
+	explicit CMageTower(int attackDamage = 0, int attackSpeed = 0, int mana = 0, int magicAttack = 0, pos_t position = pos_t::npos);
 	/**
 	 * Adds magical attack to the base damage
 	 */

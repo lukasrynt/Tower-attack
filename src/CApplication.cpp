@@ -4,14 +4,8 @@
  */
 
 #include "CApplication.hpp"
-#include <chrono>
-#include <thread>
-#include <fstream>
-#include <list>
-#include <termios.h>
-#include <unistd.h>
-#include <sstream>
-#include <iomanip>
+#include "ExInvalidInput.hpp"
+
 
 using namespace std;
 /**********************************************************************************************************************/
@@ -152,7 +146,7 @@ void CApplication::GameInput(char ch)
 	{
 		m_Game.ProcessInput(ch);
 	}
-	catch (runtime_error & e)
+	catch (invalid_input & e)
 	{
 		InvalidInput(e.what());
 	}
@@ -234,7 +228,7 @@ void CApplication::MenuScreen()
 				SavedGameLoadingScreen();
 				break;
 			case 'q':
-				m_Game.EndGame();
+				m_Game.End();
 				break;
 			default:
 				end = false;
@@ -302,7 +296,7 @@ void CApplication::NewGameLoadingScreen()
 		{
 			m_Game.Load(filename);
 		}
-		catch (invalid_argument &e)
+		catch (invalid_file & e)
 		{
 			InvalidInput(e.what());
 			continue;
@@ -324,7 +318,7 @@ void CApplication::SavedGameLoadingScreen()
 		{
 			m_Game.Load(filename);
 		}
-		catch (runtime_error &e)
+		catch (invalid_file & e)
 		{
 			InvalidInput(e.what());
 			continue;
@@ -458,7 +452,7 @@ void CApplication::SaveScreen()
 		ch = GetChar();
 		if (ch == 'q')
 		{
-			m_Game.EndGame();
+			m_Game.End();
 			break;
 		}
 		else if (ch == 'r')

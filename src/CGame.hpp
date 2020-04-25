@@ -9,6 +9,7 @@
 #include "CUnitStack.hpp"
 #include "CMap.hpp"
 #include "CWaves.hpp"
+#include "ExInvalidFile.hpp"
 
 /**
  * A single game with map, waves and unit stack
@@ -24,7 +25,7 @@ public:
 	void ProcessInput(char ch);
 	
 	// INGAME
-	void EndGame();
+	void End();
 
 private:
 	// VARIABLES

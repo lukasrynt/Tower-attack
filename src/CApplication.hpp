@@ -8,9 +8,14 @@
 #include <chrono>
 #include <termios.h>
 #include <iomanip>
-#include "CMap.hpp"
+#include <iomanip>
+#include <thread>
+#include <termios.h>
+#include <unistd.h>
+#include <sstream>
+
+#include "ExInvalidFile.hpp"
 #include "Colors.hpp"
-#include "CWaves.hpp"
 #include "CGame.hpp"
 
 class CApplication

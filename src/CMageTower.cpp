@@ -7,8 +7,8 @@
 
 using namespace std;
 
-CMageTower::CMageTower(pos_t position, int attackDamage, int attackSpeed, int mana, int magicAttack)
-	: CTower(position, attackDamage, attackSpeed),
+CMageTower::CMageTower(int attackDamage, int attackSpeed, int mana, int magicAttack, pos_t position)
+	: CTower(attackDamage, attackSpeed, position),
 	  m_MaxMana(mana),
 	  m_Mana(mana),
 	  m_MagicAttack(magicAttack)

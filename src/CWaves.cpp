@@ -13,23 +13,26 @@ using namespace std;
 /**********************************************************************************************************************/
 // INIT
 CWaves::CWaves()
-	: m_SelectedWave(0),
-	  m_SelectedTroop(0),
+	: m_Selected(0),
 	  m_WaveCnt(0),
-	  m_WaveMaxSize(0),
+	  m_MaxSize(0),
 	  m_Frames(20),
 	  m_ReleasingWave(false)
 {}
 
 CWaves::~CWaves()
-{}
+{
+	for (auto & wave : m_Waves)
+		for (auto & troop : wave)
+			delete troop;
+}
 
 /**********************************************************************************************************************/
 // LOADING
 void CWaves::SetWavesSpecifications(int waveCnt, int maxWaveSize)
 {
 	m_WaveCnt = waveCnt;
-	m_WaveMaxSize = maxWaveSize;
+	m_MaxSize = maxWaveSize;
 	InitWaves();
 }
 
@@ -51,59 +54,32 @@ int CWaves::GetWaveSize() const
 // RENDER
 void CWaves::Render() const
 {
-	PrintWaves();
-	PrintTroops();
-}
-
-void CWaves::PrintTroops() const
-{
-	cout << endl << Colors::fg_cyan << string(3 * + m_Troops.size(), '-') << Colors::color_reset << endl;
-	
-	size_t idx = 0;
-	for (const auto & troop : m_Troops)
-	{
-		if (idx++ == m_SelectedTroop)
-			cout << Colors::bg_cyan;
-		cout << *troop.second << Colors::color_reset << string(3, ' ');
-	}
-	
-	cout << endl << Colors::fg_cyan << string(3 * + m_Troops.size(), '-') << Colors::color_reset << endl << endl;
-}
-
-void CWaves::PrintWaves() const
-{
-	cout << endl << Colors::fg_green << string(10 + m_WaveMaxSize, '-') << Colors::color_reset << endl;
+	cout << endl << Colors::fg_green << string(10 + m_MaxSize, '-') << Colors::color_reset << endl;
 	
 	size_t idx = 0;
 	for (const auto & wave : m_Waves)
 	{
-		if (idx == m_SelectedWave)
+		if (idx == m_Selected)
 			cout << Colors::bg_green;
 		cout	<< "Wave " << ++idx << ": [";
 		for (const auto & troop : wave)
 			cout << *troop;
-		cout << string(m_WaveMaxSize - wave.size(), ' ') << "]"
-			<< Colors::color_reset << endl;
+		cout << string(m_MaxSize - wave.size(), ' ') << "]"
+			 << Colors::color_reset << endl;
 	}
 	
-	cout << Colors::fg_green << string(10 + m_WaveMaxSize, '-') << Colors::color_reset << endl;
+	cout << Colors::fg_green << string(10 + m_MaxSize, '-') << Colors::color_reset << endl;
 }
 
 /**********************************************************************************************************************/
 // INPUT PROCESSING
-void CWaves::CycleWaves()
+void CWaves::Cycle()
 {
-	if (++m_SelectedWave == m_WaveCnt)
-		m_SelectedWave = 0;
+	if (++m_Selected == m_WaveCnt)
+		m_Selected = 0;
 }
 
-void CWaves::CycleTroops()
-{
-	if (++m_SelectedTroop == m_Troops.size())
-		m_SelectedTroop = 0;
-}
-
-bool CWaves::ReleaseWave()
+bool CWaves::Release()
 {
 	// check if the waves are not empty
 	bool empty = true;
@@ -118,13 +94,13 @@ bool CWaves::ReleaseWave()
 
 bool CWaves::AddTroop()
 {
-	if (m_Waves.empty() || m_Waves[m_SelectedWave].size() == m_WaveMaxSize)
+	if (m_Waves.empty() || m_Waves[m_Selected].size() == m_MaxSize)
 		return false;
 	
 	// add trooper to the wave
-	auto troop = m_Troops[m_SelectedTroop]->Clone();
-	troop->SetSpawn(m_SelectedWave + 1);
-	m_Waves[m_SelectedWave].emplace_back(troop);
+	auto troop = m_UnitStack->CreateSelected();
+	troop->SetSpawn(m_Selected + 1);
+	m_Waves[m_Selected].emplace_back(troop);
 	return true;
 }
 

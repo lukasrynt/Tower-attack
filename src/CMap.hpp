@@ -20,12 +20,16 @@
 #include "CPath.hpp"
 #include "CUnitStack.hpp"
 
-// Class representing the map
+/**
+ * Map with troopers, walls, spawn points and towers
+ * Takes care of rendering map, updating all units
+ * and evaluating game state.
+ */
 class CMap
 {
 public:
 	// INIT
-	explicit CMap();
+	explicit CMap(std::shared_ptr<CUnitStack> unitStack);
 	~CMap();
 	CMap(const CMap & src) = delete;
 	CMap & operator=(const CMap & src) = delete;
@@ -52,23 +56,23 @@ public:
 	void VisualizePath(std::queue<pos_t> path);
 private:
 	// VARIABLES
-	int m_Cols;								//!< map's columns
-	int m_Rows;								//!< map's rows
-	std::deque<CTrooper*> m_Troops;			//!< pointers to troopers on the map
-	std::deque<CTower*> m_Towers;			//!< pointers to towers on the map
-	std::unordered_map<pos_t,CTile> m_Map; //!< two dimensional map
-	std::map<int, pos_t> m_Spawns;			//!< spawns on the map mapped to their indexes
-	std::map<pos_t, std::deque<pos_t>> m_Paths;
-	std::shared_ptr<CUnitStack> m_UnitStack;
-	pos_t m_Gate;							//!< pointer to the gate, to which the troopers must get
-	int m_MaxGateHp;
-	int m_GateHp;
+	int m_Cols;									//!< map's columns
+	int m_Rows;									//!< map's rows
+	int m_GateMaxHp;							//!< number of gate's max health
+	int m_GateHp;								//!< number of current gate's health
+	pos_t m_Gate;								//!< pointer to the gate, to which the troopers must get
+	std::deque<CTrooper*> m_Troops;				//!< pointers to troopers on the map
+	std::deque<CTower*> m_Towers;				//!< pointers to towers on the map
+	std::unordered_map<pos_t,CTile> m_Map; 		//!< two dimensional map
+	std::map<int, pos_t> m_Spawns;				//!< spawns on the map mapped to their indexes
+	std::map<pos_t, std::deque<pos_t>> m_Paths;	//!< paths from spawn points to finish mapped to positions of spawns
+	std::shared_ptr<CUnitStack> m_UnitStack;	//!< unit stack containing all towers and troopers templates
 	
 	// LOADING
-	void LoadWall(pos_t position, char ch);
 	void AddToMap(pos_t position, char ch, bool saved);
 	void AddFromSaved(const CTile & tile);
 	void InitSpawner(pos_t position, char ch);
+	void InitGatePosition(pos_t position);
 	
 	// UPDATE PHASE
 	void MoveTroops(bool & waveOn);

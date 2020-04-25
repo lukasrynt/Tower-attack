@@ -40,12 +40,15 @@ doc:
 CFrames.o: CFrames.hpp CFrames.cpp
 CTile.o: CTile.cpp CTile.hpp CPosition.hpp
 CPath.o: CPath.cpp CPath.hpp
-CWaves.o: CWaves.hpp CWaves.cpp CTrooper.hpp CFrames.hpp
+CWaves.o: CWaves.hpp CWaves.cpp CTrooper.hpp CFrames.hpp CUnitStack.hpp
+CUnitStack.o: CUnitStack.cpp CUnitStack.hpp
+ETileType.o: ETileType.cpp ETileType.hpp 
+CGame.o: CGame.cpp CGame.hpp CUnitStack.hpp CWaves.hpp CMap.hpp
 CTrooper.o: CTrooper.cpp CTrooper.hpp CTile.hpp CFrames.hpp
 CTower.o: CTower.cpp CTower.hpp CTile.hpp
-CMap.o: CMap.cpp CMap.hpp CTower.hpp CTrooper.hpp CPath.hpp
+CMap.o: CMap.cpp CMap.hpp CTower.hpp CTrooper.hpp CPath.hpp CUnitStack.hpp
 CPosition.o: CPosition.cpp CPosition.hpp
 CMageTower.o: CMageTower.cpp CMageTower.hpp CTower.hpp
 CArmoredTrooper.o: CArmoredTrooper.cpp CArmoredTrooper.hpp CTrooper.hpp
-CApplication.o: CApplication.cpp CApplication.hpp CMap.hpp CWaves.hpp
-main.o: main.cpp CApplication.hpp CMap.hpp
+CApplication.o: CApplication.cpp CApplication.hpp CGame.hpp
+main.o: main.cpp CApplication.hpp
