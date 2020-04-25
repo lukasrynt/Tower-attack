@@ -1,0 +1,6 @@
+<map id="CUnitStack::LoadUnitSpecifications" name="CUnitStack::LoadUnitSpecifications">
+<area shape="rect" id="node2" href="$classCUnitStack.html#a1cc3310f2991512beb7f30a16ee893fa" title="CUnitStack::CreateBasicTroop" alt="" coords="287,5,489,32"/>
+<area shape="rect" id="node3" href="$classCUnitStack.html#a63935f82b3e439f91c383751a88d4b03" title="CUnitStack::CreateArmored\lTroop" alt="" coords="295,57,481,98"/>
+<area shape="rect" id="node4" href="$classCUnitStack.html#a70a2296dece5a23be6db38a9ef5cae13" title="CUnitStack::CreateArcher\lTower" alt="" coords="301,122,475,163"/>
+<area shape="rect" id="node5" href="$classCUnitStack.html#a907359c2ecf532b30fbeb179f805293a" title="CUnitStack::CreateMageTower" alt="" coords="285,188,491,215"/>
+</map>

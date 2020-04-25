@@ -1,0 +1,8 @@
+<map id="CApplication::SavedGameLoadingScreen" name="CApplication::SavedGameLoadingScreen">
+<area shape="rect" id="node2" href="$classCApplication.html#aae7f4bad794f5c7763e047e8586f1ea6" title="CApplication::PromptFileName" alt="" coords="275,31,477,57"/>
+<area shape="rect" id="node6" href="$classCGame.html#a1ca88a33fdd3bb0458bffabf52bd5e94" title="CGame::Load" alt="" coords="325,81,427,108"/>
+<area shape="rect" id="node7" href="$classCApplication.html#a9d9bb6b9f137928bfaef154d58e175b6" title="CApplication::InvalidInput" alt="" coords="291,132,461,159"/>
+<area shape="rect" id="node3" href="$classCApplication.html#acdcdce972810067eb5acaa3c780051f5" title="CApplication::ResetScreen" alt="" coords="525,5,705,32"/>
+<area shape="rect" id="node4" href="$classCApplication.html#a3cb29b850cceb37ceb718f385b05ddae" title="CApplication::Die" alt="" coords="753,81,877,108"/>
+<area shape="rect" id="node5" href="$classCApplication.html#a12d92fc8f98ea2b8007403ee15b2ca60" title="CApplication::GetChar" alt="" coords="539,107,692,133"/>
+</map>

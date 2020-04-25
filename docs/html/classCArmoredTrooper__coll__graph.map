@@ -1,0 +1,5 @@
+<map id="CArmoredTrooper" name="CArmoredTrooper">
+<area shape="rect" id="node2" href="$classCTrooper.html" title="{CTrooper\n|# m_Char\l# m_Hp\l# m_Attack\l# m_SpawnIdx\l# m_Path\l|+ CTrooper()\l+ Clone()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ SetSpawn()\l+ GetSpawn()\l+ SetPosition()\l+ GetPosition()\l+ SetPath()\l}" alt="" coords="171,263,310,531"/>
+<area shape="rect" id="node3" href="$structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetNeighbours()\l+ LiesInRange()\l+ GetRadius()\l}" alt="" coords="5,5,135,200"/>
+<area shape="rect" id="node4" href="$classCFrames.html" title="{CFrames\n|&#45; m_Speed\l&#45; m_CurrFrame\l&#45; MAX_FRAME_CNT\l|+ CFrames()\l+ ActionAllowed()\l}" alt="" coords="224,42,372,163"/>
+</map>

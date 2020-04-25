@@ -1,0 +1,4 @@
+<map id="CMap::Spawn" name="CMap::Spawn">
+<area shape="rect" id="node2" href="$classCTrooper.html#a358f7bd720fa4e902fdd6833e06cff01" title="CTrooper::SetPath" alt="" coords="166,5,297,32"/>
+<area shape="rect" id="node3" href="$classCTrooper.html#aa4f443661e74e85a3eff9dca21dbd7a4" title="CTrooper::GetSpawn" alt="" coords="159,56,304,83"/>
+</map>

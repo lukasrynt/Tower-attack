@@ -24,8 +24,8 @@ public:
 	~CUnitStack();
 	/**
 	 * Load unit based on character and it's specification. Add it to template vectors.
-	 * @param specifications
-	 * @param ch
+	 * @param specifications Specifications for the unit
+	 * @param ch Character defining unit
 	 */
 	void LoadUnitSpecifications(const std::vector<int> & specifications, char ch);
 	/**

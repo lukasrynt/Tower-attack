@@ -1,0 +1,6 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$classCMap.html#a5117586c51178e086af2e02a64016031" title="CMap::SetMapDimensions" alt="" coords="104,5,283,32"/>
+<area shape="rect" id="node3" href="$classCMap.html#a9f35a8fe7ecc363d19362b9970699687" title="CMap::SetGateHealth" alt="" coords="118,56,269,83"/>
+<area shape="rect" id="node4" href="$classCMap.html#aeb81ad3abebbac74130abaeaaf046047" title="CMap::LoadMap" alt="" coords="134,107,253,133"/>
+<area shape="rect" id="node5" href="$classCMap.html#aade65fe713b0dc6cb9587c1383714234" title="CMap::Render" alt="" coords="140,157,247,184"/>
+</map>

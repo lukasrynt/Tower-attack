@@ -1,0 +1,5 @@
+<map id="CMageTower" name="CMageTower">
+<area shape="rect" id="node2" href="$classCTower.html" title="{CTower\n|# m_AttackDamage\l&#45; m_ArrowPath\l&#45; m_Perimeter\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ Attack()\l+ PerimeterBreached()\l&#45; ArrowMove()\l&#45; ArrowClear()\l}" alt="" coords="164,277,317,472"/>
+<area shape="rect" id="node3" href="$structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetNeighbours()\l+ LiesInRange()\l+ GetRadius()\l}" alt="" coords="5,5,135,200"/>
+<area shape="rect" id="node4" href="$classCFrames.html" title="{CFrames\n|&#45; m_Speed\l&#45; m_CurrFrame\l&#45; MAX_FRAME_CNT\l|+ CFrames()\l+ ActionAllowed()\l}" alt="" coords="224,42,372,163"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="CMap::LoadMap" name="CMap::LoadMap">
+<area shape="rect" id="node2" href="$classCTile.html#aff443072dd2ab83898ef0c850c56b01a" title="CTile::IsTower" alt="" coords="187,5,295,32"/>
+<area shape="rect" id="node3" href="$classCTile.html#ad30425f52c7e98a8834df1442c89a49e" title="CTile::GetRawChar" alt="" coords="172,56,309,83"/>
+<area shape="rect" id="node4" href="$classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="188,107,293,133"/>
+</map>

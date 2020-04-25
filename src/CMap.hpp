@@ -35,7 +35,16 @@ public:
 	CMap & operator=(const CMap & src) = delete;
 	
 	// LOADING
+	/**
+	 * Loads map from input file
+	 * @param in Input file stream
+	 * @param saved Saved is true when we load saved game - there are different allowed characters in this case
+	 */
 	void LoadMap(std::istream & in, bool saved);
+	/**
+	 * Checks if the count provided is equivalent to number of count in map
+	 * @param count Count of spawns
+	 */
 	void CheckSpawnCount(int count) const;
 	void SetMapDimensions(int rows, int cols);
 	void SetGateHealth(int hp);
