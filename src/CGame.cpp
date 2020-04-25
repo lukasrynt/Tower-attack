@@ -9,11 +9,72 @@ using namespace std;
 
 /**********************************************************************************************************************/
 // LOADING
-void CGame::Load(const std::string & filename)
+void CGame::Load(const string & filename)
 {
-
+	set<char> signs;
+	while (true)
+	{
+		ifstream inFile(filename);
+		char ch = LoadSignatureChar(inFile);
+		vector<int> specifications = LoadSpecifications(inFile);
+		if (!signs.insert(ch).second)
+			throw invalid_file("redefining object is not allowed.");
+		if (ch == '@'
+			|| ch == '$'
+			|| ch == '*'
+			|| ch == '%')
+			m_UnitStack->LoadUnitSpecifications(specifications, ch);
+		else if (ch == 'M')
+			LoadMapDimensions(specifications);
+		else if (ch == 'G')
+			LoadGateHealth(specifications);
+		else if (ch == 'W')
+			LoadWaves(specifications);
+		else if (ch == '#')
+			LoadMap(inFile, filename.find(".sav"));
+		else if (inFile.eof())
+		{
+			CheckLoaded();
+			break;
+		}
+		else
+			throw invalid_file("unknown signature character.");
+	}
 }
 
+void CGame::LoadMapDimensions(std::vector<int> specifications)
+{
+	if (specifications.size() != 2)
+		throw invalid_file("Invalid number of arguments for 'M'");
+	m_Map.SetMapDimensions(specifications[0], specifications[1]);
+}
+
+void CGame::LoadGateHealth(std::vector<int> specifications)
+{
+	if (specifications.size() != 1)
+		throw invalid_file("Invalid number of arguments for 'G'.");
+	m_Map.SetGateHealth(specifications[0]);
+}
+
+void CGame::LoadWaves(std::vector<int> specifications)
+{
+	if (specifications.size() != 1)
+		throw invalid_file("Invalid number of arguments for 'W'");
+	m_Waves.SetWavesSpecifications(specifications[0], specifications[1]);
+}
+
+void CGame::LoadMap(std::istream & in, bool saved)
+{
+	if (saved)
+		m_Map.LoadSavedMap(in);
+	else
+		m_Map.LoadNewMap(in);
+}
+
+void CGame::CheckLoaded()
+{
+	m_Map.CheckSpawnCount(m_Waves.GetWaveSize());
+}
 
 char CGame::LoadSignatureChar(std::istream &in)
 {
@@ -52,55 +113,6 @@ vector<int> CGame::LoadSpecifications(istream & in)
 		throw runtime_error("Wrong specifications format");
 	specifications.push_back(num);
 	return specifications;
-}
-
-void CGame::Load(const string & filename)
-{
-	ifstream inFile(filename);
-	bool map = false, waves = false, gate = false, end = false;
-	while (!end)
-	{
-		char ch = LoadSignatureChar(inFile);
-		vector<int> specifications = LoadSpecifications(inFile);
-		
-		// Decide if the character is trooper or tower - this marks unit specifications
-		CTile tile{ch};
-		if (tile.IsTower() || tile.IsTroop())
-			m_UnitStack->LoadUnitSpecifications(specifications, ch);
-		
-		
-		else if (tile.IsWall() && !map)
-		{
-			if (specifications.size() != 2)
-				throw invalid_file("Map can be only 2D");
-			if (saved)
-				m_Map.LoadSavedMap(inFile);
-			else
-				m_Map.LoadNewMap(inFile);
-			map = true;
-		}
-		else if (tile.IsSpawn() && !waves)
-		{
-			if (specifications.size() != 1)
-				throw invalid_file("Invalid specifications number");
-			m_Waves.SetWavesSpecifications(specifications[0], specifications[1]);
-			waves = true;
-		}
-		else if (tile.IsGate() && !gate)
-		{
-			if (specifications.size() != 1)
-				throw invalid_file("Invalid specifications number");
-			m_Map.SetGateHealth(specifications[0]);
-			gate = true;
-		}
-		else if (inFile.eof())
-		{
-			m_Map.CheckSpawnCount(m_Waves.GetWaveSize());
-			end = true;
-		}
-	}
-	if (!waves || !map || !gate)
-		throw invalid_file("Not all objects have been specified in the file.");
 }
 
 /**********************************************************************************************************************/

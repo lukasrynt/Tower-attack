@@ -5,6 +5,7 @@
 
 #include <memory>
 #include <fstream>
+#include <set>
 #include "CUnitStack.hpp"
 #include "CMap.hpp"
 #include "CWaves.hpp"
@@ -44,6 +45,11 @@ private:
 	// LOADING
 	static char LoadSignatureChar(std::istream & in);
 	static std::vector<int> LoadSpecifications(std::istream & in);
+	void LoadMapDimensions(std::vector<int> specifications);
+	void LoadGateHealth(std::vector<int> specifications);
+	void LoadWaves(std::vector<int> specifications);
+	void LoadMap(std::istream & in, bool saved);
+	void CheckLoaded();
 	
 	// INGAME
 	void AddTroopToWave();
