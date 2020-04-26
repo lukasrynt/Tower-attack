@@ -22,6 +22,7 @@ public:
 	~CWaves();
 	CWaves(const CWaves & src) = default;
 	CWaves & operator=(const CWaves & src) = default;
+	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
 	
 	// LOADING
 	void SetWavesSpecifications(int waveCnt, int maxWaveSize);

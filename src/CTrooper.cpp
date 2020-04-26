@@ -19,7 +19,7 @@ CTrooper::CTrooper(int hp, int speed, int attack, char ch)
 	  m_SpawnIdx(0)
 {}
 
-CTrooper* CTrooper::Clone()
+CTrooper* CTrooper::Clone() const
 {
 	return new CTrooper(*this);
 }
@@ -34,7 +34,6 @@ void CTrooper::ReceiveDamage(int damage)
 bool CTrooper::Move(unordered_map<pos_t,CTile> & map)
 {
 	// move according to current frame
-	CTile self = map.at(m_Pos);
 	if (!m_Frames.ActionAllowed() || m_Path.empty())
 		return false;
 	
@@ -59,11 +58,11 @@ bool CTrooper::Move(unordered_map<pos_t,CTile> & map)
 	if (map.count(m_Pos))
 		map.erase(m_Pos);
 	m_Pos = target;
-	map.insert({m_Pos, self});
+	map.insert({m_Pos, {m_Char, ETileType::TROOP}});
 	return false;
 }
 
-int CTrooper::Attack()
+int CTrooper::Attack() const
 {
 	return m_Attack;
 }

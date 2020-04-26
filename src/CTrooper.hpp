@@ -22,11 +22,11 @@ class CTrooper
 public:
 	// INIT
 	explicit CTrooper(int hp = 0, int speed = 0, int attack = 0, char ch = '@');
-	virtual CTrooper * Clone();
+	virtual CTrooper * Clone() const;
 	
 	// ACTIONS
 	bool Move(std::unordered_map<pos_t, CTile> & map);
-	int Attack();
+	int Attack() const;
 	virtual void ReceiveDamage(int damage);
 	
 	// GETTERS/ SETTERS

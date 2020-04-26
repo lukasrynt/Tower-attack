@@ -60,8 +60,8 @@ private:
 	static void RenderMenuScreen();
 	
 	// LOADING
-	void NewGameLoadingScreen();
-	void SavedGameLoadingScreen();
+	bool NewGameLoadingScreen();
+	bool SavedGameLoadingScreen();
 	static void InvalidInput(const char * message);
 	
 	// HELP SCREEN
@@ -84,6 +84,7 @@ private:
 	 * Resets the timeout for read to 0, read can return instantly
 	 */
 	static void ResetTimeout();
+	static void NullTimeout();
 	/**
 	 * Exits the program when serious error has occurred
 	 * @param [in] s string message with what happened

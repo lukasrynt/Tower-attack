@@ -6,7 +6,7 @@
 #include "CArmoredTrooper.hpp"
 
 CArmoredTrooper::CArmoredTrooper(int hp, int speed, int attack, int armor)
-	: CTrooper(hp, speed, attack),
+	: CTrooper(hp, speed, attack, '$'),
 	  m_Armor(armor),
 	  m_MaxArmor(armor)
 {}
@@ -27,7 +27,7 @@ void CArmoredTrooper::FindPath(pos_t goal, std::unordered_map<pos_t,CTile> & map
 
 }
 
-CArmoredTrooper * CArmoredTrooper::Clone()
+CArmoredTrooper * CArmoredTrooper::Clone() const
 {
 	return new CArmoredTrooper(*this);
 }

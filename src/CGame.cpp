@@ -8,21 +8,32 @@
 
 using namespace std;
 
+CGame::CGame()
+	: m_GameOn(true),
+	  m_WaveOn(false)
+{}
+
 /**********************************************************************************************************************/
 // LOADING
 void CGame::Load(const string & filename)
 {
 	set<char> signs;
+	m_UnitStack = make_shared<CUnitStack>();
+	m_Map.AssignUnitStack(m_UnitStack);
+	m_Waves.AssignUnitStack(m_UnitStack);
+	ifstream inFile(filename);
+	
+	// Check input stream
+	if (!inFile)
+		throw invalid_file("error loading file.");
 	while (true)
 	{
-		ifstream inFile(filename);
-		
-		// Check input stream
-		if (!inFile)
-			throw invalid_file("error loading file.");
-		
 		char ch = LoadSignatureChar(inFile);
-		vector<int> specifications = LoadSpecifications(inFile);
+		vector<int> specifications;
+		
+		// Load specifications only in case there was a signature char
+		if (ch != '#' && ch)
+			specifications = LoadSpecifications(inFile);
 		if (!signs.insert(ch).second)
 			throw invalid_file("redefining object is not allowed.");
 		if (ch == '@'
@@ -37,7 +48,7 @@ void CGame::Load(const string & filename)
 		else if (ch == 'W')
 			LoadWaves(specifications);
 		else if (ch == '#')
-			m_Map.LoadMap(inFile, filename.find(".sav"));
+			m_Map.LoadMap(inFile, !filename.find(".sav"));
 		else if (inFile.eof())
 		{
 			CheckLoaded(signs);
@@ -64,7 +75,7 @@ void CGame::LoadGateHealth(vector<int> specifications)
 
 void CGame::LoadWaves(vector<int> specifications)
 {
-	if (specifications.size() != 1)
+	if (specifications.size() != 2)
 		throw invalid_file("Invalid number of arguments for 'W'");
 	m_Waves.SetWavesSpecifications(specifications[0], specifications[1]);
 }
@@ -84,13 +95,16 @@ char CGame::LoadSignatureChar(std::istream &in)
 {
 	char brOp = 0, brCl = 0, div = 0, res = 0;
 	
-	// check that first character is ( map - marks the signature char
-	if (!(in >> brOp)
-		|| brOp != '(')
+	// check that the first character isn't map character
+	if (!(in >> brOp))
+		return 0;
+	if (brOp == '#')
 	{
 		in.putback(brOp);
-		return 0;
+		return brOp;
 	}
+	else if (brOp != '(')
+		return 0;
 	
 	// scan the rest of signature char
 	if (!(in >> res >> brCl >> div)

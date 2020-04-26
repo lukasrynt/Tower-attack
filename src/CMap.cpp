@@ -14,13 +14,12 @@
 using namespace std;
 /**********************************************************************************************************************/
 // INIT
-CMap::CMap(shared_ptr<CUnitStack> unitStack)
+CMap::CMap()
 	: m_Cols(0),
 	  m_Rows(0),
 	  m_GateMaxHp(0),
 	  m_GateHp(0),
-	  m_Gate(pos_t::npos),
-	  m_UnitStack(move(unitStack))
+	  m_Gate(pos_t::npos)
 {}
 
 CMap::~CMap()
@@ -30,6 +29,12 @@ CMap::~CMap()
 	for (auto & tower : m_Towers)
 		delete tower;
 }
+
+void CMap::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
+{
+	m_UnitStack = move(unitStack);
+}
+
 
 /**********************************************************************************************************************/
 // LOADING
@@ -103,6 +108,9 @@ void CMap::InitGatePosition(pos_t position)
 
 void CMap::AddFromSaved(const CTile & tile)
 {
+	if (!m_UnitStack)
+		throw invalid_file("unit stack not initialized.");
+	
 	if (tile.IsTower())
 	{
 		CTower * tower = m_UnitStack->CreateTowerAt(tile.GetRawChar());

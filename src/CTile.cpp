@@ -32,26 +32,35 @@ void CTile::SetColors()
 	{
 		case '#':
 			m_Color = Colors::fg_magenta;
+			break;
 		case '@':
 			m_Color = Colors::fg_yellow;
+			break;
 		case '$':
 			m_Color = Colors::fg_cyan;
+			break;
 		case '*':
 			m_Color = Colors::bg_red;
+			break;
 		case '%':
 			m_Color = Colors::bg_blue;
+			break;
 		case '1':
 		case '2':
 		case '3':
 		case '4':
 		case '5':
 			m_Color = Colors::bg_cyan;
+			break;
 		case 'O':
 			m_Color = Colors::bg_magenta;
+			break;
 		case ' ':
 			m_Color = Colors::bg_red;
+			break;
 		default:
 			m_Color = "";
+			break;
 	}
 }
 

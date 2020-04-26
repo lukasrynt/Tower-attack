@@ -29,10 +29,11 @@ class CMap
 {
 public:
 	// INIT
-	explicit CMap(std::shared_ptr<CUnitStack> unitStack);
+	explicit CMap();
 	~CMap();
 	CMap(const CMap & src) = delete;
 	CMap & operator=(const CMap & src) = delete;
+	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
 	
 	// LOADING
 	/**

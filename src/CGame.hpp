@@ -17,6 +17,7 @@
 class CGame
 {
 public:
+	CGame();
 	void Load(const std::string & filename);
 	void Save(const std::string & filename) const;
 	bool IsOn() const;

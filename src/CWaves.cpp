@@ -27,6 +27,12 @@ CWaves::~CWaves()
 			delete troop;
 }
 
+void CWaves::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
+{
+	m_UnitStack = move(unitStack);
+}
+
+
 /**********************************************************************************************************************/
 // LOADING
 void CWaves::SetWavesSpecifications(int waveCnt, int maxWaveSize)

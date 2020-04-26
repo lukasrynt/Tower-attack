@@ -32,7 +32,7 @@ public:
 	 */
 	void FindPath(pos_t goal, std::unordered_map<pos_t,CTile> & map);
 	
-	CArmoredTrooper * Clone() final;
+	CArmoredTrooper * Clone() const final;
 
 private:
 	int m_Armor;	//!< Current armor

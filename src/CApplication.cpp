@@ -60,6 +60,22 @@ void CApplication::ResetTimeout()
 		Die("Error during tcgetattr");
 	
 	// set timeout
+	tmp.c_cc[VMIN] = 1;									// minimimum number of bytes that read needs before it can return
+	tmp.c_cc[VTIME] = 0;								// time before read can return
+	
+	// set the attributes back to terminal
+	if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &tmp) == -1)
+		Die("Error during tcsetattr");
+}
+
+void CApplication::NullTimeout()
+{
+	// get the attributes
+	termios tmp = {0};
+	if (tcgetattr(STDIN_FILENO, &tmp) == -1)
+		Die("Error during tcgetattr");
+	
+	// set timeout
 	tmp.c_cc[VMIN] = 0;									// minimimum number of bytes that read needs before it can return
 	tmp.c_cc[VTIME] = 1;								// time before read can return
 	
@@ -134,6 +150,10 @@ void CApplication::ProcessInput()
 		case 's':
 			SaveScreen();
 			break;
+		case 'm':
+			ResetTimeout();
+			MenuScreen();
+			break;
 		default:
 			GameInput(ch);
 			break;
@@ -194,6 +214,10 @@ void CApplication::RenderGameOptions()
 	cout 	<< Colors::fg_white
 			<< "h - help screen"
 			<< Colors::color_reset << endl;
+	
+	cout 	<< Colors::fg_black
+			<< "m - menu screen"
+			<< Colors::color_reset << endl;
 }
 
 void CApplication::ResetScreen()
@@ -222,10 +246,10 @@ void CApplication::MenuScreen()
 		switch (ch)
 		{
 			case '1':
-				NewGameLoadingScreen();
+				end = NewGameLoadingScreen();
 				break;
 			case '2':
-				SavedGameLoadingScreen();
+				end = SavedGameLoadingScreen();
 				break;
 			case 'q':
 				m_Game.End();
@@ -237,21 +261,21 @@ void CApplication::MenuScreen()
 		}
 		
 	} while (!end);
-	ResetTimeout();
+	NullTimeout();
 }
 
 void CApplication::RenderHeader()
 {
 	// http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 	cout << Colors::fg_yellow;
-	PrintCenteredLine(R"(_________ _______           _______  _______    _______ __________________ _______  _______  _       )");
-	PrintCenteredLine(R"(\__   __/(  ___  )|\     /|(  ____ \(  ____ )  (  ___  )\__   __/\__   __/(  ___  )(  ____ \| \    /\)");
-	PrintCenteredLine(R"(   ) (   | (   ) || )   ( || (    \/| (    )|  | (   ) |   ) (      ) (   | (   ) || (    \/|  \  / /)");
-	PrintCenteredLine(R"(   | |   | |   | || | _ | || (__    | (____)|  | (___) |   | |      | |   | (___) || |      |  (_/ / )");
-	PrintCenteredLine(R"(   | |   | |   | || |( )| ||  __)   |     __)  |  ___  |   | |      | |   |  ___  || |      |   _ (  )");
-	PrintCenteredLine(R"(   | |   | |   | || || || || (      | (\ (     | (   ) |   | |      | |   | (   ) || |      |  ( \ \ )");
-	PrintCenteredLine(R"(   | |   | (___) || () () || (____/\| ) \ \__  | )   ( |   | |      | |   | )   ( || (____/\|  /  \ \)");
-	PrintCenteredLine(R"(   )_(   (_______)(_______)(_______/|/   \__/  |/     \|   )_(      )_(   |/     \|(_______/|_/    \/)");
+	PrintCenteredLine(R"(_________ _        _______           _______  _______ _________ _______  _       )");
+	PrintCenteredLine(R"(\__   __/( (    /|(  ____ \|\     /|(  ____ )(  ____ \\__   __/(  ___  )( (    /|)");
+	PrintCenteredLine(R"(   ) (   |  \  ( || (    \/| )   ( || (    )|| (    \/   ) (   | (   ) ||  \  ( |)");
+	PrintCenteredLine(R"(   | |   |   \ | || |      | |   | || (____)|| (_____    | |   | |   | ||   \ | |)");
+	PrintCenteredLine(R"(   | |   | (\ \) || |      | |   | ||     __)(_____  )   | |   | |   | || (\ \) |)");
+	PrintCenteredLine(R"(   | |   | | \   || |      | |   | || (\ (         ) |   | |   | |   | || | \   |)");
+	PrintCenteredLine(R"(___) (___| )  \  || (____/\| (___) || ) \ \__/\____) |___) (___| (___) || )  \  |)");
+	PrintCenteredLine(R"(\_______/|/    )_)(_______/(_______)|/   \__/\_______)\_______/(_______)|/    )_))");
 	cout << Colors::color_reset << endl;
 }
 
@@ -284,14 +308,21 @@ void CApplication::PrintCenteredLine(const string & line)
 	cout << string((DISPLAY_WIDTH - line.size()) / 2, ' ') << line << endl;
 }
 
-void CApplication::NewGameLoadingScreen()
+bool CApplication::NewGameLoadingScreen()
 {
 	while (true)
 	{
 		// get the filename from user;
-		string filename = "maps/" + PromptFileName("Enter the name of the map that you want to load.\n"
-												   "The program will only search for maps in \"maps\""
-												   "folder so please keep that in mind.") + ".map";
+		string response = PromptFileName("Enter the name of the map that you want to load.\n"
+					"The program will only search for maps in \"maps\" "
+		   			"folder so please keep that in mind.\n"
+					"Type 'RETURN' to go back to menu screen");
+		if (response == "RETURN")
+		{
+			cout << Colors::color_reset;
+			return false;
+		}
+		string filename = "maps/" + response + ".map";
 		try
 		{
 			m_Game.Load(filename);
@@ -302,18 +333,25 @@ void CApplication::NewGameLoadingScreen()
 			continue;
 		}
 		cout << Colors::color_reset;
-		break;
+		return true;
 	}
 }
 
-void CApplication::SavedGameLoadingScreen()
+bool CApplication::SavedGameLoadingScreen()
 {
 	while (true)
 	{
 		// get the filename from user;
-		string filename = "saved/" + PromptFileName("Enter the name of saved game you wish to load.\n"
-														  "The program will only search for maps in \"saved\" "
-															"folder so please keep that in mind.") + ".sav";
+		string response = PromptFileName("Enter the name of saved game you wish to load.\n"
+					"The program will only search for maps in \"saved\" "
+					"folder so please keep that in mind.\n"
+					"Type 'RETURN' to go back to menu screen");
+		if (response == "RETURN")
+		{
+			cout << Colors::color_reset;
+			return false;
+		}
+		string filename = "saved/" + response + ".sav";
 		try
 		{
 			m_Game.Load(filename);
@@ -324,7 +362,7 @@ void CApplication::SavedGameLoadingScreen()
 			continue;
 		}
 		cout << Colors::color_reset;
-		break;
+		return true;
 	}
 }
 
