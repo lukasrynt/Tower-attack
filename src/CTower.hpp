@@ -19,9 +19,12 @@ public:
 	explicit CTower(int attackDamage = 0, int attackSpeed = 0, pos_t position = pos_t::npos);
 	virtual ~CTower() = default;
 	virtual CTower * Clone();
+	// SAVE
+	virtual std::ostream & Save(std::ostream & out) const;
 	// ATTACK
 	virtual void Attack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper *> & troops);
 	pos_t PerimeterBreached(std::unordered_map<pos_t, CTile> & map);
+	
 protected:
 	pos_t m_Pos;
 	int m_AttackDamage;	//!< attack damage of the tower

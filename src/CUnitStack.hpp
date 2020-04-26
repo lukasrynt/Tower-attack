@@ -22,6 +22,8 @@ class CUnitStack
 public:
 	CUnitStack();
 	~CUnitStack();
+	
+	std::istream & Load(char ch, std::istream & in);
 	/**
 	 * Load unit based on character and it's specification. Add it to template vectors.
 	 * @param specifications Specifications for the unit
@@ -53,6 +55,12 @@ public:
 	 * Cycle through trooper selection
 	 */
 	void Cycle() const;
+	/**
+	 * Saves units specifications to output stream
+	 * @param out Output stream
+	 * @return Output stream
+	 */
+	std::ostream & Save(std::ostream & out) const;
 	
 private:
 	// VARIABLES
@@ -60,28 +68,8 @@ private:
 	std::map<char, CTower*> m_Towers;	//!< vector with all towers templates
 	mutable int m_Selected;				//!< currently selected trooper
 	
-	/**
-	 * Create basic trooper with given specifications
-	 * @param specifications Specifications with which we create the trooper
-	 * @throws invalid_file when specification doesn't match
-	 */
-	void CreateBasicTroop(const std::vector<int> & specifications);
-	/**
-	 * Create armored trooper with given specifications
-	 * @param specifications Specifications with which we create the trooper
-	 * @throws invalid_file when specification doesn't match
-	 */
-	void CreateArmoredTroop(const std::vector<int> & specifications);
-	/**
-	 * Create archer tower with given specifications
-	 * @param specifications Specifications with which we create the trooper
-	 * @throws invalid_file when specification doesn't match
-	 */
-	void CreateArcherTower(const std::vector<int> & specifications);
-	/**
-	 * Create mage tower with given specifications
-	 * @param specifications Specifications with which we create the trooper
-	 * @throws invalid_file when specification doesn't match
-	 */
-	void CreateMageTower(const std::vector<int> & specifications);
+	std::istream & CreateBasicTroop(std::istream & in);
+	std::istream & CreateArmoredTroop(std::istream & in);
+	std::istream & CreateArcherTower(std::istream & in);
+	std::istream & CreateMageTower(std::istream & in);
 };

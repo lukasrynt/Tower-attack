@@ -36,23 +36,20 @@ public:
 	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
 	
 	// LOADING
-	/**
-	 * Loads map from input file
-	 * @param in Input file stream
-	 * @param saved Saved is true when we load saved game - there are different allowed characters in this case
-	 */
+	std::istream & LoadMap(std::istream & in);
+	std::istream & LoadGate(std::istream & in);
+	std::istream & LoadDimensions(std::istream & in);
+	
 	void LoadMap(std::istream & in, bool saved);
-	/**
-	 * Checks if the count provided is equivalent to number of count in map
-	 * @param count Count of spawns
-	 */
 	void CheckSpawnCount(int count) const;
 	void SetMapDimensions(int rows, int cols);
 	void SetGateHealth(int hp);
 	
 	// SAVING
-	bool Save(const char * filename) const;
-	friend std::ostream & operator<<(std::ostream & out, const CMap & map);
+	std::ostream & Save(std::ostream & out) const;
+	std::ostream & SaveDimensions(std::ostream & out) const;
+	std::ostream & SaveGate(std::ostream & out) const;
+	std::ostream & SaveMap(std::ostream & out) const;
 
 	// RENDER
 	void Render() const;

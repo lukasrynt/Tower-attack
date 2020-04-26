@@ -19,7 +19,7 @@ CTrooper::CTrooper(int hp, int speed, int attack, char ch)
 	  m_SpawnIdx(0)
 {}
 
-CTrooper* CTrooper::Clone() const
+CTrooper * CTrooper::Clone() const
 {
 	return new CTrooper(*this);
 }
@@ -65,4 +65,25 @@ bool CTrooper::Move(unordered_map<pos_t,CTile> & map)
 int CTrooper::Attack() const
 {
 	return m_Attack;
+}
+
+/**********************************************************************************************************************/
+// LOADING
+CTrooper * CTrooper::Load(std::istream & in)
+{
+	CTrooper * trooper = new CTrooper();
+	char del1, del2, del3;
+	if (!(in >> trooper->m_Hp >> del1 >> trooper->m_Frames >> del2 >> trooper->m_Attack >> del3)
+		|| del1 != ','
+		|| del2 != ','
+		|| del3 != ';')
+		return nullptr;
+	trooper->m_Char = '@';
+	return trooper;
+}
+/**********************************************************************************************************************/
+// SAVING
+ostream & CTrooper::Save(ostream &out) const
+{
+	return out << m_Hp << ',' << m_Frames << ',' << m_Attack << ';';
 }

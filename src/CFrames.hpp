@@ -5,11 +5,18 @@
 
 #pragma once
 
+#include <iostream>
+
 class CFrames
 {
 public:
 	explicit CFrames(int speed);
 	bool ActionAllowed();
+	
+	friend std::istream & operator>>(std::istream & in, CFrames & self)
+	{return in >> self.m_Speed;}
+	friend std::ostream & operator<<(std::ostream & out, const CFrames & self)
+	{return out << self.m_Speed;}
 private:
 	int m_Speed;
 	int m_CurrFrame;

@@ -13,6 +13,7 @@
 class CArmoredTrooper : public CTrooper
 {
 public:
+	// INIT
 	/**
 	 * Constructor
 	 * @param hp
@@ -31,8 +32,13 @@ public:
 	 * @param goal
 	 */
 	void FindPath(pos_t goal, std::unordered_map<pos_t,CTile> & map);
-	
 	CArmoredTrooper * Clone() const final;
+	
+	// LOAD
+	static CArmoredTrooper * Load(std::istream & in);
+	
+	// SAVE
+	std::ostream & Save(std::ostream & out) const final;
 
 private:
 	int m_Armor;	//!< Current armor

@@ -57,6 +57,24 @@ int CWaves::GetWaveSize() const
 }
 
 /**********************************************************************************************************************/
+// SAVING
+ostream & CWaves::Save(ostream & out) const
+{
+	out << "(W):" << m_WaveCnt << ',' << m_MaxSize << endl;
+	if (!m_Waves.empty())
+	{
+		for (const auto & wave : m_Waves)
+		{
+			out << '[';
+			for (const auto & troop : wave)
+				out << *troop;
+			out << ']' << endl;
+		}
+	}
+	return out;
+}
+
+/**********************************************************************************************************************/
 // RENDER
 void CWaves::Render() const
 {

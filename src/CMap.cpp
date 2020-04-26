@@ -159,38 +159,41 @@ void CMap::SetMapDimensions(int rows, int cols)
 
 /**********************************************************************************************************************/
 // SAVING
-ostream & operator<<(ostream & out, const CMap & map)
+ostream & CMap::Save(std::ostream & out) const
 {
-	for (int i = 0; i < map.m_Rows; ++i)
+	if (!(SaveDimensions(out) << endl)
+		|| !(SaveGate(out) << endl)
+		|| !(SaveMap(out) << endl))
+		return out;
+	return out;
+}
+
+std::ostream & CMap::SaveDimensions(std::ostream &out) const
+{
+	return out << "(D):" << m_Rows << ',' << m_Cols << ';';
+}
+
+std::ostream & CMap::SaveGate(std::ostream &out) const
+{
+	return out << "(G):" << m_GateHp << ',' << m_GateMaxHp << ';';
+}
+
+std::ostream & CMap::SaveMap(std::ostream &out) const
+{
+	for (int i = 0; i < m_Rows; ++i)
 	{
 		string line;
-		for (int j = 0; j < map.m_Cols; ++j)
+		for (int j = 0; j < m_Cols; ++j)
 		{
-			if (!map.m_Map.count({j,i}))
+			if (!m_Map.count({j,i}))
 				line += ' ';
 			else
-				line += map.m_Map.at({j, i}).GetRawChar();
+				line += m_Map.at({j, i}).GetRawChar();
 		}
 		if (!(out << line << endl))
 			return out;
 	}
 	return out;
-}
-
-bool CMap::Save(const char * filename) const
-{
-	ofstream outFile(filename);
-	
-	// Check output stream
-	if (!outFile)
-		throw runtime_error("File not found");
-	
-	// Write the dimension
-	if (!(outFile << m_Rows << ','<< m_Cols << endl))
-		throw runtime_error("Error during saving has occured");
-	
-	// Write the characters based on the map
-	return !!(outFile << *this);
 }
 
 /**********************************************************************************************************************/

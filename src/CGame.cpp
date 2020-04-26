@@ -15,17 +15,80 @@ CGame::CGame()
 
 /**********************************************************************************************************************/
 // LOADING
-void CGame::Load(const string & filename)
+
+istream & CGame::LoadNew(istream & in)
 {
 	set<char> signs;
 	m_UnitStack = make_shared<CUnitStack>();
 	m_Map.AssignUnitStack(m_UnitStack);
 	m_Waves.AssignUnitStack(m_UnitStack);
-	ifstream inFile(filename);
 	
-	// Check input stream
-	if (!inFile)
-		throw invalid_file("error loading file.");
+	while (true)
+	{
+		// load signature char
+		char ch = LoadSignatureChar(in);
+		if (!signs.insert(ch).second)
+		{
+			in.setstate(ios::failbit);
+			return in;
+		}
+		
+		// load appropriate object
+		switch (ch)
+		{
+			case '@':
+			case '$':
+			case '*':
+			case '%':
+				m_UnitStack->Load();
+		}
+		else if (ch == 'D')
+			LoadMapDimensions(specifications);
+		else if (ch == 'G')
+			LoadGateHealth(specifications);
+		else if (ch == 'W')
+			LoadWaves(specifications);
+		else if (ch == '#')
+			m_Map.LoadMap(in);
+		else if (in.eof())
+		{
+			if (!CheckLoaded(signs))
+			{
+				in.setstate(ios::failbit);
+				return in;
+			}
+			break;
+		}
+		else
+			throw invalid_file("unknown signature character.");
+	}
+	
+	return in;
+}
+
+istream & CGame::LoadSaved(std::istream & in)
+{
+	set<char> signs;
+	m_UnitStack = make_shared<CUnitStack>();
+	m_Map.AssignUnitStack(m_UnitStack);
+	m_Waves.AssignUnitStack(m_UnitStack);
+	
+	
+	
+	return in;
+
+}
+
+
+
+
+istream & CGame::Load(istream & in)
+{
+	set<char> signs;
+	m_UnitStack = make_shared<CUnitStack>();
+	m_Map.AssignUnitStack(m_UnitStack);
+	m_Waves.AssignUnitStack(m_UnitStack);
+	
 	while (true)
 	{
 		char ch = LoadSignatureChar(inFile);
@@ -41,7 +104,7 @@ void CGame::Load(const string & filename)
 			|| ch == '*'
 			|| ch == '%')
 			m_UnitStack->LoadUnitSpecifications(specifications, ch);
-		else if (ch == 'M')
+		else if (ch == 'D')
 			LoadMapDimensions(specifications);
 		else if (ch == 'G')
 			LoadGateHealth(specifications);
@@ -62,7 +125,7 @@ void CGame::Load(const string & filename)
 void CGame::LoadMapDimensions(vector<int> specifications)
 {
 	if (specifications.size() != 2)
-		throw invalid_file("Invalid number of arguments for 'M'");
+		throw invalid_file("Invalid number of arguments for 'D'");
 	m_Map.SetMapDimensions(specifications[0], specifications[1]);
 }
 
@@ -80,15 +143,16 @@ void CGame::LoadWaves(vector<int> specifications)
 	m_Waves.SetWavesSpecifications(specifications[0], specifications[1]);
 }
 
-void CGame::CheckLoaded(const set<char> & signs)
+bool CGame::CheckLoaded(const set<char> & signs)
 {
 	m_Map.CheckSpawnCount(m_Waves.GetWaveSize());
 	set<char> check{'M', 'G', 'W', '#', '@', '*'};
 	for (const auto & ch : check)
 	{
 		if (signs.find(ch) == signs.end())
-			throw invalid_file("not all objects have been defined.");
+			return false;
 	}
+	return true;
 }
 
 char CGame::LoadSignatureChar(std::istream &in)
@@ -135,9 +199,19 @@ vector<int> CGame::LoadSpecifications(istream & in)
 
 /**********************************************************************************************************************/
 // SAVING
-void CGame::Save(const std::string &filename) const
+ostream & CGame::Save(ostream & out) const
 {
+	if (!(m_UnitStack->Save(out))
+		|| !(m_Waves.Save(out))
+		|| !(SaveState(out))
+		|| !(m_Map.Save(out)))
+		return out;
+	return out;
+}
 
+ostream & CGame::SaveState(ostream & out) const
+{
+	return out << "(S):" << m_WaveOn << ';';
 }
 
 /**********************************************************************************************************************/

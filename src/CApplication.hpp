@@ -60,8 +60,8 @@ private:
 	static void RenderMenuScreen();
 	
 	// LOADING
-	bool NewGameLoadingScreen();
-	bool SavedGameLoadingScreen();
+	bool LoadNewGame();
+	bool LoadSavedGame();
 	static void InvalidInput(const char * message);
 	
 	// HELP SCREEN
@@ -74,7 +74,7 @@ private:
 	
 	// SAVING
 	void SaveScreen();
-	void SaveMap();
+	bool SaveGame();
 	std::string PromptFileName(const std::string & message);
 	static void RenderGameSavedScreen();
 

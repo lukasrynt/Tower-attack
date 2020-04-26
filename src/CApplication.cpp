@@ -246,10 +246,10 @@ void CApplication::MenuScreen()
 		switch (ch)
 		{
 			case '1':
-				end = NewGameLoadingScreen();
+				end = LoadNewGame();
 				break;
 			case '2':
-				end = SavedGameLoadingScreen();
+				end = LoadSavedGame();
 				break;
 			case 'q':
 				m_Game.End();
@@ -308,64 +308,6 @@ void CApplication::PrintCenteredLine(const string & line)
 	cout << string((DISPLAY_WIDTH - line.size()) / 2, ' ') << line << endl;
 }
 
-bool CApplication::NewGameLoadingScreen()
-{
-	while (true)
-	{
-		// get the filename from user;
-		string response = PromptFileName("Enter the name of the map that you want to load.\n"
-					"The program will only search for maps in \"maps\" "
-		   			"folder so please keep that in mind.\n"
-					"Type 'RETURN' to go back to menu screen");
-		if (response == "RETURN")
-		{
-			cout << Colors::color_reset;
-			return false;
-		}
-		string filename = "maps/" + response + ".map";
-		try
-		{
-			m_Game.Load(filename);
-		}
-		catch (invalid_file & e)
-		{
-			InvalidInput(e.what());
-			continue;
-		}
-		cout << Colors::color_reset;
-		return true;
-	}
-}
-
-bool CApplication::SavedGameLoadingScreen()
-{
-	while (true)
-	{
-		// get the filename from user;
-		string response = PromptFileName("Enter the name of saved game you wish to load.\n"
-					"The program will only search for maps in \"saved\" "
-					"folder so please keep that in mind.\n"
-					"Type 'RETURN' to go back to menu screen");
-		if (response == "RETURN")
-		{
-			cout << Colors::color_reset;
-			return false;
-		}
-		string filename = "saved/" + response + ".sav";
-		try
-		{
-			m_Game.Load(filename);
-		}
-		catch (invalid_file & e)
-		{
-			InvalidInput(e.what());
-			continue;
-		}
-		cout << Colors::color_reset;
-		return true;
-	}
-}
-
 void CApplication::InvalidInput(const char * message)
 {
 	char ch = 0;
@@ -373,6 +315,81 @@ void CApplication::InvalidInput(const char * message)
 	while ((ch != ' '))
 	{
 		ch = GetChar();
+	}
+}
+
+/**********************************************************************************************************************/
+// LOADING
+bool CApplication::LoadNewGame()
+{
+	while (true)
+	{
+		// get the filename from user;
+		string response = PromptFileName("Enter the name of the map that you want to load.\n"
+										 "The program will only search for maps in \"maps\" "
+										 "folder so please keep that in mind.\n"
+										 "Type 'RETURN' to go back to menu screen");
+		
+		// return to menu if requested
+		if (response == "RETURN")
+		{
+			cout << Colors::color_reset;
+			return false;
+		}
+		
+		// check input stream
+		string filename = "maps/" + response + ".map";
+		ifstream inFile(filename);
+		if (!inFile)
+		{
+			InvalidInput("File not found.");
+			continue;
+		}
+		
+		// load game
+		if (!m_Game.LoadNew(inFile))
+		{
+			InvalidInput("Incorrect file format.");
+			continue;
+		}
+		cout << Colors::color_reset;
+		return true;
+	}
+}
+
+bool CApplication::LoadSavedGame()
+{
+	while (true)
+	{
+		// get the filename from user;
+		string response = PromptFileName("Enter the name of saved game you wish to load.\n"
+										 "The program will only search for maps in \"saved\" "
+										 "folder so please keep that in mind.\n"
+										 "Type 'RETURN' to go back to menu screen");
+		// return to menu if requested
+		if (response == "RETURN")
+		{
+			cout << Colors::color_reset;
+			return false;
+		}
+		
+		// check input stream
+		string filename = "saves/" + response + ".sav";
+		ifstream inFile(filename);
+		if (!inFile)
+		{
+			InvalidInput("File not found.");
+			continue;
+		}
+		
+		// load game
+		if (!m_Game.LoadSaved(inFile))
+		{
+			InvalidInput("Incorrect file format.");
+			continue;
+		}
+		cout << Colors::color_reset;
+		return true;
 	}
 }
 
@@ -482,7 +499,8 @@ void CApplication::RenderTowerLegend()
 // SAVE SCREEN
 void CApplication::SaveScreen()
 {
-	SaveMap();
+	if (!SaveGame())
+		return;
 	RenderGameSavedScreen();
 	char ch;
 	while (true)
@@ -498,24 +516,40 @@ void CApplication::SaveScreen()
 	}
 }
 
-void CApplication::SaveMap()
+bool CApplication::SaveGame()
 {
 	while (true)
 	{
-		// save the map into the file
-		string filename = "saves/" + PromptFileName("Enter the name of your save file. Press enter to validate the name.\n"
-													"The file will be automatically appended with .sav") + ".sav";
-		try
+		// load filename name and check if it exists
+		string response = PromptFileName("Enter the name of your save file. Press enter to validate the name.\n"
+										 "The file will be automatically appended with .sav\n"
+										 "Type 'RETURN' to go back to game");
+		
+		// return to game if requested
+		if (response == "RETURN")
 		{
-			m_Game.Save(filename);
+			cout << Colors::color_reset;
+			return false;
 		}
-		catch (runtime_error & e)
+		
+		// check output stream
+		string filename = "saves/" + response + ".sav";
+		ofstream outFile(filename);
+		if (!outFile)
 		{
-			InvalidInput(e.what());
+			InvalidInput("File not found.");
+			continue;
+		}
+		
+		
+		// save game
+		if (!m_Game.Save(outFile))
+		{
+			InvalidInput("Error during writing to file.");
 			continue;
 		}
 		cout << Colors::color_reset;
-		break;
+		return true;
 	}
 }
 

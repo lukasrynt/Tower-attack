@@ -18,15 +18,23 @@ class CGame
 {
 public:
 	CGame();
-	void Load(const std::string & filename);
-	void Save(const std::string & filename) const;
-	bool IsOn() const;
-	void Update();
-	void Render() const;
-	void ProcessInput(char ch);
+	
+	// LOADING
+	std::istream & LoadNew(std::istream & in);
+	std::istream & LoadSaved(std::istream & in);
+	
+	// SAVING
+	std::ostream & Save(std::ostream & out) const;
+	std::ostream & SaveState(std::ostream & out) const;
 	
 	// INGAME
 	void End();
+	bool IsOn() const;
+	void Update();
+	void Render() const;
+	
+	// INPUT PROCESSING
+	void ProcessInput(char ch);
 
 private:
 	// VARIABLES
@@ -42,7 +50,7 @@ private:
 	void LoadMapDimensions(std::vector<int> specifications);
 	void LoadGateHealth(std::vector<int> specifications);
 	void LoadWaves(std::vector<int> specifications);
-	void CheckLoaded(const std::set<char> & signs);
+	bool CheckLoaded(const std::set<char> & signs);
 	
 	// INGAME
 	void AddTroopToWave();

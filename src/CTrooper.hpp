@@ -29,6 +29,12 @@ public:
 	int Attack() const;
 	virtual void ReceiveDamage(int damage);
 	
+	// LOADING
+	static CTrooper * Load(std::istream & in);
+	
+	// SAVING
+	virtual std::ostream & Save(std::ostream & out) const;
+	
 	// GETTERS/ SETTERS
 	void SetSpawn(size_t idx)
 	{m_SpawnIdx = idx;}

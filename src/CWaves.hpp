@@ -27,6 +27,9 @@ public:
 	// LOADING
 	void SetWavesSpecifications(int waveCnt, int maxWaveSize);
 	int GetWaveSize() const;
+	
+	// SAVING
+	std::ostream & Save(std::ostream & out) const;
 
 	// RENDER
 	void Render() const;

@@ -7,6 +7,8 @@
 
 using namespace std;
 
+/**********************************************************************************************************************/
+// INIT
 CMageTower::CMageTower(int attackDamage, int attackSpeed, int mana, int magicAttack, pos_t position)
 	: CTower(attackDamage, attackSpeed, position),
 	  m_MaxMana(mana),
@@ -14,6 +16,18 @@ CMageTower::CMageTower(int attackDamage, int attackSpeed, int mana, int magicAtt
 	  m_MagicAttack(magicAttack)
 {}
 
+/**********************************************************************************************************************/
+// LOADING
+
+/**********************************************************************************************************************/
+// SAVING
+std::ostream & CMageTower::Save(std::ostream &out) const
+{
+	return CTower::Save(out) << ',' << m_Mana << ',' << m_MaxMana << ',' << m_MagicAttack;
+}
+
+/**********************************************************************************************************************/
+// ATTACK
 void CMageTower::Attack(unordered_map<pos_t, CTile> & map, int rows, int cols, unordered_map<pos_t, CTrooper *> & troops)
 {
 	if (m_Frames.ActionAllowed() && m_Mana == m_MaxMana)

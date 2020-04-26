@@ -13,6 +13,7 @@
 class CMageTower : public CTower
 {
 public:
+	// INIT
 	/**
 	 * Constructor
 	 * @param attackDamage
@@ -20,6 +21,11 @@ public:
 	 * @param maxMana
 	 */
 	explicit CMageTower(int attackDamage = 0, int attackSpeed = 0, int mana = 0, int magicAttack = 0, pos_t position = pos_t::npos);
+	// LOADING
+	
+	// SAVING
+	std::ostream & Save(std::ostream & out) const final;
+	// ACTIONS
 	/**
 	 * Adds magical attack to the base damage
 	 */
