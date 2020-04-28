@@ -1,5 +1,4 @@
 <map id="CApplication::RenderGameScreen" name="CApplication::RenderGameScreen">
 <area shape="rect" id="node2" href="$classCApplication.html#acdcdce972810067eb5acaa3c780051f5" title="CApplication::ResetScreen" alt="" coords="235,5,415,32"/>
 <area shape="rect" id="node3" href="$classCApplication.html#a2b60e13621e8f4880870606f3fa2b6f3" title="CApplication::RenderGame\lOptions" alt="" coords="235,57,416,98"/>
-<area shape="rect" id="node4" href="$classCGame.html#a8e2c0bd3f92c236bd95aa2fd7116120d" title="CGame::Render" alt="" coords="267,123,384,149"/>
 </map>

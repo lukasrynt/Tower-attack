@@ -67,11 +67,13 @@ Po načtení mapy a definice útočníku ze souboru se spustí samotná hra. Ve 
 
 ### Definice souboru
 Soubory ve kterých jsou uložené rozehrané hry nebo nové mapy mají podobnou strukturu. Je pevně daná - každý řádek začíná určitým znakem ve formátu `(C):`, kde C je znak který určuje co načítáme, a končí středníkem. Každý znak se může v souboru vyskytovat jen jednou, to zamezuje redefinici dat. Přípustné jsou následující znaky:
-- _M_: __Mapa__, následují dimenze mapy
-- _G_: __Gate__, následují životy brány
-- _W_, _*_: __Waves__, následuje maximální počet vojáků v jedné vlně a počet vln (musí souhlasit s počtem spawnů na mapě)
-- _@_, _$_: __Trooper__, následují parametry vojáka, na základě jeho typu
-- _%_, _*_: __Tower__, následují parametry věže, na základě jejího typu
+- __D__: Dimenze, následují dimenze mapy
+- __G__: Gate, následují životy brány
+- __W__: Waves, následuje maximální počet vojáků v jedné vlně a počet vln (musí souhlasit s počtem spawnů na mapě). V případě uloženého souboru následují samotné vlny s vojáky ve formátu `[@@]`
+- __S__: State, stav hry po uložení, povolené pouze u ukládaných souborů. Obsahuje prostředky hráče.
+- __#__: Mapa samotná nezačíná žádným znakem, její formát musí být obdélníkový a musí se shodovat se zadanou dimenzí
+- __@__, __$__: Trooper, následují parametry vojáka, na základě jeho typu
+- __%__, __*__: Tower, následují parametry věže, na základě jejího typu
 
 Na konci souboru je obsažena samotná mapa, za ní už nesmí následovat nic dalšího. Mapa má přípustné rozdílné hodnoty v případě, že se jedná o rozehranou hru (jsou povoleny rozmístěné věže a útočníci).
 ```
@@ -80,7 +82,7 @@ Na konci souboru je obsažena samotná mapa, za ní už nesmí následovat nic d
 (%): 20, 20, 30, 60;
 (*): 20, 20, 30;
 (G): 2;
-(M): 5,5;
+(D): 5,5;
 #####
 1 # O
 # # #

@@ -4,6 +4,8 @@
  */
 
 #include "CApplication.hpp"
+
+#include <memory>
 #include "ExInvalidInput.hpp"
 
 
@@ -11,8 +13,8 @@ using namespace std;
 /**********************************************************************************************************************/
 // TERMIOS
 CApplication::CApplication()
-	: m_Term({0})
-
+	: m_Game(make_unique<CGame>()),
+	  m_Term({0})
 {
 	// https://viewsourcecode.org/snaptoken/kilo/02.enteringRawMode.html
 	// get attributes to termios struct
@@ -112,12 +114,12 @@ void CApplication::Run()
 void CApplication::MainLoop()
 {
 	//	http://gameprogrammingpatterns.com/game-loop.html
-	while (m_Game.IsOn())
+	while (m_Game->IsOn())
 	{
 		// get time stamp
 		auto start = GetCurrentTime();
 		ProcessInput();
-		m_Game.Update();
+		m_Game->Update();
 		RenderGameScreen();
 		Sleep(start - GetCurrentTime() + 30ms);
 	}
@@ -164,7 +166,7 @@ void CApplication::GameInput(char ch)
 {
 	try
 	{
-		m_Game.ProcessInput(ch);
+		m_Game->ProcessInput(ch);
 	}
 	catch (invalid_input & e)
 	{
@@ -178,7 +180,7 @@ void CApplication::RenderGameScreen() const
 {
 	ResetScreen();
 	RenderGameOptions();
-	m_Game.Render();
+	m_Game->Render();
 }
 
 void CApplication::RenderGameOptions()
@@ -252,7 +254,7 @@ void CApplication::MenuScreen()
 				end = LoadSavedGame();
 				break;
 			case 'q':
-				m_Game.End();
+				m_Game->End();
 				break;
 			default:
 				end = false;
@@ -347,11 +349,14 @@ bool CApplication::LoadNewGame()
 		}
 		
 		// load game
-		if (!m_Game.LoadNew(inFile))
+		
+		m_Game = make_unique<CGame>();
+		if (!m_Game->LoadNew(inFile))
 		{
 			InvalidInput("Incorrect file format.");
 			continue;
 		}
+		inFile.close();
 		cout << Colors::color_reset;
 		return true;
 	}
@@ -383,12 +388,14 @@ bool CApplication::LoadSavedGame()
 		}
 		
 		// load game
-		if (!m_Game.LoadSaved(inFile))
+		m_Game = make_unique<CGame>();
+		if (!m_Game->LoadSaved(inFile))
 		{
 			InvalidInput("Incorrect file format.");
 			continue;
 		}
 		cout << Colors::color_reset;
+		inFile.close();
 		return true;
 	}
 }
@@ -508,7 +515,7 @@ void CApplication::SaveScreen()
 		ch = GetChar();
 		if (ch == 'q')
 		{
-			m_Game.End();
+			m_Game->End();
 			break;
 		}
 		else if (ch == 'r')
@@ -543,12 +550,13 @@ bool CApplication::SaveGame()
 		
 		
 		// save game
-		if (!m_Game.Save(outFile))
+		if (!m_Game->Save(outFile))
 		{
 			InvalidInput("Error during writing to file.");
 			continue;
 		}
 		cout << Colors::color_reset;
+		outFile.close();
 		return true;
 	}
 }

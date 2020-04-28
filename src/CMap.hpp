@@ -19,6 +19,7 @@
 #include "Colors.hpp"
 #include "CPath.hpp"
 #include "CUnitStack.hpp"
+#include "CGate.hpp"
 
 /**
  * Map with troopers, walls, spawn points and towers
@@ -36,14 +37,10 @@ public:
 	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
 	
 	// LOADING
-	std::istream & LoadMap(std::istream & in);
+	std::istream & LoadMap(std::istream & in, bool saved);
 	std::istream & LoadGate(std::istream & in);
 	std::istream & LoadDimensions(std::istream & in);
-	
-	void LoadMap(std::istream & in, bool saved);
-	void CheckSpawnCount(int count) const;
-	void SetMapDimensions(int rows, int cols);
-	void SetGateHealth(int hp);
+	bool CheckSpawnCount(int count) const;
 	
 	// SAVING
 	std::ostream & Save(std::ostream & out) const;
@@ -54,7 +51,6 @@ public:
 	// RENDER
 	void Render() const;
 	void RenderMap() const;
-	void RenderGate() const;
 
 	// UPDATE
 	void Spawn(CTrooper * trooper);
@@ -63,11 +59,9 @@ public:
 	void VisualizePath(std::queue<pos_t> path);
 private:
 	// VARIABLES
+	CGate m_Gate;
 	int m_Cols;									//!< map's columns
 	int m_Rows;									//!< map's rows
-	int m_GateMaxHp;							//!< number of gate's max health
-	int m_GateHp;								//!< number of current gate's health
-	pos_t m_Gate;								//!< pointer to the gate, to which the troopers must get
 	std::deque<CTrooper*> m_Troops;				//!< pointers to troopers on the map
 	std::deque<CTower*> m_Towers;				//!< pointers to towers on the map
 	std::unordered_map<pos_t,CTile> m_Map; 		//!< two dimensional map
@@ -76,15 +70,16 @@ private:
 	std::shared_ptr<CUnitStack> m_UnitStack;	//!< unit stack containing all towers and troopers templates
 	
 	// LOADING
-	void AddToMap(pos_t position, char ch, bool saved);
-	void AddFromSaved(const CTile & tile);
-	void InitSpawner(pos_t position, char ch);
-	void InitGatePosition(pos_t position);
+	std::istream & LoadWallLine(std::istream & in, int row);
+	std::istream & LoadMapCenter(std::istream & in, bool saved);
+	std::istream & LoadCharToMap(std::istream & in, pos_t position, bool saved);
+	static std::istream & DeleteWs(std::istream & in);
+	bool AddFromSaved(const CTile & tile);
+	bool InitSpawner(pos_t position, char ch);
+	bool InitGatePosition(pos_t position);
 	
 	// UPDATE PHASE
 	void MoveTroops(bool & waveOn);
 	void TowerAttack();
 	void FindPaths();
-	void DamageGate(int damage);
-	bool GateDefeated() const;
 };

@@ -1,0 +1,9 @@
+<map id="CMap::LoadCharToMap" name="CMap::LoadCharToMap">
+<area shape="rect" id="node2" href="$classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="215,5,373,32"/>
+<area shape="rect" id="node4" href="$classCMap.html#a88e3a346b11583bcac5b53e39502c33e" title="CMap::InitSpawner" alt="" coords="227,56,361,83"/>
+<area shape="rect" id="node5" href="$classCMap.html#a2bf40673e7f862aa9cb8eb4635044ed3" title="CMap::AddFromSaved" alt="" coords="217,107,371,133"/>
+<area shape="rect" id="node3" href="$classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="433,5,547,32"/>
+<area shape="rect" id="node6" href="$classCTile.html#aff443072dd2ab83898ef0c850c56b01a" title="CTile::IsTower" alt="" coords="436,56,544,83"/>
+<area shape="rect" id="node7" href="$classCTile.html#ad30425f52c7e98a8834df1442c89a49e" title="CTile::GetRawChar" alt="" coords="421,107,559,133"/>
+<area shape="rect" id="node8" href="$classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="437,157,543,184"/>
+</map>

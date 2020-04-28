@@ -9,8 +9,9 @@ using namespace std;
 
 /**********************************************************************************************************************/
 // INIT
-CTower::CTower(int attackDamage, int attackSpeed, pos_t position)
-	: m_Pos(position),
+CTower::CTower(int attackDamage, int attackSpeed, pos_t position, char ch)
+	: m_Char(ch),
+	  m_Pos(position),
 	  m_AttackDamage(attackDamage),
 	  m_Frames(attackSpeed),
 	  m_ArrowPos(pos_t::npos),
@@ -22,15 +23,26 @@ CTower * CTower::Clone()
 	return new CTower(*this);
 }
 
+
+/**********************************************************************************************************************/
+// LOADING
+CTower * CTower::Load(std::istream & in)
+{
+	CTower * tower = new CTower();
+	char del1, del2;
+	if (!(in >> tower->m_AttackDamage >> del1 >> tower->m_Frames >> del2)
+		|| del1 != ','
+		|| del2 != ';')
+		return nullptr;
+	return tower;
+}
+
 /**********************************************************************************************************************/
 // SAVING
 std::ostream & CTower::Save(std::ostream &out) const
 {
-	return out << m_AttackDamage << ',' << m_Frames.GetSpeed();
+	return out << "(" << m_Char << "): " << m_AttackDamage << ", " << m_Frames;
 }
-
-/**********************************************************************************************************************/
-// LOADING
 
 /**********************************************************************************************************************/
 // ATTACK

@@ -13,8 +13,8 @@
 #include <termios.h>
 #include <unistd.h>
 #include <sstream>
+#include <memory>
 
-#include "ExInvalidFile.hpp"
 #include "Colors.hpp"
 #include "CGame.hpp"
 
@@ -34,7 +34,7 @@ public:
 	
 	void Run();
 private:
-	CGame m_Game;
+	std::unique_ptr<CGame> m_Game;
 	termios m_Term;	//!< Terminal settings are stored here
 	static const int DISPLAY_WIDTH = 150;
 	static const int DISPLAY_HEIGHT = 50;

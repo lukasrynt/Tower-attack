@@ -62,8 +62,8 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="classCMap-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CMap Class Reference</div>  </div>
@@ -76,36 +76,43 @@ Collaboration diagram for CMap:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCMap__coll__graph.png" border="0" usemap="#CMap_coll__map" alt="Collaboration graph"/></div>
 <map name="CMap_coll__map" id="CMap_coll__map">
-<area shape="rect" id="node2" href="structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetNeighbours()\l+ LiesInRange()\l+ GetRadius()\l}" alt="" coords="19,5,148,200"/>
+<area shape="rect" id="node2" href="classCGate.html" title="{CGate\n|&#45; m_Hp\l&#45; m_MaxHp\l|+ Fallen()\l+ ReceiveDamage()\l+ Render()\l+ Position()\l}" alt="" coords="13,263,152,399"/>
+<area shape="rect" id="node3" href="structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetNeighbours()\l+ LiesInRange()\l+ GetRadius()\l}" alt="" coords="18,5,147,200"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a20fdbcd7caedc5c32bf7cf1f619aeb83"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a20fdbcd7caedc5c32bf7cf1f619aeb83">CMap</a> (std::shared_ptr&lt; <a class="el" href="classCUnitStack.html">CUnitStack</a> &gt; unitStack)</td></tr>
-<tr class="separator:a20fdbcd7caedc5c32bf7cf1f619aeb83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ad71523562247ed2183e57eaed018e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a7ad71523562247ed2183e57eaed018e8">CMap</a> ()</td></tr>
+<tr class="separator:a7ad71523562247ed2183e57eaed018e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9419f5696c22e9569612b79db2872e02"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a9419f5696c22e9569612b79db2872e02">~CMap</a> ()</td></tr>
 <tr class="separator:a9419f5696c22e9569612b79db2872e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a575b3d216be786e78fc203a14c4255ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a575b3d216be786e78fc203a14c4255ba">CMap</a> (const <a class="el" href="classCMap.html">CMap</a> &amp;src)=delete</td></tr>
 <tr class="separator:a575b3d216be786e78fc203a14c4255ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94344574872e6af1c9302c1d85668978"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMap.html">CMap</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a94344574872e6af1c9302c1d85668978">operator=</a> (const <a class="el" href="classCMap.html">CMap</a> &amp;src)=delete</td></tr>
 <tr class="separator:a94344574872e6af1c9302c1d85668978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb81ad3abebbac74130abaeaaf046047"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#aeb81ad3abebbac74130abaeaaf046047">LoadMap</a> (std::istream &amp;in, bool saved)</td></tr>
-<tr class="separator:aeb81ad3abebbac74130abaeaaf046047"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace5225f044e47b62f7ad764bddb219e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#ace5225f044e47b62f7ad764bddb219e7">CheckSpawnCount</a> (int count) const</td></tr>
-<tr class="separator:ace5225f044e47b62f7ad764bddb219e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5117586c51178e086af2e02a64016031"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a5117586c51178e086af2e02a64016031">SetMapDimensions</a> (int rows, int cols)</td></tr>
-<tr class="separator:a5117586c51178e086af2e02a64016031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f35a8fe7ecc363d19362b9970699687"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a9f35a8fe7ecc363d19362b9970699687">SetGateHealth</a> (int hp)</td></tr>
-<tr class="separator:a9f35a8fe7ecc363d19362b9970699687"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39ccac99fcaf2cb2526034795e5ee345"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a39ccac99fcaf2cb2526034795e5ee345">Save</a> (const char *filename) const</td></tr>
-<tr class="separator:a39ccac99fcaf2cb2526034795e5ee345"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada612f5cd1f182c1bf7053bf1d5955d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#ada612f5cd1f182c1bf7053bf1d5955d4">AssignUnitStack</a> (std::shared_ptr&lt; <a class="el" href="classCUnitStack.html">CUnitStack</a> &gt; unitStack)</td></tr>
+<tr class="separator:ada612f5cd1f182c1bf7053bf1d5955d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c56d5013abdfaba558bebbf961bbe9f"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a0c56d5013abdfaba558bebbf961bbe9f">LoadMap</a> (std::istream &amp;in, bool saved)</td></tr>
+<tr class="separator:a0c56d5013abdfaba558bebbf961bbe9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5631c89647fcd7e30221c824e15bcecd"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a5631c89647fcd7e30221c824e15bcecd">LoadGate</a> (std::istream &amp;in)</td></tr>
+<tr class="separator:a5631c89647fcd7e30221c824e15bcecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c9cca229f29640430aa554aeb99ca1"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a11c9cca229f29640430aa554aeb99ca1">LoadDimensions</a> (std::istream &amp;in)</td></tr>
+<tr class="separator:a11c9cca229f29640430aa554aeb99ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92fd526484fabccf119e624b804640a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a92fd526484fabccf119e624b804640a6">CheckSpawnCount</a> (int count) const</td></tr>
+<tr class="separator:a92fd526484fabccf119e624b804640a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a804c80310a23591ccf8f43d5da6eec10"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a804c80310a23591ccf8f43d5da6eec10">Save</a> (std::ostream &amp;out) const</td></tr>
+<tr class="separator:a804c80310a23591ccf8f43d5da6eec10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c183f0677c3b1b4c14f2fb09bc0bb7d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a4c183f0677c3b1b4c14f2fb09bc0bb7d">SaveDimensions</a> (std::ostream &amp;out) const</td></tr>
+<tr class="separator:a4c183f0677c3b1b4c14f2fb09bc0bb7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad71300b066bd6f4e9824cd2f41efa224"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#ad71300b066bd6f4e9824cd2f41efa224">SaveGate</a> (std::ostream &amp;out) const</td></tr>
+<tr class="separator:ad71300b066bd6f4e9824cd2f41efa224"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed67ccc2fbb6c6fb8b76da98046aab4c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#aed67ccc2fbb6c6fb8b76da98046aab4c">SaveMap</a> (std::ostream &amp;out) const</td></tr>
+<tr class="separator:aed67ccc2fbb6c6fb8b76da98046aab4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aade65fe713b0dc6cb9587c1383714234"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#aade65fe713b0dc6cb9587c1383714234">Render</a> () const</td></tr>
 <tr class="separator:aade65fe713b0dc6cb9587c1383714234"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad40e69cecf746a7e99412f8f777ad334"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#ad40e69cecf746a7e99412f8f777ad334">RenderMap</a> () const</td></tr>
 <tr class="separator:ad40e69cecf746a7e99412f8f777ad334"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75ad0d3b3c308b121894898129266c68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a75ad0d3b3c308b121894898129266c68">RenderGate</a> () const</td></tr>
-<tr class="separator:a75ad0d3b3c308b121894898129266c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebb52ca1a3b2e1331fab44fc3cb7d1c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#aebb52ca1a3b2e1331fab44fc3cb7d1c7">Spawn</a> (<a class="el" href="classCTrooper.html">CTrooper</a> *trooper)</td></tr>
 <tr class="separator:aebb52ca1a3b2e1331fab44fc3cb7d1c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac30276b0b79f4076d48fc7b42f3135ec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#ac30276b0b79f4076d48fc7b42f3135ec">Update</a> (bool &amp;waveOn)</td></tr>
@@ -115,42 +122,40 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a3ddfc02f971f8237b16dc1e88718172c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a3ddfc02f971f8237b16dc1e88718172c">AddToMap</a> (<a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> position, char ch, bool saved)</td></tr>
-<tr class="separator:a3ddfc02f971f8237b16dc1e88718172c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18c90b3d3dc3ccaf53976b79ef5888f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a18c90b3d3dc3ccaf53976b79ef5888f2">AddFromSaved</a> (const <a class="el" href="classCTile.html">CTile</a> &amp;tile)</td></tr>
-<tr class="separator:a18c90b3d3dc3ccaf53976b79ef5888f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb176b1d86728b1895ff7d00d5c68b7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#abb176b1d86728b1895ff7d00d5c68b7e">InitSpawner</a> (<a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> position, char ch)</td></tr>
-<tr class="separator:abb176b1d86728b1895ff7d00d5c68b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad54d5e196921d04b249558fcbf38258a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#ad54d5e196921d04b249558fcbf38258a">InitGatePosition</a> (<a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> position)</td></tr>
-<tr class="separator:ad54d5e196921d04b249558fcbf38258a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d3f71462635d08f199833bd6969555e"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a8d3f71462635d08f199833bd6969555e">LoadWallLine</a> (std::istream &amp;in, int row)</td></tr>
+<tr class="separator:a8d3f71462635d08f199833bd6969555e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f14b79a469afa6aefd29bdb4f85de61"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a1f14b79a469afa6aefd29bdb4f85de61">LoadMapCenter</a> (std::istream &amp;in, bool saved)</td></tr>
+<tr class="separator:a1f14b79a469afa6aefd29bdb4f85de61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cd6fa1f55771cbae2105a4dfe7f4e63"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a0cd6fa1f55771cbae2105a4dfe7f4e63">LoadCharToMap</a> (std::istream &amp;in, <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> position, bool saved)</td></tr>
+<tr class="separator:a0cd6fa1f55771cbae2105a4dfe7f4e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bf40673e7f862aa9cb8eb4635044ed3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a2bf40673e7f862aa9cb8eb4635044ed3">AddFromSaved</a> (const <a class="el" href="classCTile.html">CTile</a> &amp;tile)</td></tr>
+<tr class="separator:a2bf40673e7f862aa9cb8eb4635044ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88e3a346b11583bcac5b53e39502c33e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a88e3a346b11583bcac5b53e39502c33e">InitSpawner</a> (<a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> position, char ch)</td></tr>
+<tr class="separator:a88e3a346b11583bcac5b53e39502c33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87fc3352f0c0f4f1f292d0f09376ad61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61">InitGatePosition</a> (<a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> position)</td></tr>
+<tr class="separator:a87fc3352f0c0f4f1f292d0f09376ad61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0f9b87065d38b18153672ec0a82b5db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#ad0f9b87065d38b18153672ec0a82b5db">MoveTroops</a> (bool &amp;waveOn)</td></tr>
 <tr class="separator:ad0f9b87065d38b18153672ec0a82b5db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad327222ab48f6ad8dc8af922a191c31c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#ad327222ab48f6ad8dc8af922a191c31c">TowerAttack</a> ()</td></tr>
 <tr class="separator:ad327222ab48f6ad8dc8af922a191c31c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdd732764f1869b3bb39dd0ac26ede15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#abdd732764f1869b3bb39dd0ac26ede15">FindPaths</a> ()</td></tr>
 <tr class="separator:abdd732764f1869b3bb39dd0ac26ede15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2992610bb818ade0ddf682381e933ad6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a2992610bb818ade0ddf682381e933ad6">DamageGate</a> (int damage)</td></tr>
-<tr class="separator:a2992610bb818ade0ddf682381e933ad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afadc5367ebf3a83765e50819c58d7aae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#afadc5367ebf3a83765e50819c58d7aae">GateDefeated</a> () const</td></tr>
-<tr class="separator:afadc5367ebf3a83765e50819c58d7aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a9ba5d484f153b999559412fb395ff4c1"><td class="memItemLeft" align="right" valign="top">static std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a9ba5d484f153b999559412fb395ff4c1">DeleteWs</a> (std::istream &amp;in)</td></tr>
+<tr class="separator:a9ba5d484f153b999559412fb395ff4c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a5394c6f9388656c329f10868a0c3cafb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCGate.html">CGate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a5394c6f9388656c329f10868a0c3cafb">m_Gate</a></td></tr>
+<tr class="separator:a5394c6f9388656c329f10868a0c3cafb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdb732d4c15e137a14608883c02996c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#acdb732d4c15e137a14608883c02996c8">m_Cols</a></td></tr>
 <tr class="memdesc:acdb732d4c15e137a14608883c02996c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">map's columns  <a href="#acdb732d4c15e137a14608883c02996c8">More...</a><br /></td></tr>
 <tr class="separator:acdb732d4c15e137a14608883c02996c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2db107ab7540f2094e67815a2520c92c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a2db107ab7540f2094e67815a2520c92c">m_Rows</a></td></tr>
 <tr class="memdesc:a2db107ab7540f2094e67815a2520c92c"><td class="mdescLeft">&#160;</td><td class="mdescRight">map's rows  <a href="#a2db107ab7540f2094e67815a2520c92c">More...</a><br /></td></tr>
 <tr class="separator:a2db107ab7540f2094e67815a2520c92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adefef57cde6e06fdf7412cbad2e77b0e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#adefef57cde6e06fdf7412cbad2e77b0e">m_GateMaxHp</a></td></tr>
-<tr class="memdesc:adefef57cde6e06fdf7412cbad2e77b0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of gate's max health  <a href="#adefef57cde6e06fdf7412cbad2e77b0e">More...</a><br /></td></tr>
-<tr class="separator:adefef57cde6e06fdf7412cbad2e77b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5c767d6b41959fb2e038f9bd9c38a7e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#ae5c767d6b41959fb2e038f9bd9c38a7e">m_GateHp</a></td></tr>
-<tr class="memdesc:ae5c767d6b41959fb2e038f9bd9c38a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of current gate's health  <a href="#ae5c767d6b41959fb2e038f9bd9c38a7e">More...</a><br /></td></tr>
-<tr class="separator:ae5c767d6b41959fb2e038f9bd9c38a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab436dd6f340fecdc30f53c999a875431"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#ab436dd6f340fecdc30f53c999a875431">m_Gate</a></td></tr>
-<tr class="memdesc:ab436dd6f340fecdc30f53c999a875431"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to the gate, to which the troopers must get  <a href="#ab436dd6f340fecdc30f53c999a875431">More...</a><br /></td></tr>
-<tr class="separator:ab436dd6f340fecdc30f53c999a875431"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a858d3f1018fa80a32d5399bde8f928bd"><td class="memItemLeft" align="right" valign="top">std::deque&lt; <a class="el" href="classCTrooper.html">CTrooper</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a858d3f1018fa80a32d5399bde8f928bd">m_Troops</a></td></tr>
 <tr class="memdesc:a858d3f1018fa80a32d5399bde8f928bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointers to troopers on the map  <a href="#a858d3f1018fa80a32d5399bde8f928bd">More...</a><br /></td></tr>
 <tr class="separator:a858d3f1018fa80a32d5399bde8f928bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,18 +174,13 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:aec666f91aa0a6e5ab52e96c64acb04f4"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classCUnitStack.html">CUnitStack</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#aec666f91aa0a6e5ab52e96c64acb04f4">m_UnitStack</a></td></tr>
 <tr class="memdesc:aec666f91aa0a6e5ab52e96c64acb04f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">unit stack containing all towers and troopers templates  <a href="#aec666f91aa0a6e5ab52e96c64acb04f4">More...</a><br /></td></tr>
 <tr class="separator:aec666f91aa0a6e5ab52e96c64acb04f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:a83c6dd1eb8a583d1afa5afe8446ca40f"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMap.html#a83c6dd1eb8a583d1afa5afe8446ca40f">operator&lt;&lt;</a> (std::ostream &amp;out, const <a class="el" href="classCMap.html">CMap</a> &amp;map)</td></tr>
-<tr class="separator:a83c6dd1eb8a583d1afa5afe8446ca40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Lukáš Rynt <a href="#" onclick="location.href='mai'+'lto:'+'ryn'+'tl'+'uka'+'@f'+'it.'+'cv'+'ut.'+'cz'; return false;">ryntl<span style="display: none;">.nosp@m.</span>uka@<span style="display: none;">.nosp@m.</span>fit.c<span style="display: none;">.nosp@m.</span>vut.<span style="display: none;">.nosp@m.</span>cz</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>24.4.2020 Map with troopers, walls, spawn points and towers Takes care of rendering map, updating all units and evaluating game state. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a20fdbcd7caedc5c32bf7cf1f619aeb83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20fdbcd7caedc5c32bf7cf1f619aeb83">&#9670;&nbsp;</a></span>CMap() <span class="overload">[1/2]</span></h2>
+<a id="a7ad71523562247ed2183e57eaed018e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ad71523562247ed2183e57eaed018e8">&#9670;&nbsp;</a></span>CMap() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,8 +191,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="memname">CMap::CMap </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classCUnitStack.html">CUnitStack</a> &gt;&#160;</td>
-          <td class="paramname"><em>unitStack</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -249,8 +248,8 @@ Friends</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a18c90b3d3dc3ccaf53976b79ef5888f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18c90b3d3dc3ccaf53976b79ef5888f2">&#9670;&nbsp;</a></span>AddFromSaved()</h2>
+<a id="a2bf40673e7f862aa9cb8eb4635044ed3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bf40673e7f862aa9cb8eb4635044ed3">&#9670;&nbsp;</a></span>AddFromSaved()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -259,7 +258,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CMap::AddFromSaved </td>
+          <td class="memname">bool CMap::AddFromSaved </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classCTile.html">CTile</a> &amp;&#160;</td>
           <td class="paramname"><em>tile</em></td><td>)</td>
@@ -275,8 +274,8 @@ Friends</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCMap_a18c90b3d3dc3ccaf53976b79ef5888f2_cgraph.png" border="0" usemap="#classCMap_a18c90b3d3dc3ccaf53976b79ef5888f2_cgraph" alt=""/></div>
-<map name="classCMap_a18c90b3d3dc3ccaf53976b79ef5888f2_cgraph" id="classCMap_a18c90b3d3dc3ccaf53976b79ef5888f2_cgraph">
+<div class="center"><img src="classCMap_a2bf40673e7f862aa9cb8eb4635044ed3_cgraph.png" border="0" usemap="#classCMap_a2bf40673e7f862aa9cb8eb4635044ed3_cgraph" alt=""/></div>
+<map name="classCMap_a2bf40673e7f862aa9cb8eb4635044ed3_cgraph" id="classCMap_a2bf40673e7f862aa9cb8eb4635044ed3_cgraph">
 <area shape="rect" id="node2" href="classCTile.html#aff443072dd2ab83898ef0c850c56b01a" title="CTile::IsTower" alt="" coords="223,5,331,32"/>
 <area shape="rect" id="node3" href="classCTile.html#ad30425f52c7e98a8834df1442c89a49e" title="CTile::GetRawChar" alt="" coords="208,56,345,83"/>
 <area shape="rect" id="node4" href="classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="224,107,329,133"/>
@@ -285,56 +284,32 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a3ddfc02f971f8237b16dc1e88718172c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ddfc02f971f8237b16dc1e88718172c">&#9670;&nbsp;</a></span>AddToMap()</h2>
+<a id="ada612f5cd1f182c1bf7053bf1d5955d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada612f5cd1f182c1bf7053bf1d5955d4">&#9670;&nbsp;</a></span>AssignUnitStack()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CMap::AddToMap </td>
+          <td class="memname">void CMap::AssignUnitStack </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td>
-          <td class="paramname"><em>position</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classCUnitStack.html">CUnitStack</a> &gt;&#160;</td>
+          <td class="paramname"><em>unitStack</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>ch</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>saved</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ace5225f044e47b62f7ad764bddb219e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace5225f044e47b62f7ad764bddb219e7">&#9670;&nbsp;</a></span>CheckSpawnCount()</h2>
+<a id="a92fd526484fabccf119e624b804640a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92fd526484fabccf119e624b804640a6">&#9670;&nbsp;</a></span>CheckSpawnCount()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CMap::CheckSpawnCount </td>
+          <td class="memname">bool CMap::CheckSpawnCount </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>count</em></td><td>)</td>
@@ -342,17 +317,11 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Checks if the count provided is equivalent to number of count in map </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">count</td><td>Count of spawns </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
-<a id="a2992610bb818ade0ddf682381e933ad6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2992610bb818ade0ddf682381e933ad6">&#9670;&nbsp;</a></span>DamageGate()</h2>
+<a id="a9ba5d484f153b999559412fb395ff4c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ba5d484f153b999559412fb395ff4c1">&#9670;&nbsp;</a></span>DeleteWs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -361,16 +330,16 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CMap::DamageGate </td>
+          <td class="memname">istream &amp; CMap::DeleteWs </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>damage</em></td><td>)</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -399,36 +368,19 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMap_abdd732764f1869b3bb39dd0ac26ede15_cgraph.png" border="0" usemap="#classCMap_abdd732764f1869b3bb39dd0ac26ede15_cgraph" alt=""/></div>
+<map name="classCMap_abdd732764f1869b3bb39dd0ac26ede15_cgraph" id="classCMap_abdd732764f1869b3bb39dd0ac26ede15_cgraph">
+<area shape="rect" id="node2" href="classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="177,5,292,32"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="afadc5367ebf3a83765e50819c58d7aae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afadc5367ebf3a83765e50819c58d7aae">&#9670;&nbsp;</a></span>GateDefeated()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool CMap::GateDefeated </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad54d5e196921d04b249558fcbf38258a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad54d5e196921d04b249558fcbf38258a">&#9670;&nbsp;</a></span>InitGatePosition()</h2>
+<a id="a87fc3352f0c0f4f1f292d0f09376ad61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87fc3352f0c0f4f1f292d0f09376ad61">&#9670;&nbsp;</a></span>InitGatePosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -437,7 +389,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CMap::InitGatePosition </td>
+          <td class="memname">bool CMap::InitGatePosition </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td>
           <td class="paramname"><em>position</em></td><td>)</td>
@@ -450,11 +402,19 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMap_a87fc3352f0c0f4f1f292d0f09376ad61_cgraph.png" border="0" usemap="#classCMap_a87fc3352f0c0f4f1f292d0f09376ad61_cgraph" alt=""/></div>
+<map name="classCMap_a87fc3352f0c0f4f1f292d0f09376ad61_cgraph" id="classCMap_a87fc3352f0c0f4f1f292d0f09376ad61_cgraph">
+<area shape="rect" id="node2" href="classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="212,5,327,32"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="abb176b1d86728b1895ff7d00d5c68b7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb176b1d86728b1895ff7d00d5c68b7e">&#9670;&nbsp;</a></span>InitSpawner()</h2>
+<a id="a88e3a346b11583bcac5b53e39502c33e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88e3a346b11583bcac5b53e39502c33e">&#9670;&nbsp;</a></span>InitSpawner()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -463,7 +423,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CMap::InitSpawner </td>
+          <td class="memname">bool CMap::InitSpawner </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td>
           <td class="paramname"><em>position</em>, </td>
@@ -489,14 +449,106 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="aeb81ad3abebbac74130abaeaaf046047"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb81ad3abebbac74130abaeaaf046047">&#9670;&nbsp;</a></span>LoadMap()</h2>
+<a id="a0cd6fa1f55771cbae2105a4dfe7f4e63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cd6fa1f55771cbae2105a4dfe7f4e63">&#9670;&nbsp;</a></span>LoadCharToMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">istream &amp; CMap::LoadCharToMap </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>saved</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMap_a0cd6fa1f55771cbae2105a4dfe7f4e63_cgraph.png" border="0" usemap="#classCMap_a0cd6fa1f55771cbae2105a4dfe7f4e63_cgraph" alt=""/></div>
+<map name="classCMap_a0cd6fa1f55771cbae2105a4dfe7f4e63_cgraph" id="classCMap_a0cd6fa1f55771cbae2105a4dfe7f4e63_cgraph">
+<area shape="rect" id="node2" href="classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="215,5,373,32"/>
+<area shape="rect" id="node4" href="classCMap.html#a88e3a346b11583bcac5b53e39502c33e" title="CMap::InitSpawner" alt="" coords="227,56,361,83"/>
+<area shape="rect" id="node5" href="classCMap.html#a2bf40673e7f862aa9cb8eb4635044ed3" title="CMap::AddFromSaved" alt="" coords="217,107,371,133"/>
+<area shape="rect" id="node3" href="classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="433,5,547,32"/>
+<area shape="rect" id="node6" href="classCTile.html#aff443072dd2ab83898ef0c850c56b01a" title="CTile::IsTower" alt="" coords="436,56,544,83"/>
+<area shape="rect" id="node7" href="classCTile.html#ad30425f52c7e98a8834df1442c89a49e" title="CTile::GetRawChar" alt="" coords="421,107,559,133"/>
+<area shape="rect" id="node8" href="classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="437,157,543,184"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a11c9cca229f29640430aa554aeb99ca1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11c9cca229f29640430aa554aeb99ca1">&#9670;&nbsp;</a></span>LoadDimensions()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CMap::LoadMap </td>
+          <td class="memname">istream &amp; CMap::LoadDimensions </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5631c89647fcd7e30221c824e15bcecd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5631c89647fcd7e30221c824e15bcecd">&#9670;&nbsp;</a></span>LoadGate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">istream &amp; CMap::LoadGate </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c56d5013abdfaba558bebbf961bbe9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c56d5013abdfaba558bebbf961bbe9f">&#9670;&nbsp;</a></span>LoadMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">istream &amp; CMap::LoadMap </td>
           <td>(</td>
           <td class="paramtype">std::istream &amp;&#160;</td>
           <td class="paramname"><em>in</em>, </td>
@@ -514,13 +566,129 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Loads map from input file </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">in</td><td>Input file stream </td></tr>
-    <tr><td class="paramname">saved</td><td>Saved is true when we load saved game - there are different allowed characters in this case </td></tr>
-  </table>
-  </dd>
-</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMap_a0c56d5013abdfaba558bebbf961bbe9f_cgraph.png" border="0" usemap="#classCMap_a0c56d5013abdfaba558bebbf961bbe9f_cgraph" alt=""/></div>
+<map name="classCMap_a0c56d5013abdfaba558bebbf961bbe9f_cgraph" id="classCMap_a0c56d5013abdfaba558bebbf961bbe9f_cgraph">
+<area shape="rect" id="node2" href="classCMap.html#a8d3f71462635d08f199833bd6969555e" title="CMap::LoadWallLine" alt="" coords="179,31,322,57"/>
+<area shape="rect" id="node12" href="classCMap.html#a1f14b79a469afa6aefd29bdb4f85de61" title="CMap::LoadMapCenter" alt="" coords="172,81,329,108"/>
+<area shape="rect" id="node13" href="classCMap.html#abdd732764f1869b3bb39dd0ac26ede15" title="CMap::FindPaths" alt="" coords="396,132,520,159"/>
+<area shape="rect" id="node3" href="classCMap.html#a9ba5d484f153b999559412fb395ff4c1" title="CMap::DeleteWs" alt="" coords="397,31,519,57"/>
+<area shape="rect" id="node4" href="classCMap.html#a0cd6fa1f55771cbae2105a4dfe7f4e63" title="CMap::LoadCharToMap" alt="" coords="377,81,539,108"/>
+<area shape="rect" id="node5" href="classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="587,107,745,133"/>
+<area shape="rect" id="node7" href="classCMap.html#a88e3a346b11583bcac5b53e39502c33e" title="CMap::InitSpawner" alt="" coords="599,5,733,32"/>
+<area shape="rect" id="node8" href="classCMap.html#a2bf40673e7f862aa9cb8eb4635044ed3" title="CMap::AddFromSaved" alt="" coords="589,56,743,83"/>
+<area shape="rect" id="node6" href="classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="805,157,919,184"/>
+<area shape="rect" id="node9" href="classCTile.html#aff443072dd2ab83898ef0c850c56b01a" title="CTile::IsTower" alt="" coords="808,107,916,133"/>
+<area shape="rect" id="node10" href="classCTile.html#ad30425f52c7e98a8834df1442c89a49e" title="CTile::GetRawChar" alt="" coords="793,5,931,32"/>
+<area shape="rect" id="node11" href="classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="809,56,915,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1f14b79a469afa6aefd29bdb4f85de61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f14b79a469afa6aefd29bdb4f85de61">&#9670;&nbsp;</a></span>LoadMapCenter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">istream &amp; CMap::LoadMapCenter </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>saved</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMap_a1f14b79a469afa6aefd29bdb4f85de61_cgraph.png" border="0" usemap="#classCMap_a1f14b79a469afa6aefd29bdb4f85de61_cgraph" alt=""/></div>
+<map name="classCMap_a1f14b79a469afa6aefd29bdb4f85de61_cgraph" id="classCMap_a1f14b79a469afa6aefd29bdb4f85de61_cgraph">
+<area shape="rect" id="node2" href="classCMap.html#a9ba5d484f153b999559412fb395ff4c1" title="CMap::DeleteWs" alt="" coords="230,5,353,32"/>
+<area shape="rect" id="node3" href="classCMap.html#a0cd6fa1f55771cbae2105a4dfe7f4e63" title="CMap::LoadCharToMap" alt="" coords="211,56,372,83"/>
+<area shape="rect" id="node4" href="classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="420,5,579,32"/>
+<area shape="rect" id="node6" href="classCMap.html#a88e3a346b11583bcac5b53e39502c33e" title="CMap::InitSpawner" alt="" coords="432,56,567,83"/>
+<area shape="rect" id="node7" href="classCMap.html#a2bf40673e7f862aa9cb8eb4635044ed3" title="CMap::AddFromSaved" alt="" coords="422,107,577,133"/>
+<area shape="rect" id="node5" href="classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="638,5,753,32"/>
+<area shape="rect" id="node8" href="classCTile.html#aff443072dd2ab83898ef0c850c56b01a" title="CTile::IsTower" alt="" coords="641,56,749,83"/>
+<area shape="rect" id="node9" href="classCTile.html#ad30425f52c7e98a8834df1442c89a49e" title="CTile::GetRawChar" alt="" coords="627,107,764,133"/>
+<area shape="rect" id="node10" href="classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="643,157,748,184"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8d3f71462635d08f199833bd6969555e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d3f71462635d08f199833bd6969555e">&#9670;&nbsp;</a></span>LoadWallLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">istream &amp; CMap::LoadWallLine </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>row</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMap_a8d3f71462635d08f199833bd6969555e_cgraph.png" border="0" usemap="#classCMap_a8d3f71462635d08f199833bd6969555e_cgraph" alt=""/></div>
+<map name="classCMap_a8d3f71462635d08f199833bd6969555e_cgraph" id="classCMap_a8d3f71462635d08f199833bd6969555e_cgraph">
+<area shape="rect" id="node2" href="classCMap.html#a9ba5d484f153b999559412fb395ff4c1" title="CMap::DeleteWs" alt="" coords="215,5,338,32"/>
+<area shape="rect" id="node3" href="classCMap.html#a0cd6fa1f55771cbae2105a4dfe7f4e63" title="CMap::LoadCharToMap" alt="" coords="196,56,357,83"/>
+<area shape="rect" id="node4" href="classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="405,5,564,32"/>
+<area shape="rect" id="node6" href="classCMap.html#a88e3a346b11583bcac5b53e39502c33e" title="CMap::InitSpawner" alt="" coords="417,56,552,83"/>
+<area shape="rect" id="node7" href="classCMap.html#a2bf40673e7f862aa9cb8eb4635044ed3" title="CMap::AddFromSaved" alt="" coords="407,107,562,133"/>
+<area shape="rect" id="node5" href="classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="623,5,738,32"/>
+<area shape="rect" id="node8" href="classCTile.html#aff443072dd2ab83898ef0c850c56b01a" title="CTile::IsTower" alt="" coords="627,56,735,83"/>
+<area shape="rect" id="node9" href="classCTile.html#ad30425f52c7e98a8834df1442c89a49e" title="CTile::GetRawChar" alt="" coords="612,107,749,133"/>
+<area shape="rect" id="node10" href="classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="628,157,733,184"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -547,6 +715,15 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMap_ad0f9b87065d38b18153672ec0a82b5db_cgraph.png" border="0" usemap="#classCMap_ad0f9b87065d38b18153672ec0a82b5db_cgraph" alt=""/></div>
+<map name="classCMap_ad0f9b87065d38b18153672ec0a82b5db_cgraph" id="classCMap_ad0f9b87065d38b18153672ec0a82b5db_cgraph">
+<area shape="rect" id="node2" href="classCGate.html#a81387cd161ba2b6abe89e3959fc670cc" title="CGate::ReceiveDamage" alt="" coords="191,5,356,32"/>
+<area shape="rect" id="node3" href="classCGate.html#ab0742602741d3b5e09526306f29d928d" title="CGate::Render" alt="" coords="404,5,515,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -590,23 +767,15 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMap_aade65fe713b0dc6cb9587c1383714234_cgraph.png" border="0" usemap="#classCMap_aade65fe713b0dc6cb9587c1383714234_cgraph" alt=""/></div>
+<map name="classCMap_aade65fe713b0dc6cb9587c1383714234_cgraph" id="classCMap_aade65fe713b0dc6cb9587c1383714234_cgraph">
+<area shape="rect" id="node2" href="classCGate.html#ab0742602741d3b5e09526306f29d928d" title="CGate::Render" alt="" coords="171,5,281,32"/>
+<area shape="rect" id="node3" href="classCMap.html#ad40e69cecf746a7e99412f8f777ad334" title="CMap::RenderMap" alt="" coords="160,56,292,83"/>
+</map>
 </div>
-</div>
-<a id="a75ad0d3b3c308b121894898129266c68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75ad0d3b3c308b121894898129266c68">&#9670;&nbsp;</a></span>RenderGate()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CMap::RenderGate </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -627,17 +796,45 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a39ccac99fcaf2cb2526034795e5ee345"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39ccac99fcaf2cb2526034795e5ee345">&#9670;&nbsp;</a></span>Save()</h2>
+<a id="a804c80310a23591ccf8f43d5da6eec10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a804c80310a23591ccf8f43d5da6eec10">&#9670;&nbsp;</a></span>Save()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool CMap::Save </td>
+          <td class="memname">ostream &amp; CMap::Save </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMap_a804c80310a23591ccf8f43d5da6eec10_cgraph.png" border="0" usemap="#classCMap_a804c80310a23591ccf8f43d5da6eec10_cgraph" alt=""/></div>
+<map name="classCMap_a804c80310a23591ccf8f43d5da6eec10_cgraph" id="classCMap_a804c80310a23591ccf8f43d5da6eec10_cgraph">
+<area shape="rect" id="node2" href="classCMap.html#a4c183f0677c3b1b4c14f2fb09bc0bb7d" title="CMap::SaveDimensions" alt="" coords="148,5,312,32"/>
+<area shape="rect" id="node3" href="classCMap.html#ad71300b066bd6f4e9824cd2f41efa224" title="CMap::SaveGate" alt="" coords="169,56,291,83"/>
+<area shape="rect" id="node4" href="classCMap.html#aed67ccc2fbb6c6fb8b76da98046aab4c" title="CMap::SaveMap" alt="" coords="170,107,290,133"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4c183f0677c3b1b4c14f2fb09bc0bb7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c183f0677c3b1b4c14f2fb09bc0bb7d">&#9670;&nbsp;</a></span>SaveDimensions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; CMap::SaveDimensions </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -645,46 +842,36 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a9f35a8fe7ecc363d19362b9970699687"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f35a8fe7ecc363d19362b9970699687">&#9670;&nbsp;</a></span>SetGateHealth()</h2>
+<a id="ad71300b066bd6f4e9824cd2f41efa224"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad71300b066bd6f4e9824cd2f41efa224">&#9670;&nbsp;</a></span>SaveGate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CMap::SetGateHealth </td>
+          <td class="memname">std::ostream &amp; CMap::SaveGate </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>hp</em></td><td>)</td>
-          <td></td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a5117586c51178e086af2e02a64016031"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5117586c51178e086af2e02a64016031">&#9670;&nbsp;</a></span>SetMapDimensions()</h2>
+<a id="aed67ccc2fbb6c6fb8b76da98046aab4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed67ccc2fbb6c6fb8b76da98046aab4c">&#9670;&nbsp;</a></span>SaveMap()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CMap::SetMapDimensions </td>
+          <td class="memname">std::ostream &amp; CMap::SaveMap </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>rows</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>cols</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -758,6 +945,18 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCMap_ac30276b0b79f4076d48fc7b42f3135ec_cgraph.png" border="0" usemap="#classCMap_ac30276b0b79f4076d48fc7b42f3135ec_cgraph" alt=""/></div>
+<map name="classCMap_ac30276b0b79f4076d48fc7b42f3135ec_cgraph" id="classCMap_ac30276b0b79f4076d48fc7b42f3135ec_cgraph">
+<area shape="rect" id="node2" href="classCMap.html#ad0f9b87065d38b18153672ec0a82b5db" title="CMap::MoveTroops" alt="" coords="161,5,298,32"/>
+<area shape="rect" id="node5" href="classCGate.html#a7d06f34094c4a63ce54dfa0bd4615d40" title="CGate::Fallen" alt="" coords="178,56,281,83"/>
+<area shape="rect" id="node6" href="classCMap.html#ad327222ab48f6ad8dc8af922a191c31c" title="CMap::TowerAttack" alt="" coords="160,107,299,133"/>
+<area shape="rect" id="node3" href="classCGate.html#a81387cd161ba2b6abe89e3959fc670cc" title="CGate::ReceiveDamage" alt="" coords="347,5,512,32"/>
+<area shape="rect" id="node4" href="classCGate.html#ab0742602741d3b5e09526306f29d928d" title="CGate::Render" alt="" coords="560,5,671,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -775,43 +974,6 @@ Here is the call graph for this function:</div>
           <td></td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="a83c6dd1eb8a583d1afa5afe8446ca40f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83c6dd1eb8a583d1afa5afe8446ca40f">&#9670;&nbsp;</a></span>operator<<</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classCMap.html">CMap</a> &amp;&#160;</td>
-          <td class="paramname"><em>map</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -841,8 +1003,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ab436dd6f340fecdc30f53c999a875431"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab436dd6f340fecdc30f53c999a875431">&#9670;&nbsp;</a></span>m_Gate</h2>
+<a id="a5394c6f9388656c329f10868a0c3cafb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5394c6f9388656c329f10868a0c3cafb">&#9670;&nbsp;</a></span>m_Gate</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -851,7 +1013,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> CMap::m_Gate</td>
+          <td class="memname"><a class="el" href="classCGate.html">CGate</a> CMap::m_Gate</td>
         </tr>
       </table>
   </td>
@@ -860,56 +1022,6 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>pointer to the gate, to which the troopers must get </p>
-
-</div>
-</div>
-<a id="ae5c767d6b41959fb2e038f9bd9c38a7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5c767d6b41959fb2e038f9bd9c38a7e">&#9670;&nbsp;</a></span>m_GateHp</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int CMap::m_GateHp</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>number of current gate's health </p>
-
-</div>
-</div>
-<a id="adefef57cde6e06fdf7412cbad2e77b0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adefef57cde6e06fdf7412cbad2e77b0e">&#9670;&nbsp;</a></span>m_GateMaxHp</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int CMap::m_GateMaxHp</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>number of gate's max health </p>
 
 </div>
 </div>

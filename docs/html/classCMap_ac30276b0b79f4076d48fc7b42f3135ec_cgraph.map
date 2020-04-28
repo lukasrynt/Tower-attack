@@ -1,0 +1,7 @@
+<map id="CMap::Update" name="CMap::Update">
+<area shape="rect" id="node2" href="$classCMap.html#ad0f9b87065d38b18153672ec0a82b5db" title="CMap::MoveTroops" alt="" coords="161,5,298,32"/>
+<area shape="rect" id="node5" href="$classCGate.html#a7d06f34094c4a63ce54dfa0bd4615d40" title="CGate::Fallen" alt="" coords="178,56,281,83"/>
+<area shape="rect" id="node6" href="$classCMap.html#ad327222ab48f6ad8dc8af922a191c31c" title="CMap::TowerAttack" alt="" coords="160,107,299,133"/>
+<area shape="rect" id="node3" href="$classCGate.html#a81387cd161ba2b6abe89e3959fc670cc" title="CGate::ReceiveDamage" alt="" coords="347,5,512,32"/>
+<area shape="rect" id="node4" href="$classCGate.html#ab0742602741d3b5e09526306f29d928d" title="CGate::Render" alt="" coords="560,5,671,32"/>
+</map>

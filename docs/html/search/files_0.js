@@ -8,6 +8,8 @@ var searchData=
   ['cframes_2ehpp',['CFrames.hpp',['../CFrames_8hpp.html',1,'']]],
   ['cgame_2ecpp',['CGame.cpp',['../CGame_8cpp.html',1,'']]],
   ['cgame_2ehpp',['CGame.hpp',['../CGame_8hpp.html',1,'']]],
+  ['cgate_2ecpp',['CGate.cpp',['../CGate_8cpp.html',1,'']]],
+  ['cgate_2ehpp',['CGate.hpp',['../CGate_8hpp.html',1,'']]],
   ['cmagetower_2ecpp',['CMageTower.cpp',['../CMageTower_8cpp.html',1,'']]],
   ['cmagetower_2ehpp',['CMageTower.hpp',['../CMageTower_8hpp.html',1,'']]],
   ['cmakeccompilerid_2ec',['CMakeCCompilerId.c',['../CMakeCCompilerId_8c.html',1,'']]],

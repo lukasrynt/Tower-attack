@@ -1,29 +1,38 @@
 CXX         	:= g++
-CXXFLAGS    	:= -Wall -pedantic -std=c++14
+CXX_FLAGS    	:= -Wall -pedantic -std=c++14
 BUILD_DIR   	:= bin
 SOURCE_DIR      := src
-SOURCES		:= $(wildcard $(SOURCE_DIR)/*.cpp)
+DEP_DIR			:= dep
+SOURCES			:= $(wildcard $(SOURCE_DIR)/*.cpp)
+DEPENDENCIES	:= $(patsubst $(SOURCE_DIR)/%.cpp,$(DEP_DIR)/%.d, $(SOURCES))	# searches for pattern defined in first part in text in last part and replaces it with middle part
 OBJS	    	:= $(patsubst $(SOURCE_DIR)/%.cpp,$(BUILD_DIR)/%.o, $(SOURCES))
 COMPILE_TARGET	:= $(BUILD_DIR)/main
 
-# Create all object files
+# Compile and document the project
 .PHONY: all
-all: $(OBJS)
-$(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.cpp
-	mkdir -p $(BUILD_DIR)
-	$(CXX) $(FLAGS) -c $< -o $@
+all: compile doc
 
 # Link object files and compile into binary file
 .PHONY: compile
-compile: $(COMPILE_TARGET)
-$(BUILD_DIR)/main: $(BUILD_DIR)/*.o
-	mkdir -p $(BUILD_DIR)
-	$(CXX) $(DEPFLAGS) $(FLAGS) $^ -o $@
+compile: depend $(COMPILE_TARGET)
+
+# Link object files
+$(COMPILE_TARGET): $(OBJS)
+	@ $(CXX) $(CXX_FLAGS) $^ -o $@; \
+  	rm -r $(DEP_DIR)/ 2>/dev/null;\
+ 	echo "Compilation successful...";
+
+# Create object files
+$(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.cpp
+	@ mkdir -p $(BUILD_DIR)
+	@ $(CXX) $(CXX_FLAGS) $< -c -o $@
 
 # Run the binary file
 .PHONY: run
-run: bin/main
-	bin/main
+run: $(COMPILE_TARGET)
+	@ echo "Running game...";
+	@./$(COMPILE_TARGET)
+
 
 # Clean the build directory with all object files
 .PHONY: clean
@@ -31,24 +40,22 @@ clean:
 	@ rm -r $(BUILD_DIR)/ 2>/dev/null;\
 	echo "all build files were removed";
 
+# Make dependant files
+.PHONY: depend
+depend: $(DEPENDENCIES)
+
+# Translate spaces and \ from gcc output
+$(DEP_DIR)/%.d: $(SOURCE_DIR)/%.cpp
+	@ mkdir -p $(DEP_DIR)
+	@ $(CXX) $(CXX_FLAGS) -MM $< > $@.tmp;\
+     	cat $@.tmp | tr -d '\n' | tr -d '\\' > $@;\
+     	rm -f $@.tmp;
+
+
+# Stop and read the dependant files
+include $(DEP_DIR)/*.d
+
 # Generate documentation
 .PHONY: doc
 doc:
-	doxygen -g doxy-config
-	doxygen doxy-config
-
-CFrames.o: CFrames.hpp CFrames.cpp
-CTile.o: CTile.cpp CTile.hpp CPosition.hpp
-CPath.o: CPath.cpp CPath.hpp
-CWaves.o: CWaves.hpp CWaves.cpp CTrooper.hpp CFrames.hpp CUnitStack.hpp
-CUnitStack.o: CUnitStack.cpp CUnitStack.hpp
-ETileType.o: ETileType.cpp ETileType.hpp 
-CGame.o: CGame.cpp CGame.hpp CUnitStack.hpp CWaves.hpp CMap.hpp
-CTrooper.o: CTrooper.cpp CTrooper.hpp CTile.hpp CFrames.hpp
-CTower.o: CTower.cpp CTower.hpp CTile.hpp
-CMap.o: CMap.cpp CMap.hpp CTower.hpp CTrooper.hpp CPath.hpp CUnitStack.hpp
-CPosition.o: CPosition.cpp CPosition.hpp
-CMageTower.o: CMageTower.cpp CMageTower.hpp CTower.hpp
-CArmoredTrooper.o: CArmoredTrooper.cpp CArmoredTrooper.hpp CTrooper.hpp
-CApplication.o: CApplication.cpp CApplication.hpp CGame.hpp
-main.o: main.cpp CApplication.hpp
+	doxygen Doxyfile

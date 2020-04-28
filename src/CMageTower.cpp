@@ -10,7 +10,7 @@ using namespace std;
 /**********************************************************************************************************************/
 // INIT
 CMageTower::CMageTower(int attackDamage, int attackSpeed, int mana, int magicAttack, pos_t position)
-	: CTower(attackDamage, attackSpeed, position),
+	: CTower(attackDamage, attackSpeed, position, '%'),
 	  m_MaxMana(mana),
 	  m_Mana(mana),
 	  m_MagicAttack(magicAttack)
@@ -18,12 +18,25 @@ CMageTower::CMageTower(int attackDamage, int attackSpeed, int mana, int magicAtt
 
 /**********************************************************************************************************************/
 // LOADING
+CMageTower * CMageTower::Load(std::istream &in)
+{
+	CMageTower * tower = new CMageTower();
+	char del1, del2, del3, del4;
+	if (!(in >> tower->m_AttackDamage >> del1 >> tower->m_Frames >> del2 >> tower->m_MaxMana >> del3 >> tower->m_MagicAttack >> del4)
+		|| del1 != ','
+		|| del2 != ','
+		|| del3 != ','
+		|| del4 != ';')
+		return nullptr;
+	tower->m_Mana = tower->m_MaxMana;
+	return tower;
+}
 
 /**********************************************************************************************************************/
 // SAVING
 std::ostream & CMageTower::Save(std::ostream &out) const
 {
-	return CTower::Save(out) << ',' << m_Mana << ',' << m_MaxMana << ',' << m_MagicAttack;
+	return CTower::Save(out) << ", " << m_MaxMana << ", " << m_MagicAttack;
 }
 
 /**********************************************************************************************************************/

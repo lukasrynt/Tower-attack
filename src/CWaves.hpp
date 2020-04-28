@@ -25,7 +25,8 @@ public:
 	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
 	
 	// LOADING
-	void SetWavesSpecifications(int waveCnt, int maxWaveSize);
+	std::istream & Load(std::istream & in);
+	std::istream & LoadTroops(std::istream & in);
 	int GetWaveSize() const;
 	
 	// SAVING
@@ -54,4 +55,5 @@ private:
 	
 	// LOAD
 	void InitWaves();
+	std::istream & LoadWave(std::istream & in, int idx);
 };

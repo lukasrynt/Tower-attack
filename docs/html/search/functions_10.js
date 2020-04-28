@@ -1,16 +1,16 @@
 var searchData=
 [
-  ['save',['Save',['../classCGame.html#a65afb72fa6e769a47187972ed26554c8',1,'CGame::Save()'],['../classCMap.html#a39ccac99fcaf2cb2526034795e5ee345',1,'CMap::Save()']]],
-  ['savedgameloadingscreen',['SavedGameLoadingScreen',['../classCApplication.html#a95849ab78c40e89990af2e793f31ac2f',1,'CApplication']]],
-  ['savemap',['SaveMap',['../classCApplication.html#a6e5e23151a044d7d1449578c9ba4942c',1,'CApplication']]],
+  ['save',['Save',['../classCArmoredTrooper.html#a489a21511b24f35fca859a387e6bca8c',1,'CArmoredTrooper::Save()'],['../classCGame.html#af095eba2abf48a99d895721a5b1bab2b',1,'CGame::Save()'],['../classCMageTower.html#ad816e2a1312afac65959c175b1767f99',1,'CMageTower::Save()'],['../classCMap.html#a804c80310a23591ccf8f43d5da6eec10',1,'CMap::Save()'],['../classCTower.html#a1bc2fa4bf398d8a08a25ed02dd7bdf75',1,'CTower::Save()'],['../classCTrooper.html#a1d1feb0e48362d85d11eb3538eaaae80',1,'CTrooper::Save()'],['../classCUnitStack.html#a2667f0e9fb5df73cebb796dc059a6435',1,'CUnitStack::Save()'],['../classCWaves.html#ac1e5f5097a6a17b7bed3cc7d2339f8d5',1,'CWaves::Save()']]],
+  ['savedimensions',['SaveDimensions',['../classCMap.html#a4c183f0677c3b1b4c14f2fb09bc0bb7d',1,'CMap']]],
+  ['savegame',['SaveGame',['../classCApplication.html#a3a6777a0dc5d78c36db4736a4ed49599',1,'CApplication']]],
+  ['savegate',['SaveGate',['../classCMap.html#ad71300b066bd6f4e9824cd2f41efa224',1,'CMap']]],
+  ['savemap',['SaveMap',['../classCMap.html#aed67ccc2fbb6c6fb8b76da98046aab4c',1,'CMap']]],
   ['savescreen',['SaveScreen',['../classCApplication.html#a2867dc3dc906076cee44d2b0c51daa0e',1,'CApplication']]],
+  ['savestate',['SaveState',['../classCGame.html#ae35c7ce1f6651b855ec254ba0eebc7b2',1,'CGame']]],
   ['setcolors',['SetColors',['../classCTile.html#a23afbeb7c1c2cf7f9507aef4bbfbef00',1,'CTile']]],
-  ['setgatehealth',['SetGateHealth',['../classCMap.html#a9f35a8fe7ecc363d19362b9970699687',1,'CMap']]],
-  ['setmapdimensions',['SetMapDimensions',['../classCMap.html#a5117586c51178e086af2e02a64016031',1,'CMap']]],
   ['setpath',['SetPath',['../classCTrooper.html#a358f7bd720fa4e902fdd6833e06cff01',1,'CTrooper']]],
   ['setposition',['SetPosition',['../classCTrooper.html#aa16f3acb6263d55c0f19eec3a6c09ade',1,'CTrooper']]],
   ['setspawn',['SetSpawn',['../classCTrooper.html#a90a689b53f761078217c034f7fd7a4c4',1,'CTrooper']]],
-  ['setwavesspecifications',['SetWavesSpecifications',['../classCWaves.html#a375ccec38794c4cbe86e1a336ba30c2b',1,'CWaves']]],
   ['sleep',['Sleep',['../classCApplication.html#ab35fafef75e13a17d31b72afb4275517',1,'CApplication']]],
   ['spawn',['Spawn',['../classCMap.html#aebb52ca1a3b2e1331fab44fc3cb7d1c7',1,'CMap']]],
   ['startwave',['StartWave',['../classCGame.html#a5ba42dae2a762efcb7449a1cda9cd0b7',1,'CGame']]]

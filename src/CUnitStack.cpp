@@ -33,37 +33,28 @@ std::istream & CUnitStack::Load(char ch, std::istream &in)
 	switch (ch)
 	{
 		case '@':
-		if (!CreateBasicTroop(in))
-			return in;
-		break;
-	}
-	return in;
-}
-
-void CUnitStack::LoadUnitSpecifications(const vector<int> & specifications, char ch)
-{
-	if (m_Troops.count(ch) || m_Towers.count(ch))
-		throw runtime_error("Trooper or tower is already defined.");
-	switch (ch)
-	{
-		case '@':
-			CreateBasicTroop(specifications);
+			if (!LoadBasicTroop(in))
+				return in;
 			break;
 		case '$':
-			CreateArmoredTroop(specifications);
+			if (!LoadArmoredTroop(in))
+				return in;
 			break;
 		case '*':
-			CreateArcherTower(specifications);
+			if (!LoadArcherTower(in))
+				return in;
 			break;
 		case '%':
-			CreateMageTower(specifications);
+			if (!LoadMageTower(in))
+				return in;
 			break;
 		default:
 			break;
 	}
+	return in;
 }
 
-istream & CUnitStack::CreateBasicTroop(istream & in)
+istream & CUnitStack::LoadBasicTroop(istream & in)
 {
 	CTrooper * trooper = CTrooper::Load(in);
 	if (!trooper)
@@ -75,7 +66,7 @@ istream & CUnitStack::CreateBasicTroop(istream & in)
 	return in;
 }
 
-istream & CUnitStack::CreateArmoredTroop(istream & in)
+istream & CUnitStack::LoadArmoredTroop(istream & in)
 {
 	CArmoredTrooper * trooper = CArmoredTrooper::Load(in);
 	if (!trooper)
@@ -87,18 +78,44 @@ istream & CUnitStack::CreateArmoredTroop(istream & in)
 	return in;
 }
 
-istream & CUnitStack::CreateArcherTower(istream & in)
+istream & CUnitStack::LoadArcherTower(istream & in)
 {
-	if (specifications.size() != 2)
-		throw invalid_file("specifications of tower doesn't match. For archer tower there should be 2 arguments.");
-	m_Towers.insert({'*', new CTower(specifications[0], specifications[1])});
+	CTower * tower = CTower::Load(in);
+	if (!tower)
+	{
+		in.setstate(ios::failbit);
+		return in;
+	}
+	m_Towers.insert({'*', tower});
+	return in;
 }
 
-istream & CUnitStack::CreateMageTower(istream & in)
+istream & CUnitStack::LoadMageTower(istream & in)
 {
-	if (specifications.size() != 4)
-		throw invalid_file("Specifications of trooper doesn't match. For armored there should be 3 arguments.");
-	m_Towers.insert({'%', new CMageTower(specifications[0], specifications[1], specifications[2], specifications[3])});
+	CMageTower * tower = CMageTower::Load(in);
+	if (!tower)
+	{
+		in.setstate(ios::failbit);
+		return in;
+	}
+	m_Towers.insert({'%', tower});
+	return in;
+}
+
+bool CUnitStack::IsTowerChar(char ch) const
+{
+	for (const auto & tower : m_Towers)
+		if (ch == tower.first)
+			return true;
+	return false;
+}
+
+bool CUnitStack::IsTrooperChar(char ch) const
+{
+	for (const auto & trooper : m_Troops)
+		if (ch == trooper.first)
+			return true;
+	return false;
 }
 
 /**********************************************************************************************************************/
@@ -154,8 +171,11 @@ void CUnitStack::Cycle() const
 ostream & CUnitStack::Save(ostream & out) const
 {
 	for (auto & troop : m_Troops)
-		troop.second->Save(out) << endl;
+		if (!(troop.second->Save(out) << ';' << endl))
+			return out;
 	
 	for (auto & tower : m_Towers)
-		tower.second->Save(out) << endl;
+		if (!(tower.second->Save(out) << ';' << endl))
+			return out;
+	return out;
 }

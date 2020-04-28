@@ -1,0 +1,8 @@
+<map id="CGame::ProcessInput" name="CGame::ProcessInput">
+<area shape="rect" id="node2" href="$classCWaves.html#ab159241e2b59bca7d5905055751c41f6" title="CWaves::Cycle" alt="" coords="238,5,353,32"/>
+<area shape="rect" id="node3" href="$classCGame.html#aed7cb1dec5c6ba5a9f72efc92bce06b5" title="CGame::AddTroopToWave" alt="" coords="205,56,385,83"/>
+<area shape="rect" id="node5" href="$classCGame.html#a5ba42dae2a762efcb7449a1cda9cd0b7" title="CGame::StartWave" alt="" coords="227,107,364,133"/>
+<area shape="rect" id="node7" href="$classCGame.html#ab2872053f39e647f9e3990877062daba" title="CGame::End" alt="" coords="246,157,345,184"/>
+<area shape="rect" id="node4" href="$classCWaves.html#a3901bd5381ce046a8d23c645fe5c6570" title="CWaves::AddTroop" alt="" coords="433,56,571,83"/>
+<area shape="rect" id="node6" href="$classCWaves.html#ab771b4bf3b5e4feb5609ab8e6e960416" title="CWaves::Release" alt="" coords="437,107,567,133"/>
+</map>

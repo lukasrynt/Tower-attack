@@ -9,7 +9,6 @@
 #include "CUnitStack.hpp"
 #include "CMap.hpp"
 #include "CWaves.hpp"
-#include "ExInvalidFile.hpp"
 
 /**
  * A single game with map, waves and unit stack
@@ -45,11 +44,9 @@ private:
 	bool m_WaveOn;								//!< Signalizes start and end of wave
 	
 	// LOADING
+	std::istream & LoadCommon(std::istream & in, char ch, bool saved);
+	std::istream & LoadState(std::istream & in);
 	static char LoadSignatureChar(std::istream & in);
-	static std::vector<int> LoadSpecifications(std::istream & in);
-	void LoadMapDimensions(std::vector<int> specifications);
-	void LoadGateHealth(std::vector<int> specifications);
-	void LoadWaves(std::vector<int> specifications);
 	bool CheckLoaded(const std::set<char> & signs);
 	
 	// INGAME

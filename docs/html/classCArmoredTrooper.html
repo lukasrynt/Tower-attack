@@ -61,6 +61,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classCArmoredTrooper-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -74,7 +75,7 @@ Inheritance diagram for CArmoredTrooper:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCArmoredTrooper__inherit__graph.png" border="0" usemap="#CArmoredTrooper_inherit__map" alt="Inheritance graph"/></div>
 <map name="CArmoredTrooper_inherit__map" id="CArmoredTrooper_inherit__map">
-<area shape="rect" id="node2" href="classCTrooper.html" title="{CTrooper\n|# m_Char\l# m_Pos\l# m_Hp\l# m_Attack\l# m_Frames\l# m_SpawnIdx\l# m_Path\l|+ CTrooper()\l+ Clone()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ SetSpawn()\l+ GetSpawn()\l+ SetPosition()\l+ GetPosition()\l+ SetPath()\l}" alt="" coords="9,5,147,303"/>
+<area shape="rect" id="node2" href="classCTrooper.html" title="{CTrooper\n|# m_Char\l# m_Pos\l# m_Hp\l# m_Attack\l# m_Frames\l# m_SpawnIdx\l# m_Path\l|+ CTrooper()\l+ Clone()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ Save()\l+ SetSpawn()\l+ GetSpawn()\l+ SetPosition()\l+ GetPosition()\l+ SetPath()\l+ Load()\l}" alt="" coords="9,5,147,332"/>
 </map>
 </div>
 <div class="dynheader">
@@ -82,7 +83,7 @@ Collaboration diagram for CArmoredTrooper:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCArmoredTrooper__coll__graph.png" border="0" usemap="#CArmoredTrooper_coll__map" alt="Collaboration graph"/></div>
 <map name="CArmoredTrooper_coll__map" id="CArmoredTrooper_coll__map">
-<area shape="rect" id="node2" href="classCTrooper.html" title="{CTrooper\n|# m_Char\l# m_Hp\l# m_Attack\l# m_SpawnIdx\l# m_Path\l|+ CTrooper()\l+ Clone()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ SetSpawn()\l+ GetSpawn()\l+ SetPosition()\l+ GetPosition()\l+ SetPath()\l}" alt="" coords="171,263,310,531"/>
+<area shape="rect" id="node2" href="classCTrooper.html" title="{CTrooper\n|# m_Char\l# m_Hp\l# m_Attack\l# m_SpawnIdx\l# m_Path\l|+ CTrooper()\l+ Clone()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ Save()\l+ SetSpawn()\l+ GetSpawn()\l+ SetPosition()\l+ GetPosition()\l+ SetPath()\l+ Load()\l}" alt="" coords="171,263,310,560"/>
 <area shape="rect" id="node3" href="structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetNeighbours()\l+ LiesInRange()\l+ GetRadius()\l}" alt="" coords="5,5,135,200"/>
 <area shape="rect" id="node4" href="classCFrames.html" title="{CFrames\n|&#45; m_Speed\l&#45; m_CurrFrame\l&#45; MAX_FRAME_CNT\l|+ CFrames()\l+ ActionAllowed()\l}" alt="" coords="224,42,372,163"/>
 </map>
@@ -96,15 +97,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1e90759a9f4c9601e05bfee2c5572a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5ac18b6a010643425ccb4527448b046"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCArmoredTrooper.html#af5ac18b6a010643425ccb4527448b046">FindPath</a> (<a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> goal, std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;map)</td></tr>
 <tr class="separator:af5ac18b6a010643425ccb4527448b046"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a482b9a00efdf9f7c2b6a9b6ec0528c63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCArmoredTrooper.html">CArmoredTrooper</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCArmoredTrooper.html#a482b9a00efdf9f7c2b6a9b6ec0528c63">Clone</a> () final</td></tr>
-<tr class="separator:a482b9a00efdf9f7c2b6a9b6ec0528c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c321f29d2f060c79a6122f8b51767a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCArmoredTrooper.html">CArmoredTrooper</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCArmoredTrooper.html#a4c321f29d2f060c79a6122f8b51767a8">Clone</a> () const final</td></tr>
+<tr class="separator:a4c321f29d2f060c79a6122f8b51767a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a489a21511b24f35fca859a387e6bca8c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCArmoredTrooper.html#a489a21511b24f35fca859a387e6bca8c">Save</a> (std::ostream &amp;out) const final</td></tr>
+<tr class="separator:a489a21511b24f35fca859a387e6bca8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCTrooper"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCTrooper')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCTrooper.html">CTrooper</a></td></tr>
 <tr class="memitem:afd76ac1fa2b22663b325e6ea96c82f54 inherit pub_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#afd76ac1fa2b22663b325e6ea96c82f54">CTrooper</a> (int hp=0, int speed=0, int attack=0, char ch='@')</td></tr>
 <tr class="separator:afd76ac1fa2b22663b325e6ea96c82f54 inherit pub_methods_classCTrooper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedfd47b15451da7b16d102e9fa0a93c9 inherit pub_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#aedfd47b15451da7b16d102e9fa0a93c9">Move</a> (std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;map)</td></tr>
 <tr class="separator:aedfd47b15451da7b16d102e9fa0a93c9 inherit pub_methods_classCTrooper"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4826cc1684bb573721a5730f5d17e61 inherit pub_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#ad4826cc1684bb573721a5730f5d17e61">Attack</a> ()</td></tr>
-<tr class="separator:ad4826cc1684bb573721a5730f5d17e61 inherit pub_methods_classCTrooper"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac178f7553747542df6c2c1c59f9c502 inherit pub_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#aac178f7553747542df6c2c1c59f9c502">Attack</a> () const</td></tr>
+<tr class="separator:aac178f7553747542df6c2c1c59f9c502 inherit pub_methods_classCTrooper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90a689b53f761078217c034f7fd7a4c4 inherit pub_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#a90a689b53f761078217c034f7fd7a4c4">SetSpawn</a> (size_t idx)</td></tr>
 <tr class="separator:a90a689b53f761078217c034f7fd7a4c4 inherit pub_methods_classCTrooper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4f443661e74e85a3eff9dca21dbd7a4 inherit pub_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#aa4f443661e74e85a3eff9dca21dbd7a4">GetSpawn</a> () const</td></tr>
@@ -115,6 +118,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9eaefd56b9d7882328c7d14cedd1d03c inherit pub_methods_classCTrooper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a358f7bd720fa4e902fdd6833e06cff01 inherit pub_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#a358f7bd720fa4e902fdd6833e06cff01">SetPath</a> (std::deque&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> &gt; path)</td></tr>
 <tr class="separator:a358f7bd720fa4e902fdd6833e06cff01 inherit pub_methods_classCTrooper"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a8ced9cce812bad457d90dbfa7ee4ecb5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCArmoredTrooper.html">CArmoredTrooper</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCArmoredTrooper.html#a8ced9cce812bad457d90dbfa7ee4ecb5">Load</a> (std::istream &amp;in)</td></tr>
+<tr class="separator:a8ced9cce812bad457d90dbfa7ee4ecb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classCTrooper"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classCTrooper')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classCTrooper.html">CTrooper</a></td></tr>
+<tr class="memitem:af3fdcf5187406dcf57f4cb768e098881 inherit pub_static_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCTrooper.html">CTrooper</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#af3fdcf5187406dcf57f4cb768e098881">Load</a> (std::istream &amp;in)</td></tr>
+<tr class="separator:af3fdcf5187406dcf57f4cb768e098881 inherit pub_static_methods_classCTrooper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -205,14 +216,12 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section author"><dt>Author</dt><dd>Lukáš Rynt <a href="#" onclick="location.href='mai'+'lto:'+'ryn'+'tl'+'uka'+'@f'+'it.'+'cv'+'ut.'+'cz'; return false;">ryntl<span style="display: none;">.nosp@m.</span>uka@<span style="display: none;">.nosp@m.</span>fit.c<span style="display: none;">.nosp@m.</span>vut.<span style="display: none;">.nosp@m.</span>cz</a> </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>24.4.2020 </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a482b9a00efdf9f7c2b6a9b6ec0528c63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a482b9a00efdf9f7c2b6a9b6ec0528c63">&#9670;&nbsp;</a></span>Clone()</h2>
+<a id="a4c321f29d2f060c79a6122f8b51767a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c321f29d2f060c79a6122f8b51767a8">&#9670;&nbsp;</a></span>Clone()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +233,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname"><a class="el" href="classCArmoredTrooper.html">CArmoredTrooper</a> * CArmoredTrooper::Clone </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -234,12 +243,12 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCTrooper.html#a652bdce88fe69f08a2d4893ebea19250">CTrooper</a>.</p>
+<p>Reimplemented from <a class="el" href="classCTrooper.html#a80aaa7e9156c3c4d8f0a0562cfd12ccb">CTrooper</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCArmoredTrooper_a482b9a00efdf9f7c2b6a9b6ec0528c63_cgraph.png" border="0" usemap="#classCArmoredTrooper_a482b9a00efdf9f7c2b6a9b6ec0528c63_cgraph" alt=""/></div>
-<map name="classCArmoredTrooper_a482b9a00efdf9f7c2b6a9b6ec0528c63_cgraph" id="classCArmoredTrooper_a482b9a00efdf9f7c2b6a9b6ec0528c63_cgraph">
+<div class="center"><img src="classCArmoredTrooper_a4c321f29d2f060c79a6122f8b51767a8_cgraph.png" border="0" usemap="#classCArmoredTrooper_a4c321f29d2f060c79a6122f8b51767a8_cgraph" alt=""/></div>
+<map name="classCArmoredTrooper_a4c321f29d2f060c79a6122f8b51767a8_cgraph" id="classCArmoredTrooper_a4c321f29d2f060c79a6122f8b51767a8_cgraph">
 <area shape="rect" id="node2" href="classCArmoredTrooper.html#a8eed9ec18121e25589d2343e36c76f1c" title="CArmoredTrooper::CArmored\lTrooper" alt="" coords="220,5,412,47"/>
 </map>
 </div>
@@ -280,6 +289,40 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a8ced9cce812bad457d90dbfa7ee4ecb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ced9cce812bad457d90dbfa7ee4ecb5">&#9670;&nbsp;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCArmoredTrooper.html">CArmoredTrooper</a> * CArmoredTrooper::Load </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCArmoredTrooper_a8ced9cce812bad457d90dbfa7ee4ecb5_cgraph.png" border="0" usemap="#classCArmoredTrooper_a8ced9cce812bad457d90dbfa7ee4ecb5_cgraph" alt=""/></div>
+<map name="classCArmoredTrooper_a8ced9cce812bad457d90dbfa7ee4ecb5_cgraph" id="classCArmoredTrooper_a8ced9cce812bad457d90dbfa7ee4ecb5_cgraph">
+<area shape="rect" id="node2" href="classCArmoredTrooper.html#a8eed9ec18121e25589d2343e36c76f1c" title="CArmoredTrooper::CArmored\lTrooper" alt="" coords="215,5,407,47"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a1e90759a9f4c9601e05bfee2c5572a2b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1e90759a9f4c9601e05bfee2c5572a2b">&#9670;&nbsp;</a></span>ReceiveDamage()</h2>
 
@@ -317,6 +360,42 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classCArmoredTrooper_a1e90759a9f4c9601e05bfee2c5572a2b_cgraph.png" border="0" usemap="#classCArmoredTrooper_a1e90759a9f4c9601e05bfee2c5572a2b_cgraph" alt=""/></div>
 <map name="classCArmoredTrooper_a1e90759a9f4c9601e05bfee2c5572a2b_cgraph" id="classCArmoredTrooper_a1e90759a9f4c9601e05bfee2c5572a2b_cgraph">
 <area shape="rect" id="node2" href="classCTrooper.html#abedb8490f3737c8d54d4af1ced3dcf33" title="CTrooper::ReceiveDamage" alt="" coords="235,13,416,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a489a21511b24f35fca859a387e6bca8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a489a21511b24f35fca859a387e6bca8c">&#9670;&nbsp;</a></span>Save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ostream &amp; CArmoredTrooper::Save </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classCTrooper.html#a1d1feb0e48362d85d11eb3538eaaae80">CTrooper</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCArmoredTrooper_a489a21511b24f35fca859a387e6bca8c_cgraph.png" border="0" usemap="#classCArmoredTrooper_a489a21511b24f35fca859a387e6bca8c_cgraph" alt=""/></div>
+<map name="classCArmoredTrooper_a489a21511b24f35fca859a387e6bca8c_cgraph" id="classCArmoredTrooper_a489a21511b24f35fca859a387e6bca8c_cgraph">
+<area shape="rect" id="node2" href="classCTrooper.html#a1d1feb0e48362d85d11eb3538eaaae80" title="CTrooper::Save" alt="" coords="216,5,331,32"/>
 </map>
 </div>
 

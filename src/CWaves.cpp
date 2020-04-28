@@ -32,14 +32,64 @@ void CWaves::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 	m_UnitStack = move(unitStack);
 }
 
-
 /**********************************************************************************************************************/
 // LOADING
-void CWaves::SetWavesSpecifications(int waveCnt, int maxWaveSize)
+std::istream & CWaves::Load(std::istream &in)
 {
-	m_WaveCnt = waveCnt;
-	m_MaxSize = maxWaveSize;
+	char del1, del2;
+	if (!(in >> m_WaveCnt >> del1 >> m_MaxSize >> del2)
+		|| del1 != ','
+		|| del2 != ';')
+	{
+		in.setstate(ios::failbit);
+		return in;
+	}
 	InitWaves();
+	return in;
+}
+
+std::istream & CWaves::LoadTroops(std::istream &in)
+{
+	// load waves if there are some
+	for (int i = 0; i < m_WaveCnt; ++i)
+		if (!LoadWave(in, i))
+			return in;
+	return in;
+}
+
+std::istream & CWaves::LoadWave(std::istream &in, int idx)
+{
+	// check opening bracket
+	char ch = 0;
+	if (!(in >> ch)
+		|| ch != '[')
+	{
+		in.setstate(ios::failbit);
+		return in;
+	}
+	
+	
+	while (true)
+	{
+		// check if the character is correct
+		if (!(in >> ch))
+		{
+			in.setstate(ios::failbit);
+			return in;
+		}
+		
+		// add trooper to wave
+		if (m_UnitStack->IsTrooperChar(ch))
+			m_Waves[idx].push_back(m_UnitStack->CreateTrooperAt(ch));
+		else if (ch == ']')
+			break;
+		else
+		{
+			in.setstate(ios::failbit);
+			return in;
+		}
+	}
+	return in;
 }
 
 void CWaves::InitWaves()
@@ -60,7 +110,8 @@ int CWaves::GetWaveSize() const
 // SAVING
 ostream & CWaves::Save(ostream & out) const
 {
-	out << "(W):" << m_WaveCnt << ',' << m_MaxSize << endl;
+	out << "(W): " << m_WaveCnt << ',' << m_MaxSize << ';' <<  endl;
+	out << "([): " <<  endl;
 	if (!m_Waves.empty())
 	{
 		for (const auto & wave : m_Waves)

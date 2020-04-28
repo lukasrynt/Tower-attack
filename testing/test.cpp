@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <ExInvalidFile.hpp>
 #include <CGame.hpp>
 #include "CWaves.hpp"
 #include "CMap.hpp"
@@ -10,32 +9,28 @@ using namespace std;
 
 int main ()
 {
+	ifstream inFile("/home/lukas/School/PA2/semestralka/saves/test1.sav");
+	if (!inFile)
+		return 1;
 	CGame game{};
-	try
-	{
-		game.Load("/home/lukas/School/PA2/semestralka/maps/new1.map");
-		game.Render();
-		game.ProcessInput('a');
-		game.Render();
-		game.Update();
-		game.Render();
-		game.ProcessInput('p');
-		game.Update();
-		game.Update();
-		game.Update();
-		game.Update();
-		game.Update();
-		game.Update();
-		game.Update();
-		game.Update();
-		game.Update();
-		game.Render();
-	}
-	catch (runtime_error & e)
-	{
-		cout << e.what();
-	}
-	
+	if (!game.LoadSaved(inFile))
+		return 2;
+//		game.Render();
+//		game.ProcessInput('a');
+//		game.Render();
+//		game.Update();
+//		game.Render();
+//		game.ProcessInput('p');
+//		game.Update();
+//		game.Update();
+//		game.Update();
+//		game.Update();
+//		game.Update();
+//		game.Update();
+//		game.Update();
+//		game.Update();
+//		game.Update();
+//		game.Render();
 	
 	return 0;
 }

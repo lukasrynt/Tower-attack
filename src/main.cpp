@@ -12,8 +12,6 @@ using namespace std;
 int main()
 {
 	// run the game
-	CApplication app;
-	app.Run();
-	
+	CApplication{}.Run();
 	return 0;
 }

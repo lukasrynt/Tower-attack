@@ -63,6 +63,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classCFrames-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CFrames Class Reference</div>  </div>
@@ -74,8 +75,6 @@ $(function() {
 Collaboration diagram for CFrames:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCFrames__coll__graph.png" border="0" usemap="#CFrames_coll__map" alt="Collaboration graph"/></div>
-<map name="CFrames_coll__map" id="CFrames_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -96,6 +95,13 @@ Private Attributes</h2></td></tr>
 Static Private Attributes</h2></td></tr>
 <tr class="memitem:a21090f6e18be7c0f89f27b5d70fd2d40"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrames.html#a21090f6e18be7c0f89f27b5d70fd2d40">MAX_FRAME_CNT</a> = 60</td></tr>
 <tr class="separator:a21090f6e18be7c0f89f27b5d70fd2d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a5a2bb409788d09acfef0e7b086f1802c"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrames.html#a5a2bb409788d09acfef0e7b086f1802c">operator&gt;&gt;</a> (std::istream &amp;in, <a class="el" href="classCFrames.html">CFrames</a> &amp;self)</td></tr>
+<tr class="separator:a5a2bb409788d09acfef0e7b086f1802c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c1a8d421767bb5bb83a0567f6c36773"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCFrames.html#a1c1a8d421767bb5bb83a0567f6c36773">operator&lt;&lt;</a> (std::ostream &amp;out, const <a class="el" href="classCFrames.html">CFrames</a> &amp;self)</td></tr>
+<tr class="separator:a1c1a8d421767bb5bb83a0567f6c36773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Lukáš Rynt <a href="#" onclick="location.href='mai'+'lto:'+'ryn'+'tl'+'uka'+'@f'+'it.'+'cv'+'ut.'+'cz'; return false;">ryntl<span style="display: none;">.nosp@m.</span>uka@<span style="display: none;">.nosp@m.</span>fit.c<span style="display: none;">.nosp@m.</span>vut.<span style="display: none;">.nosp@m.</span>cz</a> </dd></dl>
@@ -143,6 +149,79 @@ Static Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="a1c1a8d421767bb5bb83a0567f6c36773"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c1a8d421767bb5bb83a0567f6c36773">&#9670;&nbsp;</a></span>operator<<</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classCFrames.html">CFrames</a> &amp;&#160;</td>
+          <td class="paramname"><em>self</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a2bb409788d09acfef0e7b086f1802c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a2bb409788d09acfef0e7b086f1802c">&#9670;&nbsp;</a></span>operator>></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream&amp; operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCFrames.html">CFrames</a> &amp;&#160;</td>
+          <td class="paramname"><em>self</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

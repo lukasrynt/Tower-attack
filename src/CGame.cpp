@@ -19,11 +19,13 @@ CGame::CGame()
 istream & CGame::LoadNew(istream & in)
 {
 	set<char> signs;
+	bool end = false;
 	m_UnitStack = make_shared<CUnitStack>();
 	m_Map.AssignUnitStack(m_UnitStack);
 	m_Waves.AssignUnitStack(m_UnitStack);
+	string commonSigns = "@$%*WWDG#";
 	
-	while (true)
+	while (!end)
 	{
 		// load signature char
 		char ch = LoadSignatureChar(in);
@@ -34,167 +36,134 @@ istream & CGame::LoadNew(istream & in)
 		}
 		
 		// load appropriate object
-		switch (ch)
+		if (commonSigns.find(ch) != string::npos)
 		{
-			case '@':
-			case '$':
-			case '*':
-			case '%':
-				m_UnitStack->Load();
-		}
-		else if (ch == 'D')
-			LoadMapDimensions(specifications);
-		else if (ch == 'G')
-			LoadGateHealth(specifications);
-		else if (ch == 'W')
-			LoadWaves(specifications);
-		else if (ch == '#')
-			m_Map.LoadMap(in);
-		else if (in.eof())
-		{
-			if (!CheckLoaded(signs))
-			{
-				in.setstate(ios::failbit);
+			if (!LoadCommon(in, ch, false))
 				return in;
-			}
-			break;
 		}
 		else
-			throw invalid_file("unknown signature character.");
+			end = true;
 	}
 	
+	// check eof and signature chars
+	if (!in.eof() || !CheckLoaded(signs))
+		in.setstate(ios::failbit);
+	else
+		in.clear(ios::goodbit);
 	return in;
 }
 
-istream & CGame::LoadSaved(std::istream & in)
+istream & CGame::LoadSaved(istream & in)
 {
 	set<char> signs;
+	bool end = false;
 	m_UnitStack = make_shared<CUnitStack>();
 	m_Map.AssignUnitStack(m_UnitStack);
 	m_Waves.AssignUnitStack(m_UnitStack);
+	string commonSigns = "@$*%WDG#";
 	
-	
-	
-	return in;
-
-}
-
-
-
-
-istream & CGame::Load(istream & in)
-{
-	set<char> signs;
-	m_UnitStack = make_shared<CUnitStack>();
-	m_Map.AssignUnitStack(m_UnitStack);
-	m_Waves.AssignUnitStack(m_UnitStack);
-	
-	while (true)
+	while (!end)
 	{
-		char ch = LoadSignatureChar(inFile);
-		vector<int> specifications;
-		
-		// Load specifications only in case there was a signature char
-		if (ch != '#' && ch)
-			specifications = LoadSpecifications(inFile);
+		// load signature char
+		char ch = LoadSignatureChar(in);
 		if (!signs.insert(ch).second)
-			throw invalid_file("redefining object is not allowed.");
-		if (ch == '@'
-			|| ch == '$'
-			|| ch == '*'
-			|| ch == '%')
-			m_UnitStack->LoadUnitSpecifications(specifications, ch);
-		else if (ch == 'D')
-			LoadMapDimensions(specifications);
-		else if (ch == 'G')
-			LoadGateHealth(specifications);
-		else if (ch == 'W')
-			LoadWaves(specifications);
-		else if (ch == '#')
-			m_Map.LoadMap(inFile, !filename.find(".sav"));
-		else if (inFile.eof())
 		{
-			CheckLoaded(signs);
-			break;
+			in.setstate(ios::failbit);
+			return in;
+		}
+		
+		// load appropriate object
+		if (commonSigns.find(ch) != string::npos)
+		{
+			if (!LoadCommon(in, ch, false))
+				return in;
+		}
+		else if (ch == '[')
+		{
+			if (!m_Waves.LoadTroops(in))
+				return in;
+		}
+		else if (ch == 'S')
+		{
+			if (!LoadState(in))
+				return in;
+		}
+		else if (ch == 'P')
+		{
+		
 		}
 		else
-			throw invalid_file("unknown signature character.");
+			end = true;
 	}
+	
+	// check eof and signature chars
+	if (!in.eof() || !CheckLoaded(signs))
+		in.setstate(ios::failbit);
+	else
+		in.clear(ios::goodbit);
+	return in;
 }
 
-void CGame::LoadMapDimensions(vector<int> specifications)
+std::istream & CGame::LoadState(std::istream &in)
 {
-	if (specifications.size() != 2)
-		throw invalid_file("Invalid number of arguments for 'D'");
-	m_Map.SetMapDimensions(specifications[0], specifications[1]);
+	char del;
+	if (!(in >> m_WaveOn >> del)
+		|| del != ';')
+		return in;
+	return in;
 }
 
-void CGame::LoadGateHealth(vector<int> specifications)
+istream & CGame::LoadCommon(std::istream &in, char ch, bool saved)
 {
-	if (specifications.size() != 1)
-		throw invalid_file("Invalid number of arguments for 'G'.");
-	m_Map.SetGateHealth(specifications[0]);
-}
-
-void CGame::LoadWaves(vector<int> specifications)
-{
-	if (specifications.size() != 2)
-		throw invalid_file("Invalid number of arguments for 'W'");
-	m_Waves.SetWavesSpecifications(specifications[0], specifications[1]);
+	switch (ch)
+	{
+		case '@':
+		case '$':
+		case '*':
+		case '%':
+			m_UnitStack->Load(ch, in);
+			break;
+		case 'W':
+			if (!m_Waves.Load(in))
+				return in;
+			break;
+		case 'D':
+			if (!m_Map.LoadDimensions(in))
+				return in;
+			break;
+		case 'G':
+			if (!m_Map.LoadGate(in))
+				return in;
+			break;
+		case '#':
+			if (!m_Map.LoadMap(in, saved))
+				return in;
+			break;
+		default:
+			break;
+	}
+	return in;
 }
 
 bool CGame::CheckLoaded(const set<char> & signs)
 {
 	m_Map.CheckSpawnCount(m_Waves.GetWaveSize());
-	set<char> check{'M', 'G', 'W', '#', '@', '*'};
+	set<char> check{'D', 'G', 'W', '#', '@', '*'};
 	for (const auto & ch : check)
-	{
 		if (signs.find(ch) == signs.end())
 			return false;
-	}
 	return true;
 }
 
-char CGame::LoadSignatureChar(std::istream &in)
+char CGame::LoadSignatureChar(istream & in)
 {
 	char brOp = 0, brCl = 0, div = 0, res = 0;
-	
-	// check that the first character isn't map character
-	if (!(in >> brOp))
-		return 0;
-	if (brOp == '#')
-	{
-		in.putback(brOp);
-		return brOp;
-	}
-	else if (brOp != '(')
-		return 0;
-	
-	// scan the rest of signature char
-	if (!(in >> res >> brCl >> div)
+	if (!(in >> brOp >> res >> brCl >> div)
+		|| brOp != '('
 		|| brCl != ')'
 		|| div != ':')
 		return 0;
 	return res;
-}
-
-vector<int> CGame::LoadSpecifications(istream & in)
-{
-	vector<int> specifications;
-	int num = 0;
-	char delimit = 0;
-	while (true)
-	{
-		if (!(in >> num >> delimit)
-			|| num < 0
-			|| delimit != ',')
-			break;
-		specifications.push_back(num);
-	}
-	if (delimit != ';')
-		throw invalid_file("Wrong specifications format");
-	specifications.push_back(num);
-	return specifications;
 }
 
 /**********************************************************************************************************************/
@@ -211,7 +180,7 @@ ostream & CGame::Save(ostream & out) const
 
 ostream & CGame::SaveState(ostream & out) const
 {
-	return out << "(S):" << m_WaveOn << ';';
+	return out << "(S): " << m_WaveOn << ';' << endl;
 }
 
 /**********************************************************************************************************************/

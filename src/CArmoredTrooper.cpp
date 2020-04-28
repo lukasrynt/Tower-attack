@@ -51,6 +51,7 @@ CArmoredTrooper * CArmoredTrooper::Load(std::istream &in)
 		|| del4 != ';')
 		return nullptr;
 	trooper->m_Char = '$';
+	trooper->m_Armor = trooper->m_MaxArmor;
 	return trooper;
 }
 
@@ -58,5 +59,5 @@ CArmoredTrooper * CArmoredTrooper::Load(std::istream &in)
 // SAVING
 ostream & CArmoredTrooper::Save(ostream &out) const
 {
-	return CTrooper::Save(out) << ',' << m_Armor << ',' << m_MaxArmor << ';';
+	return CTrooper::Save(out) << ", " << m_MaxArmor;
 }

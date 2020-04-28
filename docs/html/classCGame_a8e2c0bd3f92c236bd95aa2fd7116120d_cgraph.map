@@ -1,0 +1,6 @@
+<map id="CGame::Render" name="CGame::Render">
+<area shape="rect" id="node2" href="$classCWaves.html#a60eb6e6b704fd5bd3fbc25f00c3afd04" title="CWaves::Render" alt="" coords="171,5,293,32"/>
+<area shape="rect" id="node3" href="$classCMap.html#aade65fe713b0dc6cb9587c1383714234" title="CMap::Render" alt="" coords="179,56,285,83"/>
+<area shape="rect" id="node4" href="$classCGate.html#ab0742602741d3b5e09526306f29d928d" title="CGate::Render" alt="" coords="352,31,463,57"/>
+<area shape="rect" id="node5" href="$classCMap.html#ad40e69cecf746a7e99412f8f777ad334" title="CMap::RenderMap" alt="" coords="341,81,473,108"/>
+</map>

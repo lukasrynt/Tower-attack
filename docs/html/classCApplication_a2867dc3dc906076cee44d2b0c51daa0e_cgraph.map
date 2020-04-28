@@ -1,11 +1,9 @@
 <map id="CApplication::SaveScreen" name="CApplication::SaveScreen">
-<area shape="rect" id="node2" href="$classCApplication.html#a6e5e23151a044d7d1449578c9ba4942c" title="CApplication::SaveMap" alt="" coords="239,83,398,110"/>
-<area shape="rect" id="node6" href="$classCApplication.html#a12d92fc8f98ea2b8007403ee15b2ca60" title="CApplication::GetChar" alt="" coords="721,83,875,110"/>
-<area shape="rect" id="node9" href="$classCApplication.html#a93e1d38cfda1b377fd62e092f9dfe8f9" title="CApplication::RenderGame\lSavedScreen" alt="" coords="228,134,409,176"/>
-<area shape="rect" id="node10" href="$classCGame.html#ab2872053f39e647f9e3990877062daba" title="CGame::End" alt="" coords="269,200,368,227"/>
-<area shape="rect" id="node3" href="$classCApplication.html#aae7f4bad794f5c7763e047e8586f1ea6" title="CApplication::PromptFileName" alt="" coords="457,134,660,160"/>
-<area shape="rect" id="node7" href="$classCGame.html#a65afb72fa6e769a47187972ed26554c8" title="CGame::Save" alt="" coords="506,32,611,59"/>
-<area shape="rect" id="node8" href="$classCApplication.html#a9d9bb6b9f137928bfaef154d58e175b6" title="CApplication::InvalidInput" alt="" coords="473,83,644,110"/>
-<area shape="rect" id="node4" href="$classCApplication.html#acdcdce972810067eb5acaa3c780051f5" title="CApplication::ResetScreen" alt="" coords="708,184,888,211"/>
-<area shape="rect" id="node5" href="$classCApplication.html#a3cb29b850cceb37ceb718f385b05ddae" title="CApplication::Die" alt="" coords="936,108,1060,135"/>
+<area shape="rect" id="node2" href="$classCApplication.html#a3a6777a0dc5d78c36db4736a4ed49599" title="CApplication::SaveGame" alt="" coords="234,39,403,65"/>
+<area shape="rect" id="node6" href="$classCApplication.html#a12d92fc8f98ea2b8007403ee15b2ca60" title="CApplication::GetChar" alt="" coords="721,28,875,55"/>
+<area shape="rect" id="node8" href="$classCApplication.html#a93e1d38cfda1b377fd62e092f9dfe8f9" title="CApplication::RenderGame\lSavedScreen" alt="" coords="228,111,409,153"/>
+<area shape="rect" id="node3" href="$classCApplication.html#aae7f4bad794f5c7763e047e8586f1ea6" title="CApplication::PromptFileName" alt="" coords="457,79,660,105"/>
+<area shape="rect" id="node7" href="$classCApplication.html#a9d9bb6b9f137928bfaef154d58e175b6" title="CApplication::InvalidInput" alt="" coords="473,28,644,55"/>
+<area shape="rect" id="node4" href="$classCApplication.html#acdcdce972810067eb5acaa3c780051f5" title="CApplication::ResetScreen" alt="" coords="708,129,888,156"/>
+<area shape="rect" id="node5" href="$classCApplication.html#a3cb29b850cceb37ceb718f385b05ddae" title="CApplication::Die" alt="" coords="936,53,1060,80"/>
 </map>

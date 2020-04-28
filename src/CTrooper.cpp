@@ -81,9 +81,10 @@ CTrooper * CTrooper::Load(std::istream & in)
 	trooper->m_Char = '@';
 	return trooper;
 }
+
 /**********************************************************************************************************************/
 // SAVING
 ostream & CTrooper::Save(ostream &out) const
 {
-	return out << m_Hp << ',' << m_Frames << ',' << m_Attack << ';';
+	return out << "(" << m_Char << "): " << m_Hp << ", " << m_Frames << ", " << m_Attack;
 }
