@@ -13,8 +13,15 @@ public:
 	explicit CFrames(int speed);
 	bool ActionAllowed();
 	
+	int & Current()
+	{return m_CurrFrame;}
+	
+	const int & Current() const
+	{return m_CurrFrame;}
+	
 	friend std::istream & operator>>(std::istream & in, CFrames & self)
 	{return in >> self.m_Speed;}
+	
 	friend std::ostream & operator<<(std::ostream & out, const CFrames & self)
 	{return out << self.m_Speed;}
 private:

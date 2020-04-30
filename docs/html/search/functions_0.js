@@ -1,7 +1,7 @@
 var searchData=
 [
   ['actionallowed',['ActionAllowed',['../classCFrames.html#a14cfc323ff762fba678635a7b76cb8f6',1,'CFrames']]],
-  ['addfromsaved',['AddFromSaved',['../classCMap.html#a2bf40673e7f862aa9cb8eb4635044ed3',1,'CMap']]],
+  ['addfromsaved',['AddFromSaved',['../classCMap.html#a0857e0f74f13956d4a107acfe4341f6c',1,'CMap']]],
   ['addtroop',['AddTroop',['../classCWaves.html#a3901bd5381ce046a8d23c645fe5c6570',1,'CWaves']]],
   ['addtrooptowave',['AddTroopToWave',['../classCGame.html#aed7cb1dec5c6ba5a9f72efc92bce06b5',1,'CGame']]],
   ['arrowclear',['ArrowClear',['../classCTower.html#a54528eb603d121086b65aeb9b36445cd',1,'CTower']]],

@@ -9,6 +9,6 @@ var searchData=
   ['fg_5fred',['fg_red',['../namespaceColors.html#a59f9b179f8c483b18b22d45b06b5705e',1,'Colors']]],
   ['fg_5fwhite',['fg_white',['../namespaceColors.html#ab80bfa8920d91cafad89f027df954750',1,'Colors']]],
   ['fg_5fyellow',['fg_yellow',['../namespaceColors.html#afa44802c8dec460bfa974a18fd282f2d',1,'Colors']]],
-  ['findpath',['FindPath',['../classCArmoredTrooper.html#af5ac18b6a010643425ccb4527448b046',1,'CArmoredTrooper::FindPath()'],['../classCPath.html#a26f814b4a77d8cf376e036683652edf6',1,'CPath::FindPath()']]],
+  ['findpath',['FindPath',['../classCPath.html#a26f814b4a77d8cf376e036683652edf6',1,'CPath']]],
   ['findpaths',['FindPaths',['../classCMap.html#abdd732764f1869b3bb39dd0ac26ede15',1,'CMap']]]
 ];

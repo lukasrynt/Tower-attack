@@ -36,69 +36,80 @@ void CWaves::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 // LOADING
 std::istream & CWaves::Load(std::istream &in)
 {
-	char del1, del2;
-	if (!(in >> m_WaveCnt >> del1 >> m_MaxSize >> del2)
-		|| del1 != ','
-		|| del2 != ';')
+	while (true)
 	{
-		in.setstate(ios::failbit);
-		return in;
-	}
-	InitWaves();
-	return in;
-}
-
-std::istream & CWaves::LoadTroops(std::istream &in)
-{
-	// load waves if there are some
-	for (int i = 0; i < m_WaveCnt; ++i)
-		if (!LoadWave(in, i))
+		// check opening bracket
+		char ch = 0;
+		if (!(in >> ch))
 			return in;
+		
+		// if we have read something else than [ on the beggining of the row we need to quit
+		if (ch != '[')
+		{
+			in.putback(ch);
+			break;
+		}
+		
+		// load the troopers in the wawes
+		LoadWaves(in);
+	}
 	return in;
 }
 
-std::istream & CWaves::LoadWave(std::istream &in, int idx)
+std::istream & CWaves::LoadWaves(std::istream & in)
 {
-	// check opening bracket
+	deque<CTrooper *> wave;
+	size_t counter = 0;
 	char ch = 0;
-	if (!(in >> ch)
-		|| ch != '[')
-	{
-		in.setstate(ios::failbit);
-		return in;
-	}
-	
-	
 	while (true)
 	{
 		// check if the character is correct
 		if (!(in >> ch))
-		{
-			in.setstate(ios::failbit);
 			return in;
+		
+		// if we have empty char, just increase size
+		if (ch == ' ')
+		{
+			counter++;
+			continue;
 		}
+		
+		// if we have reached ending bracket - break cycle
+		if (ch == ']')
+			break;
 		
 		// add trooper to wave
 		if (m_UnitStack->IsTrooperChar(ch))
-			m_Waves[idx].push_back(m_UnitStack->CreateTrooperAt(ch));
-		else if (ch == ']')
-			break;
+		{
+			counter++;
+			wave.push_back(m_UnitStack->CreateTrooperAt(ch));
+		}
 		else
 		{
 			in.setstate(ios::failbit);
 			return in;
 		}
 	}
+	
+	if(!CheckCounter(counter))
+	{
+		in.setstate(ios::failbit);
+		return in;
+	}
+	
+	m_Waves.push_back(wave);
 	return in;
 }
 
-void CWaves::InitWaves()
+bool CWaves::CheckCounter(size_t counter)
 {
-	for (size_t i = 0; i < m_WaveCnt; i++)
-	{
-		deque<CTrooper*> wave;
-		m_Waves.push_back(wave);
-	}
+	if (m_MaxSize && counter != m_MaxSize)
+		return false;
+	
+	// save class attributes
+	if (!m_MaxSize)
+		m_MaxSize = counter;
+	return true;
 }
 
 int CWaves::GetWaveSize() const
@@ -110,8 +121,7 @@ int CWaves::GetWaveSize() const
 // SAVING
 ostream & CWaves::Save(ostream & out) const
 {
-	out << "(W): " << m_WaveCnt << ',' << m_MaxSize << ';' <<  endl;
-	out << "([): " <<  endl;
+	out << "(W): " << endl;
 	if (!m_Waves.empty())
 	{
 		for (const auto & wave : m_Waves)
@@ -119,7 +129,7 @@ ostream & CWaves::Save(ostream & out) const
 			out << '[';
 			for (const auto & troop : wave)
 				out << *troop;
-			out << ']' << endl;
+			out << string(m_MaxSize - wave.size(), ' ') << ']' << endl;
 		}
 	}
 	return out;

@@ -23,7 +23,6 @@ istream & CGame::LoadNew(istream & in)
 	m_UnitStack = make_shared<CUnitStack>();
 	m_Map.AssignUnitStack(m_UnitStack);
 	m_Waves.AssignUnitStack(m_UnitStack);
-	string commonSigns = "@$%*WWDG#";
 	
 	while (!end)
 	{
@@ -36,7 +35,9 @@ istream & CGame::LoadNew(istream & in)
 		}
 		
 		// load appropriate object
-		if (commonSigns.find(ch) != string::npos)
+		if (ch == 'U'
+			|| ch == 'W'
+			|| ch == 'M')
 		{
 			if (!LoadCommon(in, ch, false))
 				return in;
@@ -75,7 +76,7 @@ istream & CGame::LoadSaved(istream & in)
 		// load appropriate object
 		if (commonSigns.find(ch) != string::npos)
 		{
-			if (!LoadCommon(in, ch, false))
+			if (!LoadCommon(in, ch, true))
 				return in;
 		}
 		else if (ch == '[')
@@ -101,6 +102,8 @@ istream & CGame::LoadSaved(istream & in)
 		in.setstate(ios::failbit);
 	else
 		in.clear(ios::goodbit);
+	m_GameOn = true;
+	m_Map.InitTroops();
 	return in;
 }
 
@@ -117,26 +120,16 @@ istream & CGame::LoadCommon(std::istream &in, char ch, bool saved)
 {
 	switch (ch)
 	{
-		case '@':
-		case '$':
-		case '*':
-		case '%':
-			m_UnitStack->Load(ch, in);
+		case 'U':
+			if (!m_UnitStack->Load(in))
+				return in;
 			break;
 		case 'W':
 			if (!m_Waves.Load(in))
 				return in;
 			break;
-		case 'D':
-			if (!m_Map.LoadDimensions(in))
-				return in;
-			break;
-		case 'G':
-			if (!m_Map.LoadGate(in))
-				return in;
-			break;
-		case '#':
-			if (!m_Map.LoadMap(in, saved))
+		case 'M':
+			if (!m_Map.Load(in))
 				return in;
 			break;
 		default:

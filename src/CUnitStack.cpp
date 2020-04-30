@@ -20,43 +20,60 @@ CUnitStack::~CUnitStack()
 
 /**********************************************************************************************************************/
 // LOADING
-std::istream & CUnitStack::Load(char ch, std::istream &in)
+std::istream & CUnitStack::Load(std::istream &in)
 {
-	// prevent redefinition of units
-	if (m_Troops.count(ch) || m_Towers.count(ch))
+	while (true)
 	{
-		in.setstate(ios::failbit);
-		return in;
-	}
-	
-	// load coresponding unit
-	switch (ch)
-	{
-		case '@':
-			if (!LoadBasicTroop(in))
-				return in;
-			break;
-		case '$':
-			if (!LoadArmoredTroop(in))
-				return in;
-			break;
-		case '*':
-			if (!LoadArcherTower(in))
-				return in;
-			break;
-		case '%':
-			if (!LoadMageTower(in))
-				return in;
-			break;
-		default:
+		// load first character - type of unit
+		char ch = 0;
+		if (!(in >> ch))
+			return in;
+		
+		// prevent redefinition of units
+		if (m_Troops.count(ch) || m_Towers.count(ch))
+		{
+			in.setstate(ios::failbit);
+			return in;
+		}
+		
+		// load coresponding unit
+		if(!LoadUnit(in, ch))
 			break;
 	}
 	return in;
 }
 
+bool CUnitStack::LoadUnit(istream & in, char ch)
+{
+	
+	switch (ch)
+	{
+		case 'T':
+			if (!LoadBasicTroop(in))
+				return false;
+			break;
+		case 'A':
+			if (!LoadArmoredTroop(in))
+				return false;
+			break;
+		case 'R':
+			if (!LoadArcherTower(in))
+				return false;
+			break;
+		case 'M':
+			if (!LoadMageTower(in))
+				return false;
+			break;
+		default:
+			in.putback(ch);
+			return false;
+	}
+	return true;
+}
+
 istream & CUnitStack::LoadBasicTroop(istream & in)
 {
-	CTrooper * trooper = CTrooper::Load(in);
+	CTrooper * trooper = CTrooper::LoadTemplate(in);
 	if (!trooper)
 	{
 		in.setstate(ios::failbit);
@@ -80,7 +97,7 @@ istream & CUnitStack::LoadArmoredTroop(istream & in)
 
 istream & CUnitStack::LoadArcherTower(istream & in)
 {
-	CTower * tower = CTower::Load(in);
+	CTower * tower = CTower::LoadTemplate(in);
 	if (!tower)
 	{
 		in.setstate(ios::failbit);
@@ -136,7 +153,7 @@ CTrooper * CUnitStack::CreateTrooperAt(char ch) const
 
 CTrooper * CUnitStack::CreateSelected() const
 {
-	int idx = 0;
+	size_t idx = 0;
 	for (const auto & troop : m_Troops)
 	{
 		if (idx++ == m_Selected)
@@ -171,7 +188,7 @@ void CUnitStack::Cycle() const
 ostream & CUnitStack::Save(ostream & out) const
 {
 	for (auto & troop : m_Troops)
-		if (!(troop.second->Save(out) << ';' << endl))
+		if (!(troop.second->SaveTemplate(out) << ';' << endl))
 			return out;
 	
 	for (auto & tower : m_Towers)

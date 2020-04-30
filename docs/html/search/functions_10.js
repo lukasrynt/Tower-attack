@@ -9,7 +9,7 @@ var searchData=
   ['savestate',['SaveState',['../classCGame.html#ae35c7ce1f6651b855ec254ba0eebc7b2',1,'CGame']]],
   ['setcolors',['SetColors',['../classCTile.html#a23afbeb7c1c2cf7f9507aef4bbfbef00',1,'CTile']]],
   ['setpath',['SetPath',['../classCTrooper.html#a358f7bd720fa4e902fdd6833e06cff01',1,'CTrooper']]],
-  ['setposition',['SetPosition',['../classCTrooper.html#aa16f3acb6263d55c0f19eec3a6c09ade',1,'CTrooper']]],
+  ['setposition',['SetPosition',['../classCTower.html#a2fc8badd35a2a938f531777385f31f50',1,'CTower::SetPosition()'],['../classCTrooper.html#aa16f3acb6263d55c0f19eec3a6c09ade',1,'CTrooper::SetPosition()']]],
   ['setspawn',['SetSpawn',['../classCTrooper.html#a90a689b53f761078217c034f7fd7a4c4',1,'CTrooper']]],
   ['sleep',['Sleep',['../classCApplication.html#ab35fafef75e13a17d31b72afb4275517',1,'CApplication']]],
   ['spawn',['Spawn',['../classCMap.html#aebb52ca1a3b2e1331fab44fc3cb7d1c7',1,'CMap']]],

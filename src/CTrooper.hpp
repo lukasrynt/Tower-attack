@@ -21,6 +21,7 @@ class CTrooper
 {
 public:
 	// INIT
+	virtual ~CTrooper() = default;
 	explicit CTrooper(int hp = 0, int speed = 0, int attack = 0, char ch = '@');
 	virtual CTrooper * Clone() const;
 	
@@ -30,10 +31,13 @@ public:
 	virtual void ReceiveDamage(int damage);
 	
 	// LOADING
-	static CTrooper * Load(std::istream & in);
+	static CTrooper * LoadTemplate(std::istream & in);
+	std::istream & LoadOnMap(std::istream & in);
+	CTile GetTile() const;
 	
 	// SAVING
-	virtual std::ostream & Save(std::ostream & out) const;
+	virtual std::ostream & SaveTemplate(std::ostream & out) const;
+	virtual std::ostream & SaveOnMap(std::ostream & out) const;
 	
 	// GETTERS/ SETTERS
 	void SetSpawn(size_t idx)

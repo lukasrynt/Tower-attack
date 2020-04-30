@@ -3,8 +3,6 @@
  * @date 24.4.2020
  */
 
-#include <iostream>
-#include <fstream>
 #include "CApplication.hpp"
 
 using namespace std;

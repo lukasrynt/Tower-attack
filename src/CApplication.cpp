@@ -14,7 +14,7 @@ using namespace std;
 // TERMIOS
 CApplication::CApplication()
 	: m_Game(make_unique<CGame>()),
-	  m_Term({0})
+	  m_Term({})
 {
 	// https://viewsourcecode.org/snaptoken/kilo/02.enteringRawMode.html
 	// get attributes to termios struct
@@ -57,7 +57,7 @@ CApplication::~CApplication()
 void CApplication::ResetTimeout()
 {
 	// get the attributes
-	termios tmp = {0};
+	termios tmp = {};
 	if (tcgetattr(STDIN_FILENO, &tmp) == -1)
 		Die("Error during tcgetattr");
 	
@@ -73,7 +73,7 @@ void CApplication::ResetTimeout()
 void CApplication::NullTimeout()
 {
 	// get the attributes
-	termios tmp = {0};
+	termios tmp = {};
 	if (tcgetattr(STDIN_FILENO, &tmp) == -1)
 		Die("Error during tcgetattr");
 	

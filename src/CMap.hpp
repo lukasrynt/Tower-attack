@@ -37,16 +37,13 @@ public:
 	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
 	
 	// LOADING
-	std::istream & LoadMap(std::istream & in, bool saved);
-	std::istream & LoadGate(std::istream & in);
-	std::istream & LoadDimensions(std::istream & in);
+	friend std::istream & operator>>(std::istream & in, CMap & self);
+	
 	bool CheckSpawnCount(int count) const;
+	void InitTroops();
 	
 	// SAVING
-	std::ostream & Save(std::ostream & out) const;
-	std::ostream & SaveDimensions(std::ostream & out) const;
-	std::ostream & SaveGate(std::ostream & out) const;
-	std::ostream & SaveMap(std::ostream & out) const;
+	friend std::ostream & operator<<(std::ostream & out, const CMap & self);
 
 	// RENDER
 	void Render() const;
@@ -70,13 +67,27 @@ private:
 	std::shared_ptr<CUnitStack> m_UnitStack;	//!< unit stack containing all towers and troopers templates
 	
 	// LOADING
+	std::istream & LoadMap(std::istream & in);
+	std::istream & LoadMapInfo(std::istream & in);
+	std::istream & LoadEntities(std::istream & in);
+	
 	std::istream & LoadWallLine(std::istream & in, int row);
-	std::istream & LoadMapCenter(std::istream & in, bool saved);
-	std::istream & LoadCharToMap(std::istream & in, pos_t position, bool saved);
+	std::istream & LoadMapCenter(std::istream & in, int row);
+	bool LoadWallChar(char ch, pos_t position);
+	bool LoadCenterChar(char ch, pos_t position);
+	bool LoadEntity(pos_t position, char ch);
 	static std::istream & DeleteWs(std::istream & in);
-	bool AddFromSaved(const CTile & tile);
 	bool InitSpawner(pos_t position, char ch);
 	bool InitGatePosition(pos_t position);
+	
+	std::istream & LoadTroops(std::istream & in, char ch);
+	std::istream & LoadTowers(std::istream & in, char ch);
+	
+	
+	// SAVING
+	std::ostream & SaveMapInfo(std::ostream & out) const;
+	std::ostream & SaveMap(std::ostream & out) const;
+	std::ostream & SaveTroops(std::ostream & out) const;
 	
 	// UPDATE PHASE
 	void MoveTroops(bool & waveOn);

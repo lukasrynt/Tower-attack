@@ -27,18 +27,13 @@ public:
 	 * @param damage
 	 */
 	void ReceiveDamage(int damage) final;
-	/**
-	 * Implements more direct approach to goal
-	 * @param goal
-	 */
-	void FindPath(pos_t goal, std::unordered_map<pos_t,CTile> & map);
 	CArmoredTrooper * Clone() const final;
 	
 	// LOAD
 	static CArmoredTrooper * Load(std::istream & in);
 	
 	// SAVE
-	std::ostream & Save(std::ostream & out) const final;
+	std::ostream & SaveTemplate(std::ostream & out) const final;
 
 private:
 	int m_Armor;	//!< Current armor

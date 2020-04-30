@@ -23,9 +23,11 @@ public:
 	~CUnitStack();
 	
 	// LOADING
-	std::istream & Load(char ch, std::istream & in);
+	std::istream & Load(std::istream & in);
 	bool IsTrooperChar(char ch) const;
 	bool IsTowerChar(char ch) const;
+	bool IsTrooperType(char ch) const;
+	bool IsTowerType(char ch) const;
 	
 	// SAVING
 	/**
@@ -67,9 +69,10 @@ private:
 	// VARIABLES
 	std::map<char, CTrooper*> m_Troops;	//!< vector with all troops templates
 	std::map<char, CTower*> m_Towers;	//!< vector with all towers templates
-	mutable int m_Selected;				//!< currently selected trooper
+	mutable size_t m_Selected;				//!< currently selected trooper
 	
 	// LOADING
+	bool LoadUnit(std::istream & in, char ch);
 	std::istream & LoadBasicTroop(std::istream & in);
 	std::istream & LoadArmoredTroop(std::istream & in);
 	std::istream & LoadArcherTower(std::istream & in);

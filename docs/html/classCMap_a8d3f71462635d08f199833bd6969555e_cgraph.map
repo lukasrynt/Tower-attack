@@ -1,11 +1,14 @@
 <map id="CMap::LoadWallLine" name="CMap::LoadWallLine">
-<area shape="rect" id="node2" href="$classCMap.html#a9ba5d484f153b999559412fb395ff4c1" title="CMap::DeleteWs" alt="" coords="215,5,338,32"/>
-<area shape="rect" id="node3" href="$classCMap.html#a0cd6fa1f55771cbae2105a4dfe7f4e63" title="CMap::LoadCharToMap" alt="" coords="196,56,357,83"/>
-<area shape="rect" id="node4" href="$classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="405,5,564,32"/>
-<area shape="rect" id="node6" href="$classCMap.html#a88e3a346b11583bcac5b53e39502c33e" title="CMap::InitSpawner" alt="" coords="417,56,552,83"/>
-<area shape="rect" id="node7" href="$classCMap.html#a2bf40673e7f862aa9cb8eb4635044ed3" title="CMap::AddFromSaved" alt="" coords="407,107,562,133"/>
-<area shape="rect" id="node5" href="$classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="623,5,738,32"/>
-<area shape="rect" id="node8" href="$classCTile.html#aff443072dd2ab83898ef0c850c56b01a" title="CTile::IsTower" alt="" coords="627,56,735,83"/>
-<area shape="rect" id="node9" href="$classCTile.html#ad30425f52c7e98a8834df1442c89a49e" title="CTile::GetRawChar" alt="" coords="612,107,749,133"/>
-<area shape="rect" id="node10" href="$classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="628,157,733,184"/>
+<area shape="rect" id="node2" href="$classCMap.html#a9ba5d484f153b999559412fb395ff4c1" title="CMap::DeleteWs" alt="" coords="215,31,338,57"/>
+<area shape="rect" id="node3" href="$classCMap.html#a0cd6fa1f55771cbae2105a4dfe7f4e63" title="CMap::LoadCharToMap" alt="" coords="196,81,357,108"/>
+<area shape="rect" id="node4" href="$classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="405,19,564,45"/>
+<area shape="rect" id="node6" href="$classCMap.html#a88e3a346b11583bcac5b53e39502c33e" title="CMap::InitSpawner" alt="" coords="417,81,552,108"/>
+<area shape="rect" id="node7" href="$classCMap.html#a0857e0f74f13956d4a107acfe4341f6c" title="CMap::AddFromSaved" alt="" coords="407,157,562,184"/>
+<area shape="rect" id="node5" href="$classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="630,5,745,32"/>
+<area shape="rect" id="node8" href="$classCTile.html#aff443072dd2ab83898ef0c850c56b01a" title="CTile::IsTower" alt="" coords="633,56,741,83"/>
+<area shape="rect" id="node9" href="$classCTile.html#ad30425f52c7e98a8834df1442c89a49e" title="CTile::GetRawChar" alt="" coords="619,107,756,133"/>
+<area shape="rect" id="node10" href="$classCTower.html#a2fc8badd35a2a938f531777385f31f50" title="CTower::SetPosition" alt="" coords="616,157,759,184"/>
+<area shape="rect" id="node11" href="$classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="635,208,740,235"/>
+<area shape="rect" id="node12" href="$classCTrooper.html#a358f7bd720fa4e902fdd6833e06cff01" title="CTrooper::SetPath" alt="" coords="622,259,753,285"/>
+<area shape="rect" id="node13" href="$classCTrooper.html#aa16f3acb6263d55c0f19eec3a6c09ade" title="CTrooper::SetPosition" alt="" coords="612,309,763,336"/>
 </map>

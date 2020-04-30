@@ -14,12 +14,12 @@ all: compile doc
 
 # Link object files and compile into binary file
 .PHONY: compile
-compile: depend $(COMPILE_TARGET)
+compile: $(DEPENDENCIES) $(COMPILE_TARGET)
 
 # Link object files
 $(COMPILE_TARGET): $(OBJS)
 	@ $(CXX) $(CXX_FLAGS) $^ -o $@; \
-  	rm -r $(DEP_DIR)/ 2>/dev/null;\
+  	rm -r $(DEP_DIR)/ $(DEP_DIR) 2>/dev/null;\
  	echo "Compilation successful...";
 
 # Create object files
@@ -30,8 +30,9 @@ $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.cpp
 # Run the binary file
 .PHONY: run
 run: $(COMPILE_TARGET)
-	@ echo "Running game...";
-	@./$(COMPILE_TARGET)
+	@ rm -r $(DEP_DIR)/ $(DEP_DIR) 2>/dev/null; \
+	echo "Running game..."; \
+	./$(COMPILE_TARGET)
 
 
 # Clean the build directory with all object files
@@ -40,9 +41,6 @@ clean:
 	@ rm -r $(BUILD_DIR)/ 2>/dev/null;\
 	echo "all build files were removed";
 
-# Make dependant files
-.PHONY: depend
-depend: $(DEPENDENCIES)
 
 # Translate spaces and \ from gcc output
 $(DEP_DIR)/%.d: $(SOURCE_DIR)/%.cpp
@@ -58,4 +56,5 @@ include $(DEP_DIR)/*.d
 # Generate documentation
 .PHONY: doc
 doc:
-	doxygen Doxyfile
+	@ doxygen Doxyfile > /dev/null; \
+ 	echo "Documentation updated..."

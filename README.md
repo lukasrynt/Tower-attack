@@ -63,35 +63,43 @@ Po načtení mapy a definice útočníku ze souboru se spustí samotná hra. Ve 
 #        #     #            #
 #####################O#######
 ```
-> V ukázkové mapě lze vidět útočníky (__@__), věže (__\*__, __%__) a nepřítele (__O__)
+> V ukázkové mapě lze vidět útočníky (__@__), věže (__\*__, __%__) a bránu (__O__)
 
 ### Definice souboru
-Soubory ve kterých jsou uložené rozehrané hry nebo nové mapy mají podobnou strukturu. Je pevně daná - každý řádek začíná určitým znakem ve formátu `(C):`, kde C je znak který určuje co načítáme, a končí středníkem. Každý znak se může v souboru vyskytovat jen jednou, to zamezuje redefinici dat. Přípustné jsou následující znaky:
-- __D__: Dimenze, následují dimenze mapy
-- __G__: Gate, následují životy brány
-- __W__: Waves, následuje maximální počet vojáků v jedné vlně a počet vln (musí souhlasit s počtem spawnů na mapě). V případě uloženého souboru následují samotné vlny s vojáky ve formátu `[@@]`
-- __S__: State, stav hry po uložení, povolené pouze u ukládaných souborů. Obsahuje prostředky hráče.
-- __#__: Mapa samotná nezačíná žádným znakem, její formát musí být obdélníkový a musí se shodovat se zadanou dimenzí
-- __@__, __$__: Trooper, následují parametry vojáka, na základě jeho typu
-- __%__, __*__: Tower, následují parametry věže, na základě jejího typu
+Soubory ve kterých jsou uložené rozehrané hry nebo nové mapy mají podobnou strukturu. Je pevně daná - každý řádek začíná určitým znakem ve formátu `(C):`, kde C je znak který určuje co načítáme, a končí středníkem. Každý znak se může v souboru vyskytovat jen jednou, to zamezuje redefinici dat. Následuje ukázka souboru ve kterém je uložená rozehraná hra.
 
 Na konci souboru je obsažena samotná mapa, za ní už nesmí následovat nic dalšího. Mapa má přípustné rozdílné hodnoty v případě, že se jedná o rozehranou hru (jsou povoleny rozmístěné věže a útočníci).
 ```
-(@): 60, 50, 30;
-($): 80, 40, 40, 90;
-(%): 20, 20, 30, 60;
-(*): 20, 20, 30;
-(G): 2;
-(D): 5,5;
-#####
-1 # O
-# # #
-2   #
-#####
+--Zásobník vzorů--
+(U):
+T, @, 60, 50, 30;           -- pěšák: znak, život, rychlost, útok
+A, $, 80, 40, 40, 90;       -- obrněná jednotka: znak, život, rychlost, útok, brnění
+M, %, 20, 20, 30, 60;       -- mágova věž: znak, rychlost, útok, mana, magický útok
+R, *, 20, 20;               -- lukostřelecká věž: znak, rychlost, útok
+
+
+--Vlny--
+(W):                        -- počet a velikost se odvodí z formátu
+[@    ]                     -- včetně uložených jednotek
+[     ]
+
+--Mapa--
+(M): 6, 5, (20, 100);       -- dimenze mapy - řádek, sloupec; brána (aktuální, max život)
+#####                       -- mapa
+# # O
+1   #
+#   #
+#   #
+#####                           --Vojáci a věže na mapě--
+@, (10,10), 10;          -- znak, pozice, aktuální frame
+$, (1,1), 2, 20;         -- znak, pozice, aktuální frame, stav brnění
+%, (2,2), 10             -- znak, pozice, aktuální frame, aktuální mana
+*, (2,2), 10             -- znak, pozice, aktuální frame
 ```
 > Ukázka souboru
+>
 ### Pravidla hry
-Cílem hráče je dostat co největší množství svých jednotek přes věže, které budou na vojáky přirozeně útočit, aby jim zabránily v postupu. V průběhu hry hráč střádá prostředky, díky kterým může vysílat lepší jednotky do boje. V případě, že útočník dorazí až do cíle, poškodí nepřítele. V případě zabití nepřítele přirozené vyhrává hráč. Prohra nastává v případě, kdy hráči došly všechny prostředky.
+Cílem hráče je dostat co největší množství svých jednotek přes věže, které budou na vojáky přirozeně útočit, aby jim zabránily v postupu. V průběhu hry hráč spotřebovává prostředky, díky kterým může vysílat lepší jednotky do boje. V případě, že útočník dorazí až do cíle, poškodí bránu. V případě zabití nepřítele přirozené vyhrává hráč. Prohra nastává v případě, kdy hráči došly všechny prostředky a brána stále stojí.
 
 ### Nástin implementace
 Hlavní třídá celé hry je `CApplication`, ve které se odehrává komunikace s uživatelem, obsahuje mapu `CMap`, ukazatel na úložiště všech jednotek `CUnitStack` a nakonec vlny s útočníky `CWaves`. Dále se stará o aktualizaci mapy, renderování jednotlivých objektu přes jejich metodu `Render`, ukládání a načítání ze souborů.

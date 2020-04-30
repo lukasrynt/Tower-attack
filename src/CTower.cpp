@@ -26,7 +26,7 @@ CTower * CTower::Clone()
 
 /**********************************************************************************************************************/
 // LOADING
-CTower * CTower::Load(std::istream & in)
+CTower * CTower::LoadTemplate(std::istream & in)
 {
 	CTower * tower = new CTower();
 	char del1, del2;

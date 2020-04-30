@@ -26,7 +26,6 @@ public:
 	
 	// LOADING
 	std::istream & Load(std::istream & in);
-	std::istream & LoadTroops(std::istream & in);
 	int GetWaveSize() const;
 	
 	// SAVING
@@ -54,6 +53,6 @@ private:
 	bool m_ReleasingWave;
 	
 	// LOAD
-	void InitWaves();
-	std::istream & LoadWave(std::istream & in, int idx);
+	std::istream & LoadWaves(std::istream & in);
+	bool CheckCounter(size_t counter);
 };

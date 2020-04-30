@@ -76,7 +76,7 @@ Inheritance diagram for CMageTower:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCMageTower__inherit__graph.png" border="0" usemap="#CMageTower_inherit__map" alt="Inheritance graph"/></div>
 <map name="CMageTower_inherit__map" id="CMageTower_inherit__map">
-<area shape="rect" id="node2" href="classCTower.html" title="{CTower\n|# m_Char\l# m_Pos\l# m_AttackDamage\l# m_Frames\l&#45; m_ArrowPath\l&#45; m_ArrowPos\l&#45; m_Perimeter\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ Save()\l+ Attack()\l+ PerimeterBreached()\l+ Load()\l&#45; ArrowMove()\l&#45; ArrowClear()\l}" alt="" coords="5,5,159,288"/>
+<area shape="rect" id="node2" href="classCTower.html" title="{CTower\n|# m_Char\l# m_Pos\l# m_AttackDamage\l# m_Frames\l&#45; m_ArrowPath\l&#45; m_ArrowPos\l&#45; m_Perimeter\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ Save()\l+ Attack()\l+ PerimeterBreached()\l+ SetPosition()\l+ GetPosition()\l+ Load()\l&#45; ArrowMove()\l&#45; ArrowClear()\l}" alt="" coords="5,5,159,317"/>
 </map>
 </div>
 <div class="dynheader">
@@ -84,7 +84,7 @@ Collaboration diagram for CMageTower:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCMageTower__coll__graph.png" border="0" usemap="#CMageTower_coll__map" alt="Collaboration graph"/></div>
 <map name="CMageTower_coll__map" id="CMageTower_coll__map">
-<area shape="rect" id="node2" href="classCTower.html" title="{CTower\n|# m_Char\l# m_AttackDamage\l&#45; m_ArrowPath\l&#45; m_Perimeter\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ Save()\l+ Attack()\l+ PerimeterBreached()\l+ Load()\l&#45; ArrowMove()\l&#45; ArrowClear()\l}" alt="" coords="164,277,317,516"/>
+<area shape="rect" id="node2" href="classCTower.html" title="{CTower\n|# m_Char\l# m_AttackDamage\l&#45; m_ArrowPath\l&#45; m_Perimeter\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ Save()\l+ Attack()\l+ PerimeterBreached()\l+ SetPosition()\l+ GetPosition()\l+ Load()\l&#45; ArrowMove()\l&#45; ArrowClear()\l}" alt="" coords="164,277,317,545"/>
 <area shape="rect" id="node3" href="structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetNeighbours()\l+ LiesInRange()\l+ GetRadius()\l}" alt="" coords="5,5,135,200"/>
 <area shape="rect" id="node4" href="classCFrames.html" title="{CFrames\n|&#45; m_Speed\l&#45; m_CurrFrame\l&#45; MAX_FRAME_CNT\l|+ CFrames()\l+ ActionAllowed()\l}" alt="" coords="224,42,372,163"/>
 </map>
@@ -107,6 +107,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa2156477380ed37212765d1296d1ac3e inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81a58fa2911d9ea7d1b204e3a26c87aa inherit pub_methods_classCTower"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a81a58fa2911d9ea7d1b204e3a26c87aa">PerimeterBreached</a> (std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;map)</td></tr>
 <tr class="separator:a81a58fa2911d9ea7d1b204e3a26c87aa inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fc8badd35a2a938f531777385f31f50 inherit pub_methods_classCTower"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a2fc8badd35a2a938f531777385f31f50">SetPosition</a> (<a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> position)</td></tr>
+<tr class="separator:a2fc8badd35a2a938f531777385f31f50 inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8e4dbc1e3eae50c1fd09e2dc2f770d2 inherit pub_methods_classCTower"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#ac8e4dbc1e3eae50c1fd09e2dc2f770d2">GetPosition</a> () const</td></tr>
+<tr class="separator:ac8e4dbc1e3eae50c1fd09e2dc2f770d2 inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>

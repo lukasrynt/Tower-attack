@@ -30,7 +30,7 @@ var searchData=
   ['m_5fpos',['m_Pos',['../classCGate.html#a73c189221fdb031e8add745cc4358255',1,'CGate::m_Pos()'],['../structCPath_1_1CNode.html#a2f45f5ce1a76ceba3dab7c1ae106b2f6',1,'CPath::CNode::m_Pos()'],['../classCTower.html#a18ba37322076a2119fa23f2d6383811d',1,'CTower::m_Pos()'],['../classCTrooper.html#a5b932bfa2c70cab7db86fd61ec170c10',1,'CTrooper::m_Pos()']]],
   ['m_5freleasingwave',['m_ReleasingWave',['../classCWaves.html#aa72b69af7e8852c8c97d3bcb6af2d97a',1,'CWaves']]],
   ['m_5frows',['m_Rows',['../classCMap.html#a2db107ab7540f2094e67815a2520c92c',1,'CMap::m_Rows()'],['../classCPath.html#aa75856a02c7b86b0c55c654257929940',1,'CPath::m_Rows()']]],
-  ['m_5fselected',['m_Selected',['../classCUnitStack.html#a2eabbdbdb347b72a15763c4081fce4bf',1,'CUnitStack::m_Selected()'],['../classCWaves.html#a39160c204c1c6d416e8c754e59eba8fe',1,'CWaves::m_Selected()']]],
+  ['m_5fselected',['m_Selected',['../classCUnitStack.html#affa48cbe40dc1e7400f6e3b2c22796b6',1,'CUnitStack::m_Selected()'],['../classCWaves.html#a39160c204c1c6d416e8c754e59eba8fe',1,'CWaves::m_Selected()']]],
   ['m_5fspawnidx',['m_SpawnIdx',['../classCTrooper.html#a751330d75951268cdace7a734265abbb',1,'CTrooper']]],
   ['m_5fspawns',['m_Spawns',['../classCMap.html#a7b1e5e48b8c6a40c3610ad8b30ca4489',1,'CMap']]],
   ['m_5fspeed',['m_Speed',['../classCFrames.html#a2302cda7fb44c6f742e1bf519263e346',1,'CFrames']]],

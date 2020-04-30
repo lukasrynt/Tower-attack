@@ -75,7 +75,7 @@ Inheritance diagram for CArmoredTrooper:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCArmoredTrooper__inherit__graph.png" border="0" usemap="#CArmoredTrooper_inherit__map" alt="Inheritance graph"/></div>
 <map name="CArmoredTrooper_inherit__map" id="CArmoredTrooper_inherit__map">
-<area shape="rect" id="node2" href="classCTrooper.html" title="{CTrooper\n|# m_Char\l# m_Pos\l# m_Hp\l# m_Attack\l# m_Frames\l# m_SpawnIdx\l# m_Path\l|+ CTrooper()\l+ Clone()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ Save()\l+ SetSpawn()\l+ GetSpawn()\l+ SetPosition()\l+ GetPosition()\l+ SetPath()\l+ Load()\l}" alt="" coords="9,5,147,332"/>
+<area shape="rect" id="node2" href="classCTrooper.html" title="{CTrooper\n|# m_Char\l# m_Pos\l# m_Hp\l# m_Attack\l# m_Frames\l# m_SpawnIdx\l# m_Path\l|+ ~CTrooper()\l+ CTrooper()\l+ Clone()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ Save()\l+ SetSpawn()\l+ GetSpawn()\l+ SetPosition()\l+ GetPosition()\l+ SetPath()\l+ Load()\l}" alt="" coords="9,5,147,347"/>
 </map>
 </div>
 <div class="dynheader">
@@ -83,7 +83,7 @@ Collaboration diagram for CArmoredTrooper:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCArmoredTrooper__coll__graph.png" border="0" usemap="#CArmoredTrooper_coll__map" alt="Collaboration graph"/></div>
 <map name="CArmoredTrooper_coll__map" id="CArmoredTrooper_coll__map">
-<area shape="rect" id="node2" href="classCTrooper.html" title="{CTrooper\n|# m_Char\l# m_Hp\l# m_Attack\l# m_SpawnIdx\l# m_Path\l|+ CTrooper()\l+ Clone()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ Save()\l+ SetSpawn()\l+ GetSpawn()\l+ SetPosition()\l+ GetPosition()\l+ SetPath()\l+ Load()\l}" alt="" coords="171,263,310,560"/>
+<area shape="rect" id="node2" href="classCTrooper.html" title="{CTrooper\n|# m_Char\l# m_Hp\l# m_Attack\l# m_SpawnIdx\l# m_Path\l|+ ~CTrooper()\l+ CTrooper()\l+ Clone()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ Save()\l+ SetSpawn()\l+ GetSpawn()\l+ SetPosition()\l+ GetPosition()\l+ SetPath()\l+ Load()\l}" alt="" coords="171,263,310,575"/>
 <area shape="rect" id="node3" href="structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetNeighbours()\l+ LiesInRange()\l+ GetRadius()\l}" alt="" coords="5,5,135,200"/>
 <area shape="rect" id="node4" href="classCFrames.html" title="{CFrames\n|&#45; m_Speed\l&#45; m_CurrFrame\l&#45; MAX_FRAME_CNT\l|+ CFrames()\l+ ActionAllowed()\l}" alt="" coords="224,42,372,163"/>
 </map>
@@ -95,13 +95,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a8eed9ec18121e25589d2343e36c76f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e90759a9f4c9601e05bfee2c5572a2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCArmoredTrooper.html#a1e90759a9f4c9601e05bfee2c5572a2b">ReceiveDamage</a> (int damage) final</td></tr>
 <tr class="separator:a1e90759a9f4c9601e05bfee2c5572a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5ac18b6a010643425ccb4527448b046"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCArmoredTrooper.html#af5ac18b6a010643425ccb4527448b046">FindPath</a> (<a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> goal, std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;map)</td></tr>
-<tr class="separator:af5ac18b6a010643425ccb4527448b046"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c321f29d2f060c79a6122f8b51767a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCArmoredTrooper.html">CArmoredTrooper</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCArmoredTrooper.html#a4c321f29d2f060c79a6122f8b51767a8">Clone</a> () const final</td></tr>
 <tr class="separator:a4c321f29d2f060c79a6122f8b51767a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a489a21511b24f35fca859a387e6bca8c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCArmoredTrooper.html#a489a21511b24f35fca859a387e6bca8c">Save</a> (std::ostream &amp;out) const final</td></tr>
 <tr class="separator:a489a21511b24f35fca859a387e6bca8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCTrooper"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCTrooper')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCTrooper.html">CTrooper</a></td></tr>
+<tr class="memitem:ab9ffdde4122533787f856881b6049a96 inherit pub_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#ab9ffdde4122533787f856881b6049a96">~CTrooper</a> ()=default</td></tr>
+<tr class="separator:ab9ffdde4122533787f856881b6049a96 inherit pub_methods_classCTrooper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd76ac1fa2b22663b325e6ea96c82f54 inherit pub_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#afd76ac1fa2b22663b325e6ea96c82f54">CTrooper</a> (int hp=0, int speed=0, int attack=0, char ch='@')</td></tr>
 <tr class="separator:afd76ac1fa2b22663b325e6ea96c82f54 inherit pub_methods_classCTrooper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedfd47b15451da7b16d102e9fa0a93c9 inherit pub_methods_classCTrooper"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTrooper.html#aedfd47b15451da7b16d102e9fa0a93c9">Move</a> (std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;map)</td></tr>
@@ -252,40 +252,6 @@ Here is the call graph for this function:</div>
 <area shape="rect" id="node2" href="classCArmoredTrooper.html#a8eed9ec18121e25589d2343e36c76f1c" title="CArmoredTrooper::CArmored\lTrooper" alt="" coords="220,5,412,47"/>
 </map>
 </div>
-
-</div>
-</div>
-<a id="af5ac18b6a010643425ccb4527448b046"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5ac18b6a010643425ccb4527448b046">&#9670;&nbsp;</a></span>FindPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CArmoredTrooper::FindPath </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td>
-          <td class="paramname"><em>goal</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>map</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Implements more direct approach to goal </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">goal</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

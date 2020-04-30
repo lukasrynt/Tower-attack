@@ -69,7 +69,7 @@ int CTrooper::Attack() const
 
 /**********************************************************************************************************************/
 // LOADING
-CTrooper * CTrooper::Load(std::istream & in)
+CTrooper * CTrooper::LoadTemplate(istream & in)
 {
 	CTrooper * trooper = new CTrooper();
 	char del1, del2, del3;
@@ -82,9 +82,29 @@ CTrooper * CTrooper::Load(std::istream & in)
 	return trooper;
 }
 
+istream & CTrooper::LoadOnMap(istream & in)
+{
+	char del1, del2;
+	if (!(in >> m_Pos >> del1 >> m_Frames.Current() >> del2)
+		|| del1 != ','
+		|| del2 != ';')
+		in.setstate(ios::failbit);
+	return in;
+}
+
+CTile CTrooper::GetTile() const
+{
+	return CTile{m_Char, ETileType::TROOP};
+}
+
 /**********************************************************************************************************************/
 // SAVING
-ostream & CTrooper::Save(ostream &out) const
+ostream & CTrooper::SaveTemplate(ostream & out) const
 {
 	return out << "(" << m_Char << "): " << m_Hp << ", " << m_Frames << ", " << m_Attack;
+}
+
+ostream & CTrooper::SaveOnMap(std::ostream & out) const
+{
+	return out << m_Char << ", " << m_Pos << ", " << m_Frames.Current();
 }
