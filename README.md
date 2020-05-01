@@ -71,30 +71,31 @@ Soubory ve kterých jsou uložené rozehrané hry nebo nové mapy mají podobnou
 Na konci souboru je obsažena samotná mapa, za ní už nesmí následovat nic dalšího. Mapa má přípustné rozdílné hodnoty v případě, že se jedná o rozehranou hru (jsou povoleny rozmístěné věže a útočníci).
 ```
 --Zásobník vzorů--
-(U):
-T, @, 60, 50, 30;           -- pěšák: znak, život, rychlost, útok
-A, $, 80, 40, 40, 90;       -- obrněná jednotka: znak, život, rychlost, útok, brnění
-M, %, 20, 20, 30, 60;       -- mágova věž: znak, rychlost, útok, mana, magický útok
-R, *, 20, 20;               -- lukostřelecká věž: znak, rychlost, útok
+(U)
+T @ 60 50 30;           -- pěšák: znak, život, rychlost, útok
+A $ 80 40 40 90;       -- obrněná jednotka: znak, život, rychlost, útok, brnění
+M % 20 20 30 60;       -- mágova věž: znak, rychlost, útok, mana, magický útok
+R * 20 20;               -- lukostřelecká věž: znak, rychlost, útok
 
 
 --Vlny--
-(W):                        -- počet a velikost se odvodí z formátu
+(W)                         -- počet a velikost se odvodí z formátu
 [@    ]                     -- včetně uložených jednotek
 [     ]
 
 --Mapa--
-(M): 6, 5, (20, 100);       -- dimenze mapy - řádek, sloupec; brána (aktuální, max život)
+(M)
+ 6 5 (20 100);       -- dimenze mapy - řádek, sloupec; brána (aktuální, max život)
 #####                       -- mapa
 # # O
 1   #
 #   #
 #   #
 #####                           --Vojáci a věže na mapě--
-@, (10,10), 10;          -- znak, pozice, aktuální frame
-$, (1,1), 2, 20;         -- znak, pozice, aktuální frame, stav brnění
-%, (2,2), 10             -- znak, pozice, aktuální frame, aktuální mana
-*, (2,2), 10             -- znak, pozice, aktuální frame
+@  (10 10) 10;             -- znak, pozice, aktuální frame
+$ (1 1) 2, 20;            -- znak, pozice, aktuální frame, stav brnění
+% (2 2) 10;               -- znak, pozice, aktuální frame, aktuální mana
+* (2 2) 10;               -- znak, pozice, aktuální frame
 ```
 > Ukázka souboru
 >

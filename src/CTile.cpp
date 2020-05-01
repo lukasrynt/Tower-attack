@@ -26,36 +26,32 @@ CTile::CTile(char ch, ETileType type)
 	SetColors();
 }
 
+CTile::CTile(char ch, ETileType type, string color)
+	: m_Char(ch),
+	  m_Type(type),
+	  m_Color(move(color))
+{}
+
 void CTile::SetColors()
 {
-	switch(m_Char)
+	switch(m_Type)
 	{
-		case '#':
+		case ETileType::WALL:
 			m_Color = Colors::fg_magenta;
 			break;
-		case '@':
+		case ETileType::TROOP:
 			m_Color = Colors::fg_yellow;
 			break;
-		case '$':
-			m_Color = Colors::fg_cyan;
-			break;
-		case '*':
+		case ETileType::TOWER:
 			m_Color = Colors::bg_red;
 			break;
-		case '%':
-			m_Color = Colors::bg_blue;
-			break;
-		case '1':
-		case '2':
-		case '3':
-		case '4':
-		case '5':
+		case ETileType::SPAWN:
 			m_Color = Colors::bg_cyan;
 			break;
-		case 'O':
+		case ETileType::GATE:
 			m_Color = Colors::bg_magenta;
 			break;
-		case ' ':
+		case ETileType::BULLET:
 			m_Color = Colors::bg_red;
 			break;
 		default:

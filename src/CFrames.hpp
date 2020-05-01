@@ -13,11 +13,11 @@ public:
 	explicit CFrames(int speed);
 	bool ActionAllowed();
 	
-	int & Current()
+	const int & GetCurrent() const
 	{return m_CurrFrame;}
 	
-	const int & Current() const
-	{return m_CurrFrame;}
+	void SetCurrent(int current)
+	{m_CurrFrame = current > MAX_FRAME_CNT / m_Speed ? 0 : current;}
 	
 	friend std::istream & operator>>(std::istream & in, CFrames & self)
 	{return in >> self.m_Speed;}

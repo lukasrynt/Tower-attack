@@ -19,12 +19,10 @@ public:
 	CGame();
 	
 	// LOADING
-	std::istream & LoadNew(std::istream & in);
-	std::istream & LoadSaved(std::istream & in);
+	friend std::istream & operator>>(std::istream & in, CGame & self);
 	
 	// SAVING
-	std::ostream & Save(std::ostream & out) const;
-	std::ostream & SaveState(std::ostream & out) const;
+	friend std::ostream & operator<<(std::ostream & in, const CGame & self);
 	
 	// INGAME
 	void End();
@@ -44,8 +42,6 @@ private:
 	bool m_WaveOn;								//!< Signalizes start and end of wave
 	
 	// LOADING
-	std::istream & LoadCommon(std::istream & in, char ch, bool saved);
-	std::istream & LoadState(std::istream & in);
 	static char LoadSignatureChar(std::istream & in);
 	bool CheckLoaded(const std::set<char> & signs);
 	

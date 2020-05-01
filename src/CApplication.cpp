@@ -342,6 +342,7 @@ bool CApplication::LoadNewGame()
 		// check input stream
 		string filename = "maps/" + response + ".map";
 		ifstream inFile(filename);
+		
 		if (!inFile)
 		{
 			InvalidInput("File not found.");
@@ -349,9 +350,8 @@ bool CApplication::LoadNewGame()
 		}
 		
 		// load game
-		
 		m_Game = make_unique<CGame>();
-		if (!m_Game->LoadNew(inFile))
+		if (!(inFile >> *m_Game))
 		{
 			InvalidInput("Incorrect file format.");
 			continue;
@@ -389,7 +389,7 @@ bool CApplication::LoadSavedGame()
 		
 		// load game
 		m_Game = make_unique<CGame>();
-		if (!m_Game->LoadSaved(inFile))
+		if (!(inFile >> *m_Game))
 		{
 			InvalidInput("Incorrect file format.");
 			continue;
@@ -550,7 +550,7 @@ bool CApplication::SaveGame()
 		
 		
 		// save game
-		if (!m_Game->Save(outFile))
+		if (!(outFile << *m_Game))
 		{
 			InvalidInput("Error during writing to file.");
 			continue;

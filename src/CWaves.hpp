@@ -25,11 +25,11 @@ public:
 	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
 	
 	// LOADING
-	std::istream & Load(std::istream & in);
+	friend std::istream & operator>>(std::istream & in, CWaves & waves);
 	int GetWaveSize() const;
 	
 	// SAVING
-	std::ostream & Save(std::ostream & out) const;
+	friend std::ostream & operator<<(std::ostream & out, const CWaves & waves);
 
 	// RENDER
 	void Render() const;
@@ -47,7 +47,6 @@ private:
 	std::vector<std::deque<CTrooper*>> m_Waves;	//!< vector with waves (deque) initialized to the size m_WaveCnt
 	std::shared_ptr<CUnitStack> m_UnitStack;
 	size_t m_Selected;						//!< index of currently selected wave
-	size_t m_WaveCnt;							//!< number of waves specified in constructor
 	size_t m_MaxSize;						//!< maximum size of one wave, specified in constructor
 	CFrames m_Frames;
 	bool m_ReleasingWave;

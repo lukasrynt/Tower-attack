@@ -10,7 +10,7 @@ using namespace std;
 /**********************************************************************************************************************/
 // INIT
 CArmoredTrooper::CArmoredTrooper(int hp, int speed, int attack, int armor)
-	: CTrooper(hp, speed, attack, '$'),
+	: CTrooper(hp, speed, attack, '$', 'A'),
 	  m_Armor(armor),
 	  m_MaxArmor(armor)
 {}
@@ -35,24 +35,30 @@ void CArmoredTrooper::ReceiveDamage(int damage)
 
 /**********************************************************************************************************************/
 // LOADING
-CArmoredTrooper * CArmoredTrooper::Load(std::istream &in)
+CArmoredTrooper * CArmoredTrooper::LoadTemplate(std::istream & in)
 {
 	CArmoredTrooper * trooper = new CArmoredTrooper();
-	char del1, del2, del3, del4;
-	if (!(in >> trooper->m_Hp >> del1 >> trooper->m_Frames >> del2 >> trooper->m_Attack >> del3 >> trooper->m_MaxArmor >> del4)
-		|| del1 != ','
-		|| del2 != ','
-		|| del3 != ','
-		|| del4 != ';')
+	char del;
+	if (!(in >> trooper->m_Char >> trooper->m_Hp >> trooper->m_Frames >> trooper->m_Attack >> trooper->m_MaxArmor >> del)
+		|| del != ';')
 		return nullptr;
-	trooper->m_Char = '$';
 	trooper->m_Armor = trooper->m_MaxArmor;
 	return trooper;
 }
 
+istream & CArmoredTrooper::LoadOnMapTroop(istream & in)
+{
+	return CTrooper::LoadOnMapTroop(in) >> m_Armor;
+}
+
 /**********************************************************************************************************************/
 // SAVING
-ostream & CArmoredTrooper::SaveTemplate(ostream &out) const
+ostream & CArmoredTrooper::SaveTemplateTroop(ostream & out) const
 {
-	return CTrooper::SaveTemplate(out) << ", " << m_MaxArmor;
+	return CTrooper::SaveTemplateTroop(out) << ' ' << m_MaxArmor;
+}
+
+ostream & CArmoredTrooper::SaveOnMapTroop(std::ostream &out) const
+{
+	return CTrooper::SaveOnMapTroop(out) << ' ' << m_Armor;
 }

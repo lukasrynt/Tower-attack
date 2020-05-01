@@ -29,18 +29,9 @@ public:
 	friend bool operator!=(const CPosition & self, const CPosition & other);
 	
 	friend std::ostream & operator<<(std::ostream & out, const CPosition & self)
-	{return out << "(" << self.m_X << ',' << self.m_Y << ")";}
+	{return out << "(" << self.m_X << ' ' << self.m_Y << ")";}
 	
-	friend std::istream & operator>>(std::istream & in, CPosition & self)
-	{
-		char br1, br2, comma;
-		if (!(in >> br1 >> self.m_X >> comma >> self.m_Y >> br2)
-			|| br1 != '('
-			|| br2 != ')'
-			|| comma != ',')
-			in.setstate(std::ios::failbit);
-		return in;
-	}
+	friend std::istream & operator>>(std::istream & in, CPosition & self);
 	
 	static const CPosition npos;
 	

@@ -14,7 +14,6 @@ using namespace std;
 // INIT
 CWaves::CWaves()
 	: m_Selected(0),
-	  m_WaveCnt(0),
 	  m_MaxSize(0),
 	  m_Frames(20),
 	  m_ReleasingWave(false)
@@ -34,14 +33,21 @@ void CWaves::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 
 /**********************************************************************************************************************/
 // LOADING
-std::istream & CWaves::Load(std::istream &in)
+istream & operator>>(istream & in, CWaves & waves)
 {
+	char ch;
+	if (!(in >> waves.m_ReleasingWave))
+		return in;
+	
 	while (true)
 	{
 		// check opening bracket
-		char ch = 0;
 		if (!(in >> ch))
+		{
+			if (in.eof())
+				in.clear(ios::goodbit);
 			return in;
+		}
 		
 		// if we have read something else than [ on the beggining of the row we need to quit
 		if (ch != '[')
@@ -51,20 +57,23 @@ std::istream & CWaves::Load(std::istream &in)
 		}
 		
 		// load the troopers in the wawes
-		LoadWaves(in);
+		waves.LoadWaves(in);
 	}
 	return in;
 }
 
 std::istream & CWaves::LoadWaves(std::istream & in)
 {
+	if (!m_UnitStack)
+		throw runtime_error("Unit stack not defined.");
+	
 	deque<CTrooper *> wave;
 	size_t counter = 0;
 	char ch = 0;
 	while (true)
 	{
 		// check if the character is correct
-		if (!(in >> ch))
+		if (!(in.get(ch)))
 			return in;
 		
 		// if we have empty char, just increase size
@@ -114,25 +123,23 @@ bool CWaves::CheckCounter(size_t counter)
 
 int CWaves::GetWaveSize() const
 {
-	return m_WaveCnt;
+	return m_Waves.size();
 }
 
 /**********************************************************************************************************************/
 // SAVING
-ostream & CWaves::Save(ostream & out) const
+ostream & operator<<(ostream & out, const CWaves & waves)
 {
-	out << "(W): " << endl;
-	if (!m_Waves.empty())
+	out << "(W)" << endl;
+	out << waves.m_ReleasingWave << endl;
+	for (const auto & wave : waves.m_Waves)
 	{
-		for (const auto & wave : m_Waves)
-		{
-			out << '[';
-			for (const auto & troop : wave)
-				out << *troop;
-			out << string(m_MaxSize - wave.size(), ' ') << ']' << endl;
-		}
+		out << '[';
+		for (const auto & troop : wave)
+			out << *troop;
+		out << string(waves.m_MaxSize - wave.size(), ' ') << ']' << endl;
 	}
-	return out;
+	return out << endl;
 }
 
 /**********************************************************************************************************************/
@@ -160,7 +167,7 @@ void CWaves::Render() const
 // INPUT PROCESSING
 void CWaves::Cycle()
 {
-	if (++m_Selected == m_WaveCnt)
+	if (++m_Selected == m_Waves.size())
 		m_Selected = 0;
 }
 
@@ -184,7 +191,6 @@ bool CWaves::AddTroop()
 	
 	// add trooper to the wave
 	auto troop = m_UnitStack->CreateSelected();
-	troop->SetSpawn(m_Selected + 1);
 	m_Waves[m_Selected].emplace_back(troop);
 	return true;
 }
@@ -199,13 +205,14 @@ CTrooper * CWaves::Update(bool & waveOn)
 	// if all waves are empty we leave the WaveStarted on false
 	waveOn = true;
 	m_ReleasingWave = false;
-	for (auto & m_Wave : m_Waves)
+	for (size_t i = 0; i < m_Waves.size(); ++i)
 	{
-		if (m_Wave.empty())
+		if (m_Waves[i].empty())
 			continue;
-		CTrooper * troop = m_Wave.front();
-		m_Wave.pop_front();
+		CTrooper * troop = m_Waves[i].front();
+		m_Waves[i].pop_front();
 		m_ReleasingWave = true;
+		troop->SetSpawn(i + 1);
 		return troop;
 	}
 	return nullptr;

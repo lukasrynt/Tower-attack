@@ -9,16 +9,16 @@ using namespace std;
 
 /**********************************************************************************************************************/
 // INIT
-CTower::CTower(int attackDamage, int attackSpeed, pos_t position, char ch)
+CTower::CTower(int attackDamage, int attackSpeed, pos_t position, char ch, char type)
 	: m_Char(ch),
+	  m_Type(type),
 	  m_Pos(position),
 	  m_AttackDamage(attackDamage),
 	  m_Frames(attackSpeed),
-	  m_ArrowPos(pos_t::npos),
-	  m_Perimeter(position.GetRadius(3))
+	  m_ArrowPos(pos_t::npos)
 {}
 
-CTower * CTower::Clone()
+CTower * CTower::Clone() const
 {
 	return new CTower(*this);
 }
@@ -29,19 +29,51 @@ CTower * CTower::Clone()
 CTower * CTower::LoadTemplate(std::istream & in)
 {
 	CTower * tower = new CTower();
-	char del1, del2;
-	if (!(in >> tower->m_AttackDamage >> del1 >> tower->m_Frames >> del2)
-		|| del1 != ','
-		|| del2 != ';')
+	char del;
+	if (!(in >> tower->m_Char >> tower->m_AttackDamage >> tower->m_Frames >> del)
+		|| del != ';')
 		return nullptr;
 	return tower;
 }
 
+std::istream & CTower::LoadOnMap(std::istream &in)
+{
+	char del;
+	if (!(LoadOnMapTower(in) >> del)
+		|| del != ';')
+		in.setstate(ios::failbit);
+	return in;
+}
+
+std::istream & CTower::LoadOnMapTower(std::istream &in)
+{
+	int current;
+	if (!(in >> m_Pos >> current))
+		return in;
+	m_Frames.SetCurrent(current);
+	return in;
+}
+
 /**********************************************************************************************************************/
 // SAVING
-std::ostream & CTower::Save(std::ostream &out) const
+ostream & CTower::SaveTemplate(ostream &out) const
 {
-	return out << "(" << m_Char << "): " << m_AttackDamage << ", " << m_Frames;
+	return SaveTemplateTower(out) << ';' << endl;
+}
+
+ostream & CTower::SaveTemplateTower(ostream &out) const
+{
+	return out << m_Type << ' ' << m_Char << ' ' << m_AttackDamage << ' ' << m_Frames;
+}
+
+ostream & CTower::SaveOnMap(ostream &out) const
+{
+	return SaveOnMapTower(out) << ';' << endl;
+}
+
+ostream & CTower::SaveOnMapTower(ostream &out) const
+{
+	return out << m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent();
 }
 
 /**********************************************************************************************************************/
@@ -49,15 +81,6 @@ std::ostream & CTower::Save(std::ostream &out) const
 
 pos_t CTower::PerimeterBreached(std::unordered_map<pos_t, CTile> & map)
 {
-	// iterate the layers of perimeter and look for trooper
-	for (const auto & layer : m_Perimeter)
-	{
-		for (const auto & pos : layer)
-		{
-			if (map.count(pos) && map.at(pos).IsTroop())
-				return pos;
-		}
-	}
 	return pos_t::npos;
 }
 
@@ -67,7 +90,12 @@ void CTower::Attack(unordered_map<pos_t, CTile> & map, int rows, int cols, unord
 	if (!m_Frames.ActionAllowed())
 		return;
 	
-	// if perimeter hasn't been breached we want to erase current arrow
+	SpecialAttack(map, rows, cols, troops);
+}
+
+void CTower::SpecialAttack(std::unordered_map<pos_t, CTile> &map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops)
+{
+// if perimeter hasn't been breached we want to erase current arrow
 	pos_t target;
 	if ((target = PerimeterBreached(map)) == pos_t::npos)
 	{
@@ -92,8 +120,7 @@ void CTower::Attack(unordered_map<pos_t, CTile> & map, int rows, int cols, unord
 		troops.at(target)->ReceiveDamage(m_AttackDamage);
 	}
 	else
-		map.insert({m_ArrowPos, CTile(' ', ETileType::BULLET)});
-}
+		map.insert({m_ArrowPos, CTile(' ', ETileType::BULLET)});}
 
 void CTower::ArrowMove(unordered_map<pos_t,CTile> & map)
 {

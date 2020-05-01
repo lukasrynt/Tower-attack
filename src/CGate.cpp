@@ -12,10 +12,10 @@ using namespace std;
 // GATE
 istream & operator>>(istream & in, CGate & self)
 {
-	char del1, del2;
-	if (!(in >> self.m_Hp >> del1 >> self.m_MaxHp >> del2)
-		|| del1 != ','
-		|| del2 != ';')
+	char brOp, brCl;
+	if (!(in >> brOp >> self.m_Hp >> self.m_MaxHp >> brCl)
+		|| brOp != '('
+		|| brCl != ')')
 		in.setstate(std::ios::failbit);
 	return in;
 }

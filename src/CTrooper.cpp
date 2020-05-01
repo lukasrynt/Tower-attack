@@ -10,8 +10,9 @@
 using namespace std;
 /**********************************************************************************************************************/
 // INIT
-CTrooper::CTrooper(int hp, int speed, int attack, char ch)
+CTrooper::CTrooper(int hp, int speed, int attack, char ch, char type)
 	: m_Char(ch),
+	  m_Type(type),
 	  m_Pos(pos_t::npos),
 	  m_Hp(hp),
 	  m_Attack(attack),
@@ -58,7 +59,7 @@ bool CTrooper::Move(unordered_map<pos_t,CTile> & map)
 	if (map.count(m_Pos))
 		map.erase(m_Pos);
 	m_Pos = target;
-	map.insert({m_Pos, {m_Char, ETileType::TROOP}});
+	map.insert({m_Pos, GetTile()});
 	return false;
 }
 
@@ -72,39 +73,49 @@ int CTrooper::Attack() const
 CTrooper * CTrooper::LoadTemplate(istream & in)
 {
 	CTrooper * trooper = new CTrooper();
-	char del1, del2, del3;
-	if (!(in >> trooper->m_Hp >> del1 >> trooper->m_Frames >> del2 >> trooper->m_Attack >> del3)
-		|| del1 != ','
-		|| del2 != ','
-		|| del3 != ';')
+	char del;
+	if (!(in >> trooper->m_Char >> trooper->m_Hp >> trooper->m_Frames >> trooper->m_Attack >> del)
+		|| del != ';')
 		return nullptr;
-	trooper->m_Char = '@';
 	return trooper;
 }
 
 istream & CTrooper::LoadOnMap(istream & in)
 {
-	char del1, del2;
-	if (!(in >> m_Pos >> del1 >> m_Frames.Current() >> del2)
-		|| del1 != ','
-		|| del2 != ';')
+	char del;
+	if (!(LoadOnMapTroop(in) >> del)
+		|| del != ';')
 		in.setstate(ios::failbit);
 	return in;
 }
 
-CTile CTrooper::GetTile() const
+istream & CTrooper::LoadOnMapTroop(istream & in)
 {
-	return CTile{m_Char, ETileType::TROOP};
+	int current;
+	if (!(in >> m_Pos >> current))
+		return in;
+	m_Frames.SetCurrent(current);
+	return in;
 }
 
 /**********************************************************************************************************************/
 // SAVING
 ostream & CTrooper::SaveTemplate(ostream & out) const
 {
-	return out << "(" << m_Char << "): " << m_Hp << ", " << m_Frames << ", " << m_Attack;
+	return SaveTemplateTroop(out) << ';' << endl;
+}
+
+ostream & CTrooper::SaveTemplateTroop(ostream & out) const
+{
+	return out << m_Type << ' ' << m_Char << ' ' << m_Hp << ' ' << m_Frames << ' ' << m_Attack;
 }
 
 ostream & CTrooper::SaveOnMap(std::ostream & out) const
 {
-	return out << m_Char << ", " << m_Pos << ", " << m_Frames.Current();
+	return SaveOnMapTroop(out) << ';' << endl;
+}
+
+ostream & CTrooper::SaveOnMapTroop(ostream & out) const
+{
+	return out << m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent();
 }

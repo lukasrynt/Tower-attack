@@ -20,24 +20,17 @@ CUnitStack::~CUnitStack()
 
 /**********************************************************************************************************************/
 // LOADING
-std::istream & CUnitStack::Load(std::istream &in)
+istream & operator>>(istream & in, CUnitStack & stack)
 {
 	while (true)
 	{
 		// load first character - type of unit
-		char ch = 0;
+		char ch;
 		if (!(in >> ch))
 			return in;
 		
-		// prevent redefinition of units
-		if (m_Troops.count(ch) || m_Towers.count(ch))
-		{
-			in.setstate(ios::failbit);
-			return in;
-		}
-		
 		// load coresponding unit
-		if(!LoadUnit(in, ch))
+		if(!stack.LoadUnit(in, ch))
 			break;
 	}
 	return in;
@@ -45,7 +38,6 @@ std::istream & CUnitStack::Load(std::istream &in)
 
 bool CUnitStack::LoadUnit(istream & in, char ch)
 {
-	
 	switch (ch)
 	{
 		case 'T':
@@ -74,48 +66,48 @@ bool CUnitStack::LoadUnit(istream & in, char ch)
 istream & CUnitStack::LoadBasicTroop(istream & in)
 {
 	CTrooper * trooper = CTrooper::LoadTemplate(in);
-	if (!trooper)
+	if (!trooper || !CharIsValid(trooper->GetChar()))
 	{
 		in.setstate(ios::failbit);
 		return in;
 	}
-	m_Troops.insert({'@', trooper});
+	m_Troops.insert({trooper->GetChar(), trooper});
 	return in;
 }
 
 istream & CUnitStack::LoadArmoredTroop(istream & in)
 {
-	CArmoredTrooper * trooper = CArmoredTrooper::Load(in);
-	if (!trooper)
+	CArmoredTrooper * trooper = CArmoredTrooper::LoadTemplate(in);
+	if (!trooper || !CharIsValid(trooper->GetChar()))
 	{
 		in.setstate(ios::failbit);
 		return in;
 	}
-	m_Troops.insert({'$', trooper});
+	m_Troops.insert({trooper->GetChar(), trooper});
 	return in;
 }
 
 istream & CUnitStack::LoadArcherTower(istream & in)
 {
 	CTower * tower = CTower::LoadTemplate(in);
-	if (!tower)
+	if (!tower || !CharIsValid(tower->GetChar()))
 	{
 		in.setstate(ios::failbit);
 		return in;
 	}
-	m_Towers.insert({'*', tower});
+	m_Towers.insert({tower->GetChar(), tower});
 	return in;
 }
 
 istream & CUnitStack::LoadMageTower(istream & in)
 {
-	CMageTower * tower = CMageTower::Load(in);
-	if (!tower)
+	CMageTower * tower = CMageTower::LoadTemplate(in);
+	if (!tower || !CharIsValid(tower->GetChar()))
 	{
 		in.setstate(ios::failbit);
 		return in;
 	}
-	m_Towers.insert({'%', tower});
+	m_Towers.insert({tower->GetChar(), tower});
 	return in;
 }
 
@@ -133,6 +125,14 @@ bool CUnitStack::IsTrooperChar(char ch) const
 		if (ch == trooper.first)
 			return true;
 	return false;
+}
+
+bool CUnitStack::CharIsValid(char ch) const
+{
+	if (m_Troops.count(ch) || m_Towers.count(ch))
+		return false;
+	string forbidden(FORBIDDEN_CHARS);
+	return forbidden.find(ch) == string::npos;
 }
 
 /**********************************************************************************************************************/
@@ -164,17 +164,18 @@ CTrooper * CUnitStack::CreateSelected() const
 
 void CUnitStack::Render() const
 {
-	cout << endl << Colors::fg_cyan << string(3 * + m_Troops.size(), '-') << Colors::color_reset << endl;
+	cout << endl << Colors::fg_cyan << string(4 * m_Troops.size(), '-') << Colors::color_reset << endl;
 	
 	size_t idx = 0;
 	for (const auto & troop : m_Troops)
 	{
+		cout << ' ';
 		if (idx++ == m_Selected)
 			cout << Colors::bg_cyan;
-		cout << *troop.second << Colors::color_reset << string(3, ' ');
+		cout << *troop.second << Colors::color_reset << string(2, ' ');
 	}
 	
-	cout << endl << Colors::fg_cyan << string(3 * + m_Troops.size(), '-') << Colors::color_reset << endl << endl;
+	cout << endl << Colors::fg_cyan << string(4 * m_Troops.size(), '-') << Colors::color_reset << endl << endl;
 }
 
 void CUnitStack::Cycle() const
@@ -185,14 +186,16 @@ void CUnitStack::Cycle() const
 
 /**********************************************************************************************************************/
 // SAVING
-ostream & CUnitStack::Save(ostream & out) const
+ostream & operator<<(ostream & out, const CUnitStack & stack)
 {
-	for (auto & troop : m_Troops)
-		if (!(troop.second->SaveTemplate(out) << ';' << endl))
+	if (!(out << "(U)" << endl))
+		return out;
+	for (auto & troop : stack.m_Troops)
+		if (!troop.second->SaveTemplate(out))
 			return out;
 	
-	for (auto & tower : m_Towers)
-		if (!(tower.second->Save(out) << ';' << endl))
+	for (auto & tower : stack.m_Towers)
+		if (!tower.second->SaveTemplate(out))
 			return out;
-	return out;
+	return out << endl;
 }

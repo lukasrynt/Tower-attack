@@ -24,7 +24,7 @@ public:
 	friend std::istream & operator>>(std::istream & in, CGate & self);
 	
 	friend std::ostream & operator<<(std::ostream & out, const CGate & self)
-	{return out << self.m_Hp << ", " << self.m_MaxHp;}
+	{return out << '(' << self.m_Hp << ' ' << self.m_MaxHp << ')';}
 private:
 	pos_t m_Pos = pos_t::npos;		//!< position of the gate
 	int m_Hp = 0;					//!< number of current gate's health

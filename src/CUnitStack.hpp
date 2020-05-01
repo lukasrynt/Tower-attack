@@ -23,20 +23,18 @@ public:
 	~CUnitStack();
 	
 	// LOADING
-	std::istream & Load(std::istream & in);
+	friend std::istream & operator>>(std::istream & in, CUnitStack & stack);
 	bool IsTrooperChar(char ch) const;
 	bool IsTowerChar(char ch) const;
-	bool IsTrooperType(char ch) const;
-	bool IsTowerType(char ch) const;
 	
 	// SAVING
 	/**
- * Saves units specifications to output stream
- * @param out Output stream
- * @return Output stream
- */
-	std::ostream & Save(std::ostream & out) const;
-	
+	 * Saves units specifications to output stream
+	 * @param out Output stream
+	 * @param [in] stack CUnitStack which we want to save
+	 * @return Output stream
+	 */
+	friend std::ostream & operator<<(std::ostream & out, const CUnitStack & stack);
 	// CLONING
 	/**
 	 * Create trooper from template defined by character
@@ -69,7 +67,8 @@ private:
 	// VARIABLES
 	std::map<char, CTrooper*> m_Troops;	//!< vector with all troops templates
 	std::map<char, CTower*> m_Towers;	//!< vector with all towers templates
-	mutable size_t m_Selected;				//!< currently selected trooper
+	mutable size_t m_Selected;			//!< currently selected trooper
+	constexpr static const char * const FORBIDDEN_CHARS = "#12345O";
 	
 	// LOADING
 	bool LoadUnit(std::istream & in, char ch);
@@ -77,4 +76,5 @@ private:
 	std::istream & LoadArmoredTroop(std::istream & in);
 	std::istream & LoadArcherTower(std::istream & in);
 	std::istream & LoadMageTower(std::istream & in);
+	bool CharIsValid(char ch) const;
 };

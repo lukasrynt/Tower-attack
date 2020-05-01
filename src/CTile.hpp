@@ -21,6 +21,7 @@ class CTile
 public:
 	explicit CTile(char ch = ' ');
 	CTile(char ch, ETileType type);
+	CTile(char ch, ETileType type, std::string color);
 	bool IsTroop() const;
 	bool IsTower() const;
 	bool IsWall() const;

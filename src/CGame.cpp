@@ -15,19 +15,18 @@ CGame::CGame()
 
 /**********************************************************************************************************************/
 // LOADING
-
-istream & CGame::LoadNew(istream & in)
+istream & operator>>(istream & in, CGame & self)
 {
 	set<char> signs;
 	bool end = false;
-	m_UnitStack = make_shared<CUnitStack>();
-	m_Map.AssignUnitStack(m_UnitStack);
-	m_Waves.AssignUnitStack(m_UnitStack);
+	self.m_UnitStack = make_shared<CUnitStack>();
+	self.m_Map.AssignUnitStack(self.m_UnitStack);
+	self.m_Waves.AssignUnitStack(self.m_UnitStack);
 	
 	while (!end)
 	{
 		// load signature char
-		char ch = LoadSignatureChar(in);
+		char ch = CGame::LoadSignatureChar(in);
 		if (!signs.insert(ch).second)
 		{
 			in.setstate(ios::failbit);
@@ -35,113 +34,42 @@ istream & CGame::LoadNew(istream & in)
 		}
 		
 		// load appropriate object
-		if (ch == 'U'
-			|| ch == 'W'
-			|| ch == 'M')
+		switch (ch)
 		{
-			if (!LoadCommon(in, ch, false))
-				return in;
+			case 'U':
+				if (!(in >> *self.m_UnitStack))
+					return in;
+				break;
+			case 'W':
+				if (!(in >> self.m_Waves))
+					return in;
+				break;
+			case 'M':
+				if (!(in >> self.m_Map))
+					return in;
+				break;
+			default:
+				end = true;
 		}
-		else
-			end = true;
 	}
 	
 	// check eof and signature chars
-	if (!in.eof() || !CheckLoaded(signs))
-		in.setstate(ios::failbit);
-	else
-		in.clear(ios::goodbit);
-	return in;
-}
-
-istream & CGame::LoadSaved(istream & in)
-{
-	set<char> signs;
-	bool end = false;
-	m_UnitStack = make_shared<CUnitStack>();
-	m_Map.AssignUnitStack(m_UnitStack);
-	m_Waves.AssignUnitStack(m_UnitStack);
-	string commonSigns = "@$*%WDG#";
-	
-	while (!end)
+	if (!in.eof() || !self.CheckLoaded(signs))
 	{
-		// load signature char
-		char ch = LoadSignatureChar(in);
-		if (!signs.insert(ch).second)
-		{
-			in.setstate(ios::failbit);
-			return in;
-		}
-		
-		// load appropriate object
-		if (commonSigns.find(ch) != string::npos)
-		{
-			if (!LoadCommon(in, ch, true))
-				return in;
-		}
-		else if (ch == '[')
-		{
-			if (!m_Waves.LoadTroops(in))
-				return in;
-		}
-		else if (ch == 'S')
-		{
-			if (!LoadState(in))
-				return in;
-		}
-		else if (ch == 'P')
-		{
-		
-		}
-		else
-			end = true;
-	}
-	
-	// check eof and signature chars
-	if (!in.eof() || !CheckLoaded(signs))
 		in.setstate(ios::failbit);
-	else
-		in.clear(ios::goodbit);
-	m_GameOn = true;
-	m_Map.InitTroops();
-	return in;
-}
-
-std::istream & CGame::LoadState(std::istream &in)
-{
-	char del;
-	if (!(in >> m_WaveOn >> del)
-		|| del != ';')
 		return in;
-	return in;
-}
-
-istream & CGame::LoadCommon(std::istream &in, char ch, bool saved)
-{
-	switch (ch)
-	{
-		case 'U':
-			if (!m_UnitStack->Load(in))
-				return in;
-			break;
-		case 'W':
-			if (!m_Waves.Load(in))
-				return in;
-			break;
-		case 'M':
-			if (!m_Map.Load(in))
-				return in;
-			break;
-		default:
-			break;
 	}
+	else
+		in.clear(ios::goodbit);
+	
+	self.m_WaveOn = self.m_Map.WaveIsRunning();
 	return in;
 }
 
 bool CGame::CheckLoaded(const set<char> & signs)
 {
 	m_Map.CheckSpawnCount(m_Waves.GetWaveSize());
-	set<char> check{'D', 'G', 'W', '#', '@', '*'};
+	set<char> check{'U', 'M', 'W'};
 	for (const auto & ch : check)
 		if (signs.find(ch) == signs.end())
 			return false;
@@ -150,30 +78,23 @@ bool CGame::CheckLoaded(const set<char> & signs)
 
 char CGame::LoadSignatureChar(istream & in)
 {
-	char brOp = 0, brCl = 0, div = 0, res = 0;
-	if (!(in >> brOp >> res >> brCl >> div)
+	char brOp, brCl, res;
+	if (!(in >> brOp >> res >> brCl)
 		|| brOp != '('
-		|| brCl != ')'
-		|| div != ':')
+		|| brCl != ')')
 		return 0;
 	return res;
 }
 
 /**********************************************************************************************************************/
 // SAVING
-ostream & CGame::Save(ostream & out) const
+ostream & operator<<(ostream & out, const CGame & self)
 {
-	if (!(m_UnitStack->Save(out))
-		|| !(m_Waves.Save(out))
-		|| !(SaveState(out))
-		|| !(m_Map.Save(out)))
+	if (!(out << *self.m_UnitStack)
+		|| !(out << self.m_Waves)
+		|| !(out << self.m_Map))
 		return out;
 	return out;
-}
-
-ostream & CGame::SaveState(ostream & out) const
-{
-	return out << "(S): " << m_WaveOn << ';' << endl;
 }
 
 /**********************************************************************************************************************/

@@ -40,7 +40,9 @@ public:
 	friend std::istream & operator>>(std::istream & in, CMap & self);
 	
 	bool CheckSpawnCount(int count) const;
-	void InitTroops();
+	void PlaceTroops();
+	bool WaveIsRunning() const
+	{return !m_Troops.empty();}
 	
 	// SAVING
 	friend std::ostream & operator<<(std::ostream & out, const CMap & self);
@@ -53,7 +55,7 @@ public:
 	void Spawn(CTrooper * trooper);
 	bool Update(bool & waveOn);
 	
-	void VisualizePath(std::queue<pos_t> path);
+	void VisualizePath(pos_t start, pos_t goal);
 private:
 	// VARIABLES
 	CGate m_Gate;
@@ -87,7 +89,7 @@ private:
 	// SAVING
 	std::ostream & SaveMapInfo(std::ostream & out) const;
 	std::ostream & SaveMap(std::ostream & out) const;
-	std::ostream & SaveTroops(std::ostream & out) const;
+	std::ostream & SaveEntities(std::ostream & out) const;
 	
 	// UPDATE PHASE
 	void MoveTroops(bool & waveOn);

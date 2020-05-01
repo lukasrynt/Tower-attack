@@ -40,16 +40,25 @@ istream & operator>>(istream & in, CMap & self)
 		return in;
 	if (!self.LoadMap(in))
 		return in;
-	return self.LoadEntities(in);
+	if (!self.LoadEntities(in))
+		return in;
+	self.PlaceTroops();
+	return in;
+}
+
+void CMap::PlaceTroops()
+{
+	for (const auto & troop : m_Troops)
+	{
+		m_Map.insert({troop->GetPosition(), troop->GetTile()});
+	}
 }
 
 istream & CMap::LoadMapInfo(istream & in)
 {
-	char del1 = 0, del2 = 0, del3 = 0;
-	if (!(in >> m_Rows >> del1 >> m_Cols >> del2 >> m_Gate >> del3)
-		|| del1 != ','
-		|| del2 != ','
-		|| del3 != ';')
+	char del;
+	if (!(in >> m_Rows >> m_Cols >> m_Gate >> del)
+		|| del != ';')
 		in.setstate(ios::failbit);
 	return in;
 }
@@ -65,27 +74,36 @@ istream & CMap::LoadMap(istream & in)
 	
 	if(!LoadWallLine(in, m_Rows - 1))
 		return in;
+	
+	FindPaths();
 
 	return in;
 }
 
 istream & CMap::LoadEntities(istream & in)
 {
+	if (!m_UnitStack)
+		throw runtime_error("Unit stack not defined.");
+	
 	while (true)
 	{
 		// check first character
 		char ch;
 		if (!(in >> ch))
+		{
+			if (in.eof())
+				in.clear(ios::goodbit);
 			return in;
+		}
 		
 		if (m_UnitStack->IsTrooperChar(ch))
 		{
-			if (!LoadTroops(in))
+			if (!LoadTroops(in, ch))
 				return in;
 		}
 		else if (m_UnitStack->IsTowerChar(ch))
 		{
-			if (!LoadTowers(in))
+			if (!LoadTowers(in, ch))
 				return in;
 		}
 		else
@@ -98,39 +116,32 @@ istream & CMap::LoadEntities(istream & in)
 
 istream & CMap::LoadTroops(istream & in, char ch)
 {
-	// skip comma
-	char comma;
-	if (!(in >> comma)
-		|| comma != ',')
+	CTrooper * trooper = m_UnitStack->CreateTrooperAt(ch);
+	if (!trooper->LoadOnMap(in))
+	{
+		cout << "fail loading " << ch << endl;
+		return in;
+	}
+	m_Troops.push_back(trooper);
+	if (m_Map.count(trooper->GetPosition()))
 	{
 		in.setstate(ios::failbit);
 		return in;
 	}
-	
-	CTrooper * trooper = m_UnitStack->CreateTrooperAt(ch);
-	if (!trooper->LoadOnMap(in))
-		return in;
-	m_Troops.push_back(trooper);
-	m_Map.insert({trooper->GetPosition(), trooper->GetTile()});
+	auto path =  CPath{m_Map, m_Rows, m_Cols, trooper->GetPosition(), m_Gate.Position()}.FindPath();
+	trooper->SetPath(path);
 	return in;
 }
 
 istream & CMap::LoadTowers(istream & in, char ch)
 {
-	// skip comma
-	char comma;
-	if (!(in >> comma)
-		|| comma != ',')
-	{
-		in.setstate(ios::failbit);
-		return in;
-	}
-	
 	CTower * tower = m_UnitStack->CreateTowerAt(ch);
 	if (!tower->LoadOnMap(in))
 		return in;
 	m_Towers.push_back(tower);
-	m_Map.insert({tower->GetPosition(), tower->GetTile()});
+	if (!m_Map.count(tower->GetPosition()) || !m_Map.at(tower->GetPosition()).IsWall())
+		in.setstate(ios::failbit);
+	m_Map.at(tower->GetPosition()) = tower->GetTile();
 	return in;
 }
 
@@ -146,7 +157,15 @@ istream & CMap::LoadWallLine(istream & in, int row)
 	{
 		if (!(in.get(ch)))
 			return in;
-		if (!LoadWallChar(ch, {col, row}))
+		if (m_UnitStack->IsTowerChar(ch))
+		{
+			if (!LoadEntity({col, row}, ch))
+			{
+				in.setstate(ios::failbit);
+				return in;
+			}
+		}
+		else if (!LoadWallChar(ch, {col, row}))
 		{
 			in.setstate(ios::failbit);
 			return in;
@@ -223,10 +242,6 @@ bool CMap::LoadCenterChar(char ch, pos_t position)
 	// if it's not load entity
 	else
 		return LoadEntity(position, ch);
-	
-	// insert to map
-	m_Map.insert({position, CTile{ch}});
-	return true;
 }
 
 istream & CMap::DeleteWs(istream & in)
@@ -236,12 +251,6 @@ istream & CMap::DeleteWs(istream & in)
 		return in;
 	in.putback(ch);
 	return in;
-}
-
-void CMap::InitTroops()
-{
-	for (auto & troop : m_Troops)
-		troop->SetPath(m_Paths.at(troop->GetSpawn()));
 }
 
 bool CMap::InitGatePosition(pos_t position)
@@ -289,18 +298,18 @@ bool CMap::CheckSpawnCount(int count) const
 ostream & operator<<(ostream & out, const CMap & self)
 {
 	
-	if (!(self.SaveMapInfo(out) << self.m_Gate))
+	if (!self.SaveMapInfo(out))
 		return out;
 	if (!self.SaveMap(out))
 		return out;
-	if (!self.SaveTroops(out))
+	if (!self.SaveEntities(out))
 		return out;
-	return out;
+	return out << endl;
 }
 
 ostream & CMap::SaveMapInfo(ostream & out) const
 {
-	return out << "(M): " << m_Rows << ", " << m_Cols << ", " << m_Gate << ';' << endl;
+	return out << "(M)" << endl << m_Rows << ' ' << m_Cols << ' ' << m_Gate << ';' << endl;
 }
 
 ostream & CMap::SaveMap(ostream & out) const
@@ -321,11 +330,15 @@ ostream & CMap::SaveMap(ostream & out) const
 	return out;
 }
 
-ostream & CMap::SaveTroops(ostream & out) const
+ostream & CMap::SaveEntities(ostream & out) const
 {
 	// save troops
 	for (const auto & troop : m_Troops)
-		if (!(troop->SaveOnMap(out) << ';' << endl))
+		if (!troop->SaveOnMap(out))
+			return out;
+		
+	for (const auto & tower : m_Towers)
+		if (!tower->SaveOnMap(out))
 			return out;
 	
 	return out;
@@ -409,12 +422,13 @@ void CMap::TowerAttack()
 
 /**********************************************************************************************************************/
 // TESTING
-void CMap::VisualizePath(std::queue<pos_t> path)
+void CMap::VisualizePath(pos_t start, pos_t goal)
 {
+	auto path = CPath{m_Map, m_Rows, m_Cols, start, goal}.FindPath();
 	while (!path.empty())
 	{
 		CTile tile = CTile(' ');
 		m_Map.insert({path.front(), tile});
-		path.pop();
+		path.pop_front();
 	}
 }

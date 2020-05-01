@@ -105,3 +105,13 @@ bool operator!=(const CPosition & self, const CPosition & other)
 {
 	return !(self == other);
 }
+
+istream & operator>>(istream & in, CPosition & self)
+{
+	char br1, br2;
+	if (!(in >> br1 >> self.m_X >> self.m_Y >> br2)
+		|| br1 != '('
+		|| br2 != ')')
+		in.setstate(std::ios::failbit);
+	return in;
+}
