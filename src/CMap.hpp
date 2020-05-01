@@ -38,6 +38,8 @@ public:
 	
 	// LOADING
 	friend std::istream & operator>>(std::istream & in, CMap & self);
+	bool CheckNew() const;
+	bool CheckSaved() const;
 	
 	bool CheckSpawnCount(int count) const;
 	void PlaceTroops();
@@ -52,8 +54,9 @@ public:
 	void RenderMap() const;
 
 	// UPDATE
-	void Spawn(CTrooper * trooper);
+	void Spawn(const std::vector<CTrooper*> & spawns);
 	bool Update(bool & waveOn);
+	std::map<int, bool> SpawnsBlocked() const;
 	
 	void VisualizePath(pos_t start, pos_t goal);
 private:
@@ -81,6 +84,8 @@ private:
 	static std::istream & DeleteWs(std::istream & in);
 	bool InitSpawner(pos_t position, char ch);
 	bool InitGatePosition(pos_t position);
+	bool FindPathsFromSpawn();
+	
 	
 	std::istream & LoadTroops(std::istream & in, char ch);
 	std::istream & LoadTowers(std::istream & in, char ch);
@@ -94,5 +99,4 @@ private:
 	// UPDATE PHASE
 	void MoveTroops(bool & waveOn);
 	void TowerAttack();
-	void FindPaths();
 };

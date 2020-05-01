@@ -28,7 +28,9 @@ public:
 	virtual CTrooper *Clone() const;
 	
 	// ACTIONS
-	bool Move(std::unordered_map<pos_t, CTile> &map);
+	void Spawn(std::unordered_map<pos_t, CTile> & map);
+	
+	bool Move(std::unordered_map<pos_t, CTile> & map);
 	
 	int Attack() const;
 	
@@ -37,12 +39,12 @@ public:
 	// LOADING
 	static CTrooper *LoadTemplate(std::istream &in);
 	
-	std::istream &LoadOnMap(std::istream &in);
+	std::istream & LoadOnMap(std::istream &in);
 	
 	// SAVING
-	std::ostream &SaveTemplate(std::ostream &out) const;
+	std::ostream & SaveTemplate(std::ostream &out) const;
 	
-	std::ostream &SaveOnMap(std::ostream &out) const;
+	std::ostream & SaveOnMap(std::ostream &out) const;
 	
 	// GETTERS/ SETTERS
 	virtual CTile GetTile() const

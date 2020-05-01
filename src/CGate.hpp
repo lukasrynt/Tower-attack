@@ -21,6 +21,12 @@ public:
 	pos_t & Position()
 	{return m_Pos;}
 	
+	const pos_t & Position() const
+	{return m_Pos;}
+	
+	bool Full() const
+	{return m_Hp == m_MaxHp;}
+	
 	friend std::istream & operator>>(std::istream & in, CGate & self);
 	
 	friend std::ostream & operator<<(std::ostream & out, const CGate & self)

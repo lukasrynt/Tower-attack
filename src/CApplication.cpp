@@ -107,14 +107,50 @@ void CApplication::Die(const char * s)
 // MAIN LOOP
 void CApplication::Run()
 {
-	MenuScreen();
-	MainLoop();
+	int ch;
+	bool end = false;
+	do
+	{
+		ResetScreen();
+		RenderHeader();
+		RenderMenuScreen();
+		
+		ch = GetChar();
+		
+		// validate input
+		switch (ch)
+		{
+			case '1':
+				if (LoadNewGame())
+				{
+					NullTimeout();
+					MainLoop();
+				}
+				ResetTimeout();
+				break;
+			case '2':
+				if (LoadSavedGame())
+				{
+					NullTimeout();
+					MainLoop();
+				}
+				ResetTimeout();
+				break;
+			case 'q':
+				end = true;
+				break;
+			default:
+				InvalidInput("Invalid input.");
+				break;
+		}
+		
+	} while (!end);
 }
 
 void CApplication::MainLoop()
 {
 	//	http://gameprogrammingpatterns.com/game-loop.html
-	while (m_Game->IsOn())
+	while (m_Game->Running())
 	{
 		// get time stamp
 		auto start = GetCurrentTime();
@@ -123,6 +159,11 @@ void CApplication::MainLoop()
 		RenderGameScreen();
 		Sleep(start - GetCurrentTime() + 30ms);
 	}
+	
+	if (m_Game->Won())
+		WinnerScreen();
+	else if (m_Game->Lost())
+		GameOverScreen();
 }
 
 chrono::milliseconds CApplication::GetCurrentTime()
@@ -151,10 +192,6 @@ void CApplication::ProcessInput()
 			break;
 		case 's':
 			SaveScreen();
-			break;
-		case 'm':
-			ResetTimeout();
-			MenuScreen();
 			break;
 		default:
 			GameInput(ch);
@@ -216,10 +253,6 @@ void CApplication::RenderGameOptions()
 	cout 	<< Colors::fg_white
 			<< "h - help screen"
 			<< Colors::color_reset << endl;
-	
-	cout 	<< Colors::fg_black
-			<< "m - menu screen"
-			<< Colors::color_reset << endl;
 }
 
 void CApplication::ResetScreen()
@@ -229,43 +262,78 @@ void CApplication::ResetScreen()
 	cout <<"\x1b[H";
 }
 
-/**********************************************************************************************************************/
-// MENU SCREEN
-void CApplication::MenuScreen()
+void CApplication::GameOverScreen()
 {
-	int ch;
-	bool end;
-	do
+	bool col = false;
+	while (true)
 	{
-		end = true;
+		if (col)
+			cout << Colors::fg_red;
+		else
+			cout << Colors::fg_black;
+		col = !col;
 		ResetScreen();
-		RenderHeader();
-		RenderMenuScreen();
-		
-		ch = GetChar();
-		
-		// validate input
-		switch (ch)
-		{
-			case '1':
-				end = LoadNewGame();
-				break;
-			case '2':
-				end = LoadSavedGame();
-				break;
-			case 'q':
-				m_Game->End();
-				break;
-			default:
-				end = false;
-				InvalidInput("Invalid input.");
-				break;
-		}
-		
-	} while (!end);
-	NullTimeout();
+		RenderGameOver();
+		if (GetChar() == 'q')
+			break;
+		Sleep(60ms);
+	}
+	cout << Colors::color_reset;
 }
 
+void CApplication::RenderGameOver()
+{
+	for (int i = 0; i < (DISPLAY_HEIGHT - 8) / 2; ++i)
+		cout << endl;
+	PrintCenteredLine(R"( _______  _______  _______  _______    _______           _______  _______ )");
+	PrintCenteredLine(R"((  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ ))");
+	PrintCenteredLine(R"(| (    \/| (   ) || () () || (    \/  | (   ) || )   ( || (    \/| (    )|)");
+	PrintCenteredLine(R"(| |      | (___) || || || || (__      | |   | || |   | || (__    | (____)|)");
+	PrintCenteredLine(R"(| | ____ |  ___  || |(_)| ||  __)     | |   | |( (   ) )|  __)   |     __))");
+	PrintCenteredLine(R"(| | \_  )| (   ) || |   | || (        | |   | | \ \_/ / | (      | (\ (   )");
+	PrintCenteredLine(R"(| (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__)");
+	PrintCenteredLine(R"((_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/)");
+	for (int i = 0; i < (DISPLAY_HEIGHT - 8) / 2; ++i)
+		cout << endl;
+}
+
+void CApplication::WinnerScreen()
+{
+	bool col = false;
+	while (true)
+	{
+		if (col)
+			cout << Colors::fg_green;
+		else
+			cout << Colors::fg_blue;
+		col = !col;
+		ResetScreen();
+		RenderWinner();
+		if (GetChar() == 'q')
+			break;
+		Sleep(60ms);
+	}
+	cout << Colors::color_reset;
+}
+
+void CApplication::RenderWinner()
+{
+	for (int i = 0; i < (DISPLAY_HEIGHT - 8) / 2; ++i)
+		cout << endl;
+	PrintCenteredLine(R"(         _________ _        _        _______  _______ )");
+	PrintCenteredLine(R"(|\     /|\__   __/( (    /|( (    /|(  ____ \(  ____ ))");
+	PrintCenteredLine(R"(| )   ( |   ) (   |  \  ( ||  \  ( || (    \/| (    )|)");
+	PrintCenteredLine(R"(| | _ | |   | |   |   \ | ||   \ | || (__    | (____)|)");
+	PrintCenteredLine(R"(| |( )| |   | |   | (\ \) || (\ \) ||  __)   |     __))");
+	PrintCenteredLine(R"(| || || |   | |   | | \   || | \   || (      | (\ (   )");
+	PrintCenteredLine(R"(| () () |___) (___| )  \  || )  \  || (____/\| ) \ \__)");
+	PrintCenteredLine(R"((_______)\_______/|/    )_)|/    )_)(_______/|/   \__/)");
+	for (int i = 0; i < (DISPLAY_HEIGHT - 8) / 2; ++i)
+		cout << endl;
+}
+
+/**********************************************************************************************************************/
+// MENU SCREEN
 void CApplication::RenderHeader()
 {
 	// http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
@@ -351,12 +419,14 @@ bool CApplication::LoadNewGame()
 		
 		// load game
 		m_Game = make_unique<CGame>();
-		if (!(inFile >> *m_Game))
+		if (!(inFile >> *m_Game)
+			|| !(m_Game->CheckNew()))
 		{
 			InvalidInput("Incorrect file format.");
 			continue;
 		}
 		inFile.close();
+		
 		cout << Colors::color_reset;
 		return true;
 	}
@@ -389,7 +459,8 @@ bool CApplication::LoadSavedGame()
 		
 		// load game
 		m_Game = make_unique<CGame>();
-		if (!(inFile >> *m_Game))
+		if (!(inFile >> *m_Game)
+			|| !(m_Game->CheckSaved()))
 		{
 			InvalidInput("Incorrect file format.");
 			continue;
@@ -515,7 +586,7 @@ void CApplication::SaveScreen()
 		ch = GetChar();
 		if (ch == 'q')
 		{
-			m_Game->End();
+			m_Game->Quit();
 			break;
 		}
 		else if (ch == 'r')

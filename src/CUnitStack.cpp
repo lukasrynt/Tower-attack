@@ -135,6 +135,12 @@ bool CUnitStack::CharIsValid(char ch) const
 	return forbidden.find(ch) == string::npos;
 }
 
+bool CUnitStack::Check() const
+{
+	return !m_Towers.empty()
+		&& !m_Troops.empty();
+}
+
 /**********************************************************************************************************************/
 // INTERFACE
 CTower * CUnitStack::CreateTowerAt(char ch) const

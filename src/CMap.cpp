@@ -75,7 +75,8 @@ istream & CMap::LoadMap(istream & in)
 	if(!LoadWallLine(in, m_Rows - 1))
 		return in;
 	
-	FindPaths();
+	if (!FindPathsFromSpawn())
+		in.setstate(ios::failbit);
 
 	return in;
 }
@@ -293,6 +294,19 @@ bool CMap::CheckSpawnCount(int count) const
 	return max == count;
 }
 
+bool CMap::CheckNew() const
+{
+	return m_Troops.empty()
+		&& m_Towers.empty()
+		&& m_Gate.Full()
+		&& CheckSaved();
+}
+
+bool CMap::CheckSaved() const
+{
+	return !(m_Gate.Position() == pos_t::npos)
+		&& !m_Spawns.empty();
+}
 /**********************************************************************************************************************/
 // SAVING
 ostream & operator<<(ostream & out, const CMap & self)
@@ -370,12 +384,6 @@ void CMap::RenderMap() const
 
 /**********************************************************************************************************************/
 // UPDATE
-void CMap::Spawn(CTrooper * trooper)
-{
-	trooper->SetPath(m_Paths.at(m_Spawns.at(trooper->GetSpawn())));
-	m_Troops.emplace_back(trooper);
-}
-
 bool CMap::Update(bool & waveOn)
 {
 	MoveTroops(waveOn);
@@ -385,13 +393,26 @@ bool CMap::Update(bool & waveOn)
 	return true;
 }
 
-void CMap::FindPaths()
+void CMap::Spawn(const vector<CTrooper*> & spawns)
+{
+	for (auto trooper : spawns)
+	{
+		trooper->SetPath(m_Paths.at(m_Spawns.at(trooper->GetSpawn())));
+		trooper->Spawn(m_Map);
+		m_Troops.emplace_back(trooper);
+	}
+}
+
+bool CMap::FindPathsFromSpawn()
 {
 	for (const auto & position : m_Spawns)
 	{
-		CPath path{m_Map, m_Rows, m_Cols, position.second, m_Gate.Position()};
-		m_Paths.insert({position.second, path.FindPath()});
+		auto path = CPath{m_Map, m_Rows, m_Cols, position.second, m_Gate.Position()}.FindPath();
+		if (path.empty())
+			return false;
+		m_Paths.insert({position.second, path});
 	}
+	return true;
 }
 
 void CMap::MoveTroops(bool & waveOn)
@@ -419,6 +440,18 @@ void CMap::TowerAttack()
 	for (auto tower : m_Towers)
 		tower->Attack(m_Map, m_Rows, m_Cols, troops);
 }
+
+map<int, bool> CMap::SpawnsBlocked() const
+{
+	map<int, bool> res;
+	for (const auto & spawn : m_Spawns)
+	{
+		pos_t spawnPos = m_Paths.at(spawn.first).front();
+		res.insert({spawn.first, !m_Map.count(spawnPos)});
+	}
+	return res;
+}
+
 
 /**********************************************************************************************************************/
 // TESTING

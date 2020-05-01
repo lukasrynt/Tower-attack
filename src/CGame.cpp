@@ -9,8 +9,8 @@
 using namespace std;
 
 CGame::CGame()
-	: m_GameOn(true),
-	  m_WaveOn(false)
+	: m_WaveOn(false),
+	  m_GameState(EGameState::GAME_RUNNING)
 {}
 
 /**********************************************************************************************************************/
@@ -54,7 +54,7 @@ istream & operator>>(istream & in, CGame & self)
 	}
 	
 	// check eof and signature chars
-	if (!in.eof() || !self.CheckLoaded(signs))
+	if (!in.eof() || !self.CheckDefined(signs))
 	{
 		in.setstate(ios::failbit);
 		return in;
@@ -66,7 +66,7 @@ istream & operator>>(istream & in, CGame & self)
 	return in;
 }
 
-bool CGame::CheckLoaded(const set<char> & signs)
+bool CGame::CheckDefined(const set<char> & signs)
 {
 	m_Map.CheckSpawnCount(m_Waves.GetWaveSize());
 	set<char> check{'U', 'M', 'W'};
@@ -86,6 +86,21 @@ char CGame::LoadSignatureChar(istream & in)
 	return res;
 }
 
+bool CGame::CheckSaved() const
+{
+	return m_Map.CheckSaved()
+		&& m_UnitStack->Check()
+		&& m_Map.CheckSpawnCount(m_Waves.GetWaveCnt());
+}
+
+bool CGame::CheckNew() const
+{
+	return m_Map.CheckNew()
+		&& m_UnitStack->Check()
+		&& m_Waves.CheckNew()
+		&& m_Map.CheckSpawnCount(m_Waves.GetWaveCnt());
+}
+
 /**********************************************************************************************************************/
 // SAVING
 ostream & operator<<(ostream & out, const CGame & self)
@@ -99,19 +114,15 @@ ostream & operator<<(ostream & out, const CGame & self)
 
 /**********************************************************************************************************************/
 // INGAME
-
-bool CGame::IsOn() const
-{
-	return m_GameOn;
-}
-
 void CGame::Update()
 {
-	CTrooper * troop = m_Waves.Update(m_WaveOn);
-	if (troop)
-		m_Map.Spawn(troop);
+	vector<CTrooper*> spawns;
+	if (m_WaveOn)
+		spawns = m_Waves.Update(m_Map.SpawnsBlocked());
+	if (!spawns.empty())
+		m_Map.Spawn(spawns);
 	if (!m_Map.Update(m_WaveOn))
-		End();
+		m_GameState = EGameState::GAME_WON;
 }
 
 void CGame::Render() const
@@ -136,11 +147,13 @@ void CGame::ProcessInput(char ch)
 		case 'a':
 			AddTroopToWave();
 			break;
+		case 'd':
+			DeleteTroopFromWave();
 		case 'p':
 			StartWave();
 			break;
 		case 'q':
-			End();
+			Quit();
 			break;
 		default:
 			throw invalid_input("Invalid input, read the options above.");
@@ -161,9 +174,4 @@ void CGame::AddTroopToWave()
 {
 	if (!m_Waves.AddTroop())
 		throw invalid_input("Current wave is full.");
-}
-
-void CGame::End()
-{
-	m_GameOn = false;
 }

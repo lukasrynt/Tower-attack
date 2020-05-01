@@ -19,44 +19,19 @@ istream & LoadSign(istream & in)
 
 int main ()
 {
-	ifstream inFile("/home/lukas/School/PA2/semestralka/saves/test1.sav");
+	ifstream inFile("/home/lukas/School/PA2/semestralka/maps/test3.map");
 	if (!inFile)
 		return 1;
 
 	CGame game;
 	if (!(inFile >> game))
 		return 2;
+	
 	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
+	game.ProcessInput('2');
+	game.ProcessInput('a');
+	game.ProcessInput('2');
+	game.ProcessInput('a');
 	game.ProcessInput('p');
 	game.Render();
 	game.Update();
@@ -71,7 +46,10 @@ int main ()
 	game.Render();
 	game.Update();
 	game.Render();
-	
+	game.Update();
+	game.Render();
+
+
 
 
 //	LoadSign(inFile);

@@ -15,7 +15,7 @@ using namespace std;
 CWaves::CWaves()
 	: m_Selected(0),
 	  m_MaxSize(0),
-	  m_Frames(20),
+	  m_Frames(0),
 	  m_ReleasingWave(false)
 {}
 
@@ -36,7 +36,7 @@ void CWaves::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 istream & operator>>(istream & in, CWaves & waves)
 {
 	char ch;
-	if (!(in >> waves.m_ReleasingWave))
+	if (!(in >> waves.m_ReleasingWave >> waves.m_Frames))
 		return in;
 	
 	while (true)
@@ -126,12 +126,21 @@ int CWaves::GetWaveSize() const
 	return m_Waves.size();
 }
 
+bool CWaves::CheckNew() const
+{
+	for (const auto & wave : m_Waves)
+		if (!wave.empty())
+			return false;
+		
+	return !m_ReleasingWave;
+}
+
 /**********************************************************************************************************************/
 // SAVING
 ostream & operator<<(ostream & out, const CWaves & waves)
 {
 	out << "(W)" << endl;
-	out << waves.m_ReleasingWave << endl;
+	out << waves.m_ReleasingWave << ' ' << waves.m_Frames << endl;
 	for (const auto & wave : waves.m_Waves)
 	{
 		out << '[';
@@ -197,24 +206,27 @@ bool CWaves::AddTroop()
 
 /**********************************************************************************************************************/
 // UPDATE
-CTrooper * CWaves::Update(bool & waveOn)
+vector<CTrooper*> CWaves::Update(const map<int,bool> & spawnersBlocked)
 {
+	// if 'p' wasn't pressed or we have yet to wait for action, return
+	vector<CTrooper*> res;
 	if (!m_ReleasingWave || !m_Frames.ActionAllowed())
-		return nullptr;
+		return res;
 
-	// if all waves are empty we leave the WaveStarted on false
-	waveOn = true;
-	m_ReleasingWave = false;
+	
+	// synchronous spawning
 	for (size_t i = 0; i < m_Waves.size(); ++i)
 	{
-		if (m_Waves[i].empty())
+		// if there is unit in front of spawner or the wave is empty switch to next one
+		if (spawnersBlocked.at(i) || m_Waves[i].empty())
 			continue;
-		CTrooper * troop = m_Waves[i].front();
-		m_Waves[i].pop_front();
-		m_ReleasingWave = true;
-		troop->SetSpawn(i + 1);
-		return troop;
+		
+		// get the first trooper in wave
+		CTrooper * spawned = m_Waves[i].front();
+		spawned->SetSpawn(i + 1);
+		res.push_back(spawned);
 	}
-	return nullptr;
+	m_ReleasingWave = !res.empty();
+	return res;
 }
 

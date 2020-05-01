@@ -52,9 +52,12 @@ private:
 	void RenderGameScreen() const;
 	static void RenderGameOptions();
 	static void ResetScreen();
+	static void WinnerScreen();
+	static void GameOverScreen();
+	static void RenderWinner();
+	static void RenderGameOver();
 	
 	// MENU SCREEN
-	void MenuScreen();
 	static void RenderHeader();
 	static void PrintCenteredLine(const std::string & line);
 	static void RenderMenuScreen();

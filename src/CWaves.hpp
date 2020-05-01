@@ -26,7 +26,10 @@ public:
 	
 	// LOADING
 	friend std::istream & operator>>(std::istream & in, CWaves & waves);
+	bool CheckNew() const;
 	int GetWaveSize() const;
+	int GetWaveCnt() const
+	{return m_Waves.size();}
 	
 	// SAVING
 	friend std::ostream & operator<<(std::ostream & out, const CWaves & waves);
@@ -40,7 +43,7 @@ public:
 	bool Release();
 	
 	// UPDATE
-	CTrooper * Update(bool & waveOn);
+	std::vector<CTrooper*> Update(const std::map<int,bool> & spawnersBlocked);
 	
 
 private:

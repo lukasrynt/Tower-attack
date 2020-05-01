@@ -26,6 +26,7 @@ public:
 	friend std::istream & operator>>(std::istream & in, CUnitStack & stack);
 	bool IsTrooperChar(char ch) const;
 	bool IsTowerChar(char ch) const;
+	bool Check() const;
 	
 	// SAVING
 	/**
@@ -35,6 +36,7 @@ public:
 	 * @return Output stream
 	 */
 	friend std::ostream & operator<<(std::ostream & out, const CUnitStack & stack);
+	
 	// CLONING
 	/**
 	 * Create trooper from template defined by character
