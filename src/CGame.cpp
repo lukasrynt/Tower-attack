@@ -118,7 +118,7 @@ void CGame::Update()
 {
 	vector<CTrooper*> spawns;
 	if (m_WaveOn)
-		spawns = m_Waves.Update(m_Map.SpawnsBlocked());
+		spawns = m_Waves.Update(m_Map.SpawnsFree());
 	if (!spawns.empty())
 		m_Map.Spawn(spawns);
 	if (!m_Map.Update(m_WaveOn))
@@ -149,6 +149,7 @@ void CGame::ProcessInput(char ch)
 			break;
 		case 'd':
 			DeleteTroopFromWave();
+			break;
 		case 'p':
 			StartWave();
 			break;
@@ -173,5 +174,11 @@ void CGame::StartWave()
 void CGame::AddTroopToWave()
 {
 	if (!m_Waves.AddTroop())
-		throw invalid_input("Current wave is full.");
+		throw invalid_input("Current wave is full, or it has already launched.");
+}
+
+void CGame::DeleteTroopFromWave()
+{
+	if (!m_Waves.DeleteTroop())
+		throw invalid_input("Current wave is empty, or the wave is already launched");
 }

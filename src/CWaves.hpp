@@ -40,6 +40,7 @@ public:
 	// INPUT PROCESSING
 	void Cycle();
 	bool AddTroop();
+	bool DeleteTroop();
 	bool Release();
 	
 	// UPDATE

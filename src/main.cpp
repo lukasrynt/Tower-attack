@@ -10,6 +10,6 @@ using namespace std;
 int main()
 {
 	// run the game
-	CApplication{}.Run();
+	CApplication{CInterface{cout}}.Run();
 	return 0;
 }

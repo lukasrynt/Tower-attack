@@ -32,6 +32,7 @@ void CTrooper::Spawn(unordered_map<pos_t,CTile> & map)
 	pos_t target = m_Path.front();
 	if (!map.count(target))
 		map.insert({target, GetTile()});
+	m_Pos = target;
 	m_Path.pop_front();
 }
 

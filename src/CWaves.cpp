@@ -195,7 +195,8 @@ bool CWaves::Release()
 
 bool CWaves::AddTroop()
 {
-	if (m_Waves.empty() || m_Waves[m_Selected].size() == m_MaxSize)
+	if (m_Waves[m_Selected].size() == m_MaxSize
+		|| m_ReleasingWave)
 		return false;
 	
 	// add trooper to the wave
@@ -204,9 +205,21 @@ bool CWaves::AddTroop()
 	return true;
 }
 
+bool CWaves::DeleteTroop()
+{
+	if (m_Waves[m_Selected].empty()
+		|| m_ReleasingWave)
+		return false;
+	
+	// delete trooper from the back
+	delete m_Waves[m_Selected].back();
+	m_Waves[m_Selected].pop_back();
+	return true;
+}
+
 /**********************************************************************************************************************/
 // UPDATE
-vector<CTrooper*> CWaves::Update(const map<int,bool> & spawnersBlocked)
+vector<CTrooper*> CWaves::Update(const map<int,bool> & spawnsFree)
 {
 	// if 'p' wasn't pressed or we have yet to wait for action, return
 	vector<CTrooper*> res;
@@ -218,11 +231,12 @@ vector<CTrooper*> CWaves::Update(const map<int,bool> & spawnersBlocked)
 	for (size_t i = 0; i < m_Waves.size(); ++i)
 	{
 		// if there is unit in front of spawner or the wave is empty switch to next one
-		if (spawnersBlocked.at(i) || m_Waves[i].empty())
+		if (!spawnsFree.at(i + 1) || m_Waves[i].empty())
 			continue;
 		
 		// get the first trooper in wave
 		CTrooper * spawned = m_Waves[i].front();
+		m_Waves[i].pop_front();
 		spawned->SetSpawn(i + 1);
 		res.push_back(spawned);
 	}

@@ -56,7 +56,7 @@ public:
 	// UPDATE
 	void Spawn(const std::vector<CTrooper*> & spawns);
 	bool Update(bool & waveOn);
-	std::map<int, bool> SpawnsBlocked() const;
+	std::map<int, bool> SpawnsFree() const;
 	
 	void VisualizePath(pos_t start, pos_t goal);
 private:
@@ -64,7 +64,7 @@ private:
 	CGate m_Gate;
 	int m_Cols;									//!< map's columns
 	int m_Rows;									//!< map's rows
-	std::deque<CTrooper*> m_Troops;				//!< pointers to troopers on the map
+	std::vector<CTrooper*> m_Troops;			//!< pointers to troopers on the map
 	std::deque<CTower*> m_Towers;				//!< pointers to towers on the map
 	std::unordered_map<pos_t,CTile> m_Map; 		//!< two dimensional map
 	std::map<int, pos_t> m_Spawns;				//!< spawns on the map mapped to their indexes

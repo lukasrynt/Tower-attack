@@ -6,6 +6,7 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include <zconf.h>
 #include "CMap.hpp"
 #include "CMageTower.hpp"
@@ -399,7 +400,9 @@ void CMap::Spawn(const vector<CTrooper*> & spawns)
 	{
 		trooper->SetPath(m_Paths.at(m_Spawns.at(trooper->GetSpawn())));
 		trooper->Spawn(m_Map);
-		m_Troops.emplace_back(trooper);
+		auto it = lower_bound(m_Troops.begin(), m_Troops.end(), trooper,
+				[](const CTrooper * a, const CTrooper * b){return a->DistanceToGoal() < b->DistanceToGoal();});
+		m_Troops.insert(it, trooper);
 	}
 }
 
@@ -417,13 +420,18 @@ bool CMap::FindPathsFromSpawn()
 
 void CMap::MoveTroops(bool & waveOn)
 {
-	for (auto troop : m_Troops)
+	for (auto troop = m_Troops.begin(); troop != m_Troops.end();)
 	{
-		if (!troop->Move(m_Map))
+		if (!(*troop)->Move(m_Map))
+		{
+			troop++;
 			continue;
-		m_Gate.ReceiveDamage(troop->Attack());
-		delete m_Troops.front();
-		m_Troops.pop_front();
+		}
+		m_Gate.ReceiveDamage((*troop)->Attack());
+		auto pos = std::lower_bound(m_Troops.begin(), m_Troops.end(), *troop,
+				[](const CTrooper * a, const CTrooper * b){return a->DistanceToGoal() < b->DistanceToGoal();});
+		delete *troop;
+		troop = m_Troops.erase(pos);
 		if (m_Troops.empty())
 			waveOn = false;
 	}
@@ -441,12 +449,12 @@ void CMap::TowerAttack()
 		tower->Attack(m_Map, m_Rows, m_Cols, troops);
 }
 
-map<int, bool> CMap::SpawnsBlocked() const
+map<int, bool> CMap::SpawnsFree() const
 {
 	map<int, bool> res;
 	for (const auto & spawn : m_Spawns)
 	{
-		pos_t spawnPos = m_Paths.at(spawn.first).front();
+		pos_t spawnPos = m_Paths.at(spawn.second).front();
 		res.insert({spawn.first, !m_Map.count(spawnPos)});
 	}
 	return res;
@@ -454,7 +462,7 @@ map<int, bool> CMap::SpawnsBlocked() const
 
 
 /**********************************************************************************************************************/
-// TESTING
+// TESTINGc
 void CMap::VisualizePath(pos_t start, pos_t goal)
 {
 	auto path = CPath{m_Map, m_Rows, m_Cols, start, goal}.FindPath();

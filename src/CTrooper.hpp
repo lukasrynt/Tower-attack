@@ -47,6 +47,9 @@ public:
 	std::ostream & SaveOnMap(std::ostream &out) const;
 	
 	// GETTERS/ SETTERS
+	int DistanceToGoal() const
+	{return m_Path.size();}
+	
 	virtual CTile GetTile() const
 	{return CTile{m_Char, ETileType::TROOP, Colors::fg_yellow};}
 	

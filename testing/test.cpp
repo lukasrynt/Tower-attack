@@ -27,27 +27,31 @@ int main ()
 	if (!(inFile >> game))
 		return 2;
 	
-	game.Render();
-	game.ProcessInput('2');
 	game.ProcessInput('a');
-	game.ProcessInput('2');
+	game.ProcessInput('a');
+	game.ProcessInput('1');
+	game.ProcessInput('a');
+	game.ProcessInput('a');
+	game.ProcessInput('a');
+	game.ProcessInput('a');
+	game.ProcessInput('1');
+	game.ProcessInput('a');
+	game.ProcessInput('a');
+	game.ProcessInput('a');
+	game.ProcessInput('a');
+	game.ProcessInput('1');
+	game.ProcessInput('a');
+	game.ProcessInput('a');
+	game.ProcessInput('a');
 	game.ProcessInput('a');
 	game.ProcessInput('p');
 	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
-	game.Update();
-	game.Render();
+	
+	while (game.Running())
+	{
+		game.Update();
+		game.Render();
+	}
 
 
 
