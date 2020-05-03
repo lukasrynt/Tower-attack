@@ -16,14 +16,14 @@ CTile::CTile(char ch)
 	: m_Char(ch),
 	  m_Type(TileType::CreateTile(ch))
 {
-	SetColors();
+	InitColors();
 }
 
 CTile::CTile(char ch, ETileType type)
 	: m_Char(ch),
 	  m_Type(type)
 {
-	SetColors();
+	InitColors();
 }
 
 CTile::CTile(char ch, ETileType type, string color)
@@ -32,7 +32,7 @@ CTile::CTile(char ch, ETileType type, string color)
 	  m_Color(move(color))
 {}
 
-void CTile::SetColors()
+void CTile::InitColors()
 {
 	switch(m_Type)
 	{

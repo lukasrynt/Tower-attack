@@ -20,7 +20,7 @@ private:
 	
 	// MAIN LOOP
 	void MainLoop();
-	void EndGame() const;
+	void EndGame();
 	
 	// INPUT PROCESSING
 	void ProcessInput();

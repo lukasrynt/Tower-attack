@@ -27,10 +27,10 @@ CMageTower * CMageTower::LoadTemplate(istream & in)
 	return tower;
 }
 
-istream & CMageTower::LoadOnMapTower(istream & in)
+istream & CMageTower::LoadOnMap(istream & in)
 {
 	int curr;
-	if (!(CTower::LoadOnMapTower(in) >> curr))
+	if (!(CTower::LoadOnMap(in) >> curr))
 		return in;
 	m_Frames.SetCurrent(curr);
 	return in;
@@ -38,14 +38,14 @@ istream & CMageTower::LoadOnMapTower(istream & in)
 
 /**********************************************************************************************************************/
 // SAVING
-ostream & CMageTower::SaveTemplateTower(ostream & out) const
+ostream & CMageTower::SaveTemplate(ostream & out) const
 {
-	return CTower::SaveTemplateTower(out) << ' ' << m_ManaFrames << ' ' << m_MagicAttack;
+	return CTower::SaveTemplate(out) << ' ' << m_ManaFrames << ' ' << m_MagicAttack;
 }
 
-ostream & CMageTower::SaveOnMapTower(ostream & out) const
+ostream & CMageTower::SaveOnMap(ostream & out) const
 {
-	return CTower::SaveOnMapTower(out) << ' ' << m_ManaFrames.GetCurrent();
+	return CTower::SaveOnMap(out) << ' ' << m_ManaFrames.GetCurrent();
 }
 
 /**********************************************************************************************************************/

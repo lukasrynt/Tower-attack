@@ -20,12 +20,12 @@ istream & operator>>(istream & in, CGate & self)
 	return in;
 }
 
-void CGate::Render() const
+ostream & CGate::Render(ostream & out) const
 {
 	int part = 0;
 	if (m_Hp > 0)
 		part = (m_Hp / static_cast<double> (m_MaxHp)) * 10;
-	cout << "Gate: ["
+	return out << "Gate: ["
 		 << Colors::bg_red << string(part, ' ') << Colors::color_reset
 		 << string(10 - part, ' ') << ']' << endl << endl;
 }

@@ -16,24 +16,22 @@ class CTower
 {
 public:
 	// INIT
-	explicit CTower(int attackDamage = 0, int attackSpeed = 0, pos_t position = pos_t::npos, char ch = '*', char type = 'R');
+	explicit CTower(int attackDamage = 0, int attackSpeed = 0, pos_t position = pos::npos, char ch = '*', char type = 'R');
 	
 	virtual ~CTower() = default;
 	
 	virtual CTower * Clone() const;
 	
 	// LOAD
-	static CTower * LoadTemplate(std::istream & in);
-	std::istream & LoadOnMap(std::istream & in);
+	virtual std::istream & LoadTemplate(std::istream & in);
+	virtual std::istream & LoadOnMap(std::istream & in);
 	
 	// SAVE
-	std::ostream & SaveTemplate(std::ostream & out) const;
-	std::ostream & SaveOnMap(std::ostream & out) const;
+	virtual std::ostream & SaveTemplate(std::ostream & out) const;
+	virtual std::ostream & SaveOnMap(std::ostream & out) const;
 	
 	// ATTACK
 	void Attack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops);
-	
-	pos_t PerimeterBreached(std::unordered_map<pos_t, CTile> & map);
 	
 	// GETTER / SETTERS
 	virtual CTile GetTile() const
@@ -49,21 +47,21 @@ public:
 	{return m_Pos;}
 	
 protected:
+	CTile m_Tile;
 	char m_Char;
 	char m_Type;
 	pos_t m_Pos;
+	double m_Range;
 	int m_AttackDamage;	//!< attack damage of the tower
 	CFrames m_Frames;	//!< attack speed of the tower
 	
 	virtual void SpecialAttack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops);
-	virtual std::istream & LoadOnMapTower(std::istream & in);
-	virtual std::ostream & SaveTemplateTower(std::ostream & out) const;
-	virtual std::ostream & SaveOnMapTower(std::ostream & out) const;
-	
 private:
-	std::deque<pos_t> m_ArrowPath;
 	pos_t m_ArrowPos;
+	std::deque<pos_t> m_ArrowPath;
 	
 	void ArrowMove(std::unordered_map<pos_t, CTile> & map);
 	void ArrowClear(std::unordered_map<pos_t, CTile> & map);
+	void AssignArrow(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops);
+	bool TrooperDamaged(std::unordered_map<pos_t, CTile> & map, CTrooper * trooper);
 };

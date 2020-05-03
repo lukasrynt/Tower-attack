@@ -22,36 +22,38 @@ class CTrooper
 public:
 	// INIT
 	virtual ~CTrooper() = default;
-	
-	explicit CTrooper(int hp = 0, int speed = 0, int attack = 0, char ch = '@', char type = 'T');
-	
-	virtual CTrooper *Clone() const;
+	explicit CTrooper(int hp = 0, int speed = 0, int attack = 0, char ch = '@', char type = 'T', std::string color = Colors::fg_yellow);
+	virtual CTrooper * Clone() const;
 	
 	// ACTIONS
 	void Spawn(std::unordered_map<pos_t, CTile> & map);
-	
 	bool Move(std::unordered_map<pos_t, CTile> & map);
-	
 	int Attack() const;
-	
 	virtual void ReceiveDamage(int damage);
 	
 	// LOADING
-	static CTrooper *LoadTemplate(std::istream &in);
-	
-	std::istream & LoadOnMap(std::istream &in);
+	virtual std::istream & LoadTemplate(std::istream & in);
+	virtual std::istream & LoadOnMap(std::istream & in);
 	
 	// SAVING
-	std::ostream & SaveTemplate(std::ostream &out) const;
+	virtual std::ostream & SaveTemplate(std::ostream & out) const;
+	virtual std::ostream & SaveOnMap(std::ostream & out) const;
 	
-	std::ostream & SaveOnMap(std::ostream &out) const;
+	// RENDERING
+	virtual std::ostream & RenderInfo(std::ostream & out) const;
 	
 	// GETTERS/ SETTERS
+	bool Died() const
+	{return m_Hp < 0;}
+	
 	int DistanceToGoal() const
 	{return m_Path.size();}
 	
-	virtual CTile GetTile() const
-	{return CTile{m_Char, ETileType::TROOP, Colors::fg_yellow};}
+	std::string GetColor() const
+	{return m_Color;}
+	
+	CTile GetTile() const
+	{return CTile{m_Char, ETileType::TROOP, m_Color};}
 	
 	char GetChar() const
 	{return m_Char;}
@@ -77,14 +79,11 @@ public:
 protected:
 	char m_Char;
 	char m_Type;
+	std::string m_Color;
 	pos_t m_Pos;
 	int m_Hp;					//!< Number of health points of the unit
 	int m_Attack;				//!< Attack damage of the trooper
 	CFrames m_Frames;
 	size_t m_SpawnIdx;			//!< Index of the spawn where the trooper should appear
 	std::deque<pos_t> m_Path;	//!< Path to goal
-	
-	virtual std::istream & LoadOnMapTroop(std::istream & in);
-	virtual std::ostream & SaveTemplateTroop(std::ostream & out) const;
-	virtual std::ostream & SaveOnMapTroop(std::ostream & out) const;
 };

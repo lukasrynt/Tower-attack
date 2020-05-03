@@ -153,23 +153,30 @@ ostream & operator<<(ostream & out, const CWaves & waves)
 
 /**********************************************************************************************************************/
 // RENDER
-void CWaves::Render() const
+ostream & CWaves::Render(ostream & out) const
 {
-	cout << endl << Colors::fg_green << string(10 + m_MaxSize, '-') << Colors::color_reset << endl;
+	if (!(out << endl << Colors::fg_green << string(10 + m_MaxSize, '-') << Colors::color_reset << endl))
+		return out;
 	
 	size_t idx = 0;
 	for (const auto & wave : m_Waves)
 	{
 		if (idx == m_Selected)
-			cout << Colors::bg_green;
-		cout	<< "Wave " << ++idx << ": [";
+			if (!(out << Colors::bg_green))
+				return out;
+		if (!(out << "Wave " << ++idx << ": ["))
+				return out;
+			
 		for (const auto & troop : wave)
-			cout << *troop;
-		cout << string(m_MaxSize - wave.size(), ' ') << "]"
-			 << Colors::color_reset << endl;
+			if (!(out << *troop))
+				return out;
+			
+		if(!(out << string(m_MaxSize - wave.size(), ' ') << "]"
+			 << Colors::color_reset << endl))
+			return out;
 	}
 	
-	cout << Colors::fg_green << string(10 + m_MaxSize, '-') << Colors::color_reset << endl;
+	return out << Colors::fg_green << string(10 + m_MaxSize, '-') << Colors::color_reset << endl;
 }
 
 /**********************************************************************************************************************/
@@ -240,7 +247,13 @@ vector<CTrooper*> CWaves::Update(const map<int,bool> & spawnsFree)
 		spawned->SetSpawn(i + 1);
 		res.push_back(spawned);
 	}
-	m_ReleasingWave = !res.empty();
+	
+	// check if there are still troops to release
+	m_ReleasingWave = false;
+	for (const auto & wave : m_Waves)
+		if (!wave.empty())
+			m_ReleasingWave = true;
+	
 	return res;
 }
 

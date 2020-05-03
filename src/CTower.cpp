@@ -13,9 +13,10 @@ CTower::CTower(int attackDamage, int attackSpeed, pos_t position, char ch, char 
 	: m_Char(ch),
 	  m_Type(type),
 	  m_Pos(position),
+	  m_Range(3),
 	  m_AttackDamage(attackDamage),
 	  m_Frames(attackSpeed),
-	  m_ArrowPos(pos_t::npos)
+	  m_ArrowPos(pos::npos)
 {}
 
 CTower * CTower::Clone() const
@@ -23,29 +24,14 @@ CTower * CTower::Clone() const
 	return new CTower(*this);
 }
 
-
 /**********************************************************************************************************************/
 // LOADING
-CTower * CTower::LoadTemplate(std::istream & in)
+std::istream & CTower::LoadTemplate(std::istream & in)
 {
-	CTower * tower = new CTower();
-	char del;
-	if (!(in >> tower->m_Char >> tower->m_AttackDamage >> tower->m_Frames >> del)
-		|| del != ';')
-		return nullptr;
-	return tower;
+	return in >> m_Char >> m_AttackDamage >> m_Frames;
 }
 
 std::istream & CTower::LoadOnMap(std::istream &in)
-{
-	char del;
-	if (!(LoadOnMapTower(in) >> del)
-		|| del != ';')
-		in.setstate(ios::failbit);
-	return in;
-}
-
-std::istream & CTower::LoadOnMapTower(std::istream &in)
 {
 	int current;
 	if (!(in >> m_Pos >> current))
@@ -58,32 +44,16 @@ std::istream & CTower::LoadOnMapTower(std::istream &in)
 // SAVING
 ostream & CTower::SaveTemplate(ostream &out) const
 {
-	return SaveTemplateTower(out) << ';' << endl;
-}
-
-ostream & CTower::SaveTemplateTower(ostream &out) const
-{
 	return out << m_Type << ' ' << m_Char << ' ' << m_AttackDamage << ' ' << m_Frames;
 }
 
 ostream & CTower::SaveOnMap(ostream &out) const
-{
-	return SaveOnMapTower(out) << ';' << endl;
-}
-
-ostream & CTower::SaveOnMapTower(ostream &out) const
 {
 	return out << m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent();
 }
 
 /**********************************************************************************************************************/
 // ATTACK
-
-pos_t CTower::PerimeterBreached(std::unordered_map<pos_t, CTile> & map)
-{
-	return pos_t::npos;
-}
-
 void CTower::Attack(unordered_map<pos_t, CTile> & map, int rows, int cols, unordered_map<pos_t, CTrooper *> & troops)
 {
 	// return if frames are low
@@ -93,34 +63,49 @@ void CTower::Attack(unordered_map<pos_t, CTile> & map, int rows, int cols, unord
 	SpecialAttack(map, rows, cols, troops);
 }
 
-void CTower::SpecialAttack(std::unordered_map<pos_t, CTile> &map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops)
+void CTower::SpecialAttack(unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops)
 {
-// if perimeter hasn't been breached we want to erase current arrow
-	pos_t target;
-	if ((target = PerimeterBreached(map)) == pos_t::npos)
+	// if there is currently no arrow - make one and return
+	if (m_ArrowPath.empty())
 	{
-		ArrowClear(map);
+		AssignArrow(map, rows, cols, troops);
 		return;
-	}
-	
-	// if there is currently no arrow - create one
-	if (m_ArrowPath.empty() && troops.count(target))
-	{
-		CPath path = CPath(map, rows, cols, m_Pos, target);
-		m_ArrowPath = path.FindPath();
 	}
 	
 	// move arrow on its path
 	ArrowMove(map);
 	
 	// if we have reached the trooper - damage it and remove the arrow (clear it's path)
-	if (m_ArrowPos == target)
+	for (const auto & troop : troops)
+		if (!TrooperDamaged(map, troop.second))
+			map.insert({m_ArrowPos, CTile(' ', ETileType::BULLET,Colors::bg_red)});
+}
+
+void CTower::AssignArrow(unordered_map<pos_t, CTile> & map, int rows, int cols, unordered_map<pos_t, CTrooper*> & troops)
+{
+	size_t closest = m_Range;
+	for (const auto & troop : troops)
 	{
-		m_ArrowPath.clear();
-		troops.at(target)->ReceiveDamage(m_AttackDamage);
+		if (m_Pos.Distance(troop.second->GetPosition()) > m_Range)
+			continue;
+		
+		m_ArrowPath = CPath{map, rows, cols, m_Pos, troop.second->GetPosition()}
+				.FindDiagonalPath();
+		if (m_ArrowPath.size() <= closest)
+			return;
 	}
-	else
-		map.insert({m_ArrowPos, CTile(' ', ETileType::BULLET)});}
+	m_ArrowPath = deque<pos_t>();
+}
+
+bool CTower::TrooperDamaged(unordered_map<pos_t, CTile> & map, CTrooper * trooper)
+{
+	if (m_ArrowPos != trooper->GetPosition())
+		return false;
+	ArrowClear(map);
+	map.at(trooper->GetPosition()).SetColor(trooper->GetColor() + Colors::bg_red);
+	trooper->ReceiveDamage(m_AttackDamage);
+	return true;
+}
 
 void CTower::ArrowMove(unordered_map<pos_t,CTile> & map)
 {
@@ -135,4 +120,5 @@ void CTower::ArrowClear(unordered_map<pos_t,CTile> & map)
 	if (map.count(m_ArrowPos))
 		map.erase(m_ArrowPos);
 	m_ArrowPath.clear();
+	m_ArrowPos = pos::npos;
 }

@@ -16,7 +16,7 @@ public:
 	void ReceiveDamage(int damage)
 	{m_Hp -= damage;}
 	
-	void Render() const;
+	std::ostream & Render(std::ostream & out) const;
 	
 	pos_t & Position()
 	{return m_Pos;}
@@ -32,7 +32,7 @@ public:
 	friend std::ostream & operator<<(std::ostream & out, const CGate & self)
 	{return out << '(' << self.m_Hp << ' ' << self.m_MaxHp << ')';}
 private:
-	pos_t m_Pos = pos_t::npos;		//!< position of the gate
+	pos_t m_Pos = pos::npos;		//!< position of the gate
 	int m_Hp = 0;					//!< number of current gate's health
 	int m_MaxHp = 0;				//!< number of gate's max health
 };

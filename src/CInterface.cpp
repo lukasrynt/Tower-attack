@@ -69,7 +69,7 @@ bool CInterface::LoadNewGame(unique_ptr<CGame> & game) const
 		// return to menu if requested
 		if (response == "RETURN")
 		{
-			cout << Colors::color_reset;
+			m_Out << Colors::color_reset;
 			return false;
 		}
 		
@@ -93,7 +93,7 @@ bool CInterface::LoadNewGame(unique_ptr<CGame> & game) const
 		}
 		inFile.close();
 		
-		cout << Colors::color_reset;
+		m_Out << Colors::color_reset;
 		NullTimeout();
 		inFile.close();
 		return true;
@@ -112,7 +112,7 @@ bool CInterface::LoadSavedGame(unique_ptr<CGame> & game) const
 		// return to menu if requested
 		if (response == "RETURN")
 		{
-			cout << Colors::color_reset;
+			m_Out << Colors::color_reset;
 			return false;
 		}
 		
@@ -133,7 +133,7 @@ bool CInterface::LoadSavedGame(unique_ptr<CGame> & game) const
 			InvalidInput("Incorrect file format.");
 			continue;
 		}
-		cout << Colors::color_reset;
+		m_Out << Colors::color_reset;
 		NullTimeout();
 		inFile.close();
 		return true;
@@ -170,7 +170,7 @@ bool CInterface::PromptSave(const unique_ptr<CGame> & game) const
 		// return to game if requested
 		if (response == "RETURN")
 		{
-			cout << Colors::color_reset;
+			m_Out << Colors::color_reset;
 			return false;
 		}
 		
@@ -260,9 +260,9 @@ void CInterface::Winner() const
 	while (true)
 	{
 		if (col)
-			cout << Colors::fg_green;
+			m_Out << Colors::fg_green;
 		else
-			cout << Colors::fg_blue;
+			m_Out << Colors::fg_blue;
 		col = !col;
 		ResetScreen();
 		RenderWinner();
@@ -270,14 +270,14 @@ void CInterface::Winner() const
 			break;
 		Sleep(60ms);
 	}
-	cout << Colors::color_reset;
+	m_Out << Colors::color_reset;
 }
 
 void CInterface::RenderWinner() const
 {
 	const int TEXT_HEIGHT = 8;
 	for (int i = 0; i < (DISPLAY_HEIGHT - TEXT_HEIGHT) / 2; ++i)
-		cout << endl;
+		m_Out << endl;
 	PrintCenteredLine(R"(         _________ _        _        _______  _______ )");
 	PrintCenteredLine(R"(|\     /|\__   __/( (    /|( (    /|(  ____ \(  ____ ))");
 	PrintCenteredLine(R"(| )   ( |   ) (   |  \  ( ||  \  ( || (    \/| (    )|)");
@@ -294,9 +294,9 @@ void CInterface::GameOver() const
 	while (true)
 	{
 		if (col)
-			cout << Colors::fg_red;
+			m_Out << Colors::fg_red;
 		else
-			cout << Colors::fg_black;
+			m_Out << Colors::fg_black;
 		col = !col;
 		ResetScreen();
 		RenderGameOver();
@@ -304,7 +304,7 @@ void CInterface::GameOver() const
 			break;
 		Sleep(60ms);
 	}
-	cout << Colors::color_reset;
+	m_Out << Colors::color_reset;
 }
 
 void CInterface::RenderGameOver() const
@@ -328,7 +328,7 @@ void CInterface::GameScreen(const unique_ptr<CGame> & game) const
 {
 	ResetScreen();
 	RenderGameOptions();
-	game->Render();
+	game->Render(m_Out);
 }
 
 void CInterface::RenderGameOptions() const

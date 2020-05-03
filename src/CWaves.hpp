@@ -35,7 +35,7 @@ public:
 	friend std::ostream & operator<<(std::ostream & out, const CWaves & waves);
 
 	// RENDER
-	void Render() const;
+	std::ostream & Render(std::ostream & out) const;
 	
 	// INPUT PROCESSING
 	void Cycle();

@@ -9,8 +9,6 @@
 
 using namespace std;
 
-const CPosition CPosition::npos = CPosition{-1,-1};
-
 CPosition::CPosition(int x, int y)
 		: m_X(x),
 		  m_Y(y)
@@ -36,14 +34,24 @@ CPosition CPosition::down() const
 	return CPosition(m_X, m_Y + 1);
 }
 
-list<CPosition> CPosition::GetNeighbours() const
+list<CPosition> CPosition::GetCrossNeighbours() const
 {
-	list<CPosition> neighbours;
-	neighbours.push_back(left());
-	neighbours.push_back(right());
-	neighbours.push_back(up());
-	neighbours.push_back(down());
-	return neighbours;
+	list<CPosition> res;
+	res.push_back(left());
+	res.push_back(right());
+	res.push_back(up());
+	res.push_back(down());
+	return res;
+}
+
+std::list<CPosition> CPosition::GetDiagNeighbours() const
+{
+	list<CPosition> res = GetCrossNeighbours();
+	res.push_back(left().up());
+	res.push_back(left().down());
+	res.push_back(right().up());
+	res.push_back(right().down());
+	return res;
 }
 
 bool CPosition::LiesInRange(int rows, int cols) const

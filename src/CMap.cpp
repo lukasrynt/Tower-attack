@@ -78,7 +78,6 @@ istream & CMap::LoadMap(istream & in)
 	
 	if (!FindPathsFromSpawn())
 		in.setstate(ios::failbit);
-
 	return in;
 }
 
@@ -130,7 +129,7 @@ istream & CMap::LoadTroops(istream & in, char ch)
 		in.setstate(ios::failbit);
 		return in;
 	}
-	auto path =  CPath{m_Map, m_Rows, m_Cols, trooper->GetPosition(), m_Gate.Position()}.FindPath();
+	auto path = CPath{m_Map, m_Rows, m_Cols, trooper->GetPosition(), m_Gate.Position()}.FindStraightPath();
 	trooper->SetPath(path);
 	return in;
 }
@@ -257,7 +256,7 @@ istream & CMap::DeleteWs(istream & in)
 
 bool CMap::InitGatePosition(pos_t position)
 {
-	if (m_Gate.Position() != pos_t::npos)
+	if (m_Gate.Position() != pos::npos)
 		return false;
 	m_Gate.Position() = position;
 	return true;
@@ -305,7 +304,7 @@ bool CMap::CheckNew() const
 
 bool CMap::CheckSaved() const
 {
-	return !(m_Gate.Position() == pos_t::npos)
+	return !(m_Gate.Position() == pos::npos)
 		&& !m_Spawns.empty();
 }
 /**********************************************************************************************************************/
@@ -361,13 +360,16 @@ ostream & CMap::SaveEntities(ostream & out) const
 
 /**********************************************************************************************************************/
 // RENDER
-void CMap::Render() const
+ostream & CMap::Render(ostream & out) const
 {
-	m_Gate.Render();
-	RenderMap();
+	if (!m_Gate.Render(out))
+		return out;
+	if(!RenderMap(out))
+		return out;
+	return out;
 }
 
-void CMap::RenderMap() const
+ostream & CMap::RenderMap(ostream & out) const
 {
 	for (int i = 0; i < m_Rows; ++i)
 	{
@@ -379,8 +381,10 @@ void CMap::RenderMap() const
 			else
 				line += m_Map.at({j, i}).PrintChar();
 		}
-		cout << line << endl;
+		if (!(out << line << endl))
+			return out;
 	}
+	return out;
 }
 
 /**********************************************************************************************************************/
@@ -410,7 +414,7 @@ bool CMap::FindPathsFromSpawn()
 {
 	for (const auto & position : m_Spawns)
 	{
-		auto path = CPath{m_Map, m_Rows, m_Cols, position.second, m_Gate.Position()}.FindPath();
+		auto path = CPath{m_Map, m_Rows, m_Cols, position.second, m_Gate.Position()}.FindStraightPath();
 		if (path.empty())
 			return false;
 		m_Paths.insert({position.second, path});
@@ -447,6 +451,17 @@ void CMap::TowerAttack()
 	// attack troops by towers
 	for (auto tower : m_Towers)
 		tower->Attack(m_Map, m_Rows, m_Cols, troops);
+	
+	// check if a trooper has died - if so delete him from map
+	for (auto troop = m_Troops.begin(); troop != m_Troops.end();)
+	{
+		if (!(*troop)->Died())
+			continue;
+		auto pos = std::lower_bound(m_Troops.begin(), m_Troops.end(), *troop,
+									[](const CTrooper * a, const CTrooper * b){return a->DistanceToGoal() < b->DistanceToGoal();});
+		delete *troop;
+		troop = m_Troops.erase(pos);
+	}
 }
 
 map<int, bool> CMap::SpawnsFree() const
@@ -460,12 +475,11 @@ map<int, bool> CMap::SpawnsFree() const
 	return res;
 }
 
-
 /**********************************************************************************************************************/
 // TESTINGc
 void CMap::VisualizePath(pos_t start, pos_t goal)
 {
-	auto path = CPath{m_Map, m_Rows, m_Cols, start, goal}.FindPath();
+	auto path = CPath{m_Map, m_Rows, m_Cols, start, goal}.FindStraightPath();
 	while (!path.empty())
 	{
 		CTile tile = CTile(' ');

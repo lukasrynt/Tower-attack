@@ -6,6 +6,7 @@
 #pragma once
 
 #include <unordered_map>
+#include <functional>
 #include "CPosition.hpp"
 #include "CTile.hpp"
 
@@ -13,7 +14,8 @@ class CPath
 {
 public:
 	CPath(const std::unordered_map<pos_t, CTile> & map, int rows, int cols, pos_t start, pos_t goal);
-	std::deque<pos_t> FindPath();
+	std::deque<pos_t> FindStraightPath();
+	std::deque<pos_t> FindDiagonalPath();
 private:
 	struct CNode
 	{
@@ -22,8 +24,8 @@ private:
 	};
 	
 	std::deque<pos_t> TraceBack();
-	bool BFS();
-	bool IterateNeighbours(std::unordered_map<pos_t, bool> & visited, std::queue<CNode> & cells);
+	bool BFS(const std::function<std::list<pos_t>(pos_t)> & getNeighbours);
+	bool IterateNeighbours(std::unordered_map<pos_t, bool> & visited, std::queue<CNode> & cells, const std::function<std::list<pos_t>(pos_t)> & getNeighbours);
 	void QueueNeighbours(pos_t neighbour, std::unordered_map<pos_t, bool> & visited, std::queue<CNode> & cells);
 	
 	

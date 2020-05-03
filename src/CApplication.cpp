@@ -22,7 +22,7 @@ CApplication::CApplication(const CInterface & interface)
 void CApplication::Run()
 {
 	bool end = false;
-	do
+	while (!end)
 	{
 		m_Interface.Menu();
 		
@@ -45,7 +45,7 @@ void CApplication::Run()
 				break;
 		}
 		
-	} while (!end);
+	}
 }
 
 void CApplication::MainLoop()
@@ -63,13 +63,14 @@ void CApplication::MainLoop()
 	EndGame();
 }
 
-void CApplication::EndGame() const
+void CApplication::EndGame()
 {
 	if (m_Game->Won())
 		m_Interface.Winner();
 	else if (m_Game->Lost())
 		m_Interface.GameOver();
 	CInterface::ResetTimeout();
+	m_Game = nullptr;
 }
 
 /**********************************************************************************************************************/

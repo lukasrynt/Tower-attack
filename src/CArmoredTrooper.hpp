@@ -27,18 +27,17 @@ public:
 	 * @param damage
 	 */
 	void ReceiveDamage(int damage) final;
+	std::ostream & RenderInfo(std::ostream & out) const final;
 	CArmoredTrooper * Clone() const final;
 	
 	// LOAD
-	static CArmoredTrooper * LoadTemplate(std::istream & in);
-	std::istream & LoadOnMapTroop(std::istream & in) final;
-	CTile GetTile() const final
-	{return CTile{m_Char, ETileType::TROOP, Colors::fg_cyan};}
+	std::istream & LoadTemplate(std::istream & in) final;
+	std::istream & LoadOnMap(std::istream & in) final;
 	
 	
 	// SAVE
-	std::ostream & SaveTemplateTroop(std::ostream & out) const final;
-	std::ostream & SaveOnMapTroop(std::ostream & out) const final;
+	std::ostream & SaveTemplate(std::ostream & out) const final;
+	std::ostream & SaveOnMap(std::ostream & out) const final;
 
 private:
 	int m_Armor;	//!< Current armor

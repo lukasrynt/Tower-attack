@@ -22,17 +22,18 @@ public:
 	explicit CTile(char ch = ' ');
 	CTile(char ch, ETileType type);
 	CTile(char ch, ETileType type, std::string color);
+	void SetColor(std::string color)
+	{m_Color = std::move(color);}
 	bool IsTroop() const;
 	bool IsTower() const;
 	bool IsWall() const;
 	bool IsSpawn() const;
 	bool IsGate() const;
 	bool IsValid() const;
-	void SetColors();
+	void InitColors();
 	char GetRawChar() const;
 	std::string PrintChar() const;
 protected:
-	
 	char m_Char;			//!< Character representation of the tile
 	ETileType m_Type;		//!< Type of the tile
 	std::string m_Color;

@@ -9,6 +9,7 @@
 #include <list>
 #include <vector>
 #include <deque>
+#include <cmath>
 
 /**
  * Class representing x-y position on the map
@@ -21,19 +22,21 @@ public:
 	CPosition right() const;
 	CPosition up() const;
 	CPosition down() const;
-	std::list<CPosition> GetNeighbours() const;
+	std::list<CPosition> GetCrossNeighbours() const;
+	std::list<CPosition> GetDiagNeighbours() const;
 	bool LiesInRange(int rows, int cols) const;
 	std::deque<std::vector<CPosition>> GetRadius(int level) const;
 	friend bool operator<(const CPosition & self, const CPosition & other);
 	friend bool operator==(const CPosition & self, const CPosition & other);
 	friend bool operator!=(const CPosition & self, const CPosition & other);
 	
+	double Distance(const CPosition & other) const
+	{return sqrt((m_X - other.m_X)*(m_X - other.m_X) + (m_Y - other.m_Y)*(m_Y - other.m_Y));}
+	
 	friend std::ostream & operator<<(std::ostream & out, const CPosition & self)
 	{return out << "(" << self.m_X << ' ' << self.m_Y << ")";}
 	
 	friend std::istream & operator>>(std::istream & in, CPosition & self);
-	
-	static const CPosition npos;
 	
 	int m_X; 	//!< X coordinate
 	int m_Y;	//!< Y coordinate
@@ -51,4 +54,9 @@ namespace std
 			return s.m_X ^ (s.m_Y << 1);
 		}
 	};
+}
+
+namespace pos
+{
+	const pos_t npos = pos_t{-1, -1};
 }

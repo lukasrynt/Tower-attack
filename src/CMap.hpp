@@ -50,8 +50,8 @@ public:
 	friend std::ostream & operator<<(std::ostream & out, const CMap & self);
 
 	// RENDER
-	void Render() const;
-	void RenderMap() const;
+	std::ostream & Render(std::ostream & out) const;
+	std::ostream & RenderMap(std::ostream & out) const;
 
 	// UPDATE
 	void Spawn(const std::vector<CTrooper*> & spawns);

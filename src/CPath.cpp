@@ -4,6 +4,7 @@
  */
 
 #include <algorithm>
+#include <functional>
 #include "CPath.hpp"
 
 using namespace std;
@@ -20,10 +21,20 @@ CPath::CPath(const unordered_map<pos_t, CTile> & map, int rows, int cols, pos_t 
 
 /**********************************************************************************************************************/
 // PATHFINDING
-deque<pos_t> CPath::FindPath()
+deque<pos_t> CPath::FindStraightPath()
 {
 	// Spread the tiles using BFS
-	if (!BFS())
+	if (!BFS([](pos_t a){return a.GetCrossNeighbours();}))
+		return deque<pos_t>();
+	
+	// trace the path back, based on the data received from BFS
+	return TraceBack();
+}
+
+deque<pos_t> CPath::FindDiagonalPath()
+{
+	// Spread the tiles using BFS
+	if (!BFS([](pos_t a){return a.GetDiagNeighbours();}))
 		return deque<pos_t>();
 	
 	// trace the path back, based on the data received from BFS
@@ -38,7 +49,7 @@ deque<pos_t> CPath::TraceBack()
 	for (CNode curr = m_NodeMap.at(m_Goal); curr.m_Pos != m_Start;)
 	{
 		int minDist = INT32_MAX;
-		for (const auto & neighbour : curr.m_Pos.GetNeighbours())
+		for (const auto & neighbour : curr.m_Pos.GetCrossNeighbours())
 		{
 			if (!m_NodeMap.count(neighbour)
 				|| m_NodeMap.at(neighbour).m_Dist > minDist)
@@ -56,7 +67,7 @@ deque<pos_t> CPath::TraceBack()
 	return path;
 }
 
-bool CPath::BFS()
+bool CPath::BFS(const function<list<pos_t>(pos_t)> & getNeighbours)
 {
 	// if point is not in the map - path was not found
 	if (!m_Start.LiesInRange(m_Rows, m_Cols) || !m_Goal.LiesInRange(m_Rows, m_Cols))
@@ -78,7 +89,7 @@ bool CPath::BFS()
 			return true;
 		
 		// queue neighbouring cells - return true if one of the neighbours was target
-		if (IterateNeighbours(visited, cells))
+		if (IterateNeighbours(visited, cells, getNeighbours))
 			return true;
 		
 		// dequeue the current cell
@@ -88,10 +99,10 @@ bool CPath::BFS()
 	return false;
 }
 
-bool CPath::IterateNeighbours(unordered_map<pos_t, bool> & visited, queue<CNode> & cells)
+bool CPath::IterateNeighbours(unordered_map<pos_t, bool> & visited, queue<CNode> & cells, const function<list<pos_t>(pos_t)> & getNeighbours)
 {
 	pos_t curr = cells.front().m_Pos;
-	for (const auto & neighbour : curr.GetNeighbours())
+	for (const auto & neighbour : getNeighbours(curr))
 	{
 		// found finish
 		if (neighbour == m_Goal)

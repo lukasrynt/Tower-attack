@@ -23,6 +23,8 @@ public:
 	
 	// LOADING
 	friend std::istream & operator>>(std::istream & in, CGame & self);
+	bool LoadObjects(std::istream & in, std::set<char> & signs, bool & end);
+	void SetUnitStack();
 	bool CheckNew() const;
 	bool CheckSaved() const;
 	
@@ -31,7 +33,7 @@ public:
 	
 	// INGAME
 	void Update();
-	void Render() const;
+	std::ostream & Render(std::ostream & out) const;
 	bool Won() const
 	{return m_GameState == EGameState::GAME_WON;}
 	

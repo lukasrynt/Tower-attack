@@ -19,51 +19,56 @@ istream & operator>>(istream & in, CGame & self)
 {
 	set<char> signs;
 	bool end = false;
-	self.m_UnitStack = make_shared<CUnitStack>();
-	self.m_Map.AssignUnitStack(self.m_UnitStack);
-	self.m_Waves.AssignUnitStack(self.m_UnitStack);
+	self.SetUnitStack();
 	
 	while (!end)
-	{
-		// load signature char
-		char ch = CGame::LoadSignatureChar(in);
-		if (!signs.insert(ch).second)
+		if (!self.LoadObjects(in, signs, end))
 		{
 			in.setstate(ios::failbit);
 			return in;
 		}
-		
-		// load appropriate object
-		switch (ch)
-		{
-			case 'U':
-				if (!(in >> *self.m_UnitStack))
-					return in;
-				break;
-			case 'W':
-				if (!(in >> self.m_Waves))
-					return in;
-				break;
-			case 'M':
-				if (!(in >> self.m_Map))
-					return in;
-				break;
-			default:
-				end = true;
-		}
-	}
 	
 	// check eof and signature chars
 	if (!in.eof() || !self.CheckDefined(signs))
-	{
 		in.setstate(ios::failbit);
-		return in;
-	}
-	else
-		in.clear(ios::goodbit);
-	
-	self.m_WaveOn = self.m_Map.WaveIsRunning();
+	in.clear(ios::goodbit);
 	return in;
+}
+
+void CGame::SetUnitStack()
+{
+	m_UnitStack = make_shared<CUnitStack>();
+	m_Map.AssignUnitStack(m_UnitStack);
+	m_Waves.AssignUnitStack(m_UnitStack);
+}
+
+bool CGame::LoadObjects(istream & in, set<char> & signs, bool & end)
+{
+	// load signature char
+	char ch = CGame::LoadSignatureChar(in);
+	if (!signs.insert(ch).second)
+		return false;
+	
+	// load appropriate object
+	switch (ch)
+	{
+		case 'U':
+			if (!(in >> *m_UnitStack))
+				return false;
+			break;
+		case 'W':
+			if (!(in >> m_Waves))
+				return false;
+			break;
+		case 'M':
+			if (!(in >> m_Map))
+				return false;
+			break;
+		default:
+			end = true;
+	}
+	m_WaveOn = m_Map.WaveIsRunning();
+	return true;
 }
 
 bool CGame::CheckDefined(const set<char> & signs)
@@ -125,11 +130,13 @@ void CGame::Update()
 		m_GameState = EGameState::GAME_WON;
 }
 
-void CGame::Render() const
+ostream & CGame::Render(ostream & out) const
 {
-	m_Waves.Render();
-	m_UnitStack->Render();
-	m_Map.Render();
+	if (!m_Waves.Render(out)
+		|| !m_UnitStack->Render(out)
+		|| !m_Map.Render(out))
+		return out;
+	return out;
 }
 
 void CGame::ProcessInput(char ch)

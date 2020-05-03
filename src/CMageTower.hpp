@@ -20,24 +20,21 @@ public:
 	 * @param attackSpeed
 	 * @param maxMana
 	 */
-	explicit CMageTower(int attackDamage = 0, int attackSpeed = 0, int mana = 0, int magicAttack = 0, pos_t position = pos_t::npos);
+	explicit CMageTower(int attackDamage = 0, int attackSpeed = 0, int mana = 0, int magicAttack = 0, pos_t position = pos::npos);
 	CMageTower * Clone() const final
 	{return new CMageTower(*this);}
 	
 	// LOADING
-	static CMageTower * LoadTemplate(std::istream & in);
-	std::istream & LoadOnMapTower(std::istream & in) final;
+	std::istream & LoadTemplate(std::istream & in) final;
+	std::istream & LoadOnMap(std::istream & in) final;
 	CTile GetTile() const final
 	{return CTile{m_Char, ETileType::TOWER, Colors::bg_blue};}
 	
 	// SAVING
-	std::ostream & SaveTemplateTower(std::ostream & out) const final;
-	std::ostream & SaveOnMapTower(std::ostream & out) const final;
+	std::ostream & SaveTemplate(std::ostream & out) const final;
+	std::ostream & SaveOnMap(std::ostream & out) const final;
 	
 	// ACTIONS
-	/**
-	 * Adds magical attack to the base damage
-	 */
 	void SpecialAttack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper *> & troops) final;
 private:
 	CFrames m_ManaFrames;

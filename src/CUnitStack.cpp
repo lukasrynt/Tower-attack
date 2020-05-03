@@ -22,6 +22,9 @@ CUnitStack::~CUnitStack()
 // LOADING
 istream & operator>>(istream & in, CUnitStack & stack)
 {
+	map<char,CTrooper*> origTroops;
+	map<char,CTower*> origTowers;
+	CUnitStack::CreateOriginals(origTroops, origTowers);
 	while (true)
 	{
 		// load first character - type of unit
@@ -30,85 +33,55 @@ istream & operator>>(istream & in, CUnitStack & stack)
 			return in;
 		
 		// load coresponding unit
-		if(!stack.LoadUnit(in, ch))
+		if(!stack.LoadUnit(in, ch, origTroops, origTowers))
 			break;
 	}
+	CUnitStack::DeleteOriginals(origTroops, origTowers);
 	return in;
 }
 
-bool CUnitStack::LoadUnit(istream & in, char ch)
+void CUnitStack::CreateOriginals (map<char,CTrooper*> & origTroops, map<char,CTower*> & origTowers)
 {
-	switch (ch)
+	origTroops.insert({'T', new CTrooper()});
+	origTroops.insert({'A', new CArmoredTrooper()});
+	origTowers.insert({'R', new CTower()});
+	origTowers.insert({'M', new CMageTower()});
+}
+
+void CUnitStack::DeleteOriginals(std::map<char, CTrooper*> & origTroops, std::map<char, CTower*> & origTowers)
+{
+	for (auto & trooper : origTroops)
+		delete trooper.second;
+	for (auto & tower : origTowers)
+		delete tower.second;
+}
+
+bool CUnitStack::LoadUnit(istream & in, char ch, const map<char,CTrooper*> & origTroops, const map<char,CTower*> & origTowers)
+{
+	if (origTroops.count(ch))
 	{
-		case 'T':
-			if (!LoadBasicTroop(in))
-				return false;
-			break;
-		case 'A':
-			if (!LoadArmoredTroop(in))
-				return false;
-			break;
-		case 'R':
-			if (!LoadArcherTower(in))
-				return false;
-			break;
-		case 'M':
-			if (!LoadMageTower(in))
-				return false;
-			break;
-		default:
-			in.putback(ch);
+		CTrooper * trooper = origTroops.at(ch)->Clone();
+		if (!trooper->LoadTemplate(in))
+			return false;
+		m_Troops.insert({trooper->GetChar(), trooper});
+		if (!CharIsValid(trooper->GetChar()))
 			return false;
 	}
+	else if (origTowers.count(ch))
+	{
+		CTower * tower = origTowers.at(ch)->Clone();
+		if (!tower->LoadTemplate(in))
+			return false;
+		m_Towers.insert({tower->GetChar(), tower});
+		if (!CharIsValid(tower->GetChar()))
+			return false;
+	}
+	else
+	{
+		in.putback(ch);
+		return false;
+	}
 	return true;
-}
-
-istream & CUnitStack::LoadBasicTroop(istream & in)
-{
-	CTrooper * trooper = CTrooper::LoadTemplate(in);
-	if (!trooper || !CharIsValid(trooper->GetChar()))
-	{
-		in.setstate(ios::failbit);
-		return in;
-	}
-	m_Troops.insert({trooper->GetChar(), trooper});
-	return in;
-}
-
-istream & CUnitStack::LoadArmoredTroop(istream & in)
-{
-	CArmoredTrooper * trooper = CArmoredTrooper::LoadTemplate(in);
-	if (!trooper || !CharIsValid(trooper->GetChar()))
-	{
-		in.setstate(ios::failbit);
-		return in;
-	}
-	m_Troops.insert({trooper->GetChar(), trooper});
-	return in;
-}
-
-istream & CUnitStack::LoadArcherTower(istream & in)
-{
-	CTower * tower = CTower::LoadTemplate(in);
-	if (!tower || !CharIsValid(tower->GetChar()))
-	{
-		in.setstate(ios::failbit);
-		return in;
-	}
-	m_Towers.insert({tower->GetChar(), tower});
-	return in;
-}
-
-istream & CUnitStack::LoadMageTower(istream & in)
-{
-	CMageTower * tower = CMageTower::LoadTemplate(in);
-	if (!tower || !CharIsValid(tower->GetChar()))
-	{
-		in.setstate(ios::failbit);
-		return in;
-	}
-	m_Towers.insert({tower->GetChar(), tower});
-	return in;
 }
 
 bool CUnitStack::IsTowerChar(char ch) const
@@ -159,29 +132,41 @@ CTrooper * CUnitStack::CreateTrooperAt(char ch) const
 
 CTrooper * CUnitStack::CreateSelected() const
 {
-	size_t idx = 0;
-	for (const auto & troop : m_Troops)
-	{
-		if (idx++ == m_Selected)
-			return troop.second->Clone();
-	}
+	char ch = FindSelected();
+	if (m_Troops.count(ch))
+		return m_Troops.at(ch)->Clone();
 	return nullptr;
 }
 
-void CUnitStack::Render() const
+ostream & CUnitStack::Render(ostream & out) const
 {
-	cout << endl << Colors::fg_cyan << string(4 * m_Troops.size(), '-') << Colors::color_reset << endl;
+	if (!(out << endl << Colors::fg_cyan << string(4 * m_Troops.size(), '-') << Colors::color_reset << endl))
+		return out;
 	
 	size_t idx = 0;
 	for (const auto & troop : m_Troops)
 	{
-		cout << ' ';
+		if (!(out << ' '))
+			return out;
 		if (idx++ == m_Selected)
-			cout << Colors::bg_cyan;
-		cout << *troop.second << Colors::color_reset << string(2, ' ');
+			if (!(out << Colors::bg_cyan))
+				return out;
+		if (!(out << *troop.second << Colors::color_reset << string(2, ' ')))
+			return out;
 	}
 	
-	cout << endl << Colors::fg_cyan << string(4 * m_Troops.size(), '-') << Colors::color_reset << endl << endl;
+	if (!(out << endl << Colors::fg_cyan << string(4 * m_Troops.size(), '-') << Colors::color_reset << endl))
+		return out;
+	return m_Troops.at(FindSelected())->RenderInfo(out) << endl;
+}
+
+char CUnitStack::FindSelected() const
+{
+	size_t idx = 0;
+	for (const auto & troop : m_Troops)
+		if (idx++ == m_Selected)
+			return troop.first;
+	return 0;
 }
 
 void CUnitStack::Cycle() const
@@ -197,11 +182,11 @@ ostream & operator<<(ostream & out, const CUnitStack & stack)
 	if (!(out << "(U)" << endl))
 		return out;
 	for (auto & troop : stack.m_Troops)
-		if (!troop.second->SaveTemplate(out))
+		if (!(troop.second->SaveTemplate(out) << endl))
 			return out;
 	
 	for (auto & tower : stack.m_Towers)
-		if (!tower.second->SaveTemplate(out))
+		if (!(tower.second->SaveTemplate(out) << endl))
 			return out;
 	return out << endl;
 }
