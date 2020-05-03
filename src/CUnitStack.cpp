@@ -63,18 +63,18 @@ bool CUnitStack::LoadUnit(istream & in, char ch, const map<char,CTrooper*> & ori
 		CTrooper * trooper = origTroops.at(ch)->Clone();
 		if (!trooper->LoadTemplate(in))
 			return false;
-		m_Troops.insert({trooper->GetChar(), trooper});
 		if (!CharIsValid(trooper->GetChar()))
 			return false;
+		m_Troops.insert({trooper->GetChar(), trooper});
 	}
 	else if (origTowers.count(ch))
 	{
 		CTower * tower = origTowers.at(ch)->Clone();
 		if (!tower->LoadTemplate(in))
 			return false;
-		m_Towers.insert({tower->GetChar(), tower});
 		if (!CharIsValid(tower->GetChar()))
 			return false;
+		m_Towers.insert({tower->GetChar(), tower});
 	}
 	else
 	{
@@ -100,10 +100,8 @@ bool CUnitStack::IsTrooperChar(char ch) const
 	return false;
 }
 
-bool CUnitStack::CharIsValid(char ch) const
+bool CUnitStack::CharIsValid(char ch)
 {
-	if (m_Troops.count(ch) || m_Towers.count(ch))
-		return false;
 	string forbidden(FORBIDDEN_CHARS);
 	return forbidden.find(ch) == string::npos;
 }
@@ -151,7 +149,7 @@ ostream & CUnitStack::Render(ostream & out) const
 		if (idx++ == m_Selected)
 			if (!(out << Colors::bg_cyan))
 				return out;
-		if (!(out << *troop.second << Colors::color_reset << string(2, ' ')))
+		if (!(out << troop.second->GetChar() << Colors::color_reset << string(2, ' ')))
 			return out;
 	}
 	

@@ -23,7 +23,7 @@ private:
 		int m_Dist = 0;
 	};
 	
-	std::deque<pos_t> TraceBack();
+	std::deque<pos_t> TraceBack(const std::function<std::list<pos_t>(pos_t)> & getNeighbours);
 	bool BFS(const std::function<std::list<pos_t>(pos_t)> & getNeighbours);
 	bool IterateNeighbours(std::unordered_map<pos_t, bool> & visited, std::queue<CNode> & cells, const std::function<std::list<pos_t>(pos_t)> & getNeighbours);
 	void QueueNeighbours(pos_t neighbour, std::unordered_map<pos_t, bool> & visited, std::queue<CNode> & cells);

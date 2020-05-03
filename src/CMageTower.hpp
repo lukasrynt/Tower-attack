@@ -28,14 +28,14 @@ public:
 	std::istream & LoadTemplate(std::istream & in) final;
 	std::istream & LoadOnMap(std::istream & in) final;
 	CTile GetTile() const final
-	{return CTile{m_Char, ETileType::TOWER, Colors::bg_blue};}
+	{return m_Tile;}
 	
 	// SAVING
 	std::ostream & SaveTemplate(std::ostream & out) const final;
 	std::ostream & SaveOnMap(std::ostream & out) const final;
 	
 	// ACTIONS
-	void SpecialAttack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper *> & troops) final;
+	bool Attack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper *> & troops) final;
 private:
 	CFrames m_ManaFrames;
 	int m_MagicAttack;	//!< Damage of magic attacks

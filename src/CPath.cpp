@@ -28,7 +28,7 @@ deque<pos_t> CPath::FindStraightPath()
 		return deque<pos_t>();
 	
 	// trace the path back, based on the data received from BFS
-	return TraceBack();
+	return TraceBack([](pos_t a){return a.GetCrossNeighbours();});
 }
 
 deque<pos_t> CPath::FindDiagonalPath()
@@ -38,10 +38,10 @@ deque<pos_t> CPath::FindDiagonalPath()
 		return deque<pos_t>();
 	
 	// trace the path back, based on the data received from BFS
-	return TraceBack();
+	return TraceBack([](pos_t a){return a.GetDiagNeighbours();});
 }
 
-deque<pos_t> CPath::TraceBack()
+deque<pos_t> CPath::TraceBack(const function<list<pos_t>(pos_t)> & getNeighbours)
 {
 	deque<pos_t> path;
 	path.push_back(m_Goal);
@@ -49,7 +49,7 @@ deque<pos_t> CPath::TraceBack()
 	for (CNode curr = m_NodeMap.at(m_Goal); curr.m_Pos != m_Start;)
 	{
 		int minDist = INT32_MAX;
-		for (const auto & neighbour : curr.m_Pos.GetCrossNeighbours())
+		for (const auto & neighbour : getNeighbours(curr.m_Pos))
 		{
 			if (!m_NodeMap.count(neighbour)
 				|| m_NodeMap.at(neighbour).m_Dist > minDist)

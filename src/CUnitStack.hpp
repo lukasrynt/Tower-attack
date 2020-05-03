@@ -76,6 +76,6 @@ private:
 	bool LoadUnit(std::istream & in, char ch, const std::map<char,CTrooper*> & origTroops, const std::map<char,CTower*> & origTowers);
 	static void CreateOriginals(std::map<char,CTrooper*> & origTroops, std::map<char,CTower*> & origTowers);
 	static void DeleteOriginals(std::map<char,CTrooper*> & origTroops, std::map<char,CTower*> & origTowers);
-	bool CharIsValid(char ch) const;
+	static bool CharIsValid(char ch) ;
 	char FindSelected() const;
 };

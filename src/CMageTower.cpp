@@ -10,21 +10,16 @@ using namespace std;
 /**********************************************************************************************************************/
 // INIT
 CMageTower::CMageTower(int attackDamage, int attackSpeed, int mana, int magicAttack, pos_t position)
-	: CTower(attackDamage, attackSpeed, position, '%', 'M'),
+	: CTower(attackDamage, attackSpeed, position, {'%', ETileType::MAGE_TOWER, Colors::bg_blue}),
 	  m_ManaFrames(mana),
 	  m_MagicAttack(magicAttack)
 {}
 
 /**********************************************************************************************************************/
 // LOADING
-CMageTower * CMageTower::LoadTemplate(istream & in)
+istream & CMageTower::LoadTemplate(istream & in)
 {
-	CMageTower * tower = new CMageTower();
-	char del;
-	if (!(in >> tower->m_Char >> tower->m_AttackDamage >> tower->m_Frames >> tower->m_ManaFrames >> tower->m_MagicAttack >> del)
-		|| del != ';')
-		return nullptr;
-	return tower;
+	return CTower::LoadTemplate(in) >> m_ManaFrames >> m_MagicAttack;
 }
 
 istream & CMageTower::LoadOnMap(istream & in)
@@ -50,12 +45,10 @@ ostream & CMageTower::SaveOnMap(ostream & out) const
 
 /**********************************************************************************************************************/
 // ATTACK
-void CMageTower::SpecialAttack(unordered_map<pos_t, CTile> & map, int rows, int cols, unordered_map<pos_t, CTrooper *> & troops)
+bool CMageTower::Attack(unordered_map<pos_t, CTile> & map, int rows, int cols, unordered_map<pos_t, CTrooper *> & troops)
 {
-	if (m_ManaFrames.ActionAllowed())
-		MagicAttack();
-	else
-		CTower::SpecialAttack(map, rows, cols, troops);
+	MagicAttack();
+	return CTower::Attack(map, rows, cols, troops);
 }
 
 void CMageTower::MagicAttack() {}

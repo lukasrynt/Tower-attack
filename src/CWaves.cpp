@@ -145,7 +145,7 @@ ostream & operator<<(ostream & out, const CWaves & waves)
 	{
 		out << '[';
 		for (const auto & troop : wave)
-			out << *troop;
+			out << troop->GetChar();
 		out << string(waves.m_MaxSize - wave.size(), ' ') << ']' << endl;
 	}
 	return out << endl;
@@ -168,7 +168,7 @@ ostream & CWaves::Render(ostream & out) const
 				return out;
 			
 		for (const auto & troop : wave)
-			if (!(out << *troop))
+			if (!(out << troop->GetChar()))
 				return out;
 			
 		if(!(out << string(m_MaxSize - wave.size(), ' ') << "]"
@@ -252,7 +252,10 @@ vector<CTrooper*> CWaves::Update(const map<int,bool> & spawnsFree)
 	m_ReleasingWave = false;
 	for (const auto & wave : m_Waves)
 		if (!wave.empty())
+		{
 			m_ReleasingWave = true;
+			break;
+		}
 	
 	return res;
 }

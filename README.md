@@ -32,7 +32,7 @@ Cesta kudy se budou útočníci ubírat bude vždy nejkratší možná vzhledem 
 Hráč volí vstup a typy útočníků
 
 Kde lze využít polymorfismus? (doporučené)
-- Parametry útočníků: znak, barva, rychlst, životy, ...
+- Parametry útočníků: znak, barva, rychlost, životy, ...
 - Efekty útoku věží: zranění, zpomalení, ...
 - Políčka mapy: volno, věž, útočník ...
 - Uživatelské rozhraní: konzole, ncurses, SDL, OpenGL (různé varianty), ...
@@ -72,10 +72,10 @@ Na konci souboru je obsažena samotná mapa, za ní už nesmí následovat nic d
 ```
 --Zásobník vzorů--
 (U)
-T @ 60 50 30;               -- pěšák: znak, život, rychlost, útok
-A $ 80 40 40 90;            -- obrněná jednotka: znak, život, rychlost, útok, brnění
-M % 20 20 30 60;            -- mágova věž: znak, rychlost, útok, mana, magický útok
-R * 20 20;                  -- lukostřelecká věž: znak, rychlost, útok
+T @ 60 50 30                -- pěšák: znak, život, rychlost, útok
+A $ 80 40 40 90             -- obrněná jednotka: znak, život, rychlost, útok, brnění
+M % 20 20 30 60             -- mágova věž: znak, rychlost, útok, mana, magický útok
+R * 20 20                   -- lukostřelecká věž: znak, rychlost, útok
 
 
 --Vlny--
@@ -86,17 +86,17 @@ R * 20 20;                  -- lukostřelecká věž: znak, rychlost, útok
 
 --Mapa--
 (M)
- 6 5 (20 100);              -- dimenze mapy - řádek, sloupec; brána (aktuální, max život)
+ 6 5 (20 100)               -- dimenze mapy - řádek, sloupec; brána (aktuální, max život)
 #####                       -- mapa
 # # O
 1   #
 #   #
 #   #
 #####                           --Vojáci a věže na mapě--
-@  (10 10) 10;              -- znak, pozice, aktuální frame
-$ (1 1) 2, 20;              -- znak, pozice, aktuální frame, stav brnění
-% (2 2) 10;                 -- znak, pozice, aktuální frame, aktuální mana
-* (2 2) 10;                 -- znak, pozice, aktuální frame
+@  (10 10) 10               -- znak, pozice, aktuální frame
+$ (1 1) 2, 20               -- znak, pozice, aktuální frame, stav brnění
+% (2 2) 10                  -- znak, pozice, aktuální frame, aktuální mana
+* (2 2) 10                  -- znak, pozice, aktuální frame
 ```
 > Ukázka souboru
 >

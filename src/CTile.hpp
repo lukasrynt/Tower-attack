@@ -16,24 +16,45 @@
 /**
  * Class representing a single tile on the map
  */
-class CTile
-{
+class CTile{
 public:
+	
 	explicit CTile(char ch = ' ');
 	CTile(char ch, ETileType type);
 	CTile(char ch, ETileType type, std::string color);
-	void SetColor(std::string color)
-	{m_Color = std::move(color);}
-	bool IsTroop() const;
-	bool IsTower() const;
-	bool IsWall() const;
-	bool IsSpawn() const;
-	bool IsGate() const;
-	bool IsValid() const;
-	void InitColors();
-	char GetRawChar() const;
+	
+	
 	std::string PrintChar() const;
-protected:
+	
+	char GetChar() const
+	{return m_Char;}
+	
+	// TYPES FUNCTIONS
+	bool IsTroop() const
+	{return m_Type == ETileType::BASIC_TROOP || m_Type == ETileType::ARMORED_TROOP;}
+	
+	bool IsTower() const
+	{return m_Type == ETileType::ARCHER_TOWER || m_Type == ETileType::MAGE_TOWER;}
+	
+	bool IsWall() const
+	{return m_Type == ETileType::WALL;}
+	
+	bool IsSpawn() const
+	{return m_Type == ETileType::SPAWN;}
+	
+	bool IsGate() const
+	{return m_Type == ETileType::GATE;}
+	
+	bool IsValid() const
+	{return m_Type != ETileType::INVALID;}
+private:
+	friend class CTower;
+	friend class CTrooper;
+	friend class CArmoredTrooper;
+	
+	std::string InitColor() const;
+	ETileType InitType() const;
+	
 	char m_Char;			//!< Character representation of the tile
 	ETileType m_Type;		//!< Type of the tile
 	std::string m_Color;

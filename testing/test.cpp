@@ -7,16 +7,6 @@
 
 using namespace std;
 
-istream & LoadSign(istream & in)
-{
-	char br1, br2, ch;
-	if (!(in >> br1 >> ch >> br2)
-		|| br1 != '('
-		|| br2 != ')')
-		in.setstate(ios::failbit);
-	return in;
-}
-
 int main ()
 {
 	ifstream inFile("/home/lukas/School/PA2/semestralka/saves/test1.sav");
@@ -26,6 +16,17 @@ int main ()
 	CGame game;
 	if (!(inFile >> game))
 		return 2;
+	game.ProcessInput('2');
+	game.ProcessInput('2');
+	game.ProcessInput('a');
+	game.ProcessInput('a');
+	game.ProcessInput('p');
+	game.Render(cout);
+	for (int i = 0; i < 60; ++i)
+	{
+		game.Render(cout);
+		game.Update();
+	}
 
 
 

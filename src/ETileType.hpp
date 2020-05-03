@@ -7,18 +7,18 @@
 
 #include <iostream>
 
-enum class ETileType
+enum class ETileType : char
 {
-	WALL,	//!< Tile with wall
-	TROOP,	//!< Tile with troop
-	TOWER,	//!< Tile with tower
-	SPAWN,	//!< Tile with spawn point
-	GATE,	//!< Target of troops
-	BULLET,
-	INVALID	//!< Invalid character
+	WALL = 'W',			//!< Tile with wall
+	BASIC_TROOP = 'T',	//!< Tile with troop
+	ARMORED_TROOP = 'A',
+	ARCHER_TOWER = 'R',	//!< Tile with tower
+	MAGE_TOWER = 'M',
+	SPAWN = 'S',			//!< Tile with spawn point
+	GATE = 'G',			//!< Target of troops
+	BULLET = 'B',
+	INVALID = 'I'			//!< Invalid character
 };
 
-namespace TileType
-{
-	ETileType CreateTile(char ch);
-}
+inline std::ostream & operator<<(std::ostream & out, const ETileType & type)
+{return out << static_cast<std::underlying_type<ETileType>::type>(type);}

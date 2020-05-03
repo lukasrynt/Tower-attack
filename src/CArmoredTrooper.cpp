@@ -10,7 +10,7 @@ using namespace std;
 /**********************************************************************************************************************/
 // INIT
 CArmoredTrooper::CArmoredTrooper(int hp, int speed, int attack, int armor)
-	: CTrooper(hp, speed, attack, '$', 'A', Colors::fg_cyan),
+	: CTrooper(hp, speed, attack, {'$', ETileType::ARMORED_TROOP, Colors::fg_cyan}),
 	  m_Armor(armor),
 	  m_MaxArmor(armor)
 {}
@@ -26,16 +26,12 @@ void CArmoredTrooper::ReceiveDamage(int damage)
 {
 	// TODO Should be calculated in some other fashion- logarithm or so...
 	// If armor is up it can defend some damage
-	if (m_Armor > 0)
-		m_Armor -= damage;
-	if (m_Armor < 0)
-		CTrooper::ReceiveDamage(abs(m_Armor));
-	m_Armor = 0;
+	CTrooper::ReceiveDamage(damage);
 }
 
 ostream & CArmoredTrooper::RenderInfo(ostream & out) const
 {
-	return out << m_Color
+	return out << m_Tile.m_Color
 		<< "Armored trooper, hp: " << m_Hp
 		<< ", speed: " << m_Frames
 		<< ", attack: " << m_Attack
@@ -62,7 +58,7 @@ ostream & CArmoredTrooper::SaveTemplate(ostream & out) const
 	return CTrooper::SaveTemplate(out) << ' ' << m_MaxArmor;
 }
 
-ostream & CArmoredTrooper::SaveOnMap(std::ostream &out) const
+ostream & CArmoredTrooper::SaveOnMap(std::ostream & out) const
 {
 	return CTrooper::SaveOnMap(out) << ' ' << m_Armor;
 }

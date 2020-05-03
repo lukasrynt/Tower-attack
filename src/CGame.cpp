@@ -31,7 +31,8 @@ istream & operator>>(istream & in, CGame & self)
 	// check eof and signature chars
 	if (!in.eof() || !self.CheckDefined(signs))
 		in.setstate(ios::failbit);
-	in.clear(ios::goodbit);
+	else
+		in.clear(ios::goodbit);
 	return in;
 }
 
@@ -122,8 +123,7 @@ ostream & operator<<(ostream & out, const CGame & self)
 void CGame::Update()
 {
 	vector<CTrooper*> spawns;
-	if (m_WaveOn)
-		spawns = m_Waves.Update(m_Map.SpawnsFree());
+	spawns = m_Waves.Update(m_Map.SpawnsFree());
 	if (!spawns.empty())
 		m_Map.Spawn(spawns);
 	if (!m_Map.Update(m_WaveOn))

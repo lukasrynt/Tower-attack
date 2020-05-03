@@ -16,7 +16,7 @@ class CTower
 {
 public:
 	// INIT
-	explicit CTower(int attackDamage = 0, int attackSpeed = 0, pos_t position = pos::npos, char ch = '*', char type = 'R');
+	explicit CTower(int attackDamage = 0, int attackSpeed = 0, pos_t position = pos::npos, CTile  tile = {'*', ETileType::ARCHER_TOWER, Colors::bg_red});
 	
 	virtual ~CTower() = default;
 	
@@ -31,37 +31,34 @@ public:
 	virtual std::ostream & SaveOnMap(std::ostream & out) const;
 	
 	// ATTACK
-	void Attack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops);
+	virtual bool Attack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops);
 	
 	// GETTER / SETTERS
 	virtual CTile GetTile() const
-	{return CTile{m_Char, ETileType::TOWER, Colors::bg_red};}
+	{return m_Tile;}
 	
 	char GetChar() const
-	{return m_Char;}
-	
-	void SetPosition(pos_t position)
-	{m_Pos = position;}
+	{return m_Tile.GetChar();}
 	
 	pos_t GetPosition() const
 	{return m_Pos;}
 	
 protected:
 	CTile m_Tile;
-	char m_Char;
-	char m_Type;
 	pos_t m_Pos;
 	double m_Range;
 	int m_AttackDamage;	//!< attack damage of the tower
 	CFrames m_Frames;	//!< attack speed of the tower
 	
-	virtual void SpecialAttack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops);
 private:
 	pos_t m_ArrowPos;
 	std::deque<pos_t> m_ArrowPath;
 	
-	void ArrowMove(std::unordered_map<pos_t, CTile> & map);
+	bool ArrowMove(std::unordered_map<pos_t, CTile> & map);
 	void ArrowClear(std::unordered_map<pos_t, CTile> & map);
-	void AssignArrow(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops);
-	bool TrooperDamaged(std::unordered_map<pos_t, CTile> & map, CTrooper * trooper);
+	bool AssignArrow(std::unordered_map<pos_t, CTile> & map, int rows, int cols, const std::unordered_map<pos_t, CTrooper*> & troops);
+	void DamageTrooper(std::unordered_map<pos_t, CTile> & map, std::unordered_map<pos_t, CTrooper*> & troops);
+	
+	ETileType GetType() const
+	{return m_Tile.m_Type;}
 };

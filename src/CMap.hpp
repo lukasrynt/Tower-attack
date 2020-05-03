@@ -97,6 +97,7 @@ private:
 	std::ostream & SaveEntities(std::ostream & out) const;
 	
 	// UPDATE PHASE
-	void MoveTroops(bool & waveOn);
-	void TowerAttack();
+	bool CheckTroopsDeaths();
+	bool MoveTroops();
+	bool TowerAttack();
 };

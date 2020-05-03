@@ -57,11 +57,7 @@ void CMap::PlaceTroops()
 
 istream & CMap::LoadMapInfo(istream & in)
 {
-	char del;
-	if (!(in >> m_Rows >> m_Cols >> m_Gate >> del)
-		|| del != ';')
-		in.setstate(ios::failbit);
-	return in;
+	return in >> m_Rows >> m_Cols >> m_Gate;
 }
 
 istream & CMap::LoadMap(istream & in)
@@ -323,7 +319,7 @@ ostream & operator<<(ostream & out, const CMap & self)
 
 ostream & CMap::SaveMapInfo(ostream & out) const
 {
-	return out << "(M)" << endl << m_Rows << ' ' << m_Cols << ' ' << m_Gate << ';' << endl;
+	return out << "(M)" << endl << m_Rows << ' ' << m_Cols << ' ' << m_Gate << endl;
 }
 
 ostream & CMap::SaveMap(ostream & out) const
@@ -336,7 +332,7 @@ ostream & CMap::SaveMap(ostream & out) const
 			if (!m_Map.count({j,i}) || m_Map.at({j,i}).IsTroop())	// skip troops while saving the map
 				line += ' ';
 			else
-				line += m_Map.at({j, i}).GetRawChar();
+				line += m_Map.at({j, i}).GetChar();
 		}
 		if (!(out << line << endl))
 			return out;
@@ -348,11 +344,11 @@ ostream & CMap::SaveEntities(ostream & out) const
 {
 	// save troops
 	for (const auto & troop : m_Troops)
-		if (!troop->SaveOnMap(out))
+		if (!(troop->SaveOnMap(out) << endl))
 			return out;
 		
 	for (const auto & tower : m_Towers)
-		if (!tower->SaveOnMap(out))
+		if (!(tower->SaveOnMap(out) << endl))
 			return out;
 	
 	return out;
@@ -391,10 +387,12 @@ ostream & CMap::RenderMap(ostream & out) const
 // UPDATE
 bool CMap::Update(bool & waveOn)
 {
-	MoveTroops(waveOn);
+	if (!MoveTroops())
+		waveOn = false;
 	if (m_Gate.Fallen())
 		return false;
-	TowerAttack();
+	if (!TowerAttack())
+		waveOn = false;
 	return true;
 }
 
@@ -422,8 +420,9 @@ bool CMap::FindPathsFromSpawn()
 	return true;
 }
 
-void CMap::MoveTroops(bool & waveOn)
+bool CMap::MoveTroops()
 {
+	bool ret = true;
 	for (auto troop = m_Troops.begin(); troop != m_Troops.end();)
 	{
 		if (!(*troop)->Move(m_Map))
@@ -432,16 +431,15 @@ void CMap::MoveTroops(bool & waveOn)
 			continue;
 		}
 		m_Gate.ReceiveDamage((*troop)->Attack());
-		auto pos = std::lower_bound(m_Troops.begin(), m_Troops.end(), *troop,
-				[](const CTrooper * a, const CTrooper * b){return a->DistanceToGoal() < b->DistanceToGoal();});
 		delete *troop;
-		troop = m_Troops.erase(pos);
+		troop = m_Troops.erase(troop);
 		if (m_Troops.empty())
-			waveOn = false;
+			ret = false;
 	}
+	return ret;
 }
 
-void CMap::TowerAttack()
+bool CMap::TowerAttack()
 {
 	// map troopers to their positions
 	unordered_map<pos_t,CTrooper*> troops;
@@ -452,16 +450,27 @@ void CMap::TowerAttack()
 	for (auto tower : m_Towers)
 		tower->Attack(m_Map, m_Rows, m_Cols, troops);
 	
+	return CheckTroopsDeaths();
+}
+
+bool CMap::CheckTroopsDeaths()
+{
+	bool ret = true;
 	// check if a trooper has died - if so delete him from map
 	for (auto troop = m_Troops.begin(); troop != m_Troops.end();)
 	{
 		if (!(*troop)->Died())
+		{
+			troop++;
 			continue;
-		auto pos = std::lower_bound(m_Troops.begin(), m_Troops.end(), *troop,
-									[](const CTrooper * a, const CTrooper * b){return a->DistanceToGoal() < b->DistanceToGoal();});
+		}
+		m_Map.erase((*troop)->GetPosition());
 		delete *troop;
-		troop = m_Troops.erase(pos);
+		troop = m_Troops.erase(troop);
+		if (m_Troops.empty())
+			ret = false;
 	}
+	return ret;
 }
 
 map<int, bool> CMap::SpawnsFree() const
