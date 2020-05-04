@@ -39,12 +39,13 @@ public:
 	
 	// INPUT PROCESSING
 	void Cycle();
-	bool AddTroop();
-	bool DeleteTroop();
-	bool Release();
+	void AddTroop();
+	void DeleteTroop();
+	void Release(bool & waveOn);
 	
 	// UPDATE
 	std::vector<CTrooper*> Update(const std::map<int,bool> & spawnersBlocked);
+	bool Lost() const;
 	
 
 private:
@@ -54,8 +55,11 @@ private:
 	size_t m_MaxSize;						//!< maximum size of one wave, specified in constructor
 	CFrames m_Frames;
 	bool m_ReleasingWave;
+	int m_Resources;
 	
 	// LOAD
 	std::istream & LoadWaves(std::istream & in);
 	bool CheckCounter(size_t counter);
+	
+	bool Empty() const;
 };

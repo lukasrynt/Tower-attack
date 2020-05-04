@@ -59,6 +59,7 @@ public:
 	std::map<int, bool> SpawnsFree() const;
 	
 	void VisualizePath(pos_t start, pos_t goal);
+	void Visualize(const std::deque<pos_t>& positions);
 private:
 	// VARIABLES
 	CGate m_Gate;

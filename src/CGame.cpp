@@ -10,7 +10,8 @@ using namespace std;
 
 CGame::CGame()
 	: m_WaveOn(false),
-	  m_GameState(EGameState::GAME_RUNNING)
+	  m_GameState(EGameState::GAME_RUNNING),
+	  m_Resources(0)
 {}
 
 /**********************************************************************************************************************/
@@ -23,16 +24,13 @@ istream & operator>>(istream & in, CGame & self)
 	
 	while (!end)
 		if (!self.LoadObjects(in, signs, end))
-		{
-			in.setstate(ios::failbit);
 			return in;
-		}
 	
-	// check eof and signature chars
-	if (!in.eof() || !self.CheckDefined(signs))
+	self.m_WaveOn = self.m_Map.WaveIsRunning();
+	
+	// check if everything was defined correctly
+	if (!self.CheckDefined(signs))
 		in.setstate(ios::failbit);
-	else
-		in.clear(ios::goodbit);
 	return in;
 }
 
@@ -43,33 +41,37 @@ void CGame::SetUnitStack()
 	m_Waves.AssignUnitStack(m_UnitStack);
 }
 
-bool CGame::LoadObjects(istream & in, set<char> & signs, bool & end)
+istream & CGame::LoadObjects(istream & in, set<char> & signs, bool & end)
 {
 	// load signature char
 	char ch = CGame::LoadSignatureChar(in);
 	if (!signs.insert(ch).second)
-		return false;
+	{
+		in.setstate(ios::failbit);
+		return in;
+	}
 	
 	// load appropriate object
 	switch (ch)
 	{
 		case 'U':
 			if (!(in >> *m_UnitStack))
-				return false;
+				return in;
 			break;
 		case 'W':
 			if (!(in >> m_Waves))
-				return false;
+				return in;
 			break;
 		case 'M':
 			if (!(in >> m_Map))
-				return false;
+				return in;
 			break;
 		default:
 			end = true;
 	}
-	m_WaveOn = m_Map.WaveIsRunning();
-	return true;
+	// in case eof was reached - it is ok
+	in.clear(ios::goodbit);
+	return in;
 }
 
 bool CGame::CheckDefined(const set<char> & signs)
@@ -128,6 +130,10 @@ void CGame::Update()
 		m_Map.Spawn(spawns);
 	if (!m_Map.Update(m_WaveOn))
 		m_GameState = EGameState::GAME_WON;
+	
+	// check game end
+	if (!m_Map.WaveIsRunning() && m_Waves.Lost() && !Won())
+		m_GameState = EGameState::GAME_OVER;
 }
 
 ostream & CGame::Render(ostream & out) const
@@ -152,40 +158,24 @@ void CGame::ProcessInput(char ch)
 			m_UnitStack->Cycle();
 			break;
 		case 'a':
-			AddTroopToWave();
+			m_Waves.AddTroop();
 			break;
 		case 'd':
-			DeleteTroopFromWave();
+			m_Waves.DeleteTroop();
 			break;
 		case 'p':
-			StartWave();
+			m_Waves.Release(m_WaveOn);
 			break;
 		case 'q':
 			Quit();
 			break;
 		default:
-			throw invalid_input("Invalid input, read the options above.");
+			throw invalid_input("read the options above.");
 	}
 }
 
-void CGame::StartWave()
+void CGame::Visualize(const deque<pos_t> & positions)
 {
-	if (m_WaveOn)
-		throw invalid_input("Wave already running.");
-	if (m_Waves.Release())
-		m_WaveOn = true;
-	else
-		throw invalid_input("Cannot start an empty wave.");
-}
-
-void CGame::AddTroopToWave()
-{
-	if (!m_Waves.AddTroop())
-		throw invalid_input("Current wave is full, or it has already launched.");
-}
-
-void CGame::DeleteTroopFromWave()
-{
-	if (!m_Waves.DeleteTroop())
-		throw invalid_input("Current wave is empty, or the wave is already launched");
+	m_Map.Visualize(positions);
+	m_Map.Render(cout);
 }

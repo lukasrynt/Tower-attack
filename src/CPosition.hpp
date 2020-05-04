@@ -10,6 +10,7 @@
 #include <vector>
 #include <deque>
 #include <cmath>
+#include <set>
 
 /**
  * Class representing x-y position on the map
@@ -25,7 +26,7 @@ public:
 	std::list<CPosition> GetCrossNeighbours() const;
 	std::list<CPosition> GetDiagNeighbours() const;
 	bool LiesInRange(int rows, int cols) const;
-	std::deque<std::vector<CPosition>> GetRadius(int level) const;
+	std::deque<CPosition> GetRadius(int level) const;
 	friend bool operator<(const CPosition & self, const CPosition & other);
 	friend bool operator==(const CPosition & self, const CPosition & other);
 	friend bool operator!=(const CPosition & self, const CPosition & other);

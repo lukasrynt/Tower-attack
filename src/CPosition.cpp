@@ -16,22 +16,22 @@ CPosition::CPosition(int x, int y)
 
 CPosition CPosition::left() const
 {
-	return CPosition(m_X - 1, m_Y);
+	return {m_X - 1, m_Y};
 }
 
 CPosition CPosition::right() const
 {
-	return CPosition(m_X + 1, m_Y);
+	return {m_X + 1, m_Y};
 }
 
 CPosition CPosition::up() const
 {
-	return CPosition(m_X, m_Y - 1);
+	return {m_X, m_Y - 1};
 }
 
 CPosition CPosition::down() const
 {
-	return CPosition(m_X, m_Y + 1);
+	return {m_X, m_Y + 1};
 }
 
 list<CPosition> CPosition::GetCrossNeighbours() const
@@ -62,38 +62,27 @@ bool CPosition::LiesInRange(int rows, int cols) const
 			&& m_X >= 0);
 }
 
-deque<vector<CPosition>> CPosition::GetRadius(int level) const
+deque<CPosition> CPosition::GetRadius(int distance) const
 {
-	CPosition leftTopDiag, rightTopDiag, leftBotDiag, rightBotDiag;
-	leftTopDiag = rightTopDiag = leftBotDiag = rightBotDiag = *this;
-	deque<vector<CPosition>> res;
-	
-	for (int i = 0; i < level; ++i)
+	set<CPosition> visited;
+	deque<CPosition> positions, res;
+	visited.insert({m_X, m_Y});
+	positions.emplace_back(m_X, m_Y);
+	while (!positions.empty())
 	{
-		vector<CPosition> layer;
-		// move on diagonals
-		layer.push_back(leftTopDiag = leftTopDiag.left().up());
-		layer.push_back(rightTopDiag = rightTopDiag.right().up());
-		layer.push_back(leftBotDiag = leftBotDiag.left().down());
-		layer.push_back(rightBotDiag = rightBotDiag.right().down());
-		
-		// left edge
-		for (CPosition tmp = leftTopDiag; tmp != leftBotDiag; tmp = tmp.down())
-			layer.push_back(tmp);
-		
-		// bottom edge
-		for (CPosition tmp = leftBotDiag; tmp != rightBotDiag; tmp = tmp.right())
-			layer.push_back(tmp);
-		
-		// right edge
-		for (CPosition tmp = rightBotDiag; tmp != rightTopDiag; tmp = tmp.up())
-			layer.push_back(tmp);
-		
-		// top edge
-		for (CPosition tmp = rightTopDiag; tmp != leftTopDiag; tmp = tmp.left())
-			layer.push_back(tmp);
-		
-		res.emplace_back(layer);
+		for (const auto & neighbour : positions.front().GetDiagNeighbours())
+		{
+			if (!visited.count(neighbour))
+			{
+				int dist = round<int>(Distance(neighbour));
+				if (dist == distance)
+					res.push_back(neighbour);
+				else if (dist < distance)
+					positions.push_back(neighbour);
+				visited.insert(neighbour);
+			}
+		}
+		positions.pop_front();
 	}
 	
 	return res;

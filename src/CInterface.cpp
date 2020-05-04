@@ -85,6 +85,7 @@ bool CInterface::LoadNewGame(unique_ptr<CGame> & game) const
 		
 		// load game
 		game = make_unique<CGame>();
+		
 		if (!(inFile >> *game)
 			|| !(game->CheckNew()))
 		{

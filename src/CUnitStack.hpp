@@ -65,6 +65,8 @@ public:
 	 * Cycle through trooper selection
 	 */
 	void Cycle() const;
+	int GetSelectedPrice() const;
+	bool Lost(int resources) const;
 private:
 	// VARIABLES
 	std::map<char, CTrooper*> m_Troops;	//!< vector with all troops templates

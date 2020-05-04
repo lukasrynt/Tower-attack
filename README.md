@@ -72,8 +72,8 @@ Na konci souboru je obsažena samotná mapa, za ní už nesmí následovat nic d
 ```
 --Zásobník vzorů--
 (U)
-T @ 60 50 30                -- pěšák: znak, život, rychlost, útok
-A $ 80 40 40 90             -- obrněná jednotka: znak, život, rychlost, útok, brnění
+T @ 20 60 50 30             -- pěšák: znak, cena, život, rychlost, útok
+A $ 20 80 40 40 90          -- obrněná jednotka: znak, cena, život, rychlost, útok, brnění
 M % 20 20 30 60             -- mágova věž: znak, rychlost, útok, mana, magický útok
 R * 20 20                   -- lukostřelecká věž: znak, rychlost, útok
 
@@ -97,6 +97,10 @@ R * 20 20                   -- lukostřelecká věž: znak, rychlost, útok
 $ (1 1) 2, 20               -- znak, pozice, aktuální frame, stav brnění
 % (2 2) 10                  -- znak, pozice, aktuální frame, aktuální mana
 * (2 2) 10                  -- znak, pozice, aktuální frame
+
+--Zdroje--
+(R)
+200                         -- pocet financi pro danou hru
 ```
 > Ukázka souboru
 >

@@ -137,7 +137,10 @@ istream & CMap::LoadTowers(istream & in, char ch)
 		return in;
 	m_Towers.push_back(tower);
 	if (!m_Map.count(tower->GetPosition()) || !m_Map.at(tower->GetPosition()).IsWall())
+	{
 		in.setstate(ios::failbit);
+		return in;
+	}
 	m_Map.at(tower->GetPosition()) = tower->GetTile();
 	return in;
 }
@@ -331,6 +334,8 @@ ostream & CMap::SaveMap(ostream & out) const
 		{
 			if (!m_Map.count({j,i}) || m_Map.at({j,i}).IsTroop())	// skip troops while saving the map
 				line += ' ';
+			else if (m_Map.at({j,i}).IsTower())
+				line += '#';
 			else
 				line += m_Map.at({j, i}).GetChar();
 		}
@@ -495,4 +500,11 @@ void CMap::VisualizePath(pos_t start, pos_t goal)
 		m_Map.insert({path.front(), tile});
 		path.pop_front();
 	}
+}
+
+void CMap::Visualize(const std::deque<pos_t> & positions)
+{
+	for (const auto & pos : positions)
+		if (!m_Map.count(pos))
+			m_Map.insert({pos, {' ', ETileType::BULLET, Colors::bg_red}});
 }

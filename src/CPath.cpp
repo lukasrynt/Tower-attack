@@ -74,13 +74,13 @@ bool CPath::BFS(const function<list<pos_t>(pos_t)> & getNeighbours)
 		return false;
 	
 	// visited map
-	unordered_map<pos_t, bool> visited;
+	set<pos_t> visited;
 	
 	// insert the starting point and set it to visited
 	queue<CNode> cells;
 	cells.push({m_Start});
 	m_NodeMap.insert({m_Start, {m_Start}});
-	visited.insert({m_Start, true});
+	visited.insert(m_Start);
 	
 	while (!cells.empty())
 	{
@@ -99,7 +99,7 @@ bool CPath::BFS(const function<list<pos_t>(pos_t)> & getNeighbours)
 	return false;
 }
 
-bool CPath::IterateNeighbours(unordered_map<pos_t, bool> & visited, queue<CNode> & cells, const function<list<pos_t>(pos_t)> & getNeighbours)
+bool CPath::IterateNeighbours(set<pos_t> & visited, queue<CNode> & cells, const function<list<pos_t>(pos_t)> & getNeighbours)
 {
 	pos_t curr = cells.front().m_Pos;
 	for (const auto & neighbour : getNeighbours(curr))
@@ -115,7 +115,7 @@ bool CPath::IterateNeighbours(unordered_map<pos_t, bool> & visited, queue<CNode>
 	return false;
 }
 
-void CPath::QueueNeighbours(pos_t neighbour, unordered_map<pos_t, bool> & visited, queue<CNode> & cells)
+void CPath::QueueNeighbours(pos_t neighbour, set<pos_t> & visited, queue<CNode> & cells)
 {
 	if (neighbour.LiesInRange(m_Rows, m_Cols)
 		&& !visited.count(neighbour)
@@ -124,5 +124,5 @@ void CPath::QueueNeighbours(pos_t neighbour, unordered_map<pos_t, bool> & visite
 		cells.push({neighbour, cells.front().m_Dist + 1});
 		m_NodeMap.insert({neighbour, {neighbour, cells.front().m_Dist + 1}});
 	}
-	visited.insert({neighbour, true});
+	visited.insert(neighbour);
 }

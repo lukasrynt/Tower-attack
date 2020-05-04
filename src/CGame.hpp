@@ -21,9 +21,12 @@ class CGame
 public:
 	CGame();
 	
+	// TESTING
+	void Visualize(const std::deque<pos_t> & positions);
+	
 	// LOADING
 	friend std::istream & operator>>(std::istream & in, CGame & self);
-	bool LoadObjects(std::istream & in, std::set<char> & signs, bool & end);
+	std::istream & LoadObjects(std::istream & in, std::set<char> & signs, bool & end);
 	void SetUnitStack();
 	bool CheckNew() const;
 	bool CheckSaved() const;
@@ -34,6 +37,8 @@ public:
 	// INGAME
 	void Update();
 	std::ostream & Render(std::ostream & out) const;
+	
+	
 	bool Won() const
 	{return m_GameState == EGameState::GAME_WON;}
 	
@@ -59,13 +64,9 @@ private:
 	CMap m_Map;									//!< Map with tiles occupied by troops, walls or towers
 	bool m_WaveOn;								//!< Signalizes start and end of wave
 	EGameState m_GameState;
+	int m_Resources;
 	
 	// LOADING
 	static char LoadSignatureChar(std::istream & in);
 	bool CheckDefined(const std::set<char> & signs);
-	
-	// INGAME
-	void AddTroopToWave();
-	void StartWave();
-	void DeleteTroopFromWave();
 };

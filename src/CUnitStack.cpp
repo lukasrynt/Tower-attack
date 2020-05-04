@@ -158,6 +158,11 @@ ostream & CUnitStack::Render(ostream & out) const
 	return m_Troops.at(FindSelected())->RenderInfo(out) << endl;
 }
 
+int CUnitStack::GetSelectedPrice() const
+{
+	return m_Troops.at(FindSelected())->GetPrice();
+}
+
 char CUnitStack::FindSelected() const
 {
 	size_t idx = 0;
@@ -171,6 +176,14 @@ void CUnitStack::Cycle() const
 {
 	if (++m_Selected == m_Troops.size())
 		m_Selected = 0;
+}
+
+bool CUnitStack::Lost(int resources) const
+{
+	for (const auto & troop : m_Troops)
+		if (resources - troop.second->GetPrice() >= 0)
+			return false;
+	return true;
 }
 
 /**********************************************************************************************************************/

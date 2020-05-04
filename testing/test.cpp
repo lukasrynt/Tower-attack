@@ -9,24 +9,25 @@ using namespace std;
 
 int main ()
 {
-	ifstream inFile("/home/lukas/School/PA2/semestralka/saves/test1.sav");
+	ifstream inFile("/home/lukas/School/PA2/semestralka/saves/test6.sav");
 	if (!inFile)
 		return 1;
 
 	CGame game;
 	if (!(inFile >> game))
 		return 2;
-	game.ProcessInput('2');
-	game.ProcessInput('2');
-	game.ProcessInput('a');
-	game.ProcessInput('a');
-	game.ProcessInput('p');
 	game.Render(cout);
-	for (int i = 0; i < 60; ++i)
-	{
-		game.Render(cout);
-		game.Update();
-	}
+	game.Update();
+
+	game.Visualize(CPosition{10,10}.GetRadius(4));
+	
+	
+	
+//	for (int i = 0; i < 60; ++i)
+//	{
+//		game.Render(cout);
+//		game.Update();
+//	}
 
 
 

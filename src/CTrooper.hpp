@@ -22,7 +22,7 @@ class CTrooper
 public:
 	// INIT
 	virtual ~CTrooper() = default;
-	explicit CTrooper(int hp = 0, int speed = 0, int attack = 0, CTile  tile = CTile{'@', ETileType::BASIC_TROOP, Colors::fg_yellow});
+	explicit CTrooper(int hp = 0, int speed = 0, int attack = 0, int price = 0, CTile  tile = CTile{'@', ETileType::BASIC_TROOP, Colors::fg_yellow});
 	virtual CTrooper * Clone() const;
 	
 	// ACTIONS
@@ -66,11 +66,15 @@ public:
 	
 	void SetPath(std::deque<pos_t> path)
 	{m_Path = std::move(path);}
+	
+	int GetPrice() const
+	{return m_Price;}
 protected:
 	CTile m_Tile;
 	pos_t m_Pos;
 	int m_Hp;					//!< Number of health points of the unit
 	int m_Attack;				//!< Attack damage of the trooper
+	int m_Price;
 	CFrames m_Frames;
 	size_t m_SpawnIdx;			//!< Index of the spawn where the trooper should appear
 	std::deque<pos_t> m_Path;	//!< Path to goal

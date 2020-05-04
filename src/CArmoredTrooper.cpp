@@ -9,8 +9,8 @@ using namespace std;
 
 /**********************************************************************************************************************/
 // INIT
-CArmoredTrooper::CArmoredTrooper(int hp, int speed, int attack, int armor)
-	: CTrooper(hp, speed, attack, {'$', ETileType::ARMORED_TROOP, Colors::fg_cyan}),
+CArmoredTrooper::CArmoredTrooper(int hp, int speed, int attack, int cost, int armor)
+	: CTrooper(hp, speed, attack, cost, {'$', ETileType::ARMORED_TROOP, Colors::fg_cyan}),
 	  m_Armor(armor),
 	  m_MaxArmor(armor)
 {}
@@ -36,7 +36,7 @@ ostream & CArmoredTrooper::RenderInfo(ostream & out) const
 		<< ", speed: " << m_Frames
 		<< ", attack: " << m_Attack
 		<< ", armor: " << m_MaxArmor
-		<< Colors::color_reset << endl;
+		<< ", cost: " << m_Price << Colors::fg_yellow << " ©" << Colors::color_reset << endl;
 }
 
 /**********************************************************************************************************************/

@@ -12,11 +12,12 @@
 using namespace std;
 /**********************************************************************************************************************/
 // INIT
-CTrooper::CTrooper(int hp, int speed, int attack, CTile tile)
+CTrooper::CTrooper(int hp, int speed, int attack, int price, CTile tile)
 	: m_Tile(std::move(tile)),
 	  m_Pos(pos::npos),
 	  m_Hp(hp),
 	  m_Attack(attack),
+	  m_Price(price),
 	  m_Frames(speed),
 	  m_SpawnIdx(0)
 
@@ -84,15 +85,15 @@ std::ostream & CTrooper::RenderInfo(std::ostream & out) const
 	return out << m_Tile.m_Color
 		<< "Basic trooper, hp: " << m_Hp
 		<< ", speed: " << m_Frames
-		<< ", attack: " << m_Attack << "."
-		<< Colors::color_reset << endl;
+		<< ", attack: " << m_Attack
+		<< ", cost: " << m_Price << Colors::fg_yellow << " ©" << Colors::color_reset << endl;
 }
 
 /**********************************************************************************************************************/
 // LOADING
 istream & CTrooper::LoadTemplate(istream & in)
 {
-	return in >> m_Tile.m_Char >> m_Hp >> m_Frames >> m_Attack;
+	return in >> m_Tile.m_Char >> m_Price >> m_Hp >> m_Frames >> m_Attack;
 }
 
 istream & CTrooper::LoadOnMap(istream & in)
@@ -108,7 +109,7 @@ istream & CTrooper::LoadOnMap(istream & in)
 // SAVING
 ostream & CTrooper::SaveTemplate(ostream & out) const
 {
-	return out << m_Tile.m_Type << ' ' << m_Tile.m_Char << ' ' << m_Hp << ' ' << m_Frames << ' ' << m_Attack;
+	return out << m_Tile.m_Type << ' ' << m_Tile.m_Char << ' ' << m_Price << ' ' << m_Hp << ' ' << m_Frames << ' ' << m_Attack;
 }
 
 ostream & CTrooper::SaveOnMap(ostream & out) const

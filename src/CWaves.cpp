@@ -7,6 +7,7 @@
 #include "Colors.hpp"
 #include "CArmoredTrooper.hpp"
 #include "CMageTower.hpp"
+#include "ExInvalidInput.hpp"
 
 using namespace std;
 
@@ -16,7 +17,8 @@ CWaves::CWaves()
 	: m_Selected(0),
 	  m_MaxSize(0),
 	  m_Frames(0),
-	  m_ReleasingWave(false)
+	  m_ReleasingWave(false),
+	  m_Resources(0)
 {}
 
 CWaves::~CWaves()
@@ -36,7 +38,7 @@ void CWaves::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 istream & operator>>(istream & in, CWaves & waves)
 {
 	char ch;
-	if (!(in >> waves.m_ReleasingWave >> waves.m_Frames))
+	if (!(in >> waves.m_ReleasingWave >> waves.m_Frames >> waves.m_Resources))
 		return in;
 	
 	while (true)
@@ -140,7 +142,7 @@ bool CWaves::CheckNew() const
 ostream & operator<<(ostream & out, const CWaves & waves)
 {
 	out << "(W)" << endl;
-	out << waves.m_ReleasingWave << ' ' << waves.m_Frames << endl;
+	out << waves.m_ReleasingWave << ' ' << waves.m_Frames << ' ' << waves.m_Resources << endl;
 	for (const auto & wave : waves.m_Waves)
 	{
 		out << '[';
@@ -176,7 +178,9 @@ ostream & CWaves::Render(ostream & out) const
 			return out;
 	}
 	
-	return out << Colors::fg_green << string(10 + m_MaxSize, '-') << Colors::color_reset << endl;
+	if (!(out << Colors::fg_green << string(10 + m_MaxSize, '-') << Colors::color_reset << endl))
+		return out;
+	return out << m_Resources << Colors::fg_yellow << " ©" << Colors::color_reset << endl;
 }
 
 /**********************************************************************************************************************/
@@ -187,41 +191,52 @@ void CWaves::Cycle()
 		m_Selected = 0;
 }
 
-bool CWaves::Release()
+void CWaves::Release(bool & waveOn)
 {
-	// check if the waves are not empty
-	bool empty = true;
-	for (const auto & wave : m_Waves)
-		if (!wave.empty())
-			empty = false;
-		
-	if (!empty)
+	// check if there isn't any running wave
+	if (waveOn)
+		throw invalid_input("Wave already running.");
+	
+	// release only if there is something in the wawes
+	if (!Empty())
+	{
 		m_ReleasingWave = true;
-	return !empty;
+		waveOn = true;
+	}
+	else
+		throw invalid_input("Cannot start an empty wave");
 }
 
-bool CWaves::AddTroop()
+void CWaves::AddTroop()
 {
-	if (m_Waves[m_Selected].size() == m_MaxSize
-		|| m_ReleasingWave)
-		return false;
+	if (m_ReleasingWave)
+		throw invalid_input("Wave is already running.");
+	
+	if (m_Waves[m_Selected].size() == m_MaxSize)
+		throw invalid_input("Current wave is full");
+	
+	int price = m_UnitStack->GetSelectedPrice();
+	if (m_Resources - price < 0)
+		throw invalid_input("Cannot afford unit.");
 	
 	// add trooper to the wave
+	m_Resources -= price;
 	auto troop = m_UnitStack->CreateSelected();
 	m_Waves[m_Selected].emplace_back(troop);
-	return true;
 }
 
-bool CWaves::DeleteTroop()
+void CWaves::DeleteTroop()
 {
-	if (m_Waves[m_Selected].empty()
-		|| m_ReleasingWave)
-		return false;
+	if (m_ReleasingWave)
+		throw invalid_input("Wave is alredy running.");
+	
+	if (m_Waves[m_Selected].empty())
+		throw invalid_input("Current wave is empty.");
 	
 	// delete trooper from the back
+	m_Resources += m_Waves[m_Selected].back()->GetPrice();
 	delete m_Waves[m_Selected].back();
 	m_Waves[m_Selected].pop_back();
-	return true;
 }
 
 /**********************************************************************************************************************/
@@ -249,14 +264,20 @@ vector<CTrooper*> CWaves::Update(const map<int,bool> & spawnsFree)
 	}
 	
 	// check if there are still troops to release
-	m_ReleasingWave = false;
-	for (const auto & wave : m_Waves)
-		if (!wave.empty())
-		{
-			m_ReleasingWave = true;
-			break;
-		}
-	
+	m_ReleasingWave = !Empty();
 	return res;
 }
 
+bool CWaves::Lost() const
+{
+	return Empty() && m_UnitStack->Lost(m_Resources);
+}
+
+bool CWaves::Empty() const
+{
+	bool empty = true;
+	for (const auto & wave : m_Waves)
+		if (!wave.empty())
+			empty = false;
+	return empty;
+}

@@ -21,7 +21,7 @@ public:
 	 * @param attack
 	 * @param armor
 	 */
-	explicit CArmoredTrooper(int hp = 0, int speed = 0, int attack = 0, int armor = 0);
+	explicit CArmoredTrooper(int hp = 0, int speed = 0, int attack = 0, int cost = 0, int armor = 0);
 	/**
 	 * Adds armor which can prevent a certain amount of damage
 	 * @param damage
