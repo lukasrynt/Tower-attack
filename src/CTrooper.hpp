@@ -9,7 +9,7 @@
 #include <queue>
 #include <utility>
 #include <unordered_map>
-#include "Colors.hpp"
+#include "NColors.hpp"
 #include "CTile.hpp"
 #include "CPath.hpp"
 #include "CFrames.hpp"
@@ -22,7 +22,7 @@ class CTrooper
 public:
 	// INIT
 	virtual ~CTrooper() = default;
-	explicit CTrooper(int hp = 0, int speed = 0, int attack = 0, int price = 0, CTile  tile = CTile{'@', ETileType::BASIC_TROOP, Colors::fg_yellow});
+	explicit CTrooper(int hp = 0, int speed = 0, int attack = 0, int price = 0, CTile  tile = CTile{'@', ETileType::BASIC_TROOP, Colors::FG_YELLOW});
 	virtual CTrooper * Clone() const;
 	
 	// ACTIONS

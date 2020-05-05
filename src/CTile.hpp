@@ -29,6 +29,12 @@ public:
 	char GetChar() const
 	{return m_Char;}
 	
+	std::string GetColor() const
+	{return m_Color;}
+	
+	void SetColor(std::string color)
+	{m_Color = std::move(color);}
+	
 	// TYPES FUNCTIONS
 	bool IsTroop() const
 	{return m_Type == ETileType::BASIC_TROOP || m_Type == ETileType::ARMORED_TROOP;}
@@ -45,12 +51,14 @@ public:
 	bool IsGate() const
 	{return m_Type == ETileType::GATE;}
 	
+	bool IsBullet() const
+	{return m_Type == ETileType::BULLET;}
+	
 	bool IsValid() const
 	{return m_Type != ETileType::INVALID;}
 private:
 	friend class CTower;
 	friend class CTrooper;
-	friend class CArmoredTrooper;
 	
 	std::string InitColor() const;
 	ETileType InitType() const;

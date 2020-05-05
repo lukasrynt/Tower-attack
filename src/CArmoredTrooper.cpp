@@ -10,7 +10,7 @@ using namespace std;
 /**********************************************************************************************************************/
 // INIT
 CArmoredTrooper::CArmoredTrooper(int hp, int speed, int attack, int cost, int armor)
-	: CTrooper(hp, speed, attack, cost, {'$', ETileType::ARMORED_TROOP, Colors::fg_cyan}),
+	: CTrooper(hp, speed, attack, cost, {'$', ETileType::ARMORED_TROOP, Colors::FG_CYAN}),
 	  m_Armor(armor),
 	  m_MaxArmor(armor)
 {}
@@ -24,19 +24,24 @@ CArmoredTrooper * CArmoredTrooper::Clone() const
 // ACTIONS
 void CArmoredTrooper::ReceiveDamage(int damage)
 {
-	// TODO Should be calculated in some other fashion- logarithm or so...
-	// If armor is up it can defend some damage
-	CTrooper::ReceiveDamage(damage);
+	// if armor is up we can ignore an attack and remove armor
+	if (!m_Armor)
+		CTrooper::ReceiveDamage(damage);
+	else
+		m_Armor -= damage;
+	
+	if (m_Armor < 0)
+		m_Armor = 0;
 }
 
 ostream & CArmoredTrooper::RenderInfo(ostream & out) const
 {
-	return out << m_Tile.m_Color
-		<< "Armored trooper, hp: " << m_Hp
-		<< ", speed: " << m_Frames
-		<< ", attack: " << m_Attack
-		<< ", armor: " << m_MaxArmor
-		<< ", cost: " << m_Price << Colors::fg_yellow << " ©" << Colors::color_reset << endl;
+	return out << m_Tile.GetColor()
+			   << "Armored trooper, hp: " << m_Hp
+			   << ", speed: " << m_Frames
+			   << ", attack: " << m_Attack
+			   << ", armor: " << m_MaxArmor
+			   << ", cost: " << m_Price << Colors::FG_YELLOW << " ©" << Colors::RESET << endl;
 }
 
 /**********************************************************************************************************************/

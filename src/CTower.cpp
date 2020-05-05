@@ -11,10 +11,10 @@ using namespace std;
 
 /**********************************************************************************************************************/
 // INIT
-CTower::CTower(int attackDamage, int attackSpeed, pos_t position, CTile  tile)
+CTower::CTower(int attackDamage, int attackSpeed, int range, pos_t position, CTile  tile)
 	: m_Tile(move(tile)),
 	  m_Pos(position),
-	  m_Range(3),
+	  m_Range(range),
 	  m_AttackDamage(attackDamage),
 	  m_Frames(attackSpeed),
 	  m_ArrowPos(pos::npos)
@@ -29,7 +29,7 @@ CTower * CTower::Clone() const
 // LOADING
 std::istream & CTower::LoadTemplate(std::istream & in)
 {
-	return in >> m_Tile.m_Char >> m_AttackDamage  >>  m_Frames;
+	return in >> m_Tile.m_Char >> m_AttackDamage >> m_Frames >> m_Range;
 }
 
 std::istream & CTower::LoadOnMap(std::istream & in)
@@ -45,7 +45,7 @@ std::istream & CTower::LoadOnMap(std::istream & in)
 // SAVING
 ostream & CTower::SaveTemplate(ostream & out) const
 {
-	return out << GetType() << ' ' << GetChar() << ' ' << m_AttackDamage << ' ' << m_Frames;
+	return out << GetType() << ' ' << GetChar() << ' ' << m_AttackDamage << ' ' << m_Frames << ' ' << m_Range;
 }
 
 ostream & CTower::SaveOnMap(ostream & out) const
@@ -74,7 +74,7 @@ bool CTower::Attack(unordered_map<pos_t, CTile> & map, int rows, int cols, std::
 		DamageTrooper(map, troops);
 		return true;
 	}
-	map.insert({m_ArrowPos, CTile(' ', ETileType::BULLET, Colors::bg_red)});
+	map.insert({m_ArrowPos, CTile(' ', ETileType::BULLET, Colors::BG_RED)});
 	return false;
 }
 
@@ -100,12 +100,8 @@ void CTower::DamageTrooper(unordered_map<pos_t, CTile> & map, unordered_map<pos_
 	if (!troops.count(m_ArrowPos))
 		return;
 	auto troop = troops.at(m_ArrowPos);
-	cout << troop->GetPosition() << " received " << m_AttackDamage;
-	if (troop->Died())
-		cout << "and died" << endl;
-	cout << endl;
 	troop->ReceiveDamage(m_AttackDamage);
-	map.at(troop->GetPosition()).m_Color = troop->GetTile().m_Color + Colors::bg_red;
+	map.at(troop->GetPosition()).SetColor(troop->GetTile().GetColor() + Colors::BG_RED);
 }
 
 bool CTower::ArrowMove(unordered_map<pos_t,CTile> & map)

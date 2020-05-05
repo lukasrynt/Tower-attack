@@ -16,7 +16,7 @@
 #include <memory>
 #include "CTrooper.hpp"
 #include "CTower.hpp"
-#include "Colors.hpp"
+#include "NColors.hpp"
 #include "CPath.hpp"
 #include "CUnitStack.hpp"
 #include "CGate.hpp"

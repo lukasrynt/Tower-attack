@@ -20,7 +20,7 @@ public:
 	 * @param attackSpeed
 	 * @param maxMana
 	 */
-	explicit CMageTower(int attackDamage = 0, int attackSpeed = 0, int mana = 0, int magicAttack = 0, pos_t position = pos::npos);
+	explicit CMageTower(int attackDamage = 0, int attackSpeed = 0, int range = 0, int waveSpeed = 0, pos_t position = pos::npos);
 	CMageTower * Clone() const final
 	{return new CMageTower(*this);}
 	
@@ -35,10 +35,13 @@ public:
 	std::ostream & SaveOnMap(std::ostream & out) const final;
 	
 	// ACTIONS
-	bool Attack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper *> & troops) final;
+	bool Attack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops) final;
 private:
-	CFrames m_ManaFrames;
-	int m_MagicAttack;	//!< Damage of magic attacks
+	CFrames m_WaveStatus;
+	int m_WaveLevel;
+	std::deque<pos_t> m_LastWave;
 	
-	void MagicAttack();
+	bool PerimeterBreached(const std::unordered_map<pos_t, CTrooper*> & troops) const;
+	void ClearLastWave(std::unordered_map<pos_t,CTile> & map) const;
+	void SendNewWave(std::unordered_map<pos_t,CTile> & map, std::unordered_map<pos_t, CTrooper*> & troops);
 };

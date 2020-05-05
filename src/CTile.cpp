@@ -4,7 +4,7 @@
  */
 
 #include "CTile.hpp"
-#include "Colors.hpp"
+#include "NColors.hpp"
 
 #include <utility>
 
@@ -37,11 +37,11 @@ string CTile::InitColor() const
 	switch(m_Type)
 	{
 		case ETileType::WALL:
-			return Colors::fg_magenta;
+			return Colors::FG_MAGENTA;
 		case ETileType::SPAWN:
-			return Colors::bg_cyan;
+			return Colors::BG_CYAN;
 		case ETileType::GATE:
-			return Colors::bg_magenta;
+			return Colors::BG_MAGENTA;
 		default:
 			return "";
 	}
@@ -72,6 +72,6 @@ string CTile::PrintChar() const
 {
 	string res = m_Color + m_Char;
 	if (!m_Color.empty())
-		res += Colors::color_reset;
+		res += Colors::RESET;
 	return res;
 }

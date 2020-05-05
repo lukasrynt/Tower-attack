@@ -4,7 +4,7 @@
  */
 
 #include "CGate.hpp"
-#include "Colors.hpp"
+#include "NColors.hpp"
 
 using namespace std;
 
@@ -26,6 +26,6 @@ ostream & CGate::Render(ostream & out) const
 	if (m_Hp > 0)
 		part = round<int>(m_Hp / static_cast<double> (m_MaxHp) * 10);
 	return out << "Gate: ["
-		 << Colors::bg_red << string(part, ' ') << Colors::color_reset
+			   << Colors::BG_RED << string(part, ' ') << Colors::RESET
 		 << string(10 - part, ' ') << ']' << endl << endl;
 }

@@ -506,5 +506,5 @@ void CMap::Visualize(const std::deque<pos_t> & positions)
 {
 	for (const auto & pos : positions)
 		if (!m_Map.count(pos))
-			m_Map.insert({pos, {' ', ETileType::BULLET, Colors::bg_red}});
+			m_Map.insert({pos, {' ', ETileType::BULLET, Colors::BG_RED}});
 }

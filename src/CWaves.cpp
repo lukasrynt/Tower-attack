@@ -4,7 +4,7 @@
  */
 
 #include "CWaves.hpp"
-#include "Colors.hpp"
+#include "NColors.hpp"
 #include "CArmoredTrooper.hpp"
 #include "CMageTower.hpp"
 #include "ExInvalidInput.hpp"
@@ -157,14 +157,14 @@ ostream & operator<<(ostream & out, const CWaves & waves)
 // RENDER
 ostream & CWaves::Render(ostream & out) const
 {
-	if (!(out << endl << Colors::fg_green << string(10 + m_MaxSize, '-') << Colors::color_reset << endl))
+	if (!(out << endl << Colors::FG_GREEN << string(10 + m_MaxSize, '-') << Colors::RESET << endl))
 		return out;
 	
 	size_t idx = 0;
 	for (const auto & wave : m_Waves)
 	{
 		if (idx == m_Selected)
-			if (!(out << Colors::bg_green))
+			if (!(out << Colors::BG_GREEN))
 				return out;
 		if (!(out << "Wave " << ++idx << ": ["))
 				return out;
@@ -174,13 +174,13 @@ ostream & CWaves::Render(ostream & out) const
 				return out;
 			
 		if(!(out << string(m_MaxSize - wave.size(), ' ') << "]"
-			 << Colors::color_reset << endl))
+				 << Colors::RESET << endl))
 			return out;
 	}
 	
-	if (!(out << Colors::fg_green << string(10 + m_MaxSize, '-') << Colors::color_reset << endl))
+	if (!(out << Colors::FG_GREEN << string(10 + m_MaxSize, '-') << Colors::RESET << endl))
 		return out;
-	return out << m_Resources << Colors::fg_yellow << " ©" << Colors::color_reset << endl;
+	return out << m_Resources << Colors::FG_YELLOW << " ©" << Colors::RESET << endl;
 }
 
 /**********************************************************************************************************************/

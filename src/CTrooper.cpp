@@ -7,7 +7,7 @@
 
 #include <utility>
 
-#include "Colors.hpp"
+#include "NColors.hpp"
 
 using namespace std;
 /**********************************************************************************************************************/
@@ -83,10 +83,10 @@ int CTrooper::Attack() const
 std::ostream & CTrooper::RenderInfo(std::ostream & out) const
 {
 	return out << m_Tile.m_Color
-		<< "Basic trooper, hp: " << m_Hp
-		<< ", speed: " << m_Frames
-		<< ", attack: " << m_Attack
-		<< ", cost: " << m_Price << Colors::fg_yellow << " ©" << Colors::color_reset << endl;
+			   << "Basic trooper, hp: " << m_Hp
+			   << ", speed: " << m_Frames
+			   << ", attack: " << m_Attack
+			   << ", cost: " << m_Price << Colors::FG_YELLOW << " ©" << Colors::RESET << endl;
 }
 
 /**********************************************************************************************************************/

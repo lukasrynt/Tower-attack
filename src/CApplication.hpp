@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Colors.hpp"
+#include "NColors.hpp"
 #include "CGame.hpp"
 #include "CInterface.hpp"
 

@@ -7,7 +7,7 @@
 #include <zconf.h>
 #include <thread>
 #include "CInterface.hpp"
-#include "Colors.hpp"
+#include "NColors.hpp"
 
 using namespace std;
 
@@ -69,7 +69,7 @@ bool CInterface::LoadNewGame(unique_ptr<CGame> & game) const
 		// return to menu if requested
 		if (response == "RETURN")
 		{
-			m_Out << Colors::color_reset;
+			m_Out << Colors::RESET;
 			return false;
 		}
 		
@@ -94,7 +94,7 @@ bool CInterface::LoadNewGame(unique_ptr<CGame> & game) const
 		}
 		inFile.close();
 		
-		m_Out << Colors::color_reset;
+		m_Out << Colors::RESET;
 		NullTimeout();
 		inFile.close();
 		return true;
@@ -113,7 +113,7 @@ bool CInterface::LoadSavedGame(unique_ptr<CGame> & game) const
 		// return to menu if requested
 		if (response == "RETURN")
 		{
-			m_Out << Colors::color_reset;
+			m_Out << Colors::RESET;
 			return false;
 		}
 		
@@ -134,7 +134,7 @@ bool CInterface::LoadSavedGame(unique_ptr<CGame> & game) const
 			InvalidInput("Incorrect file format.");
 			continue;
 		}
-		m_Out << Colors::color_reset;
+		m_Out << Colors::RESET;
 		NullTimeout();
 		inFile.close();
 		return true;
@@ -171,7 +171,7 @@ bool CInterface::PromptSave(const unique_ptr<CGame> & game) const
 		// return to game if requested
 		if (response == "RETURN")
 		{
-			m_Out << Colors::color_reset;
+			m_Out << Colors::RESET;
 			return false;
 		}
 		
@@ -191,7 +191,7 @@ bool CInterface::PromptSave(const unique_ptr<CGame> & game) const
 			InvalidInput("Error during writing to file.");
 			continue;
 		}
-		m_Out << Colors::color_reset;
+		m_Out << Colors::RESET;
 		outFile.close();
 		return true;
 	}
@@ -200,9 +200,9 @@ bool CInterface::PromptSave(const unique_ptr<CGame> & game) const
 void CInterface::SavedScreen() const
 {
 	ResetScreen();
-	m_Out << Colors::fg_white	<< "Game saved. Do you wish to continue?" << Colors::color_reset << endl << endl;
-	m_Out << Colors::fg_red 	<< "		q - to quit					" << Colors::color_reset << endl;
-	m_Out << Colors::fg_blue 	<< "		r - to return to game       " << Colors::color_reset << endl;
+	m_Out << Colors::FG_WHITE << "Game saved. Do you wish to continue?" << Colors::RESET << endl << endl;
+	m_Out << Colors::FG_RED << "		q - to quit					" << Colors::RESET << endl;
+	m_Out << Colors::FG_BLUE << "		r - to return to game       " << Colors::RESET << endl;
 }
 
 /**********************************************************************************************************************/
@@ -218,30 +218,30 @@ void CInterface::RenderMenuOptions() const
 {
 	m_Out	<< endl;
 	m_Out	<< endl;
-	m_Out 	<< setw(DISPLAY_WIDTH / 2) << Colors::fg_white
-			 << "Choose one option"
-			 << Colors::color_reset <<	endl;
+	m_Out << setw(DISPLAY_WIDTH / 2) << Colors::FG_WHITE
+		  << "Choose one option"
+		  << Colors::RESET << endl;
 	m_Out 	<<	endl;
 	
-	m_Out 	<< setw(DISPLAY_WIDTH / 2) << Colors::fg_cyan
-			 << "1 - new game"
-			 << Colors::color_reset << endl;
+	m_Out << setw(DISPLAY_WIDTH / 2) << Colors::FG_CYAN
+		  << "1 - new game"
+		  << Colors::RESET << endl;
 	m_Out 	<<	endl;
 	
-	m_Out 	<< setw(DISPLAY_WIDTH / 2) << Colors::fg_green
-			 << "2 - load game"
-			 << Colors::color_reset <<	endl;
+	m_Out << setw(DISPLAY_WIDTH / 2) << Colors::FG_GREEN
+		  << "2 - load game"
+		  << Colors::RESET << endl;
 	m_Out 	<< endl;
-	m_Out 	<< setw(DISPLAY_WIDTH / 2) << Colors::fg_red
-			 << "q - quit game"
-			 << Colors::color_reset << endl;
+	m_Out << setw(DISPLAY_WIDTH / 2) << Colors::FG_RED
+		  << "q - quit game"
+		  << Colors::RESET << endl;
 	m_Out 	<<	endl;
 }
 
 void CInterface::RenderHeader() const
 {
 	// http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
-	m_Out << Colors::fg_yellow;
+	m_Out << Colors::FG_YELLOW;
 	PrintCenteredLine(R"(_________ _        _______           _______  _______ _________ _______  _       )");
 	PrintCenteredLine(R"(\__   __/( (    /|(  ____ \|\     /|(  ____ )(  ____ \\__   __/(  ___  )( (    /|)");
 	PrintCenteredLine(R"(   ) (   |  \  ( || (    \/| )   ( || (    )|| (    \/   ) (   | (   ) ||  \  ( |)");
@@ -250,7 +250,7 @@ void CInterface::RenderHeader() const
 	PrintCenteredLine(R"(   | |   | | \   || |      | |   | || (\ (         ) |   | |   | |   | || | \   |)");
 	PrintCenteredLine(R"(___) (___| )  \  || (____/\| (___) || ) \ \__/\____) |___) (___| (___) || )  \  |)");
 	PrintCenteredLine(R"(\_______/|/    )_)(_______/(_______)|/   \__/\_______)\_______/(_______)|/    )_))");
-	m_Out << Colors::color_reset << endl;
+	m_Out << Colors::RESET << endl;
 }
 
 /**********************************************************************************************************************/
@@ -261,9 +261,9 @@ void CInterface::Winner() const
 	while (true)
 	{
 		if (col)
-			m_Out << Colors::fg_green;
+			m_Out << Colors::FG_GREEN;
 		else
-			m_Out << Colors::fg_blue;
+			m_Out << Colors::FG_BLUE;
 		col = !col;
 		ResetScreen();
 		RenderWinner();
@@ -271,7 +271,7 @@ void CInterface::Winner() const
 			break;
 		Sleep(60ms);
 	}
-	m_Out << Colors::color_reset;
+	m_Out << Colors::RESET;
 }
 
 void CInterface::RenderWinner() const
@@ -295,9 +295,9 @@ void CInterface::GameOver() const
 	while (true)
 	{
 		if (col)
-			m_Out << Colors::fg_red;
+			m_Out << Colors::FG_RED;
 		else
-			m_Out << Colors::fg_black;
+			m_Out << Colors::FG_BLACK;
 		col = !col;
 		ResetScreen();
 		RenderGameOver();
@@ -305,7 +305,7 @@ void CInterface::GameOver() const
 			break;
 		Sleep(60ms);
 	}
-	m_Out << Colors::color_reset;
+	m_Out << Colors::RESET;
 }
 
 void CInterface::RenderGameOver() const
@@ -335,39 +335,39 @@ void CInterface::GameScreen(const unique_ptr<CGame> & game) const
 void CInterface::RenderGameOptions() const
 {
 	m_Out 	<<	endl << endl;
-	m_Out 	<< 	Colors::fg_white
+	m_Out 	<< 	Colors::FG_WHITE
 			 <<	"Welcome to the game, pay attention to the control directions below, to quit the game anytime, just press 'q'"
-			 <<  Colors::color_reset
+			 <<  Colors::RESET
 			 << 	endl;
 	m_Out 	<<	endl;
 	
-	m_Out 	<< 	Colors::fg_green
-			 << 	"1 - cycle waves"
-			 << 	Colors::color_reset << endl;
+	m_Out << Colors::FG_GREEN
+		  << "1 - cycle waves"
+		  << Colors::RESET << endl;
 	
-	m_Out 	<< Colors::fg_cyan
-			 << "2 - cycle troops"
-			 << Colors::color_reset << endl;
+	m_Out << Colors::FG_CYAN
+		  << "2 - cycle troops"
+		  << Colors::RESET << endl;
 	
-	m_Out 	<< Colors::fg_red
-			 << "a - add troop"
-			 << Colors::color_reset << endl;
+	m_Out << Colors::FG_RED
+		  << "a - add troop"
+		  << Colors::RESET << endl;
 	
-	m_Out 	<< Colors::fg_yellow
-			 << "d - delete troop"
-			 << Colors::color_reset << endl;
+	m_Out << Colors::FG_YELLOW
+		  << "d - delete troop"
+		  << Colors::RESET << endl;
 	
-	m_Out 	<< Colors::fg_magenta
-			 << "p - start round"
-			 << Colors::color_reset << endl;
+	m_Out << Colors::FG_MAGENTA
+		  << "p - start round"
+		  << Colors::RESET << endl;
 	
-	m_Out 	<< Colors::fg_blue
-			 << "s - save game"
-			 << Colors::color_reset << endl;
+	m_Out << Colors::FG_BLUE
+		  << "s - save game"
+		  << Colors::RESET << endl;
 	
-	m_Out 	<< Colors::fg_white
-			 << "h - help screen"
-			 << Colors::color_reset << endl;
+	m_Out << Colors::FG_WHITE
+		  << "h - help screen"
+		  << Colors::RESET << endl;
 }
 
 /**********************************************************************************************************************/
@@ -393,79 +393,79 @@ void CInterface::RenderHelpScreen() const
 	RenderTowerLegend();
 	
 	// return option
-	m_Out << Colors::fg_blue 	<< "r - to return to game" << Colors::color_reset << endl;
+	m_Out << Colors::FG_BLUE << "r - to return to game" << Colors::RESET << endl;
 	
 }
 
 void CInterface::RenderLegendHeader() const
 {
-	m_Out << Colors::fg_green;
+	m_Out << Colors::FG_GREEN;
 	PrintCenteredLine(R"( _                      _ )");
 	PrintCenteredLine(R"(| |___ __ _ ___ _ _  __| |)");
 	PrintCenteredLine(R"(| / -_) _` / -_) ' \/ _` |)");
 	PrintCenteredLine(R"(|_\___\__, \___|_||_\__,_|)");
 	PrintCenteredLine(R"(      |___/               )");
-	m_Out << Colors::color_reset;
+	m_Out << Colors::RESET;
 }
 
 void CInterface::RenderCommonLegend() const
 {
-	m_Out << Colors::fg_white <<
-		 R"(  __ ___ _ __  _ __  ___ _ _
+	m_Out << Colors::FG_WHITE <<
+		  R"(  __ ___ _ __  _ __  ___ _ _
  / _/ _ \ '  \| '  \/ _ \ ' \
  \__\___/_|_|_|_|_|_\___/_||_|
                               )" << endl;
-	m_Out 	<< Colors::bg_white << Colors::fg_black <<  "(#) Wall" << Colors::color_reset << endl
-			<< Colors::fg_white
-			<< 	"	● Obstacle through which neither troops, nor bullets can pass.\n";
+	m_Out << Colors::BG_WHITE << Colors::FG_BLACK << "(#) Wall" << Colors::RESET << endl
+		  << Colors::FG_WHITE
+		  << "	● Obstacle through which neither troops, nor bullets can pass.\n";
 	
-	m_Out 	<< Colors::bg_cyan << Colors::fg_black <<  "(1) Spawn point" << Colors::color_reset << endl
-			<< Colors::fg_cyan
-			<< 	"	● Point from which troopers will be spawned.\n"
+	m_Out << Colors::BG_CYAN << Colors::FG_BLACK << "(1) Spawn point" << Colors::RESET << endl
+		  << Colors::FG_CYAN
+		  << 	"	● Point from which troopers will be spawned.\n"
 				  "	● Numbered from 1 - each point point is tied to one wave in order.\n";
 	
-	m_Out 	<< Colors::bg_magenta << Colors::fg_black <<  "(O) Gate" << Colors::color_reset << endl
-			<< Colors::fg_magenta
-			<< 	"	● Gate to which the troopers need to get.\n"
+	m_Out << Colors::BG_MAGENTA << Colors::FG_BLACK << "(O) Gate" << Colors::RESET << endl
+		  << Colors::FG_MAGENTA
+		  << 	"	● Gate to which the troopers need to get.\n"
 				  "	● Health points of the gate are displayed in the top right corner.\n"
 				  "	● The goal of the player is to destroy the gate.\n";
 }	// TODO: let unit stack handle writing info
 
 void CInterface::RenderTrooperLegend() const
 {
-	m_Out << Colors::fg_white <<
-		 R"(  _
+	m_Out << Colors::FG_WHITE <<
+		  R"(  _
  | |_ _ _ ___  ___ _ __  ___ _ _ ___
  |  _| '_/ _ \/ _ \ '_ \/ -_) '_(_-<
   \__|_| \___/\___/ .__/\___|_| /__/
                   |_|               )" << endl;
-	m_Out 	<< Colors::bg_yellow << Colors::fg_black <<  "(@) Basic trooper" << Colors::color_reset << endl
-			<< Colors::fg_yellow
-			<< 	"	● Basic unit with limited health and options.\n"
+	m_Out << Colors::BG_YELLOW << Colors::FG_BLACK << "(@) Basic trooper" << Colors::RESET << endl
+		  << Colors::FG_YELLOW
+		  << 	"	● Basic unit with limited health and options.\n"
 				  "	● Will always take the shortest route to finish.\n";
 	
-	m_Out 	<< Colors::bg_cyan << Colors::fg_black <<  "($) Armored trooper" << Colors::color_reset << endl
-			<< Colors::fg_cyan
-			<< 	"	● Protects fellow soldiers.\n"
+	m_Out << Colors::BG_CYAN << Colors::FG_BLACK << "($) Armored trooper" << Colors::RESET << endl
+		  << Colors::FG_CYAN
+		  << 	"	● Protects fellow soldiers.\n"
 				  "	● Will take aggro of the turrets.\n"
 				  "	● Can take more damage, unless his shields are depleted.\n";
 }
 
 void CInterface::RenderTowerLegend() const
 {
-	m_Out << Colors::fg_white << R"(  _
+	m_Out << Colors::FG_WHITE << R"(  _
  | |_ _____ __ _____ _ _ ___
  |  _/ _ \ V  V / -_) '_(_-<
   \__\___/\_/\_/\___|_| /__/
                             )" << endl;
-	m_Out 	<< Colors::bg_red << Colors::fg_black <<  "(*) Archer tower" << Colors::color_reset << endl
-			<< Colors::fg_red
-			<< 	"	● Basic tower with archer attacks.\n"
+	m_Out << Colors::BG_RED << Colors::FG_BLACK << "(*) Archer tower" << Colors::RESET << endl
+		  << Colors::FG_RED
+		  << 	"	● Basic tower with archer attacks.\n"
 				  "	● Can focus only one trooper at once and it will be always the closest.\n";
 	
-	m_Out 	<< Colors::bg_blue << Colors::fg_black <<  "(%) Mage tower" << Colors::color_reset << endl
-			<< Colors::fg_blue
-			<< 	"	● Mage tower which can cast magic attacks, it needs full mana in order to cast them.\n"
+	m_Out << Colors::BG_BLUE << Colors::FG_BLACK << "(%) Mage tower" << Colors::RESET << endl
+		  << Colors::FG_BLUE
+		  << 	"	● Mage tower which can cast magic attacks, it needs full mana in order to cast them.\n"
 				  "	● Magic wave is the main attack the tower can cast. It will damage troopers in radius around the tower.\n";
 }
 
@@ -553,7 +553,7 @@ void CInterface::ResetScreen() const
 void CInterface::InvalidInput(const char * message) const
 {
 	char ch = 0;
-	m_Out << Colors::bg_red << Colors::fg_black << message << " Press space to continue." << Colors::color_reset << endl;
+	m_Out << Colors::BG_RED << Colors::FG_BLACK << message << " Press space to continue." << Colors::RESET << endl;
 	while ((ch != ' '))
 	{
 		ch = GetInput();
@@ -564,8 +564,8 @@ string CInterface::PromptFileName(const string & message) const
 {
 	// welcome message
 	ResetScreen();
-	m_Out << Colors::fg_white << message
-		  << Colors::color_reset << endl << endl;
+	m_Out << Colors::FG_WHITE << message
+		  << Colors::RESET << endl << endl;
 	
 	
 	// disable raw mode for a while
@@ -578,7 +578,7 @@ string CInterface::PromptFileName(const string & message) const
 	
 	// ask for filename
 	m_Out << "\x1b[2, 10H";
-	m_Out << Colors::fg_black << Colors::bg_white << string(20, ' ') << '\r';
+	m_Out << Colors::FG_BLACK << Colors::BG_WHITE << string(20, ' ') << '\r';
 	m_Out.flush();
 	string filename;
 	char ch;

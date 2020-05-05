@@ -16,7 +16,7 @@ class CTower
 {
 public:
 	// INIT
-	explicit CTower(int attackDamage = 0, int attackSpeed = 0, pos_t position = pos::npos, CTile  tile = {'*', ETileType::ARCHER_TOWER, Colors::bg_red});
+	explicit CTower(int attackDamage = 0, int attackSpeed = 0, int range = 0, pos_t position = pos::npos, CTile  tile = {'*', ETileType::ARCHER_TOWER, Colors::BG_RED});
 	
 	virtual ~CTower() = default;
 	

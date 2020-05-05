@@ -138,7 +138,7 @@ CTrooper * CUnitStack::CreateSelected() const
 
 ostream & CUnitStack::Render(ostream & out) const
 {
-	if (!(out << endl << Colors::fg_cyan << string(4 * m_Troops.size(), '-') << Colors::color_reset << endl))
+	if (!(out << endl << Colors::FG_CYAN << string(4 * m_Troops.size(), '-') << Colors::RESET << endl))
 		return out;
 	
 	size_t idx = 0;
@@ -147,13 +147,13 @@ ostream & CUnitStack::Render(ostream & out) const
 		if (!(out << ' '))
 			return out;
 		if (idx++ == m_Selected)
-			if (!(out << Colors::bg_cyan))
+			if (!(out << Colors::BG_CYAN))
 				return out;
-		if (!(out << troop.second->GetChar() << Colors::color_reset << string(2, ' ')))
+		if (!(out << troop.second->GetChar() << Colors::RESET << string(2, ' ')))
 			return out;
 	}
 	
-	if (!(out << endl << Colors::fg_cyan << string(4 * m_Troops.size(), '-') << Colors::color_reset << endl))
+	if (!(out << endl << Colors::FG_CYAN << string(4 * m_Troops.size(), '-') << Colors::RESET << endl))
 		return out;
 	return m_Troops.at(FindSelected())->RenderInfo(out) << endl;
 }
