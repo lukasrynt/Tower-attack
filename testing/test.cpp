@@ -2,6 +2,8 @@
 #include <fstream>
 #include <CGame.hpp>
 #include <cstring>
+#include <iomanip>
+#include <sstream>
 #include "CWaves.hpp"
 #include "CMap.hpp"
 #include "CPath.hpp"
@@ -17,19 +19,12 @@ int main ()
 	CGame game;
 	if (!(inFile >> game))
 		return 2;
-	game.Render(cout);
-	game.ProcessInput('a');
-	game.ProcessInput('a');
-	game.ProcessInput('p');
-	for (int i = 0; i < 60; ++i)
-	{
-		game.Render(cout);
-		game.Update();
-	}
-	
-
-
-
+//	game.Render(cout);
+//	for (int i = 0; i < 60; ++i)
+//	{
+//		game.Render(cout);
+//		game.Update();
+//	}
 
 //	LoadSign(inFile);
 //	shared_ptr<CUnitStack> stack(new CUnitStack);

@@ -361,17 +361,15 @@ ostream & CMap::SaveEntities(ostream & out) const
 
 /**********************************************************************************************************************/
 // RENDER
-ostream & CMap::Render(ostream & out) const
+CBuffer CMap::Render(int windowWidth) const
 {
-	if (!m_Gate.Render(out))
-		return out;
-	if(!RenderMap(out))
-		return out;
-	return out;
+	return m_Gate.Render(windowWidth)
+		+= RenderMap(windowWidth);
 }
 
-ostream & CMap::RenderMap(ostream & out) const
+CBuffer CMap::RenderMap(int windowWidth) const
 {
+	CBuffer buffer{windowWidth};
 	for (int i = 0; i < m_Rows; ++i)
 	{
 		string line;
@@ -382,10 +380,9 @@ ostream & CMap::RenderMap(ostream & out) const
 			else
 				line += m_Map.at({j, i}).PrintChar();
 		}
-		if (!(out << line << endl))
-			return out;
+		buffer.AddLine(line);
 	}
-	return out;
+	return buffer;
 }
 
 /**********************************************************************************************************************/

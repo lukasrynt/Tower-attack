@@ -9,6 +9,7 @@
 #include "CTower.hpp"
 #include "CArmoredTrooper.hpp"
 #include "CMageTower.hpp"
+#include "CBuffer.hpp"
 
 #include <map>
 
@@ -57,10 +58,7 @@ public:
 	CTrooper * CreateSelected() const;
 	
 	// INGAME
-	/**
-	 * Render trooper selection
-	 */
-	std::ostream & Render(std::ostream & out) const;
+	CBuffer Render(int windowWidth) const;
 	/**
 	 * Cycle through trooper selection
 	 */
@@ -73,6 +71,9 @@ private:
 	std::map<char, CTower*> m_Towers;	//!< vector with all towers templates
 	mutable size_t m_Selected;			//!< currently selected trooper
 	constexpr static const char * const FORBIDDEN_CHARS = "#12345O";
+	
+	// RENDER
+	std::string RenderTroops() const;
 	
 	// LOADING
 	bool LoadUnit(std::istream & in, char ch, const std::map<char,CTrooper*> & origTroops, const std::map<char,CTower*> & origTowers);

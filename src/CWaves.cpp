@@ -155,32 +155,30 @@ ostream & operator<<(ostream & out, const CWaves & waves)
 
 /**********************************************************************************************************************/
 // RENDER
-ostream & CWaves::Render(ostream & out) const
+CBuffer CWaves::Render(int windowWidth) const
 {
-	if (!(out << endl << Colors::FG_GREEN << string(10 + m_MaxSize, '-') << Colors::RESET << endl))
-		return out;
+	CBuffer buffer{windowWidth};
+	buffer.AddLine()
+		.AddLine(string(10 + m_MaxSize, '-'), Colors::FG_GREEN);
 	
 	size_t idx = 0;
 	for (const auto & wave : m_Waves)
 	{
+		string line;
 		if (idx == m_Selected)
-			if (!(out << Colors::BG_GREEN))
-				return out;
-		if (!(out << "Wave " << ++idx << ": ["))
-				return out;
-			
+			line += Colors::BG_GREEN;
+		line += "Wave "s + to_string(++idx) + ": [";
+		
 		for (const auto & troop : wave)
-			if (!(out << troop->GetChar()))
-				return out;
+			line += troop->GetChar();
 			
-		if(!(out << string(m_MaxSize - wave.size(), ' ') << "]"
-				 << Colors::RESET << endl))
-			return out;
+		line += string(m_MaxSize - wave.size(), ' ') + "]" + Colors::RESET;
+		buffer.AddLine(line);
 	}
-	
-	if (!(out << Colors::FG_GREEN << string(10 + m_MaxSize, '-') << Colors::RESET << endl))
-		return out;
-	return out << m_Resources << Colors::FG_YELLOW << " ©" << Colors::RESET << endl;
+	return buffer;
+//	return buffer.AddLine(string(10 + m_MaxSize, '-'), Colors::FG_GREEN)
+//		.AddLine(to_string(m_Resources))
+//		.AddToCurrentLine(" ©", Colors::FG_YELLOW);
 }
 
 /**********************************************************************************************************************/

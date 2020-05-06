@@ -20,12 +20,13 @@ istream & operator>>(istream & in, CGate & self)
 	return in;
 }
 
-ostream & CGate::Render(ostream & out) const
+CBuffer CGate::Render(int windowWidth) const
 {
 	int part = 0;
 	if (m_Hp > 0)
 		part = round<int>(m_Hp / static_cast<double> (m_MaxHp) * 10);
-	return out << "Gate: ["
-			   << Colors::BG_RED << string(part, ' ') << Colors::RESET
-		 << string(10 - part, ' ') << ']' << endl << endl;
+	return CBuffer{windowWidth}.AddLine("Gate: ["s + Colors::BG_RED + string(part, ' ') + Colors::RESET
+				   + string(10 - part, ' ') + ']')
+		.AddLine()
+		.AddLine();
 }

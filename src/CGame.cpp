@@ -136,46 +136,13 @@ void CGame::Update()
 		m_GameState = EGameState::GAME_OVER;
 }
 
-ostream & CGame::Render(ostream & out) const
+CBuffer CGame::Render(int windowWidth) const
 {
-	if (!m_Waves.Render(out)
-		|| !m_UnitStack->Render(out)
-		|| !m_Map.Render(out))
-		return out;
-	return out;
-}
-
-void CGame::ProcessInput(char ch)
-{
-	switch (ch)
-	{
-		case 0:
-			break;
-		case '1':
-			m_Waves.Cycle();
-			break;
-		case '2':
-			m_UnitStack->Cycle();
-			break;
-		case 'a':
-			m_Waves.AddTroop();
-			break;
-		case 'd':
-			m_Waves.DeleteTroop();
-			break;
-		case 'p':
-			m_Waves.Release(m_WaveOn);
-			break;
-		case 'q':
-			Quit();
-			break;
-		default:
-			throw invalid_input("read the options above.");
-	}
+	return m_Waves.Render(windowWidth) + m_UnitStack->Render(windowWidth);//) += m_Map.Render(windowWidth);
 }
 
 void CGame::Visualize(const deque<pos_t> & positions)
 {
 	m_Map.Visualize(positions);
-	m_Map.Render(cout);
+	//m_Map.Render(cout);
 }

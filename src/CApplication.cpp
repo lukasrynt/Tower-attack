@@ -7,44 +7,32 @@
 
 #include <memory>
 #include "ExInvalidInput.hpp"
+#include "CCommand.hpp"
 
 
 using namespace std;
 /**********************************************************************************************************************/
 // TERMIOS
-CApplication::CApplication(const CInterface & interface)
+CApplication::CApplication(const CInterface & interface) noexcept
 	: m_Interface(interface),
-	  m_Game(make_unique<CGame>())
-{}
+	  m_Game(make_unique<CGame>()),
+	  m_AppOn(true)
+{
+	InitCommands();
+}
 
 /**********************************************************************************************************************/
 // MAIN LOOP
 void CApplication::Run()
 {
-	bool end = false;
-	while (!end)
+	while (m_AppOn)
 	{
-		m_Interface.Menu();
-		
-		// validate input
-		switch (CInterface::GetInput())
-		{
-			case '1':
-				if (m_Interface.LoadNewGame(m_Game))
-					MainLoop();
-				break;
-			case '2':
-				if (m_Interface.LoadSavedGame(m_Game))
-					MainLoop();
-				break;
-			case 'q':
-				end = true;
-				break;
-			default:
-				m_Interface.InvalidInput("Invalid input.");
-				break;
-		}
-		
+		m_Interface.Menu(m_MenuCommands);
+		char input = CInterface::GetChar();
+		if (m_MenuCommands.count(input))
+			m_MenuCommands.at(input).Execute();
+		else
+			m_Interface.InvalidInput("Invalid input.");
 	}
 }
 
@@ -75,33 +63,118 @@ void CApplication::EndGame()
 
 /**********************************************************************************************************************/
 // INPUT PROCESSING
+
 void CApplication::ProcessInput()
 {
-	char ch = CInterface::GetInput();
-	switch (ch)
-	{
-		case 0:
-			break;
-		case 'h':
-			m_Interface.HelpScreen();
-			break;
-		case 's':
-			m_Interface.Save(m_Game);
-			break;
-		default:
-			GameInput(ch);
-			break;
+	char input = CInterface::GetChar();
+	try {
+		if (m_GameCommands.count(input))
+			m_GameCommands.at(input).Execute();
+		else
+			throw invalid_input("Unknown command.");
+	} catch (invalid_input & e) {
+		m_Interface.InvalidInput(e.what());
 	}
 }
 
-void CApplication::GameInput(char ch)
+void CApplication::InitCommands()
 {
-	try
-	{
-		m_Game->ProcessInput(ch);
-	}
-	catch (invalid_input & e)
-	{
-		m_Interface.InvalidInput(e.what());
-	}
+	m_MenuCommands.emplace('1',LoadNew());
+	m_MenuCommands.emplace('2',LoadSaved());
+	m_MenuCommands.emplace('q', Quit());
+	
+	m_GameCommands.emplace(0, [](){});
+	m_GameCommands.emplace('d', DeleteTroop());
+	m_GameCommands.emplace('a', AddTroop());
+	m_GameCommands.emplace('2', CycleTroops());
+	m_GameCommands.emplace('1', CycleWaves());
+	m_GameCommands.emplace('r', ReleaseWaves());
+	m_GameCommands.emplace('h', Help());
+	m_GameCommands.emplace('s', Save());
+	m_GameCommands.emplace('q', QuitGame());
+}
+
+CCommand CApplication::Quit()
+{
+	return {[this](){m_AppOn = false;},
+		 "Quit game",
+		 Colors::FG_RED};
+}
+
+CCommand CApplication::LoadNew()
+{
+	return {[this]()
+		{
+			if (m_Interface.LoadNewGame(m_Game))
+				MainLoop();
+		},
+		"New game",
+		Colors::FG_CYAN};
+}
+
+CCommand CApplication::LoadSaved()
+{
+	return {[this]()
+		{
+			if (m_Interface.LoadSavedGame(m_Game))
+				MainLoop();
+		},
+		"Load game",
+		Colors::FG_GREEN};
+}
+
+CCommand CApplication::AddTroop()
+{
+	return {[this](){m_Game->AddTroop();},
+		 "Add troop",
+		 Colors::FG_RED};
+}
+
+CCommand CApplication::DeleteTroop()
+{
+	return {[this](){m_Game->DeleteTroop();},
+		 "Delete troop",
+		 Colors::FG_YELLOW};
+}
+
+CCommand CApplication::CycleTroops()
+{
+	return {[this](){m_Game->CycleTroops();},
+		 "Cycle waves",
+		 Colors::FG_GREEN};
+}
+
+CCommand CApplication::CycleWaves()
+{
+	return {[this](){m_Game->CycleWaves();},
+			"Cycle troops",
+			Colors::FG_CYAN};
+}
+
+CCommand CApplication::ReleaseWaves()
+{
+	return {[this](){m_Game->ReleaseWaves();},
+		 "Release waves",
+		 Colors::FG_MAGENTA};
+}
+
+CCommand CApplication::Help()
+{
+	return {[this](){m_Interface.HelpScreen(m_GameCommands);},
+		 "Help screen",
+		 Colors::FG_BLACK};
+}
+
+CCommand CApplication::Save()
+{
+	return {[this](){m_Interface.Save(m_Game);},
+		"Save game",
+		Colors::FG_BLUE};
+}
+
+CCommand CApplication::QuitGame()
+{
+	return {[this](){m_Game->Quit();},
+			"Quit game",
+			Colors::FG_RED};
 }

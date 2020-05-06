@@ -80,13 +80,15 @@ int CTrooper::Attack() const
 	return m_Attack;
 }
 
-std::ostream & CTrooper::RenderInfo(std::ostream & out) const
+string CTrooper::RenderInfo() const
 {
-	return out << m_Tile.m_Color
-			   << "Basic trooper, hp: " << m_Hp
-			   << ", speed: " << m_Frames
-			   << ", attack: " << m_Attack
-			   << ", cost: " << m_Price << Colors::FG_YELLOW << " ©" << Colors::RESET << endl;
+	stringstream ss;
+	ss << m_Tile.m_Color
+		<< "Basic trooper, hp: " << m_Hp
+		<< ", speed: " << m_Frames
+		<< ", attack: " << m_Attack
+		<< ", cost: " << m_Price << Colors::FG_YELLOW << " ©" << Colors::RESET;
+	return ss.str();
 }
 
 /**********************************************************************************************************************/

@@ -8,12 +8,14 @@
 #include <thread>
 #include "CInterface.hpp"
 #include "NColors.hpp"
+#include "ExInvalidInput.hpp"
 
 using namespace std;
 
 CInterface::CInterface(ostream & out)
 	: m_Out(out),
-	  m_Term({})
+	  m_Term({}),
+	  m_Buffer(WINDOW_WIDTH)
 {
 	// https://viewsourcecode.org/snaptoken/kilo/02.enteringRawMode.html
 	// get attributes to termios struct
@@ -40,7 +42,7 @@ CInterface::CInterface(ostream & out)
 		throw runtime_error("Error during tcsetattr");
 	
 	HideCursor();
-	ChangeWindowSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+	ChangeWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 }
 
 CInterface::~CInterface() noexcept(false)
@@ -53,6 +55,21 @@ CInterface::~CInterface() noexcept(false)
 	ResetScreen();
 }
 
+void CInterface::Render()
+{
+	ResetScreen();
+	
+	// align horizontally
+	if (m_Buffer.Size() < WINDOW_HEIGHT)
+		for (size_t i = 0; i < (WINDOW_HEIGHT - m_Buffer.Size()) / 2; ++i)
+			if (!(m_Out << endl))
+				throw runtime_error("Failure during write");
+			
+	// render buffer
+	if (!(m_Out << m_Buffer))
+		throw runtime_error("Failure during write");
+	m_Buffer.Flush();
+}
 
 /**********************************************************************************************************************/
 // LOAD
@@ -151,7 +168,7 @@ bool CInterface::Save(const unique_ptr<CGame> & game) const
 	char ch;
 	while (true)
 	{
-		ch = GetInput();
+		ch = GetChar();
 		if (ch == 'q')
 			return false;
 		else if (ch == 'r')
@@ -207,181 +224,139 @@ void CInterface::SavedScreen() const
 
 /**********************************************************************************************************************/
 // MENU SCREEN
-void CInterface::Menu() const
+void CInterface::Menu(const map<char, CCommand> & commands)
 {
-	ResetScreen();
-	RenderHeader();
-	RenderMenuOptions();
+	AppendHeader();
+	AppendMenuOptions(commands);
+	Render();
 }
 
-void CInterface::RenderMenuOptions() const
+void CInterface::AppendMenuOptions(const map<char, CCommand> & commands)
 {
-	m_Out	<< endl;
-	m_Out	<< endl;
-	m_Out << setw(DISPLAY_WIDTH / 2) << Colors::FG_WHITE
-		  << "Choose one option"
-		  << Colors::RESET << endl;
-	m_Out 	<<	endl;
-	
-	m_Out << setw(DISPLAY_WIDTH / 2) << Colors::FG_CYAN
-		  << "1 - new game"
-		  << Colors::RESET << endl;
-	m_Out 	<<	endl;
-	
-	m_Out << setw(DISPLAY_WIDTH / 2) << Colors::FG_GREEN
-		  << "2 - load game"
-		  << Colors::RESET << endl;
-	m_Out 	<< endl;
-	m_Out << setw(DISPLAY_WIDTH / 2) << Colors::FG_RED
-		  << "q - quit game"
-		  << Colors::RESET << endl;
-	m_Out 	<<	endl;
+	m_Buffer.AddLine();
+	m_Buffer.AddLine();
+	for (const auto & command : commands)
+	{
+		m_Buffer.AddCenteredLine(command.second.Help(command.first), command.second.Color());
+		m_Buffer.AddLine();
+	}
 }
 
-void CInterface::RenderHeader() const
+void CInterface::AppendHeader()
 {
 	// http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
-	m_Out << Colors::FG_YELLOW;
-	PrintCenteredLine(R"(_________ _        _______           _______  _______ _________ _______  _       )");
-	PrintCenteredLine(R"(\__   __/( (    /|(  ____ \|\     /|(  ____ )(  ____ \\__   __/(  ___  )( (    /|)");
-	PrintCenteredLine(R"(   ) (   |  \  ( || (    \/| )   ( || (    )|| (    \/   ) (   | (   ) ||  \  ( |)");
-	PrintCenteredLine(R"(   | |   |   \ | || |      | |   | || (____)|| (_____    | |   | |   | ||   \ | |)");
-	PrintCenteredLine(R"(   | |   | (\ \) || |      | |   | ||     __)(_____  )   | |   | |   | || (\ \) |)");
-	PrintCenteredLine(R"(   | |   | | \   || |      | |   | || (\ (         ) |   | |   | |   | || | \   |)");
-	PrintCenteredLine(R"(___) (___| )  \  || (____/\| (___) || ) \ \__/\____) |___) (___| (___) || )  \  |)");
-	PrintCenteredLine(R"(\_______/|/    )_)(_______/(_______)|/   \__/\_______)\_______/(_______)|/    )_))");
-	m_Out << Colors::RESET << endl;
+	m_Buffer << Colors::FG_YELLOW;
+	m_Buffer.AddHeaderLine(R"(_________ _        _______           _______  _______ _________ _______  _       )")
+			.AddHeaderLine(R"(\__   __/( (    /|(  ____ \|\     /|(  ____ )(  ____ \\__   __/(  ___  )( (    /|)")
+			.AddHeaderLine(R"(   ) (   |  \  ( || (    \/| )   ( || (    )|| (    \/   ) (   | (   ) ||  \  ( |)")
+			.AddHeaderLine(R"(   | |   |   \ | || |      | |   | || (____)|| (_____    | |   | |   | ||   \ | |)")
+			.AddHeaderLine(R"(   | |   | (\ \) || |      | |   | ||     __)(_____  )   | |   | |   | || (\ \) |)")
+			.AddHeaderLine(R"(   | |   | | \   || |      | |   | || (\ (         ) |   | |   | |   | || | \   |)")
+			.AddHeaderLine(R"(___) (___| )  \  || (____/\| (___) || ) \ \__/\____) |___) (___| (___) || )  \  |)")
+			.AddHeaderLine(R"(\_______/|/    )_)(_______/(_______)|/   \__/\_______)\_______/(_______)|/    )_))");
+	m_Buffer << Colors::RESET;
+	m_Buffer.AddLine();
+	m_Buffer.AddLine();
+	m_Buffer.AddLine();
 }
 
 /**********************************************************************************************************************/
 // GAME END
-void CInterface::Winner() const
+void CInterface::Winner()
 {
 	bool col = false;
 	while (true)
 	{
 		if (col)
-			m_Out << Colors::FG_GREEN;
+			m_Buffer << Colors::FG_GREEN;
 		else
-			m_Out << Colors::FG_BLUE;
+			m_Buffer << Colors::FG_BLUE;
 		col = !col;
-		ResetScreen();
-		RenderWinner();
-		if (GetInput() == 'q')
+		AppendWinner();
+		Render();
+		if (GetChar() == 'q')
 			break;
 		Sleep(60ms);
 	}
-	m_Out << Colors::RESET;
+	m_Buffer << Colors::RESET;
 }
 
-void CInterface::RenderWinner() const
+void CInterface::AppendWinner()
 {
-	const int TEXT_HEIGHT = 8;
-	for (int i = 0; i < (DISPLAY_HEIGHT - TEXT_HEIGHT) / 2; ++i)
-		m_Out << endl;
-	PrintCenteredLine(R"(         _________ _        _        _______  _______ )");
-	PrintCenteredLine(R"(|\     /|\__   __/( (    /|( (    /|(  ____ \(  ____ ))");
-	PrintCenteredLine(R"(| )   ( |   ) (   |  \  ( ||  \  ( || (    \/| (    )|)");
-	PrintCenteredLine(R"(| | _ | |   | |   |   \ | ||   \ | || (__    | (____)|)");
-	PrintCenteredLine(R"(| |( )| |   | |   | (\ \) || (\ \) ||  __)   |     __))");
-	PrintCenteredLine(R"(| || || |   | |   | | \   || | \   || (      | (\ (   )");
-	PrintCenteredLine(R"(| () () |___) (___| )  \  || )  \  || (____/\| ) \ \__)");
-	PrintCenteredLine(R"((_______)\_______/|/    )_)|/    )_)(_______/|/   \__/)");
+	m_Buffer.AddHeaderLine(R"(         _________ _        _        _______  _______ )")
+			.AddHeaderLine(R"(|\     /|\__   __/( (    /|( (    /|(  ____ \(  ____ ))")
+			.AddHeaderLine(R"(| )   ( |   ) (   |  \  ( ||  \  ( || (    \/| (    )|)")
+			.AddHeaderLine(R"(| | _ | |   | |   |   \ | ||   \ | || (__    | (____)|)")
+			.AddHeaderLine(R"(| |( )| |   | |   | (\ \) || (\ \) ||  __)   |     __))")
+			.AddHeaderLine(R"(| || || |   | |   | | \   || | \   || (      | (\ (   )")
+			.AddHeaderLine(R"(| () () |___) (___| )  \  || )  \  || (____/\| ) \ \__)")
+			.AddHeaderLine(R"((_______)\_______/|/    )_)|/    )_)(_______/|/   \__/)");
 }
 
-void CInterface::GameOver() const
+void CInterface::GameOver()
 {
 	bool col = false;
 	while (true)
 	{
 		if (col)
-			m_Out << Colors::FG_RED;
+			m_Buffer << Colors::FG_RED;
 		else
-			m_Out << Colors::FG_BLACK;
+			m_Buffer << Colors::FG_BLACK;
 		col = !col;
-		ResetScreen();
-		RenderGameOver();
-		if (GetInput() == 'q')
+		AppendGameOver();
+		Render();
+		if (GetChar() == 'q')
 			break;
 		Sleep(60ms);
 	}
-	m_Out << Colors::RESET;
+	m_Buffer << Colors::RESET;
 }
 
-void CInterface::RenderGameOver() const
+void CInterface::AppendGameOver()
 {
-	const int TEXT_HEIGHT = 8;
-	for (int i = 0; i < (DISPLAY_HEIGHT - TEXT_HEIGHT) / 2; ++i)
-		m_Out << endl;
-	PrintCenteredLine(R"( _______  _______  _______  _______    _______           _______  _______ )");
-	PrintCenteredLine(R"((  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ ))");
-	PrintCenteredLine(R"(| (    \/| (   ) || () () || (    \/  | (   ) || )   ( || (    \/| (    )|)");
-	PrintCenteredLine(R"(| |      | (___) || || || || (__      | |   | || |   | || (__    | (____)|)");
-	PrintCenteredLine(R"(| | ____ |  ___  || |(_)| ||  __)     | |   | |( (   ) )|  __)   |     __))");
-	PrintCenteredLine(R"(| | \_  )| (   ) || |   | || (        | |   | | \ \_/ / | (      | (\ (   )");
-	PrintCenteredLine(R"(| (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__)");
-	PrintCenteredLine(R"((_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/)");
+	m_Buffer.AddHeaderLine(R"( _______  _______  _______  _______    _______           _______  _______ )")
+			.AddHeaderLine(R"((  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ ))")
+			.AddHeaderLine(R"(| (    \/| (   ) || () () || (    \/  | (   ) || )   ( || (    \/| (    )|)")
+			.AddHeaderLine(R"(| |      | (___) || || || || (__      | |   | || |   | || (__    | (____)|)")
+			.AddHeaderLine(R"(| | ____ |  ___  || |(_)| ||  __)     | |   | |( (   ) )|  __)   |     __))")
+			.AddHeaderLine(R"(| | \_  )| (   ) || |   | || (        | |   | | \ \_/ / | (      | (\ (   )")
+			.AddHeaderLine(R"(| (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__)")
+			.AddHeaderLine(R"((_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/)");
 }
 
 /**********************************************************************************************************************/
 // GAME SCREEN
-void CInterface::GameScreen(const unique_ptr<CGame> & game) const
+void CInterface::GameScreen(const unique_ptr<CGame> & game)
 {
 	ResetScreen();
-	RenderGameOptions();
-	game->Render(m_Out);
+	m_Buffer = game->Render(WINDOW_WIDTH);
+	Render();
 }
 
-void CInterface::RenderGameOptions() const
+void CInterface::AppendGameOptions(const map<char, CCommand> & commands)
 {
-	m_Out 	<<	endl << endl;
-	m_Out 	<< 	Colors::FG_WHITE
-			 <<	"Welcome to the game, pay attention to the control directions below, to quit the game anytime, just press 'q'"
-			 <<  Colors::RESET
-			 << 	endl;
-	m_Out 	<<	endl;
-	
-	m_Out << Colors::FG_GREEN
-		  << "1 - cycle waves"
-		  << Colors::RESET << endl;
-	
-	m_Out << Colors::FG_CYAN
-		  << "2 - cycle troops"
-		  << Colors::RESET << endl;
-	
-	m_Out << Colors::FG_RED
-		  << "a - add troop"
-		  << Colors::RESET << endl;
-	
-	m_Out << Colors::FG_YELLOW
-		  << "d - delete troop"
-		  << Colors::RESET << endl;
-	
-	m_Out << Colors::FG_MAGENTA
-		  << "p - start round"
-		  << Colors::RESET << endl;
-	
-	m_Out << Colors::FG_BLUE
-		  << "s - save game"
-		  << Colors::RESET << endl;
-	
-	m_Out << Colors::FG_WHITE
-		  << "h - help screen"
-		  << Colors::RESET << endl;
+	AppendHeader();
+	for (const auto & command : commands)
+	{
+		string line = command.second.Help(command.first);
+		if (!line.empty())
+			m_Buffer.AddCenteredLine(line, command.second.Color());
+	}
 }
 
 /**********************************************************************************************************************/
 // HELP SCREEN
-void CInterface::HelpScreen() const
+void CInterface::HelpScreen(const map<char, CCommand> & commands)
 {
-	ResetScreen();
+	AppendGameOptions(commands);
+	Render();
 	RenderHelpScreen();
 	char ch = 0;
 	while (ch != 'r')
-		ch = GetInput();
+		ch = GetChar();
 }
 
-void CInterface::RenderHelpScreen() const
+void CInterface::RenderHelpScreen()
 {
 	// print header of help screen
 	ResetScreen();
@@ -397,15 +372,15 @@ void CInterface::RenderHelpScreen() const
 	
 }
 
-void CInterface::RenderLegendHeader() const
+void CInterface::RenderLegendHeader()
 {
-	m_Out << Colors::FG_GREEN;
-	PrintCenteredLine(R"( _                      _ )");
-	PrintCenteredLine(R"(| |___ __ _ ___ _ _  __| |)");
-	PrintCenteredLine(R"(| / -_) _` / -_) ' \/ _` |)");
-	PrintCenteredLine(R"(|_\___\__, \___|_||_\__,_|)");
-	PrintCenteredLine(R"(      |___/               )");
-	m_Out << Colors::RESET;
+	m_Buffer << Colors::FG_GREEN;
+	m_Buffer.AddCenteredLine(R"( _                      _ )")
+			.AddCenteredLine(R"(| |___ __ _ ___ _ _  __| |)")
+			.AddCenteredLine(R"(| / -_) _` / -_) ' \/ _` |)")
+			.AddCenteredLine(R"(|_\___\__, \___|_||_\__,_|)")
+			.AddCenteredLine(R"(      |___/               )");
+	m_Buffer << Colors::RESET;
 }
 
 void CInterface::RenderCommonLegend() const
@@ -532,7 +507,7 @@ void CInterface::ChangeWindowSize(int width, int height) const
 	m_Out << "\x1b[8;" << height << ';' << width << 't';
 }
 
-char CInterface::GetInput()
+char CInterface::GetChar()
 {
 	char ch = 0;
 	
@@ -543,20 +518,13 @@ char CInterface::GetInput()
 	return ch;
 }
 
-void CInterface::ResetScreen() const
-{
-	// clear the screen and move cursor back to top
-	m_Out <<"\x1b[2J";
-	m_Out <<"\x1b[H";
-}
-
 void CInterface::InvalidInput(const char * message) const
 {
 	char ch = 0;
 	m_Out << Colors::BG_RED << Colors::FG_BLACK << message << " Press space to continue." << Colors::RESET << endl;
 	while ((ch != ' '))
 	{
-		ch = GetInput();
+		ch = GetChar();
 	}
 }
 
@@ -582,7 +550,7 @@ string CInterface::PromptFileName(const string & message) const
 	m_Out.flush();
 	string filename;
 	char ch;
-	while ((ch = GetInput()) != '\n')
+	while ((ch = GetChar()) != '\n')
 		filename += ch;
 	
 	// enable raw mode back
@@ -592,9 +560,11 @@ string CInterface::PromptFileName(const string & message) const
 	return filename;
 }
 
-void CInterface::PrintCenteredLine(const string & line) const
+void CInterface::ResetScreen() const
 {
-	m_Out << string((DISPLAY_WIDTH - line.size()) / 2, ' ') << line << endl;
+	// clear the screen and move cursor back to top
+	m_Out << "\x1b[2J";
+	m_Out << "\x1b[H";
 }
 
 

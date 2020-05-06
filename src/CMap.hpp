@@ -20,6 +20,7 @@
 #include "CPath.hpp"
 #include "CUnitStack.hpp"
 #include "CGate.hpp"
+#include "CBuffer.hpp"
 
 /**
  * Map with troopers, walls, spawn points and towers
@@ -50,8 +51,7 @@ public:
 	friend std::ostream & operator<<(std::ostream & out, const CMap & self);
 
 	// RENDER
-	std::ostream & Render(std::ostream & out) const;
-	std::ostream & RenderMap(std::ostream & out) const;
+	CBuffer Render(int windowWidth) const;
 
 	// UPDATE
 	void Spawn(const std::vector<CTrooper*> & spawns);
@@ -91,6 +91,8 @@ private:
 	std::istream & LoadTroops(std::istream & in, char ch);
 	std::istream & LoadTowers(std::istream & in, char ch);
 	
+	// RENDER
+	CBuffer RenderMap(int windowWidth) const;
 	
 	// SAVING
 	std::ostream & SaveMapInfo(std::ostream & out) const;

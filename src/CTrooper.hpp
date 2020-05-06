@@ -9,6 +9,7 @@
 #include <queue>
 #include <utility>
 #include <unordered_map>
+#include <sstream>
 #include "NColors.hpp"
 #include "CTile.hpp"
 #include "CPath.hpp"
@@ -40,7 +41,7 @@ public:
 	virtual std::ostream & SaveOnMap(std::ostream & out) const;
 	
 	// RENDERING
-	virtual std::ostream & RenderInfo(std::ostream & out) const;
+	virtual std::string RenderInfo() const;
 	
 	// GETTERS/ SETTERS
 	bool Died() const

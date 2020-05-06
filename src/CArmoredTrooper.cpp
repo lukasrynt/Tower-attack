@@ -34,14 +34,16 @@ void CArmoredTrooper::ReceiveDamage(int damage)
 		m_Armor = 0;
 }
 
-ostream & CArmoredTrooper::RenderInfo(ostream & out) const
+string CArmoredTrooper::RenderInfo() const
 {
-	return out << m_Tile.GetColor()
+	stringstream ss;
+	ss << m_Tile.GetColor()
 			   << "Armored trooper, hp: " << m_Hp
 			   << ", speed: " << m_Frames
 			   << ", attack: " << m_Attack
 			   << ", armor: " << m_MaxArmor
-			   << ", cost: " << m_Price << Colors::FG_YELLOW << " ©" << Colors::RESET << endl;
+			   << ", cost: " << m_Price << Colors::FG_YELLOW << " ©" << Colors::RESET;
+	return ss.str();
 }
 
 /**********************************************************************************************************************/

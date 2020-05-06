@@ -12,6 +12,7 @@
 #include "CMap.hpp"
 #include "CWaves.hpp"
 #include "EGameState.hpp"
+#include "CBuffer.hpp"
 
 /**
  * A single game with map, waves and unit stack
@@ -36,8 +37,7 @@ public:
 	
 	// INGAME
 	void Update();
-	std::ostream & Render(std::ostream & out) const;
-	
+	CBuffer Render(int windowWidth) const;
 	
 	bool Won() const
 	{return m_GameState == EGameState::GAME_WON;}
@@ -48,15 +48,23 @@ public:
 	bool Running() const
 	{return m_GameState == EGameState::GAME_RUNNING;}
 	
-	bool Ended() const
-	{return m_GameState == EGameState::GAME_QUIT;}
-	
 	void Quit()
 	{m_GameState = EGameState::GAME_QUIT;}
 	
-	// INPUT PROCESSING
-	void ProcessInput(char ch);
-
+	void CycleWaves()
+	{m_Waves.Cycle();}
+	
+	void CycleTroops()
+	{m_UnitStack->Cycle();}
+	
+	void DeleteTroop()
+	{m_Waves.DeleteTroop();}
+	
+	void AddTroop()
+	{m_Waves.AddTroop();}
+	
+	void ReleaseWaves()
+	{m_Waves.Release(m_WaveOn);}
 private:
 	// VARIABLES
 	std::shared_ptr<CUnitStack> m_UnitStack;

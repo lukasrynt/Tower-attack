@@ -136,26 +136,27 @@ CTrooper * CUnitStack::CreateSelected() const
 	return nullptr;
 }
 
-ostream & CUnitStack::Render(ostream & out) const
+CBuffer CUnitStack::Render(int windowWidth) const
 {
-	if (!(out << endl << Colors::FG_CYAN << string(4 * m_Troops.size(), '-') << Colors::RESET << endl))
-		return out;
-	
+	return CBuffer{windowWidth}.AddLine()
+		.AddLine(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
+		.AddLine(RenderTroops())
+		.AddLine(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
+		.AddLine(m_Troops.at(FindSelected())->RenderInfo());
+}
+
+string CUnitStack::RenderTroops() const
+{
 	size_t idx = 0;
+	string line;
 	for (const auto & troop : m_Troops)
 	{
-		if (!(out << ' '))
-			return out;
+		line += ' ';
 		if (idx++ == m_Selected)
-			if (!(out << Colors::BG_CYAN))
-				return out;
-		if (!(out << troop.second->GetChar() << Colors::RESET << string(2, ' ')))
-			return out;
+			line += Colors::BG_CYAN;
+		line += troop.second->GetChar() + string(Colors::RESET) + string(2, ' ');
 	}
-	
-	if (!(out << endl << Colors::FG_CYAN << string(4 * m_Troops.size(), '-') << Colors::RESET << endl))
-		return out;
-	return m_Troops.at(FindSelected())->RenderInfo(out) << endl;
+	return line;
 }
 
 int CUnitStack::GetSelectedPrice() const

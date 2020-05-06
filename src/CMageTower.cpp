@@ -45,10 +45,12 @@ ostream & CMageTower::SaveOnMap(ostream & out) const
 
 /**********************************************************************************************************************/
 // ATTACK
-bool CMageTower::Attack(unordered_map<pos_t, CTile> & map, int, int, unordered_map<pos_t, CTrooper*> & troops)
+bool CMageTower::Attack(unordered_map<pos_t, CTile> & map, int rows, int cols, unordered_map<pos_t, CTrooper*> & troops)
 {
 	// if the wave hasn't started yet - either create it or return if the perimeter wasn't breached
 	// or the action is not allowed
+	(void) rows;
+	(void) cols;
 	if (!m_WaveLevel)
 	{
 		if (!m_Frames.ActionAllowed() || !PerimeterBreached(troops))

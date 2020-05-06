@@ -6,6 +6,7 @@
 #pragma once
 
 #include "CPosition.hpp"
+#include "CBuffer.hpp"
 
 class CGate
 {
@@ -16,7 +17,7 @@ public:
 	void ReceiveDamage(int damage)
 	{m_Hp -= damage;}
 	
-	std::ostream & Render(std::ostream & out) const;
+	CBuffer Render(int windowWidth) const;
 	
 	pos_t & Position()
 	{return m_Pos;}
