@@ -18,7 +18,7 @@ public:
 	 * Constructor for application
 	 * @param interface Interface that handle I/O operations
 	 */
-	explicit CApplication(const CInterface & interface) noexcept;
+	explicit CApplication(const CInterface& interface) noexcept;
 	/**
 	 * Runs the application menu screen
 	 */

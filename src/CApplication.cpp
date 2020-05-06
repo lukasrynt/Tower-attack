@@ -45,7 +45,7 @@ void CApplication::MainLoop()
 		auto start = CInterface::GetCurrentTime();
 		ProcessInput();
 		m_Game->Update();
-		m_Interface.GameScreen(m_Game);
+		m_Interface.GameScreen(*m_Game);
 		CInterface::Sleep(start - CInterface::GetCurrentTime() + 30ms);
 	}
 	EndGame();
@@ -68,10 +68,10 @@ void CApplication::ProcessInput()
 {
 	char input = CInterface::GetChar();
 	try {
-		if (m_GameCommands.count(input))
-			m_GameCommands.at(input).Execute();
-		else
-			throw invalid_input("Unknown command.");
+		auto it = m_GameCommands.find(input);
+		if (it == m_GameCommands.end())
+			throw invalid_input("Unknown command, press 'h' for more info.");
+		it->second.Execute();
 	} catch (invalid_input & e) {
 		m_Interface.InvalidInput(e.what());
 	}
@@ -105,7 +105,8 @@ CCommand CApplication::LoadNew()
 {
 	return {[this]()
 		{
-			if (m_Interface.LoadNewGame(m_Game))
+			m_Game = make_unique<CGame>();
+			if (m_Interface.LoadNewGame(*m_Game))
 				MainLoop();
 		},
 		"New game",
@@ -116,7 +117,8 @@ CCommand CApplication::LoadSaved()
 {
 	return {[this]()
 		{
-			if (m_Interface.LoadSavedGame(m_Game))
+			m_Game = make_unique<CGame>();
+			if (m_Interface.LoadSavedGame(*m_Game))
 				MainLoop();
 		},
 		"Load game",
@@ -167,7 +169,7 @@ CCommand CApplication::Help()
 
 CCommand CApplication::Save()
 {
-	return {[this](){m_Interface.Save(m_Game);},
+	return {[this](){m_Interface.Save(*m_Game);},
 		"Save game",
 		Colors::FG_BLUE};
 }

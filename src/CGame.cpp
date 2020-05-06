@@ -138,7 +138,11 @@ void CGame::Update()
 
 CBuffer CGame::Render(int windowWidth) const
 {
-	return m_Waves.Render(windowWidth) + m_UnitStack->Render(windowWidth);//) += m_Map.Render(windowWidth);
+	CBuffer buffer{windowWidth};
+	buffer += move(m_Waves.Render(windowWidth).Concat(m_UnitStack->Render(windowWidth)).Center());
+	buffer += move(CBuffer{windowWidth}.AddLine().AddLine());
+	buffer += m_Map.Render(windowWidth);
+	return buffer;
 }
 
 void CGame::Visualize(const deque<pos_t> & positions)

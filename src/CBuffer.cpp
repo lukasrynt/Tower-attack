@@ -7,108 +7,124 @@
 
 using namespace std;
 
-
-CBuffer & CBuffer::AddCenteredLine(const std::string & line, const std::string & color)
+CBuffer & CBuffer::AddLine(string line, string color)
 {
-	stringstream ss;
-	ss << setw(m_WindowWidth / 2);
+	string res = move(line);
+	m_Sizes.push_back(res.length());	//TODO detect if the line is longer than window size
 	if (!color.empty())
-		ss << color;
-	ss << line;
-	if (!color.empty())
-		ss << Colors::RESET;
-	AddLine(ss.str());
+		res = move(color) + res + Colors::RESET;
+	m_Buffer.emplace_back(move(res));
 	return *this;
 }
 
-CBuffer & CBuffer::AddCenteredLine(const std::string & line, int size, const std::string & color)
+CBuffer & CBuffer::AddText(string text, string color)
 {
-	stringstream ss;
+	if (m_Sizes.empty())
+		m_Sizes.emplace_back();
+	string res = move(text);
+	m_Sizes.back() += res.length();
 	if (!color.empty())
-		ss << color;
-	ss << string((m_WindowWidth - size) / 2, ' ') << line;
-	if (!color.empty())
-		ss << Colors::RESET;
-	AddLine(ss.str());
+		res = move(color) + res + Colors::RESET;
+	if (m_Buffer.empty())
+		m_Buffer.emplace_back();
+	m_Buffer.back() += res;
 	return *this;
 }
 
-CBuffer & CBuffer::AddHeaderLine(const string & line, const string & color) {
-	stringstream ss;
-	if (!color.empty())
-		ss << color;
-	ss << string((m_WindowWidth - line.size()) / 2, ' ') << line;
-	if (!color.empty())
-		ss << Colors::RESET;
-	AddLine(ss.str());
-	return *this;
-}
-
-CBuffer & CBuffer::AddToCurrentLine(const std::string & text)
+CBuffer & CBuffer::AddEscapeSequence(std::string sequence)
 {
 	if (m_Buffer.empty())
 		m_Buffer.emplace_back();
-	m_Buffer.back() += text;
+	string res = move(sequence);
+	m_Buffer.back() += res;
 	return *this;
 }
 
-CBuffer & CBuffer::AddToCurrentLine(const string & text, const string & color)
-{
-	if (m_Buffer.empty())
-		m_Buffer.emplace_back();
-	m_Buffer.back() += color + text + Colors::RESET;
-	return *this;
-}
-
-CBuffer CBuffer::operator+(const CBuffer & other)
+CBuffer & CBuffer::Concat(CBuffer && other)
 {
 	const int SPACE = 20;
-	size_t size = LongestSize() + SPACE + other.LongestSize();
+	size_t longest = LongestSize();
 	
-	CBuffer res{m_WindowWidth};
-	auto it2 = other.m_Buffer.begin();
-	for (auto & it1 : m_Buffer)
+	for (size_t i = 0; i < other.m_Buffer.size(); ++i)
 	{
 		string line;
-		line.append(move(it1))
-			.append(string(SPACE,' '));
-		if (it2 != other.m_Buffer.end())
+		if (i < m_Buffer.size())
 		{
-			line.append(*it2);
-			++it2;
+			AddTextAt(i, string(longest - m_Sizes[i] + SPACE, ' ').append(other.m_Buffer[i]));
+			m_Sizes[i] += other.m_Sizes[i];
 		}
-		res.AddCenteredLine(line, size);
+		else
+			AddLine(string(longest + SPACE, ' ').append(other.m_Buffer[i]));
 	}
-	res.AddCenteredLine("ahoj");
-	return res;
+	return *this;
 }
 
-int CBuffer::LongestSize() const
+CBuffer & CBuffer::Center()
+{
+	size_t longest = LongestSize();
+	for (auto & str : m_Buffer)
+		str = string((m_WindowWidth - longest) / 2,' ') + str;
+	return *this;
+}
+
+size_t CBuffer::LongestSize() const
 {
 	size_t tmp = 0;
-	for (const auto & line : m_Buffer)
-		if (line.size() > tmp)
-			tmp = line.size();
+	for (size_t size : m_Sizes)
+		if (tmp < size)
+			tmp = size;
 	return tmp;
 }
 
-CBuffer & CBuffer::operator+=(CBuffer other)
+CBuffer & CBuffer::Append(CBuffer && other)
 {
 	move(other.m_Buffer.begin(), other.m_Buffer.end(), back_inserter(m_Buffer));
 	return *this;
 }
 
-std::ostream & operator<<(ostream & out, const CBuffer & self) {
+CBuffer & CBuffer::operator+=(CBuffer && other)
+{
+	return Append(move(other));
+}
+
+ostream & operator<<(ostream & out, const CBuffer & self)
+{
 	for (const auto & str : self.m_Buffer)
 		if (!(out << std::noskipws << str << std::endl))
 			return out;
 	return out;
 }
 
-CBuffer & CBuffer::operator<<(const string &line) {
-	if (m_Buffer.empty())
-		m_Buffer.emplace_back();
-	m_Buffer.back() += line;
+CBuffer & CBuffer::operator<<(string line)
+{
+	return AddText(move(line));
+}
+
+CBuffer & CBuffer::operator<<(const CTile & tile)
+{
+	AddText(""s + tile.GetChar(), tile.GetColor());
 	return *this;
 }
 
+CBuffer & CBuffer::operator+=(string line)
+{
+	return AddLine(move(line));
+}
+
+CBuffer & CBuffer::AddTextAt(size_t idx, std::string text, std::string color)
+{
+	if (m_Sizes.empty())
+		m_Sizes.emplace_back();
+	string res = move(text);
+	if (!color.empty())
+		res = move(color) + res + Colors::RESET;
+	At(idx) += res;
+	return *this;
+}
+
+std::string & CBuffer::At(size_t idx)
+{
+	if (idx > m_Buffer.size())
+		throw out_of_range("Given index is out of bounds of buffer");
+	return m_Buffer[idx];
+}

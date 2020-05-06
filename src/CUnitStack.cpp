@@ -138,11 +138,12 @@ CTrooper * CUnitStack::CreateSelected() const
 
 CBuffer CUnitStack::Render(int windowWidth) const
 {
-	return CBuffer{windowWidth}.AddLine()
+	CBuffer buffer{windowWidth};
+	buffer.AddLine("Units:", Colors::FG_CYAN)
 		.AddLine(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
 		.AddLine(RenderTroops())
-		.AddLine(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
-		.AddLine(m_Troops.at(FindSelected())->RenderInfo());
+		.AddLine(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN);
+	return buffer;
 }
 
 string CUnitStack::RenderTroops() const

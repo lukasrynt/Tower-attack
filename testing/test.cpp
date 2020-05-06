@@ -12,7 +12,7 @@ using namespace std;
 
 int main ()
 {
-	ifstream inFile("/home/lukas/School/PA2/semestralka/saves/ahoj.sav");
+	ifstream inFile("/home/lukas/School/PA2/semestralka/maps/test2.map");
 	if (!inFile)
 		return 1;
 

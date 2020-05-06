@@ -16,21 +16,22 @@ class CInterface
 {
 public:
 	explicit CInterface(std::ostream & out);
+	
 	~CInterface() noexcept(false);
 	
 	// SCREENS
-	void Render();
-	bool Save(const std::unique_ptr<CGame> & game) const;
-	bool LoadNewGame(std::unique_ptr<CGame> & game) const;
-	bool LoadSavedGame(std::unique_ptr<CGame> & game) const;
-	void GameScreen(const std::unique_ptr<CGame> & game);
-	void Menu(const std::map<char, CCommand> & commands);
-	void GameOver();
-	void Winner();
+	void Render(const CBuffer & buffer) const;
+	bool Save(const CGame & game);
+	bool LoadNewGame(CGame & game);
+	bool LoadSavedGame(CGame & game);
+	void GameScreen(const CGame & game) const;
+	void Menu(const std::map<char, CCommand> & commands) const;
+	void GameOver() const;
+	void Winner() const;
 	void HelpScreen(const std::map<char, CCommand> & commands);
 	
 	// COMMON
-	void InvalidInput(const char * message) const;
+	void InvalidInput(const char * message);
 	static void ResetTimeout();
 	static char GetChar();
 	
@@ -47,19 +48,19 @@ private:
 	CBuffer m_Buffer;
 	
 	// END GAME
-	void AppendWinner();
-	void AppendGameOver();
+	static CBuffer CreateWinner(std::string color);
+	static CBuffer CreateGameOver(std::string color);
 	
 	// MENU SCREEN
-	void AppendHeader();
-	void AppendMenuOptions(const std::map<char, CCommand> & commands);
+	static CBuffer CreateHeader();
+	static CBuffer CreateMenuOptions(const std::map<char, CCommand> & commands);
 	
 	// GAME SCREEN
-	void AppendGameOptions(const std::map<char, CCommand> & commands);
+	static CBuffer CreateGameOptions(const std::map<char, CCommand> & commands);
 	
 	// SAVING GAME
 	void SavedScreen() const;
-	bool PromptSave(const std::unique_ptr<CGame> & game) const;
+	bool PromptSave(const CGame & game);
 	
 	// HELP SCREEN
 	void RenderHelpScreen();

@@ -11,11 +11,18 @@
 #include <iostream>
 #include <iomanip>
 #include "NColors.hpp"
+#include "CTile.hpp"
 
 class CBuffer
 {
 public:
-	CBuffer(const int WINDOW_WIDTH)
+//	~CBuffer() = default;
+//	CBuffer(const CBuffer & other) = delete;
+//	CBuffer(CBuffer && other) = default;
+//	CBuffer & operator=(const CBuffer & other) = delete;
+//	CBuffer & operator=(CBuffer && other) = default;
+	
+	explicit CBuffer(const int WINDOW_WIDTH) noexcept
 		: m_WindowWidth(WINDOW_WIDTH)
 	{}
 	
@@ -24,51 +31,29 @@ public:
 		  m_Buffer(move(buffer))
 	{}
 	
-	void Clear()
-	{m_Buffer.clear();}
-	
-	int GetWindowHeight() const
-	{return m_WindowWidth;}
-	
-	CBuffer & AddLine(std::string line = "")
-	{
-		m_Buffer.emplace_back(std::move(line));
-		return *this;
-	}
-	
-	CBuffer & AddLine(const std::string & line, const std::string & color)
-	{
-		m_Buffer.emplace_back(color + line + Colors::RESET);
-		return *this;
-	}
-	
-	CBuffer & operator<<(const std::string & line);
-	
-	CBuffer operator+(const CBuffer & other);
-	
-	CBuffer & operator+=(CBuffer other);
-	
+	CBuffer & AddLine(std::string line = "", std::string color = "");
+	CBuffer & AddText(std::string text, std::string color = "");
+	CBuffer & AddEscapeSequence(std::string sequence);
+	CBuffer & operator<<(std::string line);
+	CBuffer & operator<<(const CTile & tile);
+	CBuffer & operator+=(std::string line);
+	CBuffer & Append(CBuffer && other);
+	CBuffer & operator+=(CBuffer && other);
+	CBuffer & Concat(CBuffer && other);
+	CBuffer & Center();
+	CBuffer & AddTextAt(size_t idx, std::string line, std::string color = "");
+	std::string & At(size_t idx);
 	friend std::ostream & operator<<(std::ostream & out, const CBuffer & self);
-	
-	CBuffer & AddCenteredLine(const std::string & line, const std::string & color = "");
-	
-	CBuffer & AddCenteredLine(const std::string & line, int size, const std::string & color = "");
-	
-	CBuffer & AddHeaderLine(const std::string & line, const std::string & color = "");
-	
-	CBuffer & AddToCurrentLine(const std::string & text);
-	
-	CBuffer & AddToCurrentLine(const std::string & text, const std::string & color);
-	
-	int LongestSize() const;
+	size_t LongestSize() const;
 	
 	void Flush()
 	{m_Buffer.clear();}
 	
-	size_t Size() const
+	size_t Height() const
 	{return m_Buffer.size();}
 	
 private:
 	int m_WindowWidth;
+	std::vector<size_t> m_Sizes;
 	std::vector<std::string> m_Buffer;
 };
