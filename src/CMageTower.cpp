@@ -25,8 +25,7 @@ istream & CMageTower::LoadTemplate(istream & in)
 istream & CMageTower::LoadOnMap(istream & in)
 {
 	int curr;
-	if (!(CTower::LoadOnMap(in) >> curr))
-		return in;
+	CTower::LoadOnMap(in) >> curr;
 	m_Frames.SetCurrent(curr);
 	return in;
 }

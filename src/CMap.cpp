@@ -37,12 +37,9 @@ void CMap::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 
 istream & operator>>(istream & in, CMap & self)
 {
-	if (!self.LoadMapInfo(in))
-		return in;
-	if (!self.LoadMap(in))
-		return in;
-	if (!self.LoadEntities(in))
-		return in;
+	self.LoadMapInfo(in);
+	self.LoadMap(in);
+	self.LoadEntities(in);
 	self.PlaceTroops();
 	return in;
 }
@@ -55,159 +52,99 @@ void CMap::PlaceTroops()
 	}
 }
 
-istream & CMap::LoadMapInfo(istream & in)
+void CMap::LoadMapInfo(istream & in)
 {
-	return in >> m_Rows >> m_Cols >> m_Gate;
+	in >> m_Rows >> m_Cols >> m_Gate;
 }
 
-istream & CMap::LoadMap(istream & in)
+void CMap::LoadMap(istream & in)
 {
-	if (!LoadWallLine(in, 0))
-		return in;
-		
-	for (int row = 1; row < m_Rows - 1; ++row)
-		if (!LoadMapCenter(in, row))
-			return in;
+	LoadWallLine(in, 0);
 	
-	if(!LoadWallLine(in, m_Rows - 1))
-		return in;
+	for (int row = 1; row < m_Rows - 1; ++row)
+		LoadMapCenter(in, row);
+	
+	LoadWallLine(in, m_Rows - 1);
 	
 	if (!FindPathsFromSpawn())
 		in.setstate(ios::failbit);
-	return in;
 }
 
-istream & CMap::LoadEntities(istream & in)
+void CMap::LoadEntities(istream & in)
 {
 	if (!m_UnitStack)
-		throw runtime_error("Unit stack not defined.");
+		in.setstate(ios::failbit);
 	
-	while (true)
+	while (true)	// will end with exception earlier anyway
 	{
 		// check first character
 		char ch;
-		if (!(in >> ch))
-		{
-			if (in.eof())
-				in.clear(ios::goodbit);
-			return in;
-		}
-		
+		in >> ch;
 		if (m_UnitStack->IsTrooperChar(ch))
-		{
-			if (!LoadTroops(in, ch))
-				return in;
-		}
+			LoadTroops(in, ch);
 		else if (m_UnitStack->IsTowerChar(ch))
-		{
-			if (!LoadTowers(in, ch))
-				return in;
-		}
+			LoadTowers(in, ch);
 		else
 		{
 			in.putback(ch);
-			return in;
+			break;
 		}
 	}
 }
 
-istream & CMap::LoadTroops(istream & in, char ch)
+void CMap::LoadTroops(istream & in, char ch)
 {
 	CTrooper * trooper = m_UnitStack->CreateTrooperAt(ch);
-	if (!trooper->LoadOnMap(in))
-	{
-		cout << "fail loading " << ch << endl;
-		return in;
-	}
+	trooper->LoadOnMap(in);
 	m_Troops.push_back(trooper);
 	if (m_Map.count(trooper->GetPosition()))
-	{
 		in.setstate(ios::failbit);
-		return in;
-	}
 	auto path = CPath{m_Map, m_Rows, m_Cols, trooper->GetPosition(), m_Gate.Position()}.FindStraightPath();
 	trooper->SetPath(path);
-	return in;
 }
 
-istream & CMap::LoadTowers(istream & in, char ch)
+void CMap::LoadTowers(istream & in, char ch)
 {
 	CTower * tower = m_UnitStack->CreateTowerAt(ch);
-	if (!tower->LoadOnMap(in))
-		return in;
+	tower->LoadOnMap(in);
 	m_Towers.push_back(tower);
 	if (!m_Map.count(tower->GetPosition()) || !m_Map.at(tower->GetPosition()).IsWall())
-	{
 		in.setstate(ios::failbit);
-		return in;
-	}
 	m_Map.at(tower->GetPosition()) = tower->GetTile();
-	return in;
 }
 
-istream & CMap::LoadWallLine(istream & in, int row)
+void CMap::LoadWallLine(istream & in, int row)
 {
 	// skip whitespaces until first character and return the character itself back
 	char ch = 0;
-	if (!DeleteWs(in))
-		return in;
+	DeleteWs(in);
 	
 	// load the wall line
 	for (int col = 0; col < m_Cols; ++col)
 	{
-		if (!(in.get(ch)))
-			return in;
+		in.get(ch);
 		if (m_UnitStack->IsTowerChar(ch))
-		{
-			if (!LoadEntity({col, row}, ch))
-			{
-				in.setstate(ios::failbit);
-				return in;
-			}
-		}
-		else if (!LoadWallChar(ch, {col, row}))
-		{
-			in.setstate(ios::failbit);
-			return in;
-		}
+			LoadEntity({col, row}, ch);
+		else
+			LoadWallChar(ch, {col, row});
 	}
-	return in;
 }
 
-istream & CMap::LoadMapCenter(istream & in, int row)
+void CMap::LoadMapCenter(istream & in, int row)
 {
 	// read left wall boundary - skip enter
 	DeleteWs(in);
-	char ch = 0;
-	if (!in.get(ch))
-		return in;
-	if (!LoadWallChar(ch, {0, row}))
-	{
+	if (!LoadWallChar(in.get(), {0, row}))
 		in.setstate(ios::failbit);
-		return in;
-	}
 	
 	// load characters inside map
 	for (int col = 1; col < m_Cols - 1; ++col)
-	{
-		if (!in.get(ch))
-			return in;
-		if (!LoadCenterChar(ch, {col, row}))
-		{
+		if (!LoadCenterChar(in.get(), {col, row}))
 			in.setstate(ios::failbit);
-			return in;
-		}
-	}
 	
 	// load right wall boundary
-	if (!in.get(ch))
-		return in;
-	if (!LoadWallChar(ch, {m_Cols - 1, row}))
-	{
+	if (!LoadWallChar(in.get(), {m_Cols - 1, row}))
 		in.setstate(ios::failbit);
-		return in;
-	}
-	return in;
 }
 
 bool CMap::LoadWallChar(char ch, pos_t position)
@@ -244,13 +181,11 @@ bool CMap::LoadCenterChar(char ch, pos_t position)
 		return LoadEntity(position, ch);
 }
 
-istream & CMap::DeleteWs(istream & in)
+void CMap::DeleteWs(istream & in)
 {
 	char ch = 0;
-	if (!(in >> ch))
-		return in;
+	in >> ch;
 	in.putback(ch);
-	return in;
 }
 
 bool CMap::InitGatePosition(pos_t position)
@@ -264,7 +199,7 @@ bool CMap::InitGatePosition(pos_t position)
 bool CMap::LoadEntity(pos_t position, char ch)
 {
 	if (!m_UnitStack)
-		throw runtime_error("Unit stack not defined.");
+		return false;
 	
 	// replace tower with walls
 	if (m_UnitStack->IsTowerChar(ch))
@@ -311,21 +246,18 @@ bool CMap::CheckSaved() const
 ostream & operator<<(ostream & out, const CMap & self)
 {
 	
-	if (!self.SaveMapInfo(out))
-		return out;
-	if (!self.SaveMap(out))
-		return out;
-	if (!self.SaveEntities(out))
-		return out;
+	self.SaveMapInfo(out);
+	self.SaveMap(out);
+	self.SaveEntities(out);
 	return out << endl;
 }
 
-ostream & CMap::SaveMapInfo(ostream & out) const
+void CMap::SaveMapInfo(ostream & out) const
 {
-	return out << "(M)" << endl << m_Rows << ' ' << m_Cols << ' ' << m_Gate << endl;
+	out << "(M)" << endl << m_Rows << ' ' << m_Cols << ' ' << m_Gate << endl;
 }
 
-ostream & CMap::SaveMap(ostream & out) const
+void CMap::SaveMap(ostream & out) const
 {
 	for (int i = 0; i < m_Rows; ++i)
 	{
@@ -339,24 +271,18 @@ ostream & CMap::SaveMap(ostream & out) const
 			else
 				line += m_Map.at({j, i}).GetChar();
 		}
-		if (!(out << line << endl))
-			return out;
+		out << line << endl;
 	}
-	return out;
 }
 
-ostream & CMap::SaveEntities(ostream & out) const
+void CMap::SaveEntities(ostream & out) const
 {
 	// save troops
 	for (const auto & troop : m_Troops)
-		if (!(troop->SaveOnMap(out) << endl))
-			return out;
+		troop->SaveOnMap(out) << endl;
 		
 	for (const auto & tower : m_Towers)
-		if (!(tower->SaveOnMap(out) << endl))
-			return out;
-	
-	return out;
+		tower->SaveOnMap(out) << endl;
 }
 
 /**********************************************************************************************************************/

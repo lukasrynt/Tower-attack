@@ -73,31 +73,31 @@ private:
 	std::shared_ptr<CUnitStack> m_UnitStack;	//!< unit stack containing all towers and troopers templates
 	
 	// LOADING
-	std::istream & LoadMap(std::istream & in);
-	std::istream & LoadMapInfo(std::istream & in);
-	std::istream & LoadEntities(std::istream & in);
+	void LoadMap(std::istream & in);
+	void LoadMapInfo(std::istream & in);
+	void LoadEntities(std::istream & in);
 	
-	std::istream & LoadWallLine(std::istream & in, int row);
-	std::istream & LoadMapCenter(std::istream & in, int row);
+	void LoadWallLine(std::istream & in, int row);
+	void LoadMapCenter(std::istream & in, int row);
 	bool LoadWallChar(char ch, pos_t position);
 	bool LoadCenterChar(char ch, pos_t position);
 	bool LoadEntity(pos_t position, char ch);
-	static std::istream & DeleteWs(std::istream & in);
+	static void DeleteWs(std::istream & in);
 	bool InitSpawner(pos_t position, char ch);
 	bool InitGatePosition(pos_t position);
 	bool FindPathsFromSpawn();
 	
 	
-	std::istream & LoadTroops(std::istream & in, char ch);
-	std::istream & LoadTowers(std::istream & in, char ch);
+	void LoadTroops(std::istream & in, char ch);
+	void LoadTowers(std::istream & in, char ch);
 	
 	// RENDER
 	CBuffer RenderMap(int windowWidth) const;
 	
 	// SAVING
-	std::ostream & SaveMapInfo(std::ostream & out) const;
-	std::ostream & SaveMap(std::ostream & out) const;
-	std::ostream & SaveEntities(std::ostream & out) const;
+	void SaveMapInfo(std::ostream & out) const;
+	void SaveMap(std::ostream & out) const;
+	void SaveEntities(std::ostream & out) const;
 	
 	// UPDATE PHASE
 	bool CheckTroopsDeaths();

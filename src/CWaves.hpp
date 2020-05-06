@@ -58,7 +58,7 @@ private:
 	int m_Resources;
 	
 	// LOAD
-	std::istream & LoadWaves(std::istream & in);
+	void LoadWaves(std::istream & in);
 	bool CheckCounter(size_t counter);
 	
 	bool Empty() const;

@@ -38,20 +38,12 @@ void CWaves::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 istream & operator>>(istream & in, CWaves & waves)
 {
 	char ch;
-	if (!(in >> waves.m_ReleasingWave >> waves.m_Frames >> waves.m_Resources))
-		return in;
+	in >> waves.m_ReleasingWave >> waves.m_Frames >> waves.m_Resources;
 	
 	while (true)
 	{
-		// check opening bracket
-		if (!(in >> ch))
-		{
-			if (in.eof())
-				in.clear(ios::goodbit);
-			return in;
-		}
-		
 		// if we have read something else than [ on the beggining of the row we need to quit
+		in >> ch;
 		if (ch != '[')
 		{
 			in.putback(ch);
@@ -64,19 +56,17 @@ istream & operator>>(istream & in, CWaves & waves)
 	return in;
 }
 
-std::istream & CWaves::LoadWaves(std::istream & in)
+void CWaves::LoadWaves(std::istream & in)
 {
 	if (!m_UnitStack)
-		throw runtime_error("Unit stack not defined.");
+		in.setstate(ios::failbit);
 	
 	deque<CTrooper *> wave;
 	size_t counter = 0;
-	char ch = 0;
 	while (true)
 	{
 		// check if the character is correct
-		if (!(in.get(ch)))
-			return in;
+		char ch = in.get();
 		
 		// if we have empty char, just increase size
 		if (ch == ' ')
@@ -96,20 +86,12 @@ std::istream & CWaves::LoadWaves(std::istream & in)
 			wave.push_back(m_UnitStack->CreateTrooperAt(ch));
 		}
 		else
-		{
 			in.setstate(ios::failbit);
-			return in;
-		}
 	}
 	
 	if(!CheckCounter(counter))
-	{
 		in.setstate(ios::failbit);
-		return in;
-	}
-	
 	m_Waves.push_back(wave);
-	return in;
 }
 
 bool CWaves::CheckCounter(size_t counter)

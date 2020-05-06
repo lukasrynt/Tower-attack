@@ -35,8 +35,7 @@ std::istream & CTower::LoadTemplate(std::istream & in)
 std::istream & CTower::LoadOnMap(std::istream & in)
 {
 	int current;
-	if (!(in >> m_Pos >> current))
-		return in;
+	in >> m_Pos >> current;
 	m_Frames.SetCurrent(current);
 	return in;
 }

@@ -13,12 +13,19 @@ using namespace std;
 int main ()
 {
 	ifstream inFile("/home/lukas/School/PA2/semestralka/maps/test2.map");
-	if (!inFile)
-		return 1;
+	inFile.exceptions(ios::failbit | ios::badbit | ios::eofbit);
 
 	CGame game;
-	if (!(inFile >> game))
+	try
+	{
+		inFile >> game;
+	}
+	catch(const ios::failure &)
+	{
+		if (inFile.eof())
+			return 0;
 		return 2;
+	}
 //	game.Render(cout);
 //	for (int i = 0; i < 60; ++i)
 //	{

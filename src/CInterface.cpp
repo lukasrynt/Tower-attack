@@ -91,6 +91,7 @@ bool CInterface::LoadNewGame(CGame & game)
 		// check input stream
 		string filename = "maps/" + response + ".map";
 		ifstream inFile(filename);
+		inFile.exceptions(ios::failbit | ios::badbit | ios::eofbit);
 		
 		if (!inFile)
 		{
@@ -99,17 +100,26 @@ bool CInterface::LoadNewGame(CGame & game)
 		}
 		
 		// load game
-		if (!(inFile >> game)
-			|| !(game.CheckNew()))
+		try
+		{
+			inFile >> game;
+		}
+		catch (const ios::failure &)
+		{
+			if (!inFile.eof())
+			{
+				InvalidInput("Incorrect file format.");
+				continue;
+			}
+		}
+		if (!(game.CheckNew()))
 		{
 			InvalidInput("Incorrect file format.");
 			continue;
 		}
-		inFile.close();
 		
 		m_Out << Colors::RESET;
 		NullTimeout();
-		inFile.close();
 		return true;
 	}
 }
@@ -190,21 +200,20 @@ bool CInterface::PromptSave(const CGame & game)
 		// check output stream
 		string filename = "saves/" + response + ".sav";
 		ofstream outFile(filename);
-		if (!outFile)
-		{
-			InvalidInput("File not found.");
-			continue;
-		}
-		
+		outFile.exceptions(ios::failbit | ios::badbit | ios::eofbit);
 		
 		// save game
-		if (!(outFile << game))
+		try
 		{
+			outFile << game;
+		}
+		catch (const ios::failure &)
+		{
+			m_Out << Colors::RESET;
 			InvalidInput("Error during writing to file.");
 			continue;
 		}
 		m_Out << Colors::RESET;
-		outFile.close();
 		return true;
 	}
 }
@@ -244,7 +253,7 @@ CBuffer CInterface::CreateHeader()
 {
 	// http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 	CBuffer tmp{WINDOW_WIDTH};
-	tmp.AddText(Colors::FG_YELLOW)
+	tmp.AddEscapeSequence(Colors::FG_YELLOW)
 			.AddLine(R"(_________ _        _______           _______  _______ _________ _______  _       )")
 			.AddLine(R"(\__   __/( (    /|(  ____ \|\     /|(  ____ )(  ____ \\__   __/(  ___  )( (    /|)")
 			.AddLine(R"(   ) (   |  \  ( || (    \/| )   ( || (    )|| (    \/   ) (   | (   ) ||  \  ( |)")
@@ -254,7 +263,7 @@ CBuffer CInterface::CreateHeader()
 			.AddLine(R"(___) (___| )  \  || (____/\| (___) || ) \ \__/\____) |___) (___| (___) || )  \  |)")
 			.AddLine(R"(\_______/|/    )_)(_______/(_______)|/   \__/\_______)\_______/(_______)|/    )_))")
 			.Center()
-			.AddText(Colors::RESET)
+			.AddEscapeSequence(Colors::RESET)
 			.AddLine()
 			.AddLine()
 			.AddLine();
@@ -280,7 +289,7 @@ void CInterface::Winner() const
 CBuffer CInterface::CreateWinner(string color)
 {
 	CBuffer tmp{WINDOW_WIDTH};
-	tmp.AddText(move(color))
+	tmp.AddEscapeSequence(move(color))
 			.AddLine(R"(         _________ _        _        _______  _______ )")
 			.AddLine(R"(|\     /|\__   __/( (    /|( (    /|(  ____ \(  ____ ))")
 			.AddLine(R"(| )   ( |   ) (   |  \  ( ||  \  ( || (    \/| (    )|)")
@@ -290,7 +299,7 @@ CBuffer CInterface::CreateWinner(string color)
 			.AddLine(R"(| () () |___) (___| )  \  || )  \  || (____/\| ) \ \__)")
 			.AddLine(R"((_______)\_______/|/    )_)|/    )_)(_______/|/   \__/)")
 			.Center()
-			.AddText(Colors::RESET);
+			.AddEscapeSequence(Colors::RESET);
 	return tmp;
 }
 
@@ -311,7 +320,7 @@ void CInterface::GameOver() const
 CBuffer CInterface::CreateGameOver(string color)
 {
 	CBuffer tmp{WINDOW_WIDTH};
-	tmp.AddText(move(color))
+	tmp.AddEscapeSequence(move(color))
 			.AddLine(R"( _______  _______  _______  _______    _______           _______  _______ )")
 			.AddLine(R"((  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ ))")
 			.AddLine(R"(| (    \/| (   ) || () () || (    \/  | (   ) || )   ( || (    \/| (    )|)")
@@ -321,7 +330,7 @@ CBuffer CInterface::CreateGameOver(string color)
 			.AddLine(R"(| (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__)")
 			.AddLine(R"((_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/)")
 			.Center()
-			.AddText(Colors::RESET);
+			.AddEscapeSequence(Colors::RESET);
 	return tmp;
 }
 

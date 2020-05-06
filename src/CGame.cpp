@@ -23,8 +23,7 @@ istream & operator>>(istream & in, CGame & self)
 	self.SetUnitStack();
 	
 	while (!end)
-		if (!self.LoadObjects(in, signs, end))
-			return in;
+		self.LoadObjects(in, signs, end);
 	
 	self.m_WaveOn = self.m_Map.WaveIsRunning();
 	
@@ -41,37 +40,28 @@ void CGame::SetUnitStack()
 	m_Waves.AssignUnitStack(m_UnitStack);
 }
 
-istream & CGame::LoadObjects(istream & in, set<char> & signs, bool & end)
+void CGame::LoadObjects(istream & in, set<char> & signs, bool & end)
 {
 	// load signature char
 	char ch = CGame::LoadSignatureChar(in);
 	if (!signs.insert(ch).second)
-	{
 		in.setstate(ios::failbit);
-		return in;
-	}
 	
 	// load appropriate object
 	switch (ch)
 	{
 		case 'U':
-			if (!(in >> *m_UnitStack))
-				return in;
+			in >> *m_UnitStack;
 			break;
 		case 'W':
-			if (!(in >> m_Waves))
-				return in;
+			in >> m_Waves;
 			break;
 		case 'M':
-			if (!(in >> m_Map))
-				return in;
+			in >> m_Map;
 			break;
 		default:
 			end = true;
 	}
-	// in case eof was reached - it is ok
-	in.clear(ios::goodbit);
-	return in;
 }
 
 bool CGame::CheckDefined(const set<char> & signs)
@@ -113,11 +103,9 @@ bool CGame::CheckNew() const
 // SAVING
 ostream & operator<<(ostream & out, const CGame & self)
 {
-	if (!(out << *self.m_UnitStack)
-		|| !(out << self.m_Waves)
-		|| !(out << self.m_Map))
-		return out;
-	return out;
+	return out << *self.m_UnitStack
+		<< self.m_Waves
+		<< self.m_Map;
 }
 
 /**********************************************************************************************************************/

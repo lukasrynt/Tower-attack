@@ -27,7 +27,6 @@ public:
 	
 	// LOADING
 	friend std::istream & operator>>(std::istream & in, CGame & self);
-	std::istream & LoadObjects(std::istream & in, std::set<char> & signs, bool & end);
 	void SetUnitStack();
 	bool CheckNew() const;
 	bool CheckSaved() const;
@@ -75,6 +74,7 @@ private:
 	int m_Resources;
 	
 	// LOADING
+	void LoadObjects(std::istream & in, std::set<char> & signs, bool & end);
 	static char LoadSignatureChar(std::istream & in);
 	bool CheckDefined(const std::set<char> & signs);
 };

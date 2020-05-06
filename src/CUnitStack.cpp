@@ -29,8 +29,7 @@ istream & operator>>(istream & in, CUnitStack & stack)
 	{
 		// load first character - type of unit
 		char ch;
-		if (!(in >> ch))
-			return in;
+		in >> ch;
 		
 		// load coresponding unit
 		if(!stack.LoadUnit(in, ch, origTroops, origTowers))
@@ -61,8 +60,7 @@ bool CUnitStack::LoadUnit(istream & in, char ch, const map<char,CTrooper*> & ori
 	if (origTroops.count(ch))
 	{
 		CTrooper * trooper = origTroops.at(ch)->Clone();
-		if (!trooper->LoadTemplate(in))
-			return false;
+		trooper->LoadTemplate(in);
 		if (!CharIsValid(trooper->GetChar()))
 			return false;
 		m_Troops.insert({trooper->GetChar(), trooper});
@@ -70,8 +68,7 @@ bool CUnitStack::LoadUnit(istream & in, char ch, const map<char,CTrooper*> & ori
 	else if (origTowers.count(ch))
 	{
 		CTower * tower = origTowers.at(ch)->Clone();
-		if (!tower->LoadTemplate(in))
-			return false;
+		tower->LoadTemplate(in);
 		if (!CharIsValid(tower->GetChar()))
 			return false;
 		m_Towers.insert({tower->GetChar(), tower});
@@ -192,14 +189,11 @@ bool CUnitStack::Lost(int resources) const
 // SAVING
 ostream & operator<<(ostream & out, const CUnitStack & stack)
 {
-	if (!(out << "(U)" << endl))
-		return out;
+	out << "(U)" << endl;
 	for (auto & troop : stack.m_Troops)
-		if (!(troop.second->SaveTemplate(out) << endl))
-			return out;
+		troop.second->SaveTemplate(out) << endl;
 	
 	for (auto & tower : stack.m_Towers)
-		if (!(tower.second->SaveTemplate(out) << endl))
-			return out;
+		tower.second->SaveTemplate(out) << endl;
 	return out << endl;
 }
