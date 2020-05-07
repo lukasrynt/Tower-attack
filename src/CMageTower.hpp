@@ -35,6 +35,7 @@ public:
 	std::ostream & SaveOnMap(std::ostream & out) const final;
 	
 	// ACTIONS
+	CBuffer CreateInfoBuffer(int windowWidth) const final;
 	bool Attack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops) final;
 private:
 	CFrames m_WaveStatus;

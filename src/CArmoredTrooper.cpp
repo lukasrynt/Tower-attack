@@ -34,16 +34,15 @@ void CArmoredTrooper::ReceiveDamage(int damage)
 		m_Armor = 0;
 }
 
-string CArmoredTrooper::RenderInfo() const
+CBuffer CArmoredTrooper::CreateInfoBuffer(int windowWidth) const
 {
-	stringstream ss;
-	ss << m_Tile.GetColor()
-			   << "Armored trooper, hp: " << m_Hp
-			   << ", speed: " << m_Frames
-			   << ", attack: " << m_Attack
-			   << ", armor: " << m_MaxArmor
-			   << ", cost: " << m_Price << Colors::FG_YELLOW << " ©" << Colors::RESET;
-	return ss.str();
+	return move(CBuffer{windowWidth}
+						.Append("   ").Append("("s + m_Tile.GetChar() + ")", string(Colors::BG_CYAN) + Colors::FG_BLACK)
+						.Append("\tHP: " + to_string(m_Hp), Colors::FG_CYAN)
+						.Append("\tSpeed: " + to_string(m_Frames.GetSpeed()), Colors::FG_CYAN)
+						.Append("\tAttack: " + to_string(m_Attack), Colors::FG_CYAN)
+						.Append("\tArmor: " + to_string(m_Armor), Colors::FG_CYAN)
+						.Append("\tCost: " + to_string(m_Price) + " ©", Colors::FG_CYAN));
 }
 
 /**********************************************************************************************************************/

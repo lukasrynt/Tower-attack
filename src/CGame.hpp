@@ -20,23 +20,55 @@
 class CGame
 {
 public:
-	CGame();
+	CGame()
+		: m_WaveOn(false),
+		  m_GameState(EGameState::GAME_RUNNING),
+		  m_Resources(0)
+	{}
 	
 	// TESTING
 	void Visualize(const std::deque<pos_t> & positions);
 	
 	// LOADING
+	/**
+	 * Loads the game from input file stream
+	 * @param in Input stream
+	 * @param self Game to be loaded
+	 * @return in
+	 */
 	friend std::istream & operator>>(std::istream & in, CGame & self);
 	void SetUnitStack();
+	/**
+	 * Checks if new game was correctly loaded
+	 * @return true if it was loaded correctly
+	 */
 	bool CheckNew() const;
+	/**
+	 * Checks if saved game was correctly loaded
+	 * @return true if it was loaded correctly
+	 */
 	bool CheckSaved() const;
 	
 	// SAVING
-	friend std::ostream & operator<<(std::ostream & in, const CGame & self);
+	/**
+	 * Saves the game
+	 * @param out output file stream
+	 * @param self game to be saved
+	 * @return out
+	 */
+	friend std::ostream & operator<<(std::ostream & out, const CGame & self);
 	
 	// INGAME
+	/**
+	 * Updates all entities inside game
+	 */
 	void Update();
-	CBuffer Render(int windowWidth) const;
+	/**
+	 * Creates buffer for further renderings
+	 * @param windowWidth size of the window
+	 * @return Created buffer
+	 */
+	CBuffer CreateBuffer(int windowWidth) const;
 	
 	bool Won() const
 	{return m_GameState == EGameState::GAME_WON;}

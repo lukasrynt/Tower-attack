@@ -74,33 +74,29 @@ Na konci souboru je obsažena samotná mapa, za ní už nesmí následovat nic d
 (U)
 T @ 20 60 50 30             -- pěšák: znak, cena, život, rychlost, útok
 A $ 20 80 40 40 90          -- obrněná jednotka: znak, cena, život, rychlost, útok, brnění
-M % 20 20 30 60             -- mágova věž: znak, rychlost, útok, mana, magický útok
-R * 20 20                   -- lukostřelecká věž: znak, rychlost, útok
+M % 20 20 3 30              -- mágova věž: znak, rychlost, útok, dostřel, rychlost šíření vln
+R * 20 20 3                 -- lukostřelecká věž: znak, rychlost, útok, dostřel
 
 
 --Vlny--
 (W)                         -- počet a velikost se odvodí z formátu
-0 20                        -- značí zda je zrovna spuštěná vlna nebo ne, rychlost spawneru
+0 20 300                    -- značí zda je zrovna spuštěná vlna nebo ne, rychlost spawneru, zdroje dostupné pro hru
 [@    ]                     -- včetně uložených jednotek
 [     ]
 
 --Mapa--
 (M)
- 6 5 (20 100)               -- dimenze mapy - řádek, sloupec; brána (aktuální, max život)
+ 6 5 (20 100)               -- dimenze mapy - řádek, sloupec, brána (aktuální, max život)
 #####                       -- mapa
 # # O
 1   #
 #   #
 #   #
 #####                           --Vojáci a věže na mapě--
-@  (10 10) 10               -- znak, pozice, aktuální frame
+@ (10 10) 10                -- znak, pozice, aktuální frame
 $ (1 1) 2, 20               -- znak, pozice, aktuální frame, stav brnění
-% (2 2) 10                  -- znak, pozice, aktuální frame, aktuální mana
+% (2 2) 10                  -- znak, pozice, aktuální frame, aktuální vlna
 * (2 2) 10                  -- znak, pozice, aktuální frame
-
---Zdroje--
-(R)
-200                         -- pocet financi pro danou hru
 ```
 > Ukázka souboru
 >
@@ -108,9 +104,10 @@ $ (1 1) 2, 20               -- znak, pozice, aktuální frame, stav brnění
 Cílem hráče je dostat co největší množství svých jednotek přes věže, které budou na vojáky přirozeně útočit, aby jim zabránily v postupu. V průběhu hry hráč spotřebovává prostředky, díky kterým může vysílat lepší jednotky do boje. V případě, že útočník dorazí až do cíle, poškodí bránu. V případě zabití nepřítele přirozené vyhrává hráč. Prohra nastává v případě, kdy hráči došly všechny prostředky a brána stále stojí.
 
 ### Nástin implementace
-Hlavní třídá celé hry je `CApplication`, ve které se odehrává komunikace s uživatelem, obsahuje mapu `CMap`, ukazatel na úložiště všech jednotek `CUnitStack` a nakonec vlny s útočníky `CWaves`. Dále se stará o aktualizaci mapy, renderování jednotlivých objektu přes jejich metodu `Render`, ukládání a načítání ze souborů.
+Hlavní třídá celé hry je `CApplication`, která spouští celý program a main loop. Je v ní třídá `CInterface`, která se stará o komunikaci s uživatelem. Dále obsahuje hru `CGame`, která se stará o chod aktuální hry.
+Hra se skládá z více entit, jednou z nich je mapa `CMap`, poté úložiště všech jednotek `CUnitStack` a nakonec vlny s útočníky `CWaves`. K samotnému vykreslování slouží třída `CBuffer`, která do sebe ukládá jednotlivé řádky výpisu a je schopná je centrovat a připojovat k sobě jiné buffery.
 
 ### Kde mám polymorfismus
 Polymorfismus využívám ve třídě `CTower`, která má virtuální metodu `Attack`. Metoda `Attack` simuluje útok věže na vojáka s tím, že `CTower` je pouze jednoduchá věž s jedním lukostřelcem a vysílá tedy pouze jeden šíp s menším poškozením. Tuto metodu přetěžuje její potomek `CMageTower`, která už implementuje sofistikovanější útok s pomocí temných mágů, kteří všude kolem své věže vysílají elektrické paprsky (`Attack` tedy poškozuje jednotky v celém svém okolí).
 
-Další příklad polymorfismu je ve třídě `CTrooper`, která má virtuální metodu a `ReceiveDamage`. Jejím předkem je `CArmoredTrooper`. Metoda `ReceiveDamage` je u základního vojáka triviální, ale `CArmoredTrooper` má navíc schopnost se na určitý kroků obrnit a ignorovat velkou část poškození.
+Další příklad polymorfismu je ve třídě `CTrooper`, která má virtuální metodu a `ReceiveDamage`. Jejím potomkem je `CArmoredTrooper`. Metoda `ReceiveDamage` je u základního vojáka triviální, ale `CArmoredTrooper` má navíc schopnost se na určitý kroků obrnit a ignorovat velkou část poškození. Další metodou kterou tento potomek implementuje je `Move`, který zajišťuje pohyb jednotky na mapě a případnou aktualizaci jejích stavů. Obrněný voják se pohybuje co nejpřímější cestou k cíli, ale slabší jednotky využívají strategii vyhýbaní se věžím.

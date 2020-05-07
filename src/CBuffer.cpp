@@ -7,7 +7,7 @@
 
 using namespace std;
 
-CBuffer & CBuffer::AddLine(string line, string color)
+CBuffer & CBuffer::Append(string line, string color)
 {
 	string res = move(line);
 	m_Sizes.push_back(res.length());	//TODO detect if the line is longer than window size
@@ -40,7 +40,7 @@ CBuffer & CBuffer::AddLines(const string & lines, string color)
 	stringstream ss(lines);
 	string line;
 	while (getline(ss, line))
-		AddLine(line);
+		Append(line);
 	if (!empty)
 		AddEscapeSequence(Colors::RESET);
 	return *this;
@@ -69,7 +69,7 @@ CBuffer & CBuffer::Concat(CBuffer && other)
 			m_Sizes[i] += other.m_Sizes[i];
 		}
 		else
-			AddLine(string(longest + SPACE, ' ').append(other.m_Buffer[i]));
+			Append(string(longest + SPACE, ' ').append(other.m_Buffer[i]));
 	}
 	return *this;
 }
@@ -99,7 +99,7 @@ CBuffer & CBuffer::Append(CBuffer other)
 	return *this;
 }
 
-CBuffer & CBuffer::operator+=(CBuffer && other)
+CBuffer & CBuffer::operator+=(CBuffer other)
 {
 	return Append(move(other));
 }
@@ -125,7 +125,7 @@ CBuffer & CBuffer::operator<<(const CTile & tile)
 
 CBuffer & CBuffer::operator+=(string line)
 {
-	return AddLine(move(line));
+	return Append(move(line));
 }
 
 CBuffer & CBuffer::AddTextAt(size_t idx, string text, string color)

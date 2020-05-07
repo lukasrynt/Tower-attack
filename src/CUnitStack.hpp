@@ -24,9 +24,29 @@ public:
 	~CUnitStack();
 	
 	// LOADING
+	/**
+	 * Loads unit stack from input stream
+	 * @param in Input stream
+	 * @param stack Unit stack to be printed
+	 * @return in
+	 */
 	friend std::istream & operator>>(std::istream & in, CUnitStack & stack);
+	/**
+	 * Checks whether the given character is among the ones defined as trooper chars
+	 * @param ch Character to be checked
+	 * @return true if map of troops counts the given character
+	 */
 	bool IsTrooperChar(char ch) const;
+	/**
+	 * Checks whether the given character is among the ones defined as tower chars
+	 * @param ch Character to be checked
+	 * @return true if map of towers counts the given character
+	 */
 	bool IsTowerChar(char ch) const;
+	/**
+	 * Check whether loading has been successful. In this case, it means that we have at least one tower and trooper
+	 * @return true if loading was successful
+	 */
 	bool Check() const;
 	
 	// SAVING
@@ -58,19 +78,35 @@ public:
 	CTrooper * CreateSelected() const;
 	
 	// INGAME
-	CBuffer Render(int windowWidth) const;
+	CBuffer CreateTroopsInfoBuffer(int windowWidth) const;
+	CBuffer CreateTowersInfoBuffer(int windowWidth) const;
+	/**
+	 * Creates a buffer with unit stack that we can later render
+	 * @param windowWidth Width of the window we want to render in
+	 * @return created buffer
+	 */
+	CBuffer CreateBuffer(int windowWidth) const;
 	/**
 	 * Cycle through trooper selection
 	 */
 	void Cycle() const;
+	/**
+	 * Get the price of currently selected unit
+	 * @return price
+	 */
 	int GetSelectedPrice() const;
+	/**
+	 * Check whether we have not lost - meaning we can no longer afford any unit present in the stack
+	 * @param resources Resources that we can spend
+	 * @return false when we can no longer afford anything
+	 */
 	bool Lost(int resources) const;
 private:
 	// VARIABLES
 	std::map<char, CTrooper*> m_Troops;	//!< vector with all troops templates
 	std::map<char, CTower*> m_Towers;	//!< vector with all towers templates
 	mutable size_t m_Selected;			//!< currently selected trooper
-	constexpr static const char * const FORBIDDEN_CHARS = "#12345O";
+	constexpr static const char * const FORBIDDEN_CHARS = "#12345O";	//!< characters that are used by the map and we can't use them for troops or tower
 	
 	// RENDER
 	std::string RenderTroops() const;

@@ -17,9 +17,7 @@ class CTower
 public:
 	// INIT
 	explicit CTower(int attackDamage = 0, int attackSpeed = 0, int range = 0, pos_t position = pos::npos, CTile  tile = {'*', ETileType::ARCHER_TOWER, Colors::BG_RED});
-	
 	virtual ~CTower() = default;
-	
 	virtual CTower * Clone() const;
 	
 	// LOAD
@@ -30,7 +28,8 @@ public:
 	virtual std::ostream & SaveTemplate(std::ostream & out) const;
 	virtual std::ostream & SaveOnMap(std::ostream & out) const;
 	
-	// ATTACK
+	// ACTIONS
+	virtual CBuffer CreateInfoBuffer(int windowWidth) const;
 	virtual bool Attack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops);
 	
 	// GETTER / SETTERS
@@ -42,6 +41,9 @@ public:
 	
 	pos_t GetPosition() const
 	{return m_Pos;}
+	
+	ETileType GetType() const
+	{return m_Tile.m_Type;}
 	
 protected:
 	CTile m_Tile;
@@ -58,7 +60,4 @@ private:
 	void ArrowClear(std::unordered_map<pos_t, CTile> & map);
 	bool AssignArrow(std::unordered_map<pos_t, CTile> & map, int rows, int cols, const std::unordered_map<pos_t, CTrooper*> & troops);
 	void DamageTrooper(std::unordered_map<pos_t, CTile> & map, std::unordered_map<pos_t, CTrooper*> & troops);
-	
-	ETileType GetType() const
-	{return m_Tile.m_Type;}
 };

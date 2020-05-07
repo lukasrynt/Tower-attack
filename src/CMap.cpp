@@ -47,9 +47,7 @@ istream & operator>>(istream & in, CMap & self)
 void CMap::PlaceTroops()
 {
 	for (const auto & troop : m_Troops)
-	{
 		m_Map.insert({troop->GetPosition(), troop->GetTile()});
-	}
 }
 
 void CMap::LoadMapInfo(istream & in)
@@ -287,7 +285,7 @@ void CMap::SaveEntities(ostream & out) const
 
 /**********************************************************************************************************************/
 // RENDER
-CBuffer CMap::Render(int windowWidth) const
+CBuffer CMap::CreateBuffer(int windowWidth) const
 {
 	CBuffer buffer{windowWidth};
 	buffer += m_Gate.Render(windowWidth);
@@ -300,7 +298,7 @@ CBuffer CMap::RenderMap(int windowWidth) const
 	CBuffer buffer{windowWidth};
 	for (int i = 0; i < m_Rows; ++i)
 	{
-		buffer.AddLine();
+		buffer.Append();
 		for (int j = 0; j < m_Cols; ++j)
 		{
 			if (!m_Map.count({j,i}))

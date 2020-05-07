@@ -18,14 +18,33 @@
 typedef struct CPosition
 {
 public:
-	CPosition(int x = 0, int y = 0);
+	explicit CPosition(int x = 0, int y = 0);
 	CPosition left() const;
 	CPosition right() const;
 	CPosition up() const;
 	CPosition down() const;
+	/**
+	 * Gets positions that are neighbouring on edges with current position
+	 * @return list of neighbours
+	 */
 	std::list<CPosition> GetCrossNeighbours() const;
+	/**
+	 * Gets positions that is neighbouring on at least one vertex
+	 * @return list of neighbours
+	 */
 	std::list<CPosition> GetDiagNeighbours() const;
+	/**
+	 * Checks whether the position lies in the given range
+	 * @param rows Maximum number of rows
+	 * @param cols Maximum numer of columns
+	 * @return true if the point lies in range
+	 */
 	bool LiesInRange(int rows, int cols) const;
+	/**
+	 * Gets the radius of the current positions on given level
+	 * @param level Level of radius
+	 * @return positions in the radius
+	 */
 	std::deque<CPosition> GetRadius(int level) const;
 	friend bool operator<(const CPosition & self, const CPosition & other);
 	friend bool operator==(const CPosition & self, const CPosition & other);

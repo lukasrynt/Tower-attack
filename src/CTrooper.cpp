@@ -20,7 +20,6 @@ CTrooper::CTrooper(int hp, int speed, int attack, int price, CTile tile)
 	  m_Price(price),
 	  m_Frames(speed),
 	  m_SpawnIdx(0)
-
 {}
 
 CTrooper * CTrooper::Clone() const
@@ -80,15 +79,16 @@ int CTrooper::Attack() const
 	return m_Attack;
 }
 
-string CTrooper::RenderInfo() const
+CBuffer CTrooper::CreateInfoBuffer(int windowWidth) const
 {
-	stringstream ss;
-	ss << m_Tile.m_Color
-		<< "Basic trooper, hp: " << m_Hp
-		<< ", speed: " << m_Frames
-		<< ", attack: " << m_Attack
-		<< ", cost: " << m_Price << Colors::FG_YELLOW << " ©" << Colors::RESET;
-	return ss.str();
+	return move(CBuffer{windowWidth}
+						.Append("   ").Append("("s + m_Tile.m_Char + ")", string(Colors::BG_YELLOW) + Colors::FG_BLACK)
+						.AddEscapeSequence(Colors::FG_YELLOW)
+						.Append("\tHP: " + to_string(m_Hp))
+						.Append("\tSpeed: " + to_string(m_Frames.GetSpeed()))
+						.Append("\tAttack: " + to_string(m_Attack))
+						.Append("\tCost: " + to_string(m_Price) + " ©")
+		.AddEscapeSequence(Colors::RESET));
 }
 
 /**********************************************************************************************************************/

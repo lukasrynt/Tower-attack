@@ -38,28 +38,70 @@ public:
 	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
 	
 	// LOADING
+	/**
+	 * Loads map from input file stream
+	 * @param in Input stream
+	 * @param self Map to be loaded
+	 * @return in
+	 */
 	friend std::istream & operator>>(std::istream & in, CMap & self);
+	/**
+	 * Check if new map was loaded correctly. That means there are no turrets or attackers and there is a gate and at least one spawn.
+	 * @return true if the map was correctly loaded.
+	 */
 	bool CheckNew() const;
+	/**
+	 * Check if the saved map was loaded correctly. That means there is at least one spawn and a gate
+	 * @return
+	 */
 	bool CheckSaved() const;
-	
+	/**
+	 * Checks if the spawn count is the same the number provided
+	 * @param count Count of waves provided from CWaves
+	 * @return true if the numbers are the same
+	 */
 	bool CheckSpawnCount(int count) const;
-	void PlaceTroops();
 	bool WaveIsRunning() const
 	{return !m_Troops.empty();}
 	
 	// SAVING
+	/**
+	 * Saves the map on the given output stream
+	 * @param out Output stream
+	 * @param self Map to be saved
+	 * @return out
+	 */
 	friend std::ostream & operator<<(std::ostream & out, const CMap & self);
 
 	// RENDER
-	CBuffer Render(int windowWidth) const;
+	/**
+	 * Create buffer for further renderings
+	 * @param windowWidth Size of the window to be rendered into
+	 * @return Created buffer
+	 */
+	CBuffer CreateBuffer(int windowWidth) const;
 
 	// UPDATE
+	/**
+	 * Spawns the give troops on the map
+	 * @param spawns Troopers that were released from CWaves
+	 */
 	void Spawn(const std::vector<CTrooper*> & spawns);
+	/**
+	 * Updates the map. Moves troopers and executes tower attacks
+	 * @param waveOn Signal that the wave is on, will be set to false if all troops on the map have either died or reached end
+	 * @return false if we won the game - the gate has fallen
+	 */
 	bool Update(bool & waveOn);
+	/**
+	 * Checks whether the spawns are occupied or not - the spot next to them is free
+	 * @return map of spawns idx and their occupancy status
+	 */
 	std::map<int, bool> SpawnsFree() const;
 	
+	// TESTING STUFFs
 	void VisualizePath(pos_t start, pos_t goal);
-	void Visualize(const std::deque<pos_t>& positions);
+	void Visualize(const std::deque<pos_t> & positions);
 private:
 	// VARIABLES
 	CGate m_Gate;
@@ -76,7 +118,7 @@ private:
 	void LoadMap(std::istream & in);
 	void LoadMapInfo(std::istream & in);
 	void LoadEntities(std::istream & in);
-	
+	void PlaceTroops();
 	void LoadWallLine(std::istream & in, int row);
 	void LoadMapCenter(std::istream & in, int row);
 	bool LoadWallChar(char ch, pos_t position);

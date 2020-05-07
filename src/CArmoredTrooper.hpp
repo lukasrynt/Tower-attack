@@ -27,7 +27,7 @@ public:
 	 * @param damage
 	 */
 	void ReceiveDamage(int damage) final;
-	std::string RenderInfo() const final;
+	CBuffer CreateInfoBuffer(int windowWidth) const final;
 	CArmoredTrooper * Clone() const final;
 	
 	// LOAD

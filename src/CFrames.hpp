@@ -13,6 +13,9 @@ public:
 	explicit CFrames(int speed);
 	bool ActionAllowed();
 	
+	int GetSpeed() const
+	{return m_Speed;}
+	
 	const int & GetCurrent() const
 	{return m_CurrFrame;}
 	

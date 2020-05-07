@@ -6,12 +6,13 @@
 #include <iomanip>
 #include <zconf.h>
 #include <thread>
+#include <functional>
 #include "CInterface.hpp"
 #include "escape_sequences.h"
 #include "ExInvalidInput.hpp"
 
 using namespace std;
-CInterface::CInterface(ostream & out)
+CInterface::CInterface(ostream & out) noexcept(false)
 	: m_Out(out),
 	  m_Term({})
 {
@@ -19,7 +20,7 @@ CInterface::CInterface(ostream & out)
 	// get attributes to termios struct
 	if (tcgetattr(STDIN_FILENO, &m_Term) == -1)
 		throw ios::failure("Error during tcgetattr");
-	out.exceptions(ios::failbit | ios::badbit | ios::eofbit);	//TODO catch those exceptions somewhere
+	m_Out.exceptions(ios::failbit | ios::badbit | ios::eofbit);	//TODO catch those exceptions somewhere
 	termios raw = m_Term;
 	/*
 	c_lflag stands for "local flags":
@@ -63,7 +64,7 @@ void CInterface::Render(CBuffer buffer) const
 	CBuffer tmp{WINDOW_WIDTH};
 	if (buffer.Height() < WINDOW_HEIGHT)
 		for (int i = 0; i < (WINDOW_HEIGHT - buffer.Height()) / 2; ++i)
-			tmp.AddLine();
+			tmp.Append();
 	
 	// render buffer
 	tmp.Append(move(buffer));
@@ -238,12 +239,12 @@ void CInterface::Menu(const map<char, CCommand> & commands) const
 CBuffer CInterface::CreateMenuOptions(const map<char, CCommand> & commands)
 {
 	CBuffer tmp{WINDOW_WIDTH};
-	tmp.AddLine()
-		.AddLine();
+	tmp.Append()
+			.Append();
 	for (const auto & command : commands)
 	{
-		tmp.AddLine(command.first + " - "s + command.second.Help(), command.second.Color())
-			.AddLine();
+		tmp.Append(command.first + " - "s + command.second.Help(), command.second.Color())
+				.Append();
 	}
 	tmp.Center();
 	return tmp;
@@ -254,19 +255,19 @@ CBuffer CInterface::CreateGameHeader()
 	// http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 	CBuffer tmp{WINDOW_WIDTH};
 	tmp.AddEscapeSequence(Colors::FG_YELLOW)
-			.AddLine(R"(_________ _        _______           _______  _______ _________ _______  _       )")
-			.AddLine(R"(\__   __/( (    /|(  ____ \|\     /|(  ____ )(  ____ \\__   __/(  ___  )( (    /|)")
-			.AddLine(R"(   ) (   |  \  ( || (    \/| )   ( || (    )|| (    \/   ) (   | (   ) ||  \  ( |)")
-			.AddLine(R"(   | |   |   \ | || |      | |   | || (____)|| (_____    | |   | |   | ||   \ | |)")
-			.AddLine(R"(   | |   | (\ \) || |      | |   | ||     __)(_____  )   | |   | |   | || (\ \) |)")
-			.AddLine(R"(   | |   | | \   || |      | |   | || (\ (         ) |   | |   | |   | || | \   |)")
-			.AddLine(R"(___) (___| )  \  || (____/\| (___) || ) \ \__/\____) |___) (___| (___) || )  \  |)")
-			.AddLine(R"(\_______/|/    )_)(_______/(_______)|/   \__/\_______)\_______/(_______)|/    )_))")
+			.Append(R"(_________ _        _______           _______  _______ _________ _______  _       )")
+			.Append(R"(\__   __/( (    /|(  ____ \|\     /|(  ____ )(  ____ \\__   __/(  ___  )( (    /|)")
+			.Append(R"(   ) (   |  \  ( || (    \/| )   ( || (    )|| (    \/   ) (   | (   ) ||  \  ( |)")
+			.Append(R"(   | |   |   \ | || |      | |   | || (____)|| (_____    | |   | |   | ||   \ | |)")
+			.Append(R"(   | |   | (\ \) || |      | |   | ||     __)(_____  )   | |   | |   | || (\ \) |)")
+			.Append(R"(   | |   | | \   || |      | |   | || (\ (         ) |   | |   | |   | || | \   |)")
+			.Append(R"(___) (___| )  \  || (____/\| (___) || ) \ \__/\____) |___) (___| (___) || )  \  |)")
+			.Append(R"(\_______/|/    )_)(_______/(_______)|/   \__/\_______)\_______/(_______)|/    )_))")
 			.Center()
 			.AddEscapeSequence(Colors::RESET)
-			.AddLine()
-			.AddLine()
-			.AddLine();
+			.Append()
+			.Append()
+			.Append();
 	return tmp;
 }
 
@@ -290,14 +291,14 @@ CBuffer CInterface::CreateWinnerHeader(string color)
 {
 	CBuffer tmp{WINDOW_WIDTH};
 	tmp.AddEscapeSequence(move(color))
-			.AddLine(R"(         _________ _        _        _______  _______ )")
-			.AddLine(R"(|\     /|\__   __/( (    /|( (    /|(  ____ \(  ____ ))")
-			.AddLine(R"(| )   ( |   ) (   |  \  ( ||  \  ( || (    \/| (    )|)")
-			.AddLine(R"(| | _ | |   | |   |   \ | ||   \ | || (__    | (____)|)")
-			.AddLine(R"(| |( )| |   | |   | (\ \) || (\ \) ||  __)   |     __))")
-			.AddLine(R"(| || || |   | |   | | \   || | \   || (      | (\ (   )")
-			.AddLine(R"(| () () |___) (___| )  \  || )  \  || (____/\| ) \ \__)")
-			.AddLine(R"((_______)\_______/|/    )_)|/    )_)(_______/|/   \__/)")
+			.Append(R"(         _________ _        _        _______  _______ )")
+			.Append(R"(|\     /|\__   __/( (    /|( (    /|(  ____ \(  ____ ))")
+			.Append(R"(| )   ( |   ) (   |  \  ( ||  \  ( || (    \/| (    )|)")
+			.Append(R"(| | _ | |   | |   |   \ | ||   \ | || (__    | (____)|)")
+			.Append(R"(| |( )| |   | |   | (\ \) || (\ \) ||  __)   |     __))")
+			.Append(R"(| || || |   | |   | | \   || | \   || (      | (\ (   )")
+			.Append(R"(| () () |___) (___| )  \  || )  \  || (____/\| ) \ \__)")
+			.Append(R"((_______)\_______/|/    )_)|/    )_)(_______/|/   \__/)")
 			.Center()
 			.AddEscapeSequence(Colors::RESET);
 	return tmp;
@@ -321,14 +322,14 @@ CBuffer CInterface::CreateGameOverHeader(string color)
 {
 	CBuffer tmp{WINDOW_WIDTH};
 	tmp.AddEscapeSequence(move(color))
-			.AddLine(R"( _______  _______  _______  _______    _______           _______  _______ )")
-			.AddLine(R"((  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ ))")
-			.AddLine(R"(| (    \/| (   ) || () () || (    \/  | (   ) || )   ( || (    \/| (    )|)")
-			.AddLine(R"(| |      | (___) || || || || (__      | |   | || |   | || (__    | (____)|)")
-			.AddLine(R"(| | ____ |  ___  || |(_)| ||  __)     | |   | |( (   ) )|  __)   |     __))")
-			.AddLine(R"(| | \_  )| (   ) || |   | || (        | |   | | \ \_/ / | (      | (\ (   )")
-			.AddLine(R"(| (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__)")
-			.AddLine(R"((_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/)")
+			.Append(R"( _______  _______  _______  _______    _______           _______  _______ )")
+			.Append(R"((  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ ))")
+			.Append(R"(| (    \/| (   ) || () () || (    \/  | (   ) || )   ( || (    \/| (    )|)")
+			.Append(R"(| |      | (___) || || || || (__      | |   | || |   | || (__    | (____)|)")
+			.Append(R"(| | ____ |  ___  || |(_)| ||  __)     | |   | |( (   ) )|  __)   |     __))")
+			.Append(R"(| | \_  )| (   ) || |   | || (        | |   | | \ \_/ / | (      | (\ (   )")
+			.Append(R"(| (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__)")
+			.Append(R"((_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/)")
 			.Center()
 			.AddEscapeSequence(Colors::RESET);
 	return tmp;
@@ -340,26 +341,31 @@ void CInterface::GameScreen(const CGame & game) const
 {
 	Render(move(CBuffer{WINDOW_WIDTH}
 		.Append(CreateGameHeader())
-		.Append(game.Render(WINDOW_WIDTH))));
+		.Append(game.CreateBuffer(WINDOW_WIDTH))));
 }
 
 /**********************************************************************************************************************/
 // HELP SCREEN
 void CInterface::HelpScreen(const map<char, CCommand> & commands, const CUnitStack & stack) const
 {
-	Render({CreateCommandsHelpScreen(commands)});
+	vector<function<CBuffer()>> screens;
+	screens.emplace_back([&](){return CreateCommandsHelpScreen(commands);});
+	screens.emplace_back([&](){return CreateCommonLegendScreen();});
+	screens.emplace_back([&](){return CreateTrooperLegendScreen(stack);});
+	screens.emplace_back([&](){return CreateTowerLegendScreen(stack);});
+	cout << screens.size();
+	
+	size_t idx = 0;
+	Render(screens[idx]());
 	char ch = 0;
-	bool com = true;
 	while (ch != 'r')
 	{
 		ch = GetChar();
 		if (ch == 'n')
 		{
-			com = !com;
-			if (com)
-				Render({CreateCommandsHelpScreen(commands)});
-			else
-				Render({CreateLegendScreen(stack)});
+			if (++idx == screens.size())
+				idx = 0;
+			Render(screens[idx]());
 		}
 	}
 }
@@ -372,16 +378,6 @@ CBuffer CInterface::CreateCommandsHelpScreen(const std::map<char, CCommand> & co
 		.Append(CreateHelpOptions()));
 }
 
-CBuffer CInterface::CreateLegendScreen(const CUnitStack & stack)
-{
-	return move(CBuffer{WINDOW_WIDTH}
-		.Append(CreateLegendHeader())
-		.Append(CreateCommonLegend())
-		.Append(CreateTrooperLegend(stack))
-		.Append(CreateTowerLegend(stack))
-		.Append(CreateHelpOptions()));
-}
-
 CBuffer CInterface::CreateGameOptions(const map<char, CCommand> & commands)
 {
 	CBuffer tmp{WINDOW_WIDTH};
@@ -389,82 +385,58 @@ CBuffer CInterface::CreateGameOptions(const map<char, CCommand> & commands)
 	{
 		if (!command.second.Help().empty())
 		{
-			tmp.AddLine("( "s + command.first + ")", string(Colors::BG_WHITE) + Colors::FG_BLACK)
-				.AddLine(" ● "s + command.second.Help(), Colors::FG_WHITE)
-				.AddLine();
+			tmp.Append("("s + command.first + ")", string(Colors::BG_MAGENTA) + Colors::FG_BLACK)
+					.Append("\t"s + command.second.Help(), Colors::FG_MAGENTA)
+					.Append();
 		}
 	}
 	return tmp;
 }
 
-CBuffer CInterface::CreateCommonLegend()
+CBuffer CInterface::CreateCommonLegendScreen()
 {
-	return move(CreateCommonHeader()
-			.AddLine()
-			.AddLine("(#) Wall", string(Colors::BG_WHITE) + Colors::FG_BLACK)
-				.AddLine("● Obstacle through which neither troops, nor bullets can pass.", Colors::FG_WHITE)
-				.AddLine()
-			.AddLine("(#) Wall", string(Colors::BG_CYAN) + Colors::FG_BLACK)
-				.AddLine(" ● Point from which troopers will be spawned.", Colors::FG_CYAN)
-				.AddLine(" ● Numbered from 1 to 5 - each point point is tied to one wave in order.", Colors::FG_CYAN)
-				.AddLine()
-			.AddLine("(O) Gate", string(Colors::BG_MAGENTA) + Colors::FG_BLACK)
-				.AddLine(" ● Gate to which the troopers need to get.", Colors::FG_MAGENTA)
-				.AddLine(" ● Health points of the gate are displayed above the map.", Colors::FG_MAGENTA)
-				.AddLine(" ● The goal of the player is to destroy the gate.", Colors::FG_MAGENTA)
-				.AddLine());
+	return move(CreateCommonHeader().Center()
+						.Append()
+						.Append("(#) Wall", string(Colors::BG_WHITE) + Colors::FG_BLACK)
+						.Append("● Obstacle through which neither troops, nor bullets can pass.", Colors::FG_WHITE)
+						.Append()
+						.Append("(#) Wall", string(Colors::BG_CYAN) + Colors::FG_BLACK)
+						.Append(" ● Point from which troopers will be spawned.", Colors::FG_CYAN)
+						.Append(" ● Numbered from 1 to 5 - each point point is tied to one wave in order.",
+								Colors::FG_CYAN)
+						.Append()
+						.Append("(O) Gate", string(Colors::BG_MAGENTA) + Colors::FG_BLACK)
+						.Append(" ● Gate to which the troopers need to get.", Colors::FG_MAGENTA)
+						.Append(" ● Health points of the gate are displayed above the map.", Colors::FG_MAGENTA)
+						.Append(" ● The goal of the player is to destroy the gate.", Colors::FG_MAGENTA)
+						.Append()
+		.Append(CreateHelpOptions()));
 }
 
-CBuffer CInterface::CreateTrooperLegend(const CUnitStack & stack)
+CBuffer CInterface::CreateTrooperLegendScreen(const CUnitStack & stack)
 {
-	CBuffer buffer{CreateTrooperHeader()};
-	buffer.AddLine()
-		.AddLine("Basic trooper", string(Colors::BG_YELLOW) + Colors::FG_BLACK)
-			.AddLine(" ● Basic unit with limited health and options.", Colors::FG_YELLOW)
-			.AddLine(" ● Will always take the shortest route to finish.", Colors::FG_YELLOW)
-		.AddLine("Basic trooper", string(Colors::BG_CYAN) + Colors::FG_BLACK)
-			.AddLine(" ● Armored trooper can take more damage than normal troops.", Colors::FG_CYAN)
-			.AddLine(" ● He can wall up to prevent incoming damage, before his shields deplete.", Colors::FG_CYAN);
-	return buffer;
+	return move(CreateTrooperHeader().Center()
+		.Append(stack.CreateTroopsInfoBuffer(WINDOW_WIDTH))
+		.Append(CreateHelpOptions()));
 }
 
-CBuffer CInterface::CreateTowerLegend(const CUnitStack & stack)
+CBuffer CInterface::CreateTowerLegendScreen(const CUnitStack & stack)
 {
-	CBuffer buffer{CreateTowerHeader()};
-	buffer.AddLine()
-			.AddLine("Archer tower", string(Colors::BG_RED) + Colors::FG_BLACK)
-				.AddLine(" ● Basic tower with archer attacks.", Colors::FG_RED)
-				.AddLine(" ● Can focus only one trooper at once and it will be always the closest.", Colors::FG_RED)
-			.AddLine("Mage tower", string(Colors::BG_BLUE) + Colors::FG_BLACK)
-				.AddLine(" ● Mage tower which can cast magic attacks", Colors::FG_BLUE)
-				.AddLine(" ● Magic wave is the main attack the tower can cast. It will damage troopers in radius around the tower.", Colors::FG_BLUE);
-	return buffer;
+	return move(CreateTowerHeader().Center()
+		.Append(stack.CreateTowersInfoBuffer(WINDOW_WIDTH))
+		.Append(CreateHelpOptions()));
 }
 
 CBuffer CInterface::CreateHelpOptions()
 {
 	return move(CBuffer{WINDOW_WIDTH}
-		.AddLine()
-		.AddLine("r - to return to game", Colors::FG_BLUE)
-		.AddLine("n - move to next screen", Colors::FG_GREEN));
+						.Append()
+						.Append("r - to return to game", Colors::FG_BLUE)
+						.Append("n - move to next screen", Colors::FG_GREEN));
 }
 
 /**********************************************************************************************************************/
 // HEADERS
-CBuffer CInterface::CreateLegendHeader()
-{
-	
-	return move(CBuffer{WINDOW_WIDTH}
-		.AddEscapeSequence(Colors::FG_GREEN)
-		.AddLine(R"( _                      _ )")
-		.AddLine(R"(| |___ __ _ ___ _ _  __| |)")
-		.AddLine(R"(| / -_) _` / -_) ' \/ _` |)")
-		.AddLine(R"(|_\___\__, \___|_||_\__,_|)")
-		.AddLine(R"(      |___/               )")
-		.Center()
-		.AddEscapeSequence(Colors::RESET));
-}
-
 CBuffer CInterface::CreateCommonHeader()
 {
 	return move(CBuffer{WINDOW_WIDTH}
@@ -497,11 +469,11 @@ CBuffer CInterface::CreateTrooperHeader()
 CBuffer CInterface::CreateCommandsHeader()
 {
 	return move(CBuffer{WINDOW_WIDTH}
-						.AddLines(R"(  _
- | |_ _____ __ _____ _ _ ___
- |  _/ _ \ V  V / -_) '_(_-<
-  \__\___/\_/\_/\___|_| /__/
-                            )", Colors::FG_WHITE));
+						.AddLines(R"(   ___                              _
+  / __|___ _ __  _ __  __ _ _ _  __| |___
+ | (__/ _ \ '  \| '  \/ _` | ' \/ _` (_-<
+  \___\___/_|_|_|_|_|_\__,_|_||_\__,_/__/
+                                         )", Colors::FG_MAGENTA).Center());
 }
 
 /**********************************************************************************************************************/
@@ -572,7 +544,7 @@ void CInterface::InvalidInput(const char * message) const
 {
 	(m_Out << Colors::RESET).flush();
 	m_Out << CBuffer{WINDOW_WIDTH}
-		.AddLine(string(message) + " Press space to continue.", string(Colors::BG_RED) + Colors::FG_BLACK)
+			.Append(string(message) + " Press space to continue.", string(Colors::BG_RED) + Colors::FG_BLACK)
 		.Center();
 	char ch = 0;
 	while ((ch != ' '))
@@ -591,9 +563,9 @@ string CInterface::PromptFileName(const string & message) const
 	// render message
 	CBuffer tmp{WINDOW_WIDTH};
 	tmp.AddEscapeSequence(Colors::FG_WHITE)
-		.AddLines(message)
-		.AddEscapeSequence(Colors::RESET)
-		.AddLine(string(20, ' '), Colors::BG_WHITE)
+			.AddLines(message)
+			.AddEscapeSequence(Colors::RESET)
+			.Append(string(20, ' '), Colors::BG_WHITE)
 		.Center();
 	int height = tmp.Height();
 	int width = tmp.Width();

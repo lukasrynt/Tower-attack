@@ -133,13 +133,55 @@ CTrooper * CUnitStack::CreateSelected() const
 	return nullptr;
 }
 
-CBuffer CUnitStack::Render(int windowWidth) const
+CBuffer CUnitStack::CreateBuffer(int windowWidth) const
+{
+	return move(CBuffer{windowWidth}
+						.Append("Units:", Colors::FG_CYAN)
+						.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
+						.Append(RenderTroops())
+						.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN));
+}
+
+CBuffer CUnitStack::CreateTroopsInfoBuffer(int windowWidth) const
 {
 	CBuffer buffer{windowWidth};
-	buffer.AddLine("Units:", Colors::FG_CYAN)
-		.AddLine(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
-		.AddLine(RenderTroops())
-		.AddLine(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN);
+	buffer.Append()
+			.Append("Basic trooper", string(Colors::BG_YELLOW) + Colors::FG_BLACK)
+			.Append(" ● Basic unit with limited health and options.", Colors::FG_YELLOW)
+			.Append(" ● Will always take the shortest route to finish.", Colors::FG_YELLOW);
+	for (const auto & troop : m_Troops)
+		// for this way of formatting i see no other way than this, i want to have some common info on the troops and then the units
+		if (troop.second->GetType() == ETileType::BASIC_TROOP)
+			buffer.Append(troop.second->CreateInfoBuffer(windowWidth));
+	
+	
+	buffer.Append("Basic trooper", string(Colors::BG_CYAN) + Colors::FG_BLACK)
+			.Append(" ● Armored trooper can take more damage than normal troops.", Colors::FG_CYAN)
+			.Append(" ● He can wall up to prevent incoming damage, before his shields deplete.", Colors::FG_CYAN);
+	for (const auto & troop : m_Troops)
+		if (troop.second->GetType() == ETileType::ARMORED_TROOP)
+			buffer.Append(troop.second->CreateInfoBuffer(windowWidth));
+	return buffer;
+}
+
+CBuffer CUnitStack::CreateTowersInfoBuffer(int windowWidth) const
+{
+	CBuffer buffer{windowWidth};
+	buffer.Append()
+			.Append("Archer tower", string(Colors::BG_RED) + Colors::FG_BLACK)
+			.Append(" ● Basic tower with archer attacks.", Colors::FG_RED)
+			.Append(" ● Can focus only one trooper at once and it will be always the closest.", Colors::FG_RED);
+	for (const auto & tower : m_Towers)
+		if (tower.second->GetType() == ETileType::ARCHER_TOWER)
+			buffer.Append(tower.second->CreateInfoBuffer(windowWidth));
+	
+	buffer.Append("Mage tower", string(Colors::BG_BLUE) + Colors::FG_BLACK)
+			.Append(" ● Mage tower which can cast magic attacks", Colors::FG_BLUE)
+			.Append(" ● Magic wave is the main attack the tower can cast. It will damage troopers in radius around the tower.",
+					Colors::FG_BLUE);
+	for (const auto & tower : m_Towers)
+		if (tower.second->GetType() == ETileType::MAGE_TOWER)
+			buffer.Append(tower.second->CreateInfoBuffer(windowWidth));
 	return buffer;
 }
 

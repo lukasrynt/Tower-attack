@@ -8,12 +8,6 @@
 
 using namespace std;
 
-CGame::CGame()
-	: m_WaveOn(false),
-	  m_GameState(EGameState::GAME_RUNNING),
-	  m_Resources(0)
-{}
-
 /**********************************************************************************************************************/
 // LOADING
 istream & operator>>(istream & in, CGame & self)
@@ -124,12 +118,12 @@ void CGame::Update()
 		m_GameState = EGameState::GAME_OVER;
 }
 
-CBuffer CGame::Render(int windowWidth) const
+CBuffer CGame::CreateBuffer(int windowWidth) const
 {
 	CBuffer buffer{windowWidth};
-	buffer += move(m_Waves.Render(windowWidth).Concat(m_UnitStack->Render(windowWidth)).Center());
-	buffer += move(CBuffer{windowWidth}.AddLine().AddLine());
-	buffer += m_Map.Render(windowWidth);
+	buffer += move(m_Waves.CreateBuffer(windowWidth).Concat(m_UnitStack->CreateBuffer(windowWidth)).Center());
+	buffer += move(CBuffer{windowWidth}.Append().Append());
+	buffer += m_Map.CreateBuffer(windowWidth);
 	return buffer;
 }
 

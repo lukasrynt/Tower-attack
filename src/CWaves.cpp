@@ -137,11 +137,11 @@ ostream & operator<<(ostream & out, const CWaves & waves)
 
 /**********************************************************************************************************************/
 // RENDER
-CBuffer CWaves::Render(int windowWidth) const
+CBuffer CWaves::CreateBuffer(int windowWidth) const
 {
 	CBuffer buffer{windowWidth};
-	buffer.AddLine("Waves:", Colors::FG_GREEN)
-		.AddLine(string(10 + m_MaxSize, '-'), Colors::FG_GREEN);
+	buffer.Append("Waves:", Colors::FG_GREEN)
+			.Append(string(10 + m_MaxSize, '-'), Colors::FG_GREEN);
 	
 	size_t idx = 0;
 	for (const auto & wave : m_Waves)
@@ -153,11 +153,11 @@ CBuffer CWaves::Render(int windowWidth) const
 		for (const auto & troop : wave)
 			line += troop->GetChar();
 		line += string(m_MaxSize - wave.size(), ' ') + "]";
-		buffer.AddLine(line, color ? Colors::BG_GREEN : "");
+		buffer.Append(line, color ? Colors::BG_GREEN : "");
 	}
-	buffer.AddLine(string(10 + m_MaxSize, '-'), Colors::FG_GREEN)
-			.AddLine(to_string(m_Resources))
-			.AddText(" ©", Colors::FG_YELLOW);
+	buffer.Append(string(10 + m_MaxSize, '-'), Colors::FG_GREEN)
+			.Append(to_string(m_Resources))
+			.Append(" ©", Colors::FG_YELLOW);
 	return buffer;
 }
 

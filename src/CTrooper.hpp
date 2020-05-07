@@ -14,6 +14,7 @@
 #include "CTile.hpp"
 #include "CPath.hpp"
 #include "CFrames.hpp"
+#include "CBuffer.hpp"
 
 /**
  * (@) Basic trooper with limited powers
@@ -41,7 +42,7 @@ public:
 	virtual std::ostream & SaveOnMap(std::ostream & out) const;
 	
 	// RENDERING
-	virtual std::string RenderInfo() const;
+	virtual CBuffer CreateInfoBuffer(int windowWidth) const;
 	
 	// GETTERS/ SETTERS
 	bool Died() const
@@ -70,6 +71,9 @@ public:
 	
 	int GetPrice() const
 	{return m_Price;}
+	
+	ETileType GetType() const
+	{return m_Tile.m_Type;}
 protected:
 	CTile m_Tile;
 	pos_t m_Pos;

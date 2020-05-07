@@ -119,3 +119,12 @@ void CTower::ArrowClear(unordered_map<pos_t,CTile> & map)
 	m_ArrowPath.clear();
 	m_ArrowPos = pos::npos;
 }
+
+CBuffer CTower::CreateInfoBuffer(int windowWidth) const
+{
+	return move(CBuffer{windowWidth}
+						.Append("   ").Append("("s + m_Tile.GetChar() + ")", string(Colors::BG_RED) + Colors::FG_BLACK)
+						.Append("\tAttack damage: " + to_string(m_AttackDamage), Colors::FG_RED)
+						.Append("\tAttack speed: " + to_string(m_Frames.GetSpeed()), Colors::FG_RED)
+						.Append("\tRange: " + to_string(m_Range), Colors::FG_RED));
+}
