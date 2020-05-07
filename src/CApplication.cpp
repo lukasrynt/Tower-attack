@@ -128,55 +128,47 @@ CCommand CApplication::LoadSaved()
 CCommand CApplication::AddTroop()
 {
 	return {[this](){m_Game->AddTroop();},
-		 "Add troop",
-		 Colors::FG_RED};
+		 "Add troop"};
 }
 
 CCommand CApplication::DeleteTroop()
 {
 	return {[this](){m_Game->DeleteTroop();},
-		 "Delete troop",
-		 Colors::FG_YELLOW};
+		 "Delete troop"};
 }
 
 CCommand CApplication::CycleTroops()
 {
 	return {[this](){m_Game->CycleTroops();},
-		 "Cycle waves",
-		 Colors::FG_GREEN};
+		 "Cycle waves"};
 }
 
 CCommand CApplication::CycleWaves()
 {
 	return {[this](){m_Game->CycleWaves();},
-			"Cycle troops",
-			Colors::FG_CYAN};
+			"Cycle troops"};
 }
 
 CCommand CApplication::ReleaseWaves()
 {
 	return {[this](){m_Game->ReleaseWaves();},
-		 "Release waves",
-		 Colors::FG_MAGENTA};
+		 "Release waves"};
 }
 
 CCommand CApplication::Help()
 {
-	return {[this](){m_Interface.HelpScreen(m_GameCommands);},
-		 "Help screen",
-		 Colors::FG_BLACK};
+	return {[this](){m_Interface.HelpScreen(m_GameCommands, m_Game->GetStack());},
+		 "Help screen"};
 }
 
 CCommand CApplication::Save()
 {
 	return {[this](){m_Interface.Save(*m_Game);},
-		"Save game",
-		Colors::FG_BLUE};
+		"Save game"};
 }
 
 CCommand CApplication::QuitGame()
 {
 	return {[this](){m_Game->Quit();},
-			"Quit game",
-			Colors::FG_RED};
+			"Quit game"};
 }

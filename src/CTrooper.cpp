@@ -7,7 +7,7 @@
 
 #include <utility>
 
-#include "NColors.hpp"
+#include "escape_sequences.h"
 
 using namespace std;
 /**********************************************************************************************************************/

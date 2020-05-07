@@ -31,7 +31,22 @@ CBuffer & CBuffer::AddText(string text, string color)
 	return *this;
 }
 
-CBuffer & CBuffer::AddEscapeSequence(std::string sequence)
+CBuffer & CBuffer::AddLines(const string & lines, string color)
+{
+	string col = move(color);
+	bool empty = col.empty();
+	if (!empty)
+		AddEscapeSequence(move(col));
+	stringstream ss(lines);
+	string line;
+	while (getline(ss, line))
+		AddLine(line);
+	if (!empty)
+		AddEscapeSequence(Colors::RESET);
+	return *this;
+}
+
+CBuffer & CBuffer::AddEscapeSequence(string sequence)
 {
 	if (m_Buffer.empty())
 		m_Buffer.emplace_back();
@@ -62,6 +77,8 @@ CBuffer & CBuffer::Concat(CBuffer && other)
 CBuffer & CBuffer::Center()
 {
 	size_t longest = LongestSize();
+	if (longest > m_WindowWidth)
+		return *this;
 	for (auto & str : m_Buffer)
 		str = string((m_WindowWidth - longest) / 2,' ') + str;
 	return *this;
@@ -76,7 +93,7 @@ size_t CBuffer::LongestSize() const
 	return tmp;
 }
 
-CBuffer & CBuffer::Append(CBuffer && other)
+CBuffer & CBuffer::Append(CBuffer other)
 {
 	move(other.m_Buffer.begin(), other.m_Buffer.end(), back_inserter(m_Buffer));
 	return *this;
@@ -90,7 +107,7 @@ CBuffer & CBuffer::operator+=(CBuffer && other)
 ostream & operator<<(ostream & out, const CBuffer & self)
 {
 	for (const auto & str : self.m_Buffer)
-		if (!(out << std::noskipws << str << std::endl))
+		if (!(out << noskipws << str << endl))
 			return out;
 	return out;
 }
@@ -111,7 +128,7 @@ CBuffer & CBuffer::operator+=(string line)
 	return AddLine(move(line));
 }
 
-CBuffer & CBuffer::AddTextAt(size_t idx, std::string text, std::string color)
+CBuffer & CBuffer::AddTextAt(size_t idx, string text, string color)
 {
 	if (m_Sizes.empty())
 		m_Sizes.emplace_back();

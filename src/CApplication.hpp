@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "NColors.hpp"
+#include "escape_sequences.h"
 #include "CGame.hpp"
 #include "CInterface.hpp"
 #include "CCommand.hpp"

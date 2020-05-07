@@ -20,7 +20,7 @@ public:
 	~CInterface() noexcept(false);
 	
 	// SCREENS
-	void Render(const CBuffer & buffer) const;
+	void Render(CBuffer buffer) const;
 	bool Save(const CGame & game);
 	bool LoadNewGame(CGame & game);
 	bool LoadSavedGame(CGame & game);
@@ -28,10 +28,10 @@ public:
 	void Menu(const std::map<char, CCommand> & commands) const;
 	void GameOver() const;
 	void Winner() const;
-	void HelpScreen(const std::map<char, CCommand> & commands);
+	void HelpScreen(const std::map<char, CCommand> & commands, const CUnitStack & stack) const;
 	
 	// COMMON
-	void InvalidInput(const char * message);
+	void InvalidInput(const char * message) const;
 	static void ResetTimeout();
 	static char GetChar();
 	
@@ -45,14 +45,8 @@ private:
 	termios m_Term;
 	static const int WINDOW_WIDTH = 150;
 	static const int WINDOW_HEIGHT = 50;
-	CBuffer m_Buffer;
-	
-	// END GAME
-	static CBuffer CreateWinner(std::string color);
-	static CBuffer CreateGameOver(std::string color);
 	
 	// MENU SCREEN
-	static CBuffer CreateHeader();
 	static CBuffer CreateMenuOptions(const std::map<char, CCommand> & commands);
 	
 	// GAME SCREEN
@@ -62,19 +56,32 @@ private:
 	void SavedScreen() const;
 	bool PromptSave(const CGame & game);
 	
+	// LOADING
+	bool TryLoading(const char * filename, CGame & game) const;
+	
 	// HELP SCREEN
-	void RenderHelpScreen();
-	void RenderLegendHeader();
-	void RenderCommonLegend() const;
-	void RenderTrooperLegend() const;
-	void RenderTowerLegend() const;
+	static CBuffer CreateLegendScreen(const CUnitStack & stack);
+	static CBuffer CreateCommandsHelpScreen(const std::map<char, CCommand> & commands);
+	static CBuffer CreateCommonLegend();
+	static CBuffer CreateTrooperLegend(const CUnitStack & stack);
+	static CBuffer CreateTowerLegend(const CUnitStack & stack);
+	static CBuffer CreateHelpOptions();
+	
+	// HEADERS
+	static CBuffer CreateGameHeader();
+	static CBuffer CreateLegendHeader();
+	static CBuffer CreateTowerHeader();
+	static CBuffer CreateTrooperHeader();
+	static CBuffer CreateCommonHeader();
+	static CBuffer CreateCommandsHeader();
+	static CBuffer CreateWinnerHeader(std::string color);
+	static CBuffer CreateGameOverHeader(std::string color);
+	
 	
 	// COMMON
 	std::string PromptFileName(const std::string & message) const;
 	static void NullTimeout();
 	void ChangeWindowSize(int width, int height) const;
-	void HideCursor() const;
-	void ShowCursor() const;
 	void ResetScreen() const;
 };
 

@@ -4,7 +4,7 @@
  */
 
 #include "CGate.hpp"
-#include "NColors.hpp"
+#include "escape_sequences.h"
 
 using namespace std;
 

@@ -21,12 +21,8 @@ public:
 	void Execute()
 	{m_Command();}
 	
-	std::string Help(char ch) const
-	{
-		if (!m_Help.empty())
-			return ch + std::string(" - ") + m_Help;
-		return "";
-	}
+	std::string Help() const
+	{return m_Help;}
 	
 	std::string Color() const
 	{return m_Color;}

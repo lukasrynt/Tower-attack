@@ -10,7 +10,7 @@
 #include <utility>
 #include <unordered_map>
 #include <sstream>
-#include "NColors.hpp"
+#include "escape_sequences.h"
 #include "CTile.hpp"
 #include "CPath.hpp"
 #include "CFrames.hpp"

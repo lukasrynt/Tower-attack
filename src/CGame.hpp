@@ -64,6 +64,9 @@ public:
 	
 	void ReleaseWaves()
 	{m_Waves.Release(m_WaveOn);}
+	
+	const CUnitStack & GetStack() const
+	{return *m_UnitStack;}
 private:
 	// VARIABLES
 	std::shared_ptr<CUnitStack> m_UnitStack;

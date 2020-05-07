@@ -10,17 +10,17 @@
 #include <functional>
 #include <iostream>
 #include <iomanip>
-#include "NColors.hpp"
+#include "escape_sequences.h"
 #include "CTile.hpp"
 
 class CBuffer
 {
 public:
-//	~CBuffer() = default;
-//	CBuffer(const CBuffer & other) = delete;
-//	CBuffer(CBuffer && other) = default;
-//	CBuffer & operator=(const CBuffer & other) = delete;
-//	CBuffer & operator=(CBuffer && other) = default;
+	~CBuffer() = default;
+	CBuffer(const CBuffer & other) = delete;
+	CBuffer(CBuffer && other) = default;
+	CBuffer & operator=(const CBuffer & other) = delete;
+	CBuffer & operator=(CBuffer && other) = default;
 	
 	explicit CBuffer(const int WINDOW_WIDTH) noexcept
 		: m_WindowWidth(WINDOW_WIDTH)
@@ -33,11 +33,12 @@ public:
 	
 	CBuffer & AddLine(std::string line = "", std::string color = "");
 	CBuffer & AddText(std::string text, std::string color = "");
+	CBuffer & AddLines(const std::string & lines, std::string color = "");
 	CBuffer & AddEscapeSequence(std::string sequence);
 	CBuffer & operator<<(std::string line);
 	CBuffer & operator<<(const CTile & tile);
 	CBuffer & operator+=(std::string line);
-	CBuffer & Append(CBuffer && other);
+	CBuffer & Append(CBuffer other);
 	CBuffer & operator+=(CBuffer && other);
 	CBuffer & Concat(CBuffer && other);
 	CBuffer & Center();
@@ -49,11 +50,14 @@ public:
 	void Flush()
 	{m_Buffer.clear();}
 	
-	size_t Height() const
+	int Height() const
 	{return m_Buffer.size();}
 	
+	int Width() const
+	{return LongestSize();}
+	
 private:
-	int m_WindowWidth;
+	size_t m_WindowWidth;
 	std::vector<size_t> m_Sizes;
 	std::vector<std::string> m_Buffer;
 };

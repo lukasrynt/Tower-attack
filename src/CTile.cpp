@@ -4,7 +4,7 @@
  */
 
 #include "CTile.hpp"
-#include "NColors.hpp"
+#include "escape_sequences.h"
 
 #include <utility>
 

@@ -4,7 +4,7 @@
  */
 
 #include "CWaves.hpp"
-#include "NColors.hpp"
+#include "escape_sequences.h"
 #include "CArmoredTrooper.hpp"
 #include "CMageTower.hpp"
 #include "ExInvalidInput.hpp"
