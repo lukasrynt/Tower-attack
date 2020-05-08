@@ -1,3 +1,3 @@
 <map id="CMageTower" name="CMageTower">
-<area shape="rect" id="node2" href="$classCTower.html" title="{CTower\n|# m_Char\l# m_Pos\l# m_AttackDamage\l# m_Frames\l&#45; m_ArrowPath\l&#45; m_ArrowPos\l&#45; m_Perimeter\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ Save()\l+ Attack()\l+ PerimeterBreached()\l+ SetPosition()\l+ GetPosition()\l+ Load()\l&#45; ArrowMove()\l&#45; ArrowClear()\l}" alt="" coords="5,5,159,317"/>
+<area shape="rect" id="node2" href="$classCTower.html" title="{CTower\n|# m_Tile\l# m_Pos\l# m_Range\l# m_AttackDamage\l# m_Frames\l&#45; m_ArrowPos\l&#45; m_ArrowPath\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ CreateInfoBuffer()\l+ Attack()\l+ GetTile()\l+ GetChar()\l+ GetPosition()\l+ GetType()\l&#45; ArrowMove()\l&#45; ArrowClear()\l&#45; AssignArrow()\l&#45; DamageTrooper()\l}" alt="" coords="11,5,149,405"/>
 </map>

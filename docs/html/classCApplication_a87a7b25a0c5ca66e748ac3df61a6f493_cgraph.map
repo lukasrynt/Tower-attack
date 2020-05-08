@@ -1,25 +1,3 @@
 <map id="CApplication::ProcessInput" name="CApplication::ProcessInput">
-<area shape="rect" id="node2" href="$classCApplication.html#a12d92fc8f98ea2b8007403ee15b2ca60" title="CApplication::GetChar" alt="" coords="995,546,1148,573"/>
-<area shape="rect" id="node4" href="$classCApplication.html#a36b8ebccde30c06df222b52473663e31" title="CApplication::HelpScreen" alt="" coords="485,175,657,202"/>
-<area shape="rect" id="node12" href="$classCApplication.html#a2867dc3dc906076cee44d2b0c51daa0e" title="CApplication::SaveScreen" alt="" coords="241,378,415,405"/>
-<area shape="rect" id="node17" href="$classCApplication.html#af89055ac05ec328c3d57092a31055a10" title="CApplication::ResetTimeout" alt="" coords="235,901,421,927"/>
-<area shape="rect" id="node18" href="$classCApplication.html#a4df10a54c0274a672c3772f1d7ff59d7" title="CApplication::MenuScreen" alt="" coords="239,589,417,615"/>
-<area shape="rect" id="node24" href="$classCApplication.html#af596d737c5e5a45deea1f1109845fcbc" title="CApplication::GameInput" alt="" coords="244,671,412,698"/>
-<area shape="rect" id="node3" href="$classCApplication.html#a3cb29b850cceb37ceb718f385b05ddae" title="CApplication::Die" alt="" coords="1261,673,1385,699"/>
-<area shape="rect" id="node5" href="$classCApplication.html#acdcdce972810067eb5acaa3c780051f5" title="CApplication::ResetScreen" alt="" coords="981,267,1161,294"/>
-<area shape="rect" id="node6" href="$classCApplication.html#ad07e173edfae62312c42bc4b1f757f0d" title="CApplication::RenderHelp\lScreen" alt="" coords="736,109,909,151"/>
-<area shape="rect" id="node7" href="$classCApplication.html#afe34a13355c569007955879f4d259110" title="CApplication::RenderLegend\lHeader" alt="" coords="977,5,1165,47"/>
-<area shape="rect" id="node9" href="$classCApplication.html#a0837c6696724c97b963087a32be772e8" title="CApplication::RenderCommon\lLegend" alt="" coords="972,71,1171,112"/>
-<area shape="rect" id="node10" href="$classCApplication.html#a217898915645d9e31d9aa0d6d64f9b89" title="CApplication::RenderTrooper\lLegend" alt="" coords="976,136,1167,177"/>
-<area shape="rect" id="node11" href="$classCApplication.html#a91de3b171f1696f88e273b21d103e802" title="CApplication::RenderTower\lLegend" alt="" coords="980,201,1163,243"/>
-<area shape="rect" id="node8" href="$classCApplication.html#aa5330419f51e5639902c2db9009ab7e0" title="CApplication::PrintCenteredLine" alt="" coords="1219,191,1427,218"/>
-<area shape="rect" id="node13" href="$classCApplication.html#a3a6777a0dc5d78c36db4736a4ed49599" title="CApplication::SaveGame" alt="" coords="487,429,656,455"/>
-<area shape="rect" id="node16" href="$classCApplication.html#a93e1d38cfda1b377fd62e092f9dfe8f9" title="CApplication::RenderGame\lSavedScreen" alt="" coords="732,227,913,268"/>
-<area shape="rect" id="node14" href="$classCApplication.html#aae7f4bad794f5c7763e047e8586f1ea6" title="CApplication::PromptFileName" alt="" coords="721,495,924,522"/>
-<area shape="rect" id="node15" href="$classCApplication.html#a9d9bb6b9f137928bfaef154d58e175b6" title="CApplication::InvalidInput" alt="" coords="737,546,908,573"/>
-<area shape="rect" id="node19" href="$classCApplication.html#af484a47744d3795b1d05f5531b185d42" title="CApplication::RenderHeader" alt="" coords="729,394,917,421"/>
-<area shape="rect" id="node20" href="$classCApplication.html#a9c9dd0ba6097a43c6df22fa2d25bae5a" title="CApplication::RenderMenu\lScreen" alt="" coords="482,581,661,623"/>
-<area shape="rect" id="node21" href="$classCApplication.html#a5d2769bc34bd46f445479cec4a228f13" title="CApplication::LoadNewGame" alt="" coords="474,479,669,506"/>
-<area shape="rect" id="node22" href="$classCApplication.html#ab916095a68aa08146812526a74fb4d79" title="CApplication::LoadSavedGame" alt="" coords="469,530,673,557"/>
-<area shape="rect" id="node23" href="$classCApplication.html#af08332286c9ab621707f9a0cc5a6b68d" title="CApplication::NullTimeout" alt="" coords="735,799,910,826"/>
+<area shape="rect" id="node2" href="$classCInterface.html#a5c2aefa571493d6d8dd19cc7f076e065" title="CInterface::GetChar" alt="" coords="235,5,375,32"/>
 </map>

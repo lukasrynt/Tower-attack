@@ -1,21 +1,15 @@
 var searchData=
 [
   ['receivedamage',['ReceiveDamage',['../classCArmoredTrooper.html#a1e90759a9f4c9601e05bfee2c5572a2b',1,'CArmoredTrooper::ReceiveDamage()'],['../classCGate.html#a81387cd161ba2b6abe89e3959fc670cc',1,'CGate::ReceiveDamage()'],['../classCTrooper.html#abedb8490f3737c8d54d4af1ced3dcf33',1,'CTrooper::ReceiveDamage()']]],
-  ['release',['Release',['../classCWaves.html#ab771b4bf3b5e4feb5609ab8e6e960416',1,'CWaves']]],
-  ['render',['Render',['../classCGame.html#a8e2c0bd3f92c236bd95aa2fd7116120d',1,'CGame::Render()'],['../classCGate.html#ab0742602741d3b5e09526306f29d928d',1,'CGate::Render()'],['../classCMap.html#aade65fe713b0dc6cb9587c1383714234',1,'CMap::Render()'],['../classCUnitStack.html#a9c80726d1d7d14697d65e61c094c5352',1,'CUnitStack::Render()'],['../classCWaves.html#a60eb6e6b704fd5bd3fbc25f00c3afd04',1,'CWaves::Render()']]],
-  ['rendercommonlegend',['RenderCommonLegend',['../classCApplication.html#a0837c6696724c97b963087a32be772e8',1,'CApplication']]],
-  ['rendergameoptions',['RenderGameOptions',['../classCApplication.html#a2b60e13621e8f4880870606f3fa2b6f3',1,'CApplication']]],
-  ['rendergamesavedscreen',['RenderGameSavedScreen',['../classCApplication.html#a93e1d38cfda1b377fd62e092f9dfe8f9',1,'CApplication']]],
-  ['rendergamescreen',['RenderGameScreen',['../classCApplication.html#afbadf49d92dc8a1d724152237b2fd0e4',1,'CApplication']]],
-  ['renderheader',['RenderHeader',['../classCApplication.html#af484a47744d3795b1d05f5531b185d42',1,'CApplication']]],
-  ['renderhelpscreen',['RenderHelpScreen',['../classCApplication.html#ad07e173edfae62312c42bc4b1f757f0d',1,'CApplication']]],
-  ['renderlegendheader',['RenderLegendHeader',['../classCApplication.html#afe34a13355c569007955879f4d259110',1,'CApplication']]],
-  ['rendermap',['RenderMap',['../classCMap.html#ad40e69cecf746a7e99412f8f777ad334',1,'CMap']]],
-  ['rendermenuscreen',['RenderMenuScreen',['../classCApplication.html#a9c9dd0ba6097a43c6df22fa2d25bae5a',1,'CApplication']]],
-  ['rendertowerlegend',['RenderTowerLegend',['../classCApplication.html#a91de3b171f1696f88e273b21d103e802',1,'CApplication']]],
-  ['rendertrooperlegend',['RenderTrooperLegend',['../classCApplication.html#a217898915645d9e31d9aa0d6d64f9b89',1,'CApplication']]],
-  ['resetscreen',['ResetScreen',['../classCApplication.html#acdcdce972810067eb5acaa3c780051f5',1,'CApplication']]],
-  ['resettimeout',['ResetTimeout',['../classCApplication.html#af89055ac05ec328c3d57092a31055a10',1,'CApplication']]],
+  ['release',['Release',['../classCWaves.html#a9e5eacab078c2b55116c8615c4f52b4d',1,'CWaves']]],
+  ['releasewaves',['ReleaseWaves',['../classCApplication.html#a9e3e0dd5d3466f1e57af7ae2efd1aee3',1,'CApplication::ReleaseWaves()'],['../classCGame.html#a4c355831a3a34c9fd0663361d4a7a2df',1,'CGame::ReleaseWaves()']]],
+  ['render',['Render',['../classCGate.html#ac227c504419ab23e874a2a90cb68551e',1,'CGate::Render()'],['../classCInterface.html#a32afd434eb67669be16a9505d23b9bfd',1,'CInterface::Render()']]],
+  ['rendermap',['RenderMap',['../classCMap.html#a0187e5d0ce7ef35922795b1755b17088',1,'CMap']]],
+  ['rendertroops',['RenderTroops',['../classCUnitStack.html#aa4fc46a9c1d2d20bd2070a489e4b4f73',1,'CUnitStack']]],
+  ['reposition_5fcursor',['REPOSITION_CURSOR',['../namespaceEscapes.html#a9795d10c74fde18806a4939a549cd119',1,'Escapes']]],
+  ['resetscreen',['ResetScreen',['../classCInterface.html#ab8f57cabbaa6cee864cb73347cf04c4c',1,'CInterface']]],
+  ['resettimeout',['ResetTimeout',['../classCInterface.html#afb49e0ef3c94f36833c3a1361f150333',1,'CInterface']]],
   ['right',['right',['../structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c',1,'CPosition']]],
-  ['run',['Run',['../classCApplication.html#aa069063a23e53ea9858995f3ca34d6fb',1,'CApplication']]]
+  ['run',['Run',['../classCApplication.html#aa069063a23e53ea9858995f3ca34d6fb',1,'CApplication']]],
+  ['running',['Running',['../classCGame.html#a4c19c1e4d001ec8c8705d8d519a76564',1,'CGame']]]
 ];

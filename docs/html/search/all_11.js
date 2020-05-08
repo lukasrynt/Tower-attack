@@ -1,9 +1,7 @@
 var searchData=
 [
   ['test_2ecpp',['test.cpp',['../test_8cpp.html',1,'']]],
-  ['tiletype',['TileType',['../namespaceTileType.html',1,'']]],
-  ['tower',['TOWER',['../ETileType_8hpp.html#a4ab07f47fd4c98bb6f33a35a4b55ae9ca2e0a457ab9fb1275b1101a976a01c600',1,'ETileType.hpp']]],
-  ['towerattack',['TowerAttack',['../classCMap.html#ad327222ab48f6ad8dc8af922a191c31c',1,'CMap']]],
-  ['traceback',['TraceBack',['../classCPath.html#ab665579d5ae20cacad9ec6eadc68fc70',1,'CPath']]],
-  ['troop',['TROOP',['../ETileType_8hpp.html#a4ab07f47fd4c98bb6f33a35a4b55ae9cab29016130a666bfb511ee383f141fc60',1,'ETileType.hpp']]]
+  ['towerattack',['TowerAttack',['../classCMap.html#a0ae585eb162d65dc06322b3303170f42',1,'CMap']]],
+  ['traceback',['TraceBack',['../classCPath.html#aba36b34b87ef5bca8ac197dcf8943fd6',1,'CPath']]],
+  ['tryloading',['TryLoading',['../classCInterface.html#ab52c62232fc7cc27f6fa787dabd4de82',1,'CInterface']]]
 ];

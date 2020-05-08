@@ -1,9 +1,10 @@
 <map id="src/CTrooper.cpp" name="src/CTrooper.cpp">
-<area shape="rect" id="node2" href="$CTrooper_8hpp.html" title="CTrooper.hpp" alt="" coords="427,80,528,107"/>
-<area shape="rect" id="node7" href="$Colors_8hpp.html" title="Colors.hpp" alt="" coords="685,155,771,181"/>
-<area shape="rect" id="node8" href="$CTile_8hpp.html" title="CTile.hpp" alt="" coords="310,229,389,256"/>
-<area shape="rect" id="node16" href="$CPath_8hpp.html" title="CPath.hpp" alt="" coords="515,155,599,181"/>
-<area shape="rect" id="node17" href="$CFrames_8hpp.html" title="CFrames.hpp" alt="" coords="5,229,107,256"/>
-<area shape="rect" id="node11" href="$CPosition_8hpp.html" title="CPosition.hpp" alt="" coords="515,304,619,331"/>
-<area shape="rect" id="node15" href="$ETileType_8hpp.html" title="ETileType.hpp" alt="" coords="132,304,239,331"/>
+<area shape="rect" id="node2" href="$CTrooper_8hpp.html" title="CTrooper.hpp" alt="" coords="695,80,797,107"/>
+<area shape="rect" id="node8" href="$escape__sequences_8h.html" title="escape_sequences.h" alt="" coords="836,229,981,256"/>
+<area shape="rect" id="node11" href="$CTile_8hpp.html" title="CTile.hpp" alt="" coords="436,229,515,256"/>
+<area shape="rect" id="node20" href="$CPath_8hpp.html" title="CPath.hpp" alt="" coords="331,155,415,181"/>
+<area shape="rect" id="node22" href="$CFrames_8hpp.html" title="CFrames.hpp" alt="" coords="1006,229,1107,256"/>
+<area shape="rect" id="node23" href="$CBuffer_8hpp.html" title="CBuffer.hpp" alt="" coords="579,155,671,181"/>
+<area shape="rect" id="node13" href="$CPosition_8hpp.html" title="CPosition.hpp" alt="" coords="222,304,326,331"/>
+<area shape="rect" id="node19" href="$ETileType_8hpp.html" title="ETileType.hpp" alt="" coords="422,304,529,331"/>
 </map>

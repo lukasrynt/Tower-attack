@@ -66,9 +66,9 @@ Po načtení mapy a definice útočníku ze souboru se spustí samotná hra. Ve 
 > V ukázkové mapě lze vidět útočníky (__@__), věže (__\*__, __%__) a bránu (__O__)
 
 ### Definice souboru
-Soubory ve kterých jsou uložené rozehrané hry nebo nové mapy mají podobnou strukturu. Je pevně daná - každý řádek začíná určitým znakem ve formátu `(C):`, kde C je znak který určuje co načítáme, a končí středníkem. Každý znak se může v souboru vyskytovat jen jednou, to zamezuje redefinici dat. Následuje ukázka souboru ve kterém je uložená rozehraná hra.
+Soubory ve kterých jsou uložené rozehrané hry nebo nové mapy mají podobnou strukturu. Je pevně daná - každý řádek začíná určitým znakem ve formátu `(C)`, kde C je znak který určuje objekt, který načítáme. Každý znak se může v souboru vyskytovat jen jednou, to zamezuje redefinici dat. Následuje ukázka souboru ve kterém je uložená rozehraná hra.
 
-Na konci souboru je obsažena samotná mapa, za ní už nesmí následovat nic dalšího. Mapa má přípustné rozdílné hodnoty v případě, že se jedná o rozehranou hru (jsou povoleny rozmístěné věže a útočníci).
+Mapa má přípustné rozdílné hodnoty v případě, že se jedná o rozehranou hru (jsou povoleny rozmístěné věže a útočníci). Stejně tak ve vlnách je povoleno mít jednotky pouze v případě, že je hra rozehraná.
 ```
 --Zásobník vzorů--
 (U)

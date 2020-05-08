@@ -61,17 +61,17 @@ $(function() {
 <div class="contents">
 &#160;
 
-<h3><a id="index_d"></a>- d -</h3><ul>
-<li>DISPLAY_HEIGHT
-: <a class="el" href="classCApplication.html#aed7b5801c897dbe33cdcefaaf83eeb69">CApplication</a>
-</li>
-<li>DISPLAY_WIDTH
-: <a class="el" href="classCApplication.html#ab58ff09abedc02494244d079a3a4433b">CApplication</a>
+<h3><a id="index_f"></a>- f -</h3><ul>
+<li>FORBIDDEN_CHARS
+: <a class="el" href="classCUnitStack.html#a375f981ad2dc17e5856e1eac5a71271b">CUnitStack</a>
 </li>
 </ul>
 
 
 <h3><a id="index_m"></a>- m -</h3><ul>
+<li>m_AppOn
+: <a class="el" href="classCApplication.html#a549742292432145a6fb0a5dc2139432a">CApplication</a>
+</li>
 <li>m_Armor
 : <a class="el" href="classCArmoredTrooper.html#a6f40e80bd56aad784b0775dd8b2e53af">CArmoredTrooper</a>
 </li>
@@ -87,17 +87,22 @@ $(function() {
 <li>m_AttackDamage
 : <a class="el" href="classCTower.html#afccb1697db1f922a5692d539c7f57276">CTower</a>
 </li>
+<li>m_Buffer
+: <a class="el" href="classCBuffer.html#ac917fdbf9642c45bb8f21fe361c80344">CBuffer</a>
+</li>
 <li>m_Char
 : <a class="el" href="classCTile.html#a22148584be457a460e4b8fef8476c119">CTile</a>
-, <a class="el" href="classCTower.html#ae6367c7f4b07648062c6666e7ba55109">CTower</a>
-, <a class="el" href="classCTrooper.html#a80bdf6ae200feeae7385b5b5a46e9b86">CTrooper</a>
 </li>
 <li>m_Color
-: <a class="el" href="classCTile.html#aa19295d2e23e609ffb4296990487a4b6">CTile</a>
+: <a class="el" href="classCCommand.html#a524c717f68d481256770ee3737391984">CCommand</a>
+, <a class="el" href="classCTile.html#aa19295d2e23e609ffb4296990487a4b6">CTile</a>
 </li>
 <li>m_Cols
 : <a class="el" href="classCMap.html#acdb732d4c15e137a14608883c02996c8">CMap</a>
 , <a class="el" href="classCPath.html#a25968d98365826f34fc8434a2fa66abd">CPath</a>
+</li>
+<li>m_Command
+: <a class="el" href="classCCommand.html#ae2cd63d23ab5da3387c6e0d78dea1fef">CCommand</a>
 </li>
 <li>m_CurrFrame
 : <a class="el" href="classCFrames.html#a234da291fc6afea0b662da9efac76e3b">CFrames</a>
@@ -113,8 +118,11 @@ $(function() {
 <li>m_Game
 : <a class="el" href="classCApplication.html#aa1f44c5398ca211aeabbc99b661be078">CApplication</a>
 </li>
-<li>m_GameOn
-: <a class="el" href="classCGame.html#a373d0231cd497f091e929179e70a2d94">CGame</a>
+<li>m_GameCommands
+: <a class="el" href="classCApplication.html#aa706f387c8a7aaebf4b0d5157fb9c942">CApplication</a>
+</li>
+<li>m_GameState
+: <a class="el" href="classCGame.html#a2f4197acdd7ba40555d1148a12acff84">CGame</a>
 </li>
 <li>m_Gate
 : <a class="el" href="classCMap.html#a5394c6f9388656c329f10868a0c3cafb">CMap</a>
@@ -122,15 +130,18 @@ $(function() {
 <li>m_Goal
 : <a class="el" href="classCPath.html#a57051734e991de9dfd5d3bd4b87d44ce">CPath</a>
 </li>
+<li>m_Help
+: <a class="el" href="classCCommand.html#a6ea3e27685d463fe22ee5396d1be65de">CCommand</a>
+</li>
 <li>m_Hp
 : <a class="el" href="classCGate.html#a55214541cf35fc8275742549c636e268">CGate</a>
 , <a class="el" href="classCTrooper.html#a422bc69a6ff664d7a0e45965811abca9">CTrooper</a>
 </li>
-<li>m_MagicAttack
-: <a class="el" href="classCMageTower.html#a23fc675fedc00c5db0360fd236bb1906">CMageTower</a>
+<li>m_Interface
+: <a class="el" href="classCApplication.html#a3da29c72f22770cac5149ec7dac24dc5">CApplication</a>
 </li>
-<li>m_Mana
-: <a class="el" href="classCMageTower.html#a4eb7029e01e475b123d72e20ad2f33ef">CMageTower</a>
+<li>m_LastWave
+: <a class="el" href="classCMageTower.html#a51c593d8546dcd32bc36e56b618064aa">CMageTower</a>
 </li>
 <li>m_Map
 : <a class="el" href="classCGame.html#a314ca8d0bf4c4f629603efea0cdb6f26">CGame</a>
@@ -142,14 +153,17 @@ $(function() {
 <li>m_MaxHp
 : <a class="el" href="classCGate.html#a89cd869b51c854400a4a787bd7f987d1">CGate</a>
 </li>
-<li>m_MaxMana
-: <a class="el" href="classCMageTower.html#a3beda6c40637e2d775c6725a381d1b18">CMageTower</a>
-</li>
 <li>m_MaxSize
 : <a class="el" href="classCWaves.html#a21543b27efe818be344c320d3fb1b86a">CWaves</a>
 </li>
+<li>m_MenuCommands
+: <a class="el" href="classCApplication.html#a95f87d132106464793d545ee37a0dbd2">CApplication</a>
+</li>
 <li>m_NodeMap
 : <a class="el" href="classCPath.html#af3edede491fc2cbdec21b63d6e03a9bc">CPath</a>
+</li>
+<li>m_Out
+: <a class="el" href="classCInterface.html#a13963838a5bba3697cb2a56dfa795052">CInterface</a>
 </li>
 <li>m_Path
 : <a class="el" href="classCTrooper.html#aa31e8f1c43d02391b0614e081c5da480">CTrooper</a>
@@ -157,17 +171,24 @@ $(function() {
 <li>m_Paths
 : <a class="el" href="classCMap.html#a90fad50439f45833119e06a1c3f7ebf5">CMap</a>
 </li>
-<li>m_Perimeter
-: <a class="el" href="classCTower.html#a9467c7670b139aa1f7b07831cfb9cdf7">CTower</a>
-</li>
 <li>m_Pos
 : <a class="el" href="classCGate.html#a73c189221fdb031e8add745cc4358255">CGate</a>
 , <a class="el" href="structCPath_1_1CNode.html#a2f45f5ce1a76ceba3dab7c1ae106b2f6">CPath::CNode</a>
 , <a class="el" href="classCTower.html#a18ba37322076a2119fa23f2d6383811d">CTower</a>
 , <a class="el" href="classCTrooper.html#a5b932bfa2c70cab7db86fd61ec170c10">CTrooper</a>
 </li>
+<li>m_Price
+: <a class="el" href="classCTrooper.html#a12e908e95c645fa6230019b9ad84817f">CTrooper</a>
+</li>
+<li>m_Range
+: <a class="el" href="classCTower.html#a3ce9250fd9148e5ca62c603388c6b4c2">CTower</a>
+</li>
 <li>m_ReleasingWave
 : <a class="el" href="classCWaves.html#aa72b69af7e8852c8c97d3bcb6af2d97a">CWaves</a>
+</li>
+<li>m_Resources
+: <a class="el" href="classCGame.html#ac743c624ed6dc66d78d2adef3f77d5bd">CGame</a>
+, <a class="el" href="classCWaves.html#a4e8a1f4e3984ab52414e30e59e59e820">CWaves</a>
 </li>
 <li>m_Rows
 : <a class="el" href="classCMap.html#a2db107ab7540f2094e67815a2520c92c">CMap</a>
@@ -176,6 +197,9 @@ $(function() {
 <li>m_Selected
 : <a class="el" href="classCUnitStack.html#affa48cbe40dc1e7400f6e3b2c22796b6">CUnitStack</a>
 , <a class="el" href="classCWaves.html#a39160c204c1c6d416e8c754e59eba8fe">CWaves</a>
+</li>
+<li>m_Sizes
+: <a class="el" href="classCBuffer.html#ad2302858e7237f7b04ea256baff7d394">CBuffer</a>
 </li>
 <li>m_SpawnIdx
 : <a class="el" href="classCTrooper.html#a751330d75951268cdace7a734265abbb">CTrooper</a>
@@ -190,7 +214,11 @@ $(function() {
 : <a class="el" href="classCPath.html#ab17d60387df49af3c74056e419d60f5f">CPath</a>
 </li>
 <li>m_Term
-: <a class="el" href="classCApplication.html#a1a9d9ba312da07f54e4d04d53ee507f1">CApplication</a>
+: <a class="el" href="classCInterface.html#a17d9a48909b1912afd693026e963b275">CInterface</a>
+</li>
+<li>m_Tile
+: <a class="el" href="classCTower.html#a3acd152b1506a29bb93e0d417f9824b0">CTower</a>
+, <a class="el" href="classCTrooper.html#a4e4ad5fc25a54d66612e9b318c5c78a7">CTrooper</a>
 </li>
 <li>m_TileMap
 : <a class="el" href="classCPath.html#a47f8a60cd81df7921ab8406db54e8c30">CPath</a>
@@ -200,7 +228,7 @@ $(function() {
 , <a class="el" href="classCUnitStack.html#a286df94a742607f7a3dfc28bcc0f5ca9">CUnitStack</a>
 </li>
 <li>m_Troops
-: <a class="el" href="classCMap.html#a858d3f1018fa80a32d5399bde8f928bd">CMap</a>
+: <a class="el" href="classCMap.html#a2c4d1da61a1547e364808cc23b36ab94">CMap</a>
 , <a class="el" href="classCUnitStack.html#a02bc88b498a642e7b97bb214e527e734">CUnitStack</a>
 </li>
 <li>m_Type
@@ -211,8 +239,8 @@ $(function() {
 , <a class="el" href="classCMap.html#aec666f91aa0a6e5ab52e96c64acb04f4">CMap</a>
 , <a class="el" href="classCWaves.html#aedbf6b17055bf890e2ba0beef97f1ff4">CWaves</a>
 </li>
-<li>m_WaveCnt
-: <a class="el" href="classCWaves.html#ab298ec484c7ec1e4421b3e6179f2a45d">CWaves</a>
+<li>m_WaveLevel
+: <a class="el" href="classCMageTower.html#ae10e85f54362e6d96d2a209db25f239c">CMageTower</a>
 </li>
 <li>m_WaveOn
 : <a class="el" href="classCGame.html#a26393b6a2048303f857f6c2644cfb705">CGame</a>
@@ -220,6 +248,12 @@ $(function() {
 <li>m_Waves
 : <a class="el" href="classCGame.html#a616e2b4c2733ec2e6206b490bea2d6b2">CGame</a>
 , <a class="el" href="classCWaves.html#a0abcb468e33004f42f0f9e73d7a744bd">CWaves</a>
+</li>
+<li>m_WaveStatus
+: <a class="el" href="classCMageTower.html#aed3c50d5a799f50802e358b636f97407">CMageTower</a>
+</li>
+<li>m_WindowWidth
+: <a class="el" href="classCBuffer.html#a424a1ca8869d51e9f6a6b50908948799">CBuffer</a>
 </li>
 <li>m_X
 : <a class="el" href="structCPosition.html#a68078cee3fae1a43ea2a0385b8890b77">CPosition</a>
@@ -233,9 +267,12 @@ $(function() {
 </ul>
 
 
-<h3><a id="index_n"></a>- n -</h3><ul>
-<li>npos
-: <a class="el" href="structCPosition.html#a266ad240f531bbff44beeca0d4718688">CPosition</a>
+<h3><a id="index_w"></a>- w -</h3><ul>
+<li>WINDOW_HEIGHT
+: <a class="el" href="classCInterface.html#a368352d81ee170d617e0e058df0f8587">CInterface</a>
+</li>
+<li>WINDOW_WIDTH
+: <a class="el" href="classCInterface.html#ad052e00938c91365589e0ca2e3af3aa1">CInterface</a>
 </li>
 </ul>
 </div><!-- contents -->

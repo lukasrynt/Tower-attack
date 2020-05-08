@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['_7ecapplication',['~CApplication',['../classCApplication.html#a6706373f533209d7ff48b306934e0ba4',1,'CApplication']]],
-  ['_7ecmap',['~CMap',['../classCMap.html#a9419f5696c22e9569612b79db2872e02',1,'CMap']]],
-  ['_7ectower',['~CTower',['../classCTower.html#a220ebf69d3ba7c7f934d4d0f9ec022d1',1,'CTower']]],
-  ['_7ectrooper',['~CTrooper',['../classCTrooper.html#ab9ffdde4122533787f856881b6049a96',1,'CTrooper']]],
-  ['_7ecunitstack',['~CUnitStack',['../classCUnitStack.html#af3658a0da7e92f856da5ae861029afa7',1,'CUnitStack']]],
-  ['_7ecwaves',['~CWaves',['../classCWaves.html#a70935c16f8b7bee1c53b3049fa4da925',1,'CWaves']]]
+  ['waveisrunning',['WaveIsRunning',['../classCMap.html#a90fabe75887f5bd9bbbe8792bb9c9611',1,'CMap']]],
+  ['width',['Width',['../classCBuffer.html#a872add3cc26859217942020db7c7996c',1,'CBuffer']]],
+  ['winner',['Winner',['../classCInterface.html#a6d0c1f01720b5c3c820499b0c0aec567',1,'CInterface']]],
+  ['won',['Won',['../classCGame.html#a26e4ca3d22f566f8d99fee47a4ae50d5',1,'CGame']]]
 ];

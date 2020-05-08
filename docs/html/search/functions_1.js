@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bfs',['BFS',['../classCPath.html#aae3e35dcb6f306d46bdcd2e1824ec2e8',1,'CPath']]]
+  ['bfs',['BFS',['../classCPath.html#aa523374e15f797277678727a0eb8f5f0',1,'CPath']]]
 ];

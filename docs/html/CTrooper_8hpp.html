@@ -73,21 +73,24 @@ $(function() {
 <code>#include &lt;queue&gt;</code><br />
 <code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
-<code>#include &quot;<a class="el" href="Colors_8hpp_source.html">Colors.hpp</a>&quot;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
+<code>#include &quot;<a class="el" href="escape__sequences_8h_source.html">escape_sequences.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CTile_8hpp_source.html">CTile.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CPath_8hpp_source.html">CPath.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CFrames_8hpp_source.html">CFrames.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="CBuffer_8hpp_source.html">CBuffer.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for CTrooper.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="CTrooper_8hpp__incl.png" border="0" usemap="#src_2CTrooper_8hpp" alt=""/></div>
 <map name="src_2CTrooper_8hpp" id="src_2CTrooper_8hpp">
-<area shape="rect" id="node6" href="Colors_8hpp.html" title="Colors.hpp" alt="" coords="684,80,770,107"/>
-<area shape="rect" id="node7" href="CTile_8hpp.html" title="CTile.hpp" alt="" coords="301,155,380,181"/>
-<area shape="rect" id="node15" href="CPath_8hpp.html" title="CPath.hpp" alt="" coords="392,80,476,107"/>
-<area shape="rect" id="node16" href="CFrames_8hpp.html" title="CFrames.hpp" alt="" coords="79,155,180,181"/>
-<area shape="rect" id="node10" href="CPosition_8hpp.html" title="CPosition.hpp" alt="" coords="366,229,470,256"/>
-<area shape="rect" id="node14" href="ETileType_8hpp.html" title="ETileType.hpp" alt="" coords="34,229,140,256"/>
+<area shape="rect" id="node7" href="escape__sequences_8h.html" title="escape_sequences.h" alt="" coords="847,155,992,181"/>
+<area shape="rect" id="node10" href="CTile_8hpp.html" title="CTile.hpp" alt="" coords="295,155,373,181"/>
+<area shape="rect" id="node19" href="CPath_8hpp.html" title="CPath.hpp" alt="" coords="449,80,533,107"/>
+<area shape="rect" id="node21" href="CFrames_8hpp.html" title="CFrames.hpp" alt="" coords="22,155,123,181"/>
+<area shape="rect" id="node22" href="CBuffer_8hpp.html" title="CBuffer.hpp" alt="" coords="564,80,656,107"/>
+<area shape="rect" id="node12" href="CPosition_8hpp.html" title="CPosition.hpp" alt="" coords="587,229,691,256"/>
+<area shape="rect" id="node18" href="ETileType_8hpp.html" title="ETileType.hpp" alt="" coords="202,229,309,256"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -96,24 +99,26 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="CTrooper_8hpp__dep__incl.png" border="0" usemap="#src_2CTrooper_8hppdep" alt=""/></div>
 <map name="src_2CTrooper_8hppdep" id="src_2CTrooper_8hppdep">
 <area shape="rect" id="node2" href="CUnitStack_8hpp.html" title="src/CUnitStack.hpp" alt="" coords="321,229,459,256"/>
-<area shape="rect" id="node9" href="CMap_8hpp.html" title="src/CMap.hpp" alt="" coords="661,304,765,331"/>
-<area shape="rect" id="node11" href="CWaves_8hpp.html" title="src/CWaves.hpp" alt="" coords="517,304,637,331"/>
-<area shape="rect" id="node14" href="CTower_8hpp.html" title="src/CTower.hpp" alt="" coords="623,80,738,107"/>
-<area shape="rect" id="node18" href="CArmoredTrooper_8hpp.html" title="src/CArmoredTrooper.hpp" alt="" coords="129,155,301,181"/>
-<area shape="rect" id="node20" href="CTrooper_8cpp.html" title="src/CTrooper.cpp" alt="" coords="939,80,1062,107"/>
+<area shape="rect" id="node11" href="CMap_8hpp.html" title="src/CMap.hpp" alt="" coords="661,304,765,331"/>
+<area shape="rect" id="node13" href="CWaves_8hpp.html" title="src/CWaves.hpp" alt="" coords="517,304,637,331"/>
+<area shape="rect" id="node16" href="CTower_8hpp.html" title="src/CTower.hpp" alt="" coords="623,80,738,107"/>
+<area shape="rect" id="node20" href="CArmoredTrooper_8hpp.html" title="src/CArmoredTrooper.hpp" alt="" coords="129,155,301,181"/>
+<area shape="rect" id="node22" href="CTrooper_8cpp.html" title="src/CTrooper.cpp" alt="" coords="939,80,1062,107"/>
 <area shape="rect" id="node3" href="CGame_8hpp.html" title="src/CGame.hpp" alt="" coords="510,379,625,405"/>
-<area shape="rect" id="node13" href="CUnitStack_8cpp.html" title="src/CUnitStack.cpp" alt="" coords="304,304,441,331"/>
-<area shape="rect" id="node4" href="CApplication_8hpp.html" title="src/CApplication.hpp" alt="" coords="343,453,485,480"/>
-<area shape="rect" id="node7" href="CGame_8cpp.html" title="src/CGame.cpp" alt="" coords="510,453,625,480"/>
-<area shape="rect" id="node8" href="test_8cpp.html" title="testing/test.cpp" alt="" coords="649,453,761,480"/>
-<area shape="rect" id="node5" href="CApplication_8cpp.html" title="src/CApplication.cpp" alt="" coords="271,528,413,555"/>
-<area shape="rect" id="node6" href="main_8cpp.html" title="src/main.cpp" alt="" coords="437,528,535,555"/>
-<area shape="rect" id="node10" href="CMap_8cpp.html" title="src/CMap.cpp" alt="" coords="750,379,854,405"/>
-<area shape="rect" id="node12" href="CWaves_8cpp.html" title="src/CWaves.cpp" alt="" coords="206,379,326,405"/>
-<area shape="rect" id="node15" href="CMageTower_8hpp.html" title="src/CMageTower.hpp" alt="" coords="427,155,574,181"/>
-<area shape="rect" id="node17" href="CTower_8cpp.html" title="src/CTower.cpp" alt="" coords="598,155,713,181"/>
-<area shape="rect" id="node16" href="CMageTower_8cpp.html" title="src/CMageTower.cpp" alt="" coords="483,229,630,256"/>
-<area shape="rect" id="node19" href="CArmoredTrooper_8cpp.html" title="src/CArmoredTrooper.cpp" alt="" coords="5,229,177,256"/>
+<area shape="rect" id="node15" href="CUnitStack_8cpp.html" title="src/CUnitStack.cpp" alt="" coords="304,304,441,331"/>
+<area shape="rect" id="node4" href="CApplication_8hpp.html" title="src/CApplication.hpp" alt="" coords="251,528,393,555"/>
+<area shape="rect" id="node7" href="CInterface_8hpp.html" title="src/CInterface.hpp" alt="" coords="359,453,490,480"/>
+<area shape="rect" id="node9" href="CGame_8cpp.html" title="src/CGame.cpp" alt="" coords="514,453,629,480"/>
+<area shape="rect" id="node10" href="test_8cpp.html" title="testing/test.cpp" alt="" coords="653,453,765,480"/>
+<area shape="rect" id="node5" href="CApplication_8cpp.html" title="src/CApplication.cpp" alt="" coords="179,603,321,629"/>
+<area shape="rect" id="node6" href="main_8cpp.html" title="src/main.cpp" alt="" coords="345,603,443,629"/>
+<area shape="rect" id="node8" href="CInterface_8cpp.html" title="src/CInterface.cpp" alt="" coords="418,528,549,555"/>
+<area shape="rect" id="node12" href="CMap_8cpp.html" title="src/CMap.cpp" alt="" coords="750,379,854,405"/>
+<area shape="rect" id="node14" href="CWaves_8cpp.html" title="src/CWaves.cpp" alt="" coords="206,379,326,405"/>
+<area shape="rect" id="node17" href="CMageTower_8hpp.html" title="src/CMageTower.hpp" alt="" coords="427,155,574,181"/>
+<area shape="rect" id="node19" href="CTower_8cpp.html" title="src/CTower.cpp" alt="" coords="598,155,713,181"/>
+<area shape="rect" id="node18" href="CMageTower_8cpp.html" title="src/CMageTower.cpp" alt="" coords="483,229,630,256"/>
+<area shape="rect" id="node21" href="CArmoredTrooper_8cpp.html" title="src/CArmoredTrooper.cpp" alt="" coords="5,229,177,256"/>
 </map>
 </div>
 </div>

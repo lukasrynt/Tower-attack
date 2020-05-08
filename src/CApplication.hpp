@@ -37,15 +37,15 @@ private:
 	// INPUT PROCESSING
 	void InitCommands();
 	void ProcessInput();
-	CCommand Quit();
-	CCommand LoadNew();
-	CCommand LoadSaved();
-	CCommand AddTroop();
-	CCommand DeleteTroop();
-	CCommand CycleTroops();
-	CCommand CycleWaves();
-	CCommand ReleaseWaves();
-	CCommand Help();
-	CCommand Save();
-	CCommand QuitGame();
+	CCommand QuitCommand();
+	CCommand LoadNewCommand();
+	CCommand LoadSavedCommand();
+	CCommand AddTroopCommand();
+	CCommand DeleteTroopCommand();
+	CCommand CycleTroopsCommand();
+	CCommand CycleWavesCommand();
+	CCommand ReleaseWavesCommand();
+	CCommand HelpCommand();
+	CCommand SaveCommand();
+	CCommand QuitGameCommand();
 };

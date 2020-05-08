@@ -61,7 +61,9 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classCTile-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CTile Class Reference</div>  </div>
@@ -73,14 +75,26 @@ $(function() {
 Collaboration diagram for CTile:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCTile__coll__graph.png" border="0" usemap="#CTile_coll__map" alt="Collaboration graph"/></div>
+<map name="CTile_coll__map" id="CTile_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab621100ee80415d63c5a1deae2d60cfb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#ab621100ee80415d63c5a1deae2d60cfb">CTile</a> (char ch=' ')</td></tr>
 <tr class="separator:ab621100ee80415d63c5a1deae2d60cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a495219bd2dd4bfd42e532c4022ca1da4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a495219bd2dd4bfd42e532c4022ca1da4">CTile</a> (char ch, <a class="el" href="ETileType_8hpp.html#a4ab07f47fd4c98bb6f33a35a4b55ae9c">ETileType</a> type)</td></tr>
+<tr class="memitem:a495219bd2dd4bfd42e532c4022ca1da4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a495219bd2dd4bfd42e532c4022ca1da4">CTile</a> (char ch, <a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a> type)</td></tr>
 <tr class="separator:a495219bd2dd4bfd42e532c4022ca1da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addd8369f5a7e2fb5afd9fabedaac5e47"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#addd8369f5a7e2fb5afd9fabedaac5e47">CTile</a> (char ch, <a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a> type, std::string color)</td></tr>
+<tr class="separator:addd8369f5a7e2fb5afd9fabedaac5e47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b83f3423b18ef68220b44db01e62818"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a8b83f3423b18ef68220b44db01e62818">PrintChar</a> () const</td></tr>
+<tr class="separator:a8b83f3423b18ef68220b44db01e62818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aead279d70cc3e08d556947c9e17b586e"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#aead279d70cc3e08d556947c9e17b586e">GetChar</a> () const</td></tr>
+<tr class="separator:aead279d70cc3e08d556947c9e17b586e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6981129ff243d97fde79c380330b2c3d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a6981129ff243d97fde79c380330b2c3d">GetColor</a> () const</td></tr>
+<tr class="separator:a6981129ff243d97fde79c380330b2c3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d68e6cce9f10d93114311f04d43bd32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a8d68e6cce9f10d93114311f04d43bd32">SetColor</a> (std::string color)</td></tr>
+<tr class="separator:a8d68e6cce9f10d93114311f04d43bd32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71753c42d46222021406c64ef221efa9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a71753c42d46222021406c64ef221efa9">IsTroop</a> () const</td></tr>
 <tr class="separator:a71753c42d46222021406c64ef221efa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff443072dd2ab83898ef0c850c56b01a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#aff443072dd2ab83898ef0c850c56b01a">IsTower</a> () const</td></tr>
@@ -91,32 +105,42 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0eeb3feb126c704e1d1bbf54b3e7fef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44e3ccca609e502d32c232b3167f0bda"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a44e3ccca609e502d32c232b3167f0bda">IsGate</a> () const</td></tr>
 <tr class="separator:a44e3ccca609e502d32c232b3167f0bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c0583acc271c83cf06e3701efedcfb1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a0c0583acc271c83cf06e3701efedcfb1">IsBullet</a> () const</td></tr>
+<tr class="separator:a0c0583acc271c83cf06e3701efedcfb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e10c84f50949bb362af5214d95a18f3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a2e10c84f50949bb362af5214d95a18f3">IsValid</a> () const</td></tr>
 <tr class="separator:a2e10c84f50949bb362af5214d95a18f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23afbeb7c1c2cf7f9507aef4bbfbef00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a23afbeb7c1c2cf7f9507aef4bbfbef00">SetColors</a> ()</td></tr>
-<tr class="separator:a23afbeb7c1c2cf7f9507aef4bbfbef00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad30425f52c7e98a8834df1442c89a49e"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#ad30425f52c7e98a8834df1442c89a49e">GetRawChar</a> () const</td></tr>
-<tr class="separator:ad30425f52c7e98a8834df1442c89a49e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b83f3423b18ef68220b44db01e62818"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a8b83f3423b18ef68220b44db01e62818">PrintChar</a> () const</td></tr>
-<tr class="separator:a8b83f3423b18ef68220b44db01e62818"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a7379058536e8ecdc74ec74481ba2f427"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a7379058536e8ecdc74ec74481ba2f427">InitColor</a> () const</td></tr>
+<tr class="separator:a7379058536e8ecdc74ec74481ba2f427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79011276f91ed86f03f82a707d527ce1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a79011276f91ed86f03f82a707d527ce1">InitType</a> () const</td></tr>
+<tr class="separator:a79011276f91ed86f03f82a707d527ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
 <tr class="memitem:a22148584be457a460e4b8fef8476c119"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a22148584be457a460e4b8fef8476c119">m_Char</a></td></tr>
 <tr class="memdesc:a22148584be457a460e4b8fef8476c119"><td class="mdescLeft">&#160;</td><td class="mdescRight">Character representation of the tile.  <a href="#a22148584be457a460e4b8fef8476c119">More...</a><br /></td></tr>
 <tr class="separator:a22148584be457a460e4b8fef8476c119"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad09a69f329fbba1e54884f9b1661ef18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ETileType_8hpp.html#a4ab07f47fd4c98bb6f33a35a4b55ae9c">ETileType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#ad09a69f329fbba1e54884f9b1661ef18">m_Type</a></td></tr>
+<tr class="memitem:ad09a69f329fbba1e54884f9b1661ef18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#ad09a69f329fbba1e54884f9b1661ef18">m_Type</a></td></tr>
 <tr class="memdesc:ad09a69f329fbba1e54884f9b1661ef18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the tile.  <a href="#ad09a69f329fbba1e54884f9b1661ef18">More...</a><br /></td></tr>
 <tr class="separator:ad09a69f329fbba1e54884f9b1661ef18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa19295d2e23e609ffb4296990487a4b6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#aa19295d2e23e609ffb4296990487a4b6">m_Color</a></td></tr>
 <tr class="separator:aa19295d2e23e609ffb4296990487a4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ac5aac65f0a5c007e1dcb19b4328efc33"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#ac5aac65f0a5c007e1dcb19b4328efc33">CTower</a></td></tr>
+<tr class="separator:ac5aac65f0a5c007e1dcb19b4328efc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21a032302b573e6ce6b612e4915ae62f"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a21a032302b573e6ce6b612e4915ae62f">CTrooper</a></td></tr>
+<tr class="separator:a21a032302b573e6ce6b612e4915ae62f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Lukáš Rynt <a href="#" onclick="location.href='mai'+'lto:'+'ryn'+'tl'+'uka'+'@f'+'it.'+'cv'+'ut.'+'cz'; return false;">ryntl<span style="display: none;">.nosp@m.</span>uka@<span style="display: none;">.nosp@m.</span>fit.c<span style="display: none;">.nosp@m.</span>vut.<span style="display: none;">.nosp@m.</span>cz</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>24.4.2020 Class representing a single tile on the map </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab621100ee80415d63c5a1deae2d60cfb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab621100ee80415d63c5a1deae2d60cfb">&#9670;&nbsp;</a></span>CTile() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab621100ee80415d63c5a1deae2d60cfb">&#9670;&nbsp;</a></span>CTile() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,14 +167,15 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCTile_ab621100ee80415d63c5a1deae2d60cfb_cgraph.png" border="0" usemap="#classCTile_ab621100ee80415d63c5a1deae2d60cfb_cgraph" alt=""/></div>
 <map name="classCTile_ab621100ee80415d63c5a1deae2d60cfb_cgraph" id="classCTile_ab621100ee80415d63c5a1deae2d60cfb_cgraph">
-<area shape="rect" id="node2" href="classCTile.html#a23afbeb7c1c2cf7f9507aef4bbfbef00" title="CTile::SetColors" alt="" coords="145,5,264,32"/>
+<area shape="rect" id="node2" href="classCTile.html#a79011276f91ed86f03f82a707d527ce1" title="CTile::InitType" alt="" coords="147,5,255,32"/>
+<area shape="rect" id="node3" href="classCTile.html#a7379058536e8ecdc74ec74481ba2f427" title="CTile::InitColor" alt="" coords="145,56,256,83"/>
 </map>
 </div>
 
 </div>
 </div>
 <a id="a495219bd2dd4bfd42e532c4022ca1da4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a495219bd2dd4bfd42e532c4022ca1da4">&#9670;&nbsp;</a></span>CTile() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a495219bd2dd4bfd42e532c4022ca1da4">&#9670;&nbsp;</a></span>CTile() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -164,7 +189,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ETileType_8hpp.html#a4ab07f47fd4c98bb6f33a35a4b55ae9c">ETileType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a>&#160;</td>
           <td class="paramname"><em>type</em>&#160;</td>
         </tr>
         <tr>
@@ -179,26 +204,170 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCTile_a495219bd2dd4bfd42e532c4022ca1da4_cgraph.png" border="0" usemap="#classCTile_a495219bd2dd4bfd42e532c4022ca1da4_cgraph" alt=""/></div>
 <map name="classCTile_a495219bd2dd4bfd42e532c4022ca1da4_cgraph" id="classCTile_a495219bd2dd4bfd42e532c4022ca1da4_cgraph">
-<area shape="rect" id="node2" href="classCTile.html#a23afbeb7c1c2cf7f9507aef4bbfbef00" title="CTile::SetColors" alt="" coords="145,5,264,32"/>
+<area shape="rect" id="node2" href="classCTile.html#a7379058536e8ecdc74ec74481ba2f427" title="CTile::InitColor" alt="" coords="285,5,396,32"/>
+<area shape="rect" id="node3" href="classCTile.html#ab621100ee80415d63c5a1deae2d60cfb" title="CTile::CTile" alt="" coords="145,56,237,83"/>
+<area shape="rect" id="node4" href="classCTile.html#a79011276f91ed86f03f82a707d527ce1" title="CTile::InitType" alt="" coords="287,56,395,83"/>
 </map>
 </div>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad30425f52c7e98a8834df1442c89a49e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad30425f52c7e98a8834df1442c89a49e">&#9670;&nbsp;</a></span>GetRawChar()</h2>
+<a id="addd8369f5a7e2fb5afd9fabedaac5e47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addd8369f5a7e2fb5afd9fabedaac5e47">&#9670;&nbsp;</a></span>CTile() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char CTile::GetRawChar </td>
+          <td class="memname">CTile::CTile </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>ch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aead279d70cc3e08d556947c9e17b586e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aead279d70cc3e08d556947c9e17b586e">&#9670;&nbsp;</a></span>GetChar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char CTile::GetChar </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6981129ff243d97fde79c380330b2c3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6981129ff243d97fde79c380330b2c3d">&#9670;&nbsp;</a></span>GetColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string CTile::GetColor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7379058536e8ecdc74ec74481ba2f427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7379058536e8ecdc74ec74481ba2f427">&#9670;&nbsp;</a></span>InitColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string CTile::InitColor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a79011276f91ed86f03f82a707d527ce1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79011276f91ed86f03f82a707d527ce1">&#9670;&nbsp;</a></span>InitType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a> CTile::InitType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c0583acc271c83cf06e3701efedcfb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c0583acc271c83cf06e3701efedcfb1">&#9670;&nbsp;</a></span>IsBullet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CTile::IsBullet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -208,6 +377,9 @@ Here is the call graph for this function:</div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool CTile::IsGate </td>
@@ -216,6 +388,11 @@ Here is the call graph for this function:</div>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -225,6 +402,9 @@ Here is the call graph for this function:</div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool CTile::IsSpawn </td>
@@ -233,6 +413,11 @@ Here is the call graph for this function:</div>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -242,6 +427,9 @@ Here is the call graph for this function:</div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool CTile::IsTower </td>
@@ -250,6 +438,11 @@ Here is the call graph for this function:</div>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -259,6 +452,9 @@ Here is the call graph for this function:</div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool CTile::IsTroop </td>
@@ -267,6 +463,11 @@ Here is the call graph for this function:</div>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -276,6 +477,9 @@ Here is the call graph for this function:</div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool CTile::IsValid </td>
@@ -284,6 +488,11 @@ Here is the call graph for this function:</div>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -293,6 +502,9 @@ Here is the call graph for this function:</div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool CTile::IsWall </td>
@@ -301,6 +513,11 @@ Here is the call graph for this function:</div>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -322,19 +539,73 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a23afbeb7c1c2cf7f9507aef4bbfbef00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23afbeb7c1c2cf7f9507aef4bbfbef00">&#9670;&nbsp;</a></span>SetColors()</h2>
+<a id="a8d68e6cce9f10d93114311f04d43bd32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d68e6cce9f10d93114311f04d43bd32">&#9670;&nbsp;</a></span>SetColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CTile::SetColors </td>
+          <td class="memname">void CTile::SetColor </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="ac5aac65f0a5c007e1dcb19b4328efc33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5aac65f0a5c007e1dcb19b4328efc33">&#9670;&nbsp;</a></span>CTower</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classCTower.html">CTower</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a21a032302b573e6ce6b612e4915ae62f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21a032302b573e6ce6b612e4915ae62f">&#9670;&nbsp;</a></span>CTrooper</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classCTrooper.html">CTrooper</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -355,7 +626,7 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -379,7 +650,7 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -396,12 +667,12 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="ETileType_8hpp.html#a4ab07f47fd4c98bb6f33a35a4b55ae9c">ETileType</a> CTile::m_Type</td>
+          <td class="memname"><a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a> CTile::m_Type</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

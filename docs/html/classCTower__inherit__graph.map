@@ -1,3 +1,3 @@
 <map id="CTower" name="CTower">
-<area shape="rect" id="node2" href="$classCMageTower.html" title="{CMageTower\n|&#45; m_MaxMana\l&#45; m_Mana\l&#45; m_MagicAttack\l|+ CMageTower()\l+ Save()\l+ Attack()\l+ Load()\l&#45; MagicAttack()\l}" alt="" coords="21,365,143,531"/>
+<area shape="rect" id="node2" href="$classCMageTower.html" title="{CMageTower\n|&#45; m_WaveStatus\l&#45; m_WaveLevel\l&#45; m_LastWave\l|+ CMageTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ GetTile()\l+ SaveTemplate()\l+ SaveOnMap()\l+ CreateInfoBuffer()\l+ Attack()\l&#45; PerimeterBreached()\l&#45; ClearLastWave()\l&#45; SendNewWave()\l}" alt="" coords="5,453,155,721"/>
 </map>

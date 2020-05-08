@@ -3,6 +3,7 @@
 #include <CGame.hpp>
 #include <cstring>
 #include <iomanip>
+#include <memory>
 #include <sstream>
 #include "CWaves.hpp"
 #include "CMap.hpp"
@@ -12,20 +13,24 @@ using namespace std;
 
 int main ()
 {
-	ifstream inFile("/home/lukas/School/PA2/semestralka/maps/test2.map");
-	inFile.exceptions(ios::failbit | ios::badbit | ios::eofbit);
+	
+	shared_ptr<CTrooper> trooper(new CTrooper());
+	shared_ptr<CTrooper> inMap = trooper;
 
-	CGame game;
-	try
-	{
-		inFile >> game;
-	}
-	catch(const ios::failure &)
-	{
-		if (inFile.eof())
-			return 0;
-		return 2;
-	}
+//	ifstream inFile("/home/lukas/School/PA2/semestralka/maps/test2.map");
+//	inFile.exceptions(ios::failbit | ios::badbit | ios::eofbit);
+
+//	CGame game;
+//	try
+//	{
+//		inFile >> game;
+//	}
+//	catch(const ios::failure &)
+//	{
+//		if (inFile.eof())
+//			return 0;
+//		return 2;
+//	}
 //	game.Render(cout);
 //	for (int i = 0; i < 60; ++i)
 //	{

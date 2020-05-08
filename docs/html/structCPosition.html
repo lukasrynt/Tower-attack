@@ -62,7 +62,6 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="structCPosition-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -75,6 +74,8 @@ $(function() {
 Collaboration diagram for CPosition:</div>
 <div class="dyncontent">
 <div class="center"><img src="structCPosition__coll__graph.png" border="0" usemap="#CPosition_coll__map" alt="Collaboration graph"/></div>
+<map name="CPosition_coll__map" id="CPosition_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -89,12 +90,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a114c7b43da16023e32f8557d3bc90b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d814dc0e8b552491ad93212ba57c901"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCPosition.html">CPosition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#a5d814dc0e8b552491ad93212ba57c901">down</a> () const</td></tr>
 <tr class="separator:a5d814dc0e8b552491ad93212ba57c901"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec3efcf5f949143cdbdc7c5a913916e6"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="structCPosition.html">CPosition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#aec3efcf5f949143cdbdc7c5a913916e6">GetNeighbours</a> () const</td></tr>
-<tr class="separator:aec3efcf5f949143cdbdc7c5a913916e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab67b5cc5823f6a0f02be12d0f9ff1757"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="structCPosition.html">CPosition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#ab67b5cc5823f6a0f02be12d0f9ff1757">GetCrossNeighbours</a> () const</td></tr>
+<tr class="separator:ab67b5cc5823f6a0f02be12d0f9ff1757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97531cb950f5d2ff5953648fa40b06ac"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="structCPosition.html">CPosition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#a97531cb950f5d2ff5953648fa40b06ac">GetDiagNeighbours</a> () const</td></tr>
+<tr class="separator:a97531cb950f5d2ff5953648fa40b06ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41b9b18e2f0bc9f3d3078616c141758e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#a41b9b18e2f0bc9f3d3078616c141758e">LiesInRange</a> (int rows, int cols) const</td></tr>
 <tr class="separator:a41b9b18e2f0bc9f3d3078616c141758e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5cf321a3ea335d7fa54fcc3612f4d4d"><td class="memItemLeft" align="right" valign="top">std::deque&lt; std::vector&lt; <a class="el" href="structCPosition.html">CPosition</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#af5cf321a3ea335d7fa54fcc3612f4d4d">GetRadius</a> (int level) const</td></tr>
-<tr class="separator:af5cf321a3ea335d7fa54fcc3612f4d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e8bbc9c100eb0b850a4c1b994f0d45b"><td class="memItemLeft" align="right" valign="top">std::deque&lt; <a class="el" href="structCPosition.html">CPosition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#a7e8bbc9c100eb0b850a4c1b994f0d45b">GetRadius</a> (int level) const</td></tr>
+<tr class="separator:a7e8bbc9c100eb0b850a4c1b994f0d45b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34e66c8cab7dc8d084003cde1e828fe6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#a34e66c8cab7dc8d084003cde1e828fe6">Distance</a> (const <a class="el" href="structCPosition.html">CPosition</a> &amp;other) const</td></tr>
+<tr class="separator:a34e66c8cab7dc8d084003cde1e828fe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -105,11 +110,6 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a39f7d70841d4815f4a358daaf85d9cc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Y coordinate.  <a href="#a39f7d70841d4815f4a358daaf85d9cc3">More...</a><br /></td></tr>
 <tr class="separator:a39f7d70841d4815f4a358daaf85d9cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:a266ad240f531bbff44beeca0d4718688"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="structCPosition.html">CPosition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#a266ad240f531bbff44beeca0d4718688">npos</a> = <a class="el" href="structCPosition.html">CPosition</a>{-1,-1}</td></tr>
-<tr class="separator:a266ad240f531bbff44beeca0d4718688"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a6c9a28cce59a0b3ed7cee46ff566d486"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#a6c9a28cce59a0b3ed7cee46ff566d486">operator&lt;</a> (const <a class="el" href="structCPosition.html">CPosition</a> &amp;self, const <a class="el" href="structCPosition.html">CPosition</a> &amp;other)</td></tr>
@@ -118,6 +118,10 @@ Friends</h2></td></tr>
 <tr class="separator:a51ccb91f0d693e9e2e8817be6d0cbdd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40a873eb2615e1b6ba00add879b2f493"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#a40a873eb2615e1b6ba00add879b2f493">operator!=</a> (const <a class="el" href="structCPosition.html">CPosition</a> &amp;self, const <a class="el" href="structCPosition.html">CPosition</a> &amp;other)</td></tr>
 <tr class="separator:a40a873eb2615e1b6ba00add879b2f493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f6cac44e4f639191df485cf0d22e44c"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#a4f6cac44e4f639191df485cf0d22e44c">operator&lt;&lt;</a> (std::ostream &amp;out, const <a class="el" href="structCPosition.html">CPosition</a> &amp;self)</td></tr>
+<tr class="separator:a4f6cac44e4f639191df485cf0d22e44c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cc62c8ac74546669fdab9c5518dc26c"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCPosition.html#a8cc62c8ac74546669fdab9c5518dc26c">operator&gt;&gt;</a> (std::istream &amp;in, <a class="el" href="structCPosition.html">CPosition</a> &amp;self)</td></tr>
+<tr class="separator:a8cc62c8ac74546669fdab9c5518dc26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Lukáš Rynt <a href="#" onclick="location.href='mai'+'lto:'+'ryn'+'tl'+'uka'+'@f'+'it.'+'cv'+'ut.'+'cz'; return false;">ryntl<span style="display: none;">.nosp@m.</span>uka@<span style="display: none;">.nosp@m.</span>fit.c<span style="display: none;">.nosp@m.</span>vut.<span style="display: none;">.nosp@m.</span>cz</a> </dd></dl>
@@ -152,6 +156,32 @@ Friends</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a34e66c8cab7dc8d084003cde1e828fe6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34e66c8cab7dc8d084003cde1e828fe6">&#9670;&nbsp;</a></span>Distance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CPosition::Distance </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structCPosition.html">CPosition</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a5d814dc0e8b552491ad93212ba57c901"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5d814dc0e8b552491ad93212ba57c901">&#9670;&nbsp;</a></span>down()</h2>
 
@@ -166,54 +196,76 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="structCPosition_a5d814dc0e8b552491ad93212ba57c901_cgraph.png" border="0" usemap="#structCPosition_a5d814dc0e8b552491ad93212ba57c901_cgraph" alt=""/></div>
-<map name="structCPosition_a5d814dc0e8b552491ad93212ba57c901_cgraph" id="structCPosition_a5d814dc0e8b552491ad93212ba57c901_cgraph">
-<area shape="rect" id="node2" href="structCPosition.html#ab97ec1a59dc7e57fef6b4aa36b28ac75" title="CPosition::CPosition" alt="" coords="172,5,316,32"/>
-</map>
-</div>
 
 </div>
 </div>
-<a id="aec3efcf5f949143cdbdc7c5a913916e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec3efcf5f949143cdbdc7c5a913916e6">&#9670;&nbsp;</a></span>GetNeighbours()</h2>
+<a id="ab67b5cc5823f6a0f02be12d0f9ff1757"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab67b5cc5823f6a0f02be12d0f9ff1757">&#9670;&nbsp;</a></span>GetCrossNeighbours()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">list&lt; <a class="el" href="structCPosition.html">CPosition</a> &gt; CPosition::GetNeighbours </td>
+          <td class="memname">list&lt; <a class="el" href="structCPosition.html">CPosition</a> &gt; CPosition::GetCrossNeighbours </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Gets positions that are neighbouring on edges with current position </p><dl class="section return"><dt>Returns</dt><dd>list of neighbours </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="structCPosition_aec3efcf5f949143cdbdc7c5a913916e6_cgraph.png" border="0" usemap="#structCPosition_aec3efcf5f949143cdbdc7c5a913916e6_cgraph" alt=""/></div>
-<map name="structCPosition_aec3efcf5f949143cdbdc7c5a913916e6_cgraph" id="structCPosition_aec3efcf5f949143cdbdc7c5a913916e6_cgraph">
-<area shape="rect" id="node2" href="structCPosition.html#a9486f04aa59bf6bdac30ef26812b4ea9" title="CPosition::left" alt="" coords="235,5,340,32"/>
-<area shape="rect" id="node4" href="structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c" title="CPosition::right" alt="" coords="231,56,343,83"/>
-<area shape="rect" id="node5" href="structCPosition.html#a114c7b43da16023e32f8557d3bc90b65" title="CPosition::up" alt="" coords="237,107,338,133"/>
-<area shape="rect" id="node6" href="structCPosition.html#a5d814dc0e8b552491ad93212ba57c901" title="CPosition::down" alt="" coords="228,157,347,184"/>
-<area shape="rect" id="node3" href="structCPosition.html#ab97ec1a59dc7e57fef6b4aa36b28ac75" title="CPosition::CPosition" alt="" coords="395,81,539,108"/>
+<div class="center"><img src="structCPosition_ab67b5cc5823f6a0f02be12d0f9ff1757_cgraph.png" border="0" usemap="#structCPosition_ab67b5cc5823f6a0f02be12d0f9ff1757_cgraph" alt=""/></div>
+<map name="structCPosition_ab67b5cc5823f6a0f02be12d0f9ff1757_cgraph" id="structCPosition_ab67b5cc5823f6a0f02be12d0f9ff1757_cgraph">
+<area shape="rect" id="node2" href="structCPosition.html#a9486f04aa59bf6bdac30ef26812b4ea9" title="CPosition::left" alt="" coords="269,5,375,32"/>
+<area shape="rect" id="node3" href="structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c" title="CPosition::right" alt="" coords="266,56,378,83"/>
+<area shape="rect" id="node4" href="structCPosition.html#a114c7b43da16023e32f8557d3bc90b65" title="CPosition::up" alt="" coords="271,107,373,133"/>
+<area shape="rect" id="node5" href="structCPosition.html#a5d814dc0e8b552491ad93212ba57c901" title="CPosition::down" alt="" coords="263,157,381,184"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="af5cf321a3ea335d7fa54fcc3612f4d4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5cf321a3ea335d7fa54fcc3612f4d4d">&#9670;&nbsp;</a></span>GetRadius()</h2>
+<a id="a97531cb950f5d2ff5953648fa40b06ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97531cb950f5d2ff5953648fa40b06ac">&#9670;&nbsp;</a></span>GetDiagNeighbours()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">deque&lt; vector&lt; <a class="el" href="structCPosition.html">CPosition</a> &gt; &gt; CPosition::GetRadius </td>
+          <td class="memname">std::list&lt; <a class="el" href="structCPosition.html">CPosition</a> &gt; CPosition::GetDiagNeighbours </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Gets positions that is neighbouring on at least one vertex </p><dl class="section return"><dt>Returns</dt><dd>list of neighbours </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="structCPosition_a97531cb950f5d2ff5953648fa40b06ac_cgraph.png" border="0" usemap="#structCPosition_a97531cb950f5d2ff5953648fa40b06ac_cgraph" alt=""/></div>
+<map name="structCPosition_a97531cb950f5d2ff5953648fa40b06ac_cgraph" id="structCPosition_a97531cb950f5d2ff5953648fa40b06ac_cgraph">
+<area shape="rect" id="node2" href="structCPosition.html#ab67b5cc5823f6a0f02be12d0f9ff1757" title="CPosition::GetCrossNeighbours" alt="" coords="255,100,464,127"/>
+<area shape="rect" id="node3" href="structCPosition.html#a9486f04aa59bf6bdac30ef26812b4ea9" title="CPosition::left" alt="" coords="519,5,624,32"/>
+<area shape="rect" id="node4" href="structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c" title="CPosition::right" alt="" coords="515,63,627,89"/>
+<area shape="rect" id="node5" href="structCPosition.html#a114c7b43da16023e32f8557d3bc90b65" title="CPosition::up" alt="" coords="521,125,622,152"/>
+<area shape="rect" id="node6" href="structCPosition.html#a5d814dc0e8b552491ad93212ba57c901" title="CPosition::down" alt="" coords="512,188,631,215"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7e8bbc9c100eb0b850a4c1b994f0d45b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e8bbc9c100eb0b850a4c1b994f0d45b">&#9670;&nbsp;</a></span>GetRadius()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">deque&lt; <a class="el" href="structCPosition.html">CPosition</a> &gt; CPosition::GetRadius </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>level</em></td><td>)</td>
@@ -221,16 +273,19 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Gets the radius of the current positions on given level </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>Level of radius </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>positions in the radius </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="structCPosition_af5cf321a3ea335d7fa54fcc3612f4d4d_cgraph.png" border="0" usemap="#structCPosition_af5cf321a3ea335d7fa54fcc3612f4d4d_cgraph" alt=""/></div>
-<map name="structCPosition_af5cf321a3ea335d7fa54fcc3612f4d4d_cgraph" id="structCPosition_af5cf321a3ea335d7fa54fcc3612f4d4d_cgraph">
-<area shape="rect" id="node2" href="structCPosition.html#a9486f04aa59bf6bdac30ef26812b4ea9" title="CPosition::left" alt="" coords="209,5,315,32"/>
-<area shape="rect" id="node4" href="structCPosition.html#a114c7b43da16023e32f8557d3bc90b65" title="CPosition::up" alt="" coords="211,56,313,83"/>
-<area shape="rect" id="node5" href="structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c" title="CPosition::right" alt="" coords="206,107,318,133"/>
-<area shape="rect" id="node6" href="structCPosition.html#a5d814dc0e8b552491ad93212ba57c901" title="CPosition::down" alt="" coords="203,157,321,184"/>
-<area shape="rect" id="node3" href="structCPosition.html#ab97ec1a59dc7e57fef6b4aa36b28ac75" title="CPosition::CPosition" alt="" coords="369,81,513,108"/>
+<div class="center"><img src="structCPosition_a7e8bbc9c100eb0b850a4c1b994f0d45b_cgraph.png" border="0" usemap="#structCPosition_a7e8bbc9c100eb0b850a4c1b994f0d45b_cgraph" alt=""/></div>
+<map name="structCPosition_a7e8bbc9c100eb0b850a4c1b994f0d45b_cgraph" id="structCPosition_a7e8bbc9c100eb0b850a4c1b994f0d45b_cgraph">
+<area shape="rect" id="node2" href="structCPosition.html#a34e66c8cab7dc8d084003cde1e828fe6" title="CPosition::Distance" alt="" coords="203,5,341,32"/>
 </map>
 </div>
 
@@ -250,14 +305,6 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="structCPosition_a9486f04aa59bf6bdac30ef26812b4ea9_cgraph.png" border="0" usemap="#structCPosition_a9486f04aa59bf6bdac30ef26812b4ea9_cgraph" alt=""/></div>
-<map name="structCPosition_a9486f04aa59bf6bdac30ef26812b4ea9_cgraph" id="structCPosition_a9486f04aa59bf6bdac30ef26812b4ea9_cgraph">
-<area shape="rect" id="node2" href="structCPosition.html#ab97ec1a59dc7e57fef6b4aa36b28ac75" title="CPosition::CPosition" alt="" coords="159,5,303,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -286,6 +333,14 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Checks whether the position lies in the given range </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rows</td><td>Maximum number of rows </td></tr>
+    <tr><td class="paramname">cols</td><td>Maximum numer of columns </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the point lies in range </dd></dl>
 
 </div>
 </div>
@@ -303,14 +358,6 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="structCPosition_afc6b827fe8b9c117f5c434458f1bed0c_cgraph.png" border="0" usemap="#structCPosition_afc6b827fe8b9c117f5c434458f1bed0c_cgraph" alt=""/></div>
-<map name="structCPosition_afc6b827fe8b9c117f5c434458f1bed0c_cgraph" id="structCPosition_afc6b827fe8b9c117f5c434458f1bed0c_cgraph">
-<area shape="rect" id="node2" href="structCPosition.html#ab97ec1a59dc7e57fef6b4aa36b28ac75" title="CPosition::CPosition" alt="" coords="165,5,309,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -328,14 +375,6 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="structCPosition_a114c7b43da16023e32f8557d3bc90b65_cgraph.png" border="0" usemap="#structCPosition_a114c7b43da16023e32f8557d3bc90b65_cgraph" alt=""/></div>
-<map name="structCPosition_a114c7b43da16023e32f8557d3bc90b65_cgraph" id="structCPosition_a114c7b43da16023e32f8557d3bc90b65_cgraph">
-<area shape="rect" id="node2" href="structCPosition.html#ab97ec1a59dc7e57fef6b4aa36b28ac75" title="CPosition::CPosition" alt="" coords="155,5,299,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -412,6 +451,42 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a4f6cac44e4f639191df485cf0d22e44c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f6cac44e4f639191df485cf0d22e44c">&#9670;&nbsp;</a></span>operator<<</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structCPosition.html">CPosition</a> &amp;&#160;</td>
+          <td class="paramname"><em>self</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a51ccb91f0d693e9e2e8817be6d0cbdd6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a51ccb91f0d693e9e2e8817be6d0cbdd6">&#9670;&nbsp;</a></span>operator==</h2>
 
@@ -432,6 +507,42 @@ Here is the call graph for this function:</div>
           <td></td>
           <td class="paramtype">const <a class="el" href="structCPosition.html">CPosition</a> &amp;&#160;</td>
           <td class="paramname"><em>other</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8cc62c8ac74546669fdab9c5518dc26c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cc62c8ac74546669fdab9c5518dc26c">&#9670;&nbsp;</a></span>operator>></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream&amp; operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structCPosition.html">CPosition</a> &amp;&#160;</td>
+          <td class="paramname"><em>self</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -478,28 +589,6 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Y coordinate. </p>
-
-</div>
-</div>
-<a id="a266ad240f531bbff44beeca0d4718688"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a266ad240f531bbff44beeca0d4718688">&#9670;&nbsp;</a></span>npos</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="structCPosition.html">CPosition</a> CPosition::npos = <a class="el" href="structCPosition.html">CPosition</a>{-1,-1}</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>

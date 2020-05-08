@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['std',['std',['../namespacestd.html',1,'']]]
+  ['escapes',['Escapes',['../namespaceEscapes.html',1,'']]]
 ];

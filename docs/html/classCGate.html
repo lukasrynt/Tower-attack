@@ -75,7 +75,7 @@ Collaboration diagram for CGate:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCGate__coll__graph.png" border="0" usemap="#CGate_coll__map" alt="Collaboration graph"/></div>
 <map name="CGate_coll__map" id="CGate_coll__map">
-<area shape="rect" id="node2" href="structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetNeighbours()\l+ LiesInRange()\l+ GetRadius()\l}" alt="" coords="10,5,139,200"/>
+<area shape="rect" id="node2" href="structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetCrossNeighbours()\l+ GetDiagNeighbours()\l+ LiesInRange()\l+ GetRadius()\l+ Distance()\l}" alt="" coords="5,5,169,229"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -85,14 +85,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7d06f34094c4a63ce54dfa0bd4615d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81387cd161ba2b6abe89e3959fc670cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGate.html#a81387cd161ba2b6abe89e3959fc670cc">ReceiveDamage</a> (int damage)</td></tr>
 <tr class="separator:a81387cd161ba2b6abe89e3959fc670cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0742602741d3b5e09526306f29d928d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGate.html#ab0742602741d3b5e09526306f29d928d">Render</a> () const</td></tr>
-<tr class="separator:ab0742602741d3b5e09526306f29d928d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac227c504419ab23e874a2a90cb68551e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCBuffer.html">CBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGate.html#ac227c504419ab23e874a2a90cb68551e">Render</a> (int windowWidth) const</td></tr>
+<tr class="separator:ac227c504419ab23e874a2a90cb68551e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1faf69622ddd22e775e489df6960b055"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGate.html#a1faf69622ddd22e775e489df6960b055">Position</a> ()</td></tr>
 <tr class="separator:a1faf69622ddd22e775e489df6960b055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4764390513a9e6e32d5a4931e227506b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGate.html#a4764390513a9e6e32d5a4931e227506b">Position</a> () const</td></tr>
+<tr class="separator:a4764390513a9e6e32d5a4931e227506b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a282d554721a055a4e8bd3bc40082a0ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGate.html#a282d554721a055a4e8bd3bc40082a0ed">Full</a> () const</td></tr>
+<tr class="separator:a282d554721a055a4e8bd3bc40082a0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a73c189221fdb031e8add745cc4358255"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGate.html#a73c189221fdb031e8add745cc4358255">m_Pos</a> = <a class="el" href="structCPosition.html#a266ad240f531bbff44beeca0d4718688">pos_t::npos</a></td></tr>
+<tr class="memitem:a73c189221fdb031e8add745cc4358255"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGate.html#a73c189221fdb031e8add745cc4358255">m_Pos</a> = <a class="el" href="namespacepos.html#a4e704c6ea5c8ef85d81b735bd0717996">pos::npos</a></td></tr>
 <tr class="memdesc:a73c189221fdb031e8add745cc4358255"><td class="mdescLeft">&#160;</td><td class="mdescRight">position of the gate  <a href="#a73c189221fdb031e8add745cc4358255">More...</a><br /></td></tr>
 <tr class="separator:a73c189221fdb031e8add745cc4358255"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55214541cf35fc8275742549c636e268"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGate.html#a55214541cf35fc8275742549c636e268">m_Hp</a> = 0</td></tr>
@@ -138,8 +142,33 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="a282d554721a055a4e8bd3bc40082a0ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a282d554721a055a4e8bd3bc40082a0ed">&#9670;&nbsp;</a></span>Full()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CGate::Full </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a1faf69622ddd22e775e489df6960b055"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1faf69622ddd22e775e489df6960b055">&#9670;&nbsp;</a></span>Position()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1faf69622ddd22e775e489df6960b055">&#9670;&nbsp;</a></span>Position() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -152,6 +181,31 @@ Friends</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4764390513a9e6e32d5a4931e227506b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4764390513a9e6e32d5a4931e227506b">&#9670;&nbsp;</a></span>Position() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&amp; CGate::Position </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -191,26 +245,40 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCGate_a81387cd161ba2b6abe89e3959fc670cc_cgraph.png" border="0" usemap="#classCGate_a81387cd161ba2b6abe89e3959fc670cc_cgraph" alt=""/></div>
 <map name="classCGate_a81387cd161ba2b6abe89e3959fc670cc_cgraph" id="classCGate_a81387cd161ba2b6abe89e3959fc670cc_cgraph">
-<area shape="rect" id="node2" href="classCGate.html#ab0742602741d3b5e09526306f29d928d" title="CGate::Render" alt="" coords="219,5,329,32"/>
+<area shape="rect" id="node2" href="classCGate.html#ac227c504419ab23e874a2a90cb68551e" title="CGate::Render" alt="" coords="219,56,329,83"/>
+<area shape="rect" id="node3" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="380,5,499,32"/>
+<area shape="rect" id="node4" href="classCBuffer.html#ab896eab1ef3ec891a0a2d6e0190e7204" title="CBuffer::AddText" alt="" coords="377,56,501,83"/>
+<area shape="rect" id="node5" href="classCBuffer.html#a065d323ebbee8fb7bfe67b8f8a7035a1" title="CBuffer::Center" alt="" coords="382,107,497,133"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ab0742602741d3b5e09526306f29d928d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0742602741d3b5e09526306f29d928d">&#9670;&nbsp;</a></span>Render()</h2>
+<a id="ac227c504419ab23e874a2a90cb68551e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac227c504419ab23e874a2a90cb68551e">&#9670;&nbsp;</a></span>Render()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void CGate::Render </td>
+          <td class="memname"><a class="el" href="classCBuffer.html">CBuffer</a> CGate::Render </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>windowWidth</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCGate_ac227c504419ab23e874a2a90cb68551e_cgraph.png" border="0" usemap="#classCGate_ac227c504419ab23e874a2a90cb68551e_cgraph" alt=""/></div>
+<map name="classCGate_ac227c504419ab23e874a2a90cb68551e_cgraph" id="classCGate_ac227c504419ab23e874a2a90cb68551e_cgraph">
+<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="167,5,285,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#ab896eab1ef3ec891a0a2d6e0190e7204" title="CBuffer::AddText" alt="" coords="164,56,288,83"/>
+<area shape="rect" id="node4" href="classCBuffer.html#a065d323ebbee8fb7bfe67b8f8a7035a1" title="CBuffer::Center" alt="" coords="169,107,283,133"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -346,7 +414,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> CGate::m_Pos = <a class="el" href="structCPosition.html#a266ad240f531bbff44beeca0d4718688">pos_t::npos</a></td>
+          <td class="memname"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> CGate::m_Pos = <a class="el" href="namespacepos.html#a4e704c6ea5c8ef85d81b735bd0717996">pos::npos</a></td>
         </tr>
       </table>
   </td>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['npos',['npos',['../structCPosition.html#a266ad240f531bbff44beeca0d4718688',1,'CPosition']]],
-  ['nulltimeout',['NullTimeout',['../classCApplication.html#af08332286c9ab621707f9a0cc5a6b68d',1,'CApplication']]]
+  ['npos',['npos',['../namespacepos.html#a4e704c6ea5c8ef85d81b735bd0717996',1,'pos']]],
+  ['nulltimeout',['NullTimeout',['../classCInterface.html#a15e8de71d734c5aa6c7c0352cf2bec54',1,'CInterface']]]
 ];

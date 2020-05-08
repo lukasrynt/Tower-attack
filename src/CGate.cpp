@@ -27,10 +27,10 @@ CBuffer CGate::Render(int windowWidth) const
 		part = round<int>(m_Hp / static_cast<double> (m_MaxHp) * 10);
 	CBuffer buffer{windowWidth};
 	buffer.Append("Gate: [")
-			.Append(string(part, ' '), Colors::BG_RED)
-			.Append(string(10 - part, ' ') + ']')
-			.Append()
-			.Append()
+		.AddText(string(part, ' '), Colors::BG_RED)
+		.AddText(string(10 - part, ' ') + ']')
+		.Append()
+		.Append()
 		.Center();
 	return buffer;
 }

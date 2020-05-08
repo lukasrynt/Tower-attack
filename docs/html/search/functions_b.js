@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nulltimeout',['NullTimeout',['../classCApplication.html#af08332286c9ab621707f9a0cc5a6b68d',1,'CApplication']]]
+  ['nulltimeout',['NullTimeout',['../classCInterface.html#a15e8de71d734c5aa6c7c0352cf2bec54',1,'CInterface']]]
 ];

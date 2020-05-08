@@ -1,3 +1,3 @@
 <map id="CArmoredTrooper" name="CArmoredTrooper">
-<area shape="rect" id="node2" href="$classCTrooper.html" title="{CTrooper\n|# m_Char\l# m_Pos\l# m_Hp\l# m_Attack\l# m_Frames\l# m_SpawnIdx\l# m_Path\l|+ ~CTrooper()\l+ CTrooper()\l+ Clone()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ Save()\l+ SetSpawn()\l+ GetSpawn()\l+ SetPosition()\l+ GetPosition()\l+ SetPath()\l+ Load()\l}" alt="" coords="9,5,147,347"/>
+<area shape="rect" id="node2" href="$classCTrooper.html" title="{CTrooper\n|# m_Tile\l# m_Pos\l# m_Hp\l# m_Attack\l# m_Price\l# m_Frames\l# m_SpawnIdx\l# m_Path\l|+ ~CTrooper()\l+ CTrooper()\l+ Clone()\l+ Spawn()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\land 12 more...\l}" alt="" coords="9,5,147,332"/>
 </map>

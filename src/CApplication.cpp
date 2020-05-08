@@ -79,29 +79,29 @@ void CApplication::ProcessInput()
 
 void CApplication::InitCommands()
 {
-	m_MenuCommands.emplace('1',LoadNew());
-	m_MenuCommands.emplace('2',LoadSaved());
-	m_MenuCommands.emplace('q', Quit());
+	m_MenuCommands.emplace('1',LoadNewCommand());
+	m_MenuCommands.emplace('2',LoadSavedCommand());
+	m_MenuCommands.emplace('q', QuitCommand());
 	
 	m_GameCommands.emplace(0, [](){});
-	m_GameCommands.emplace('d', DeleteTroop());
-	m_GameCommands.emplace('a', AddTroop());
-	m_GameCommands.emplace('2', CycleTroops());
-	m_GameCommands.emplace('1', CycleWaves());
-	m_GameCommands.emplace('r', ReleaseWaves());
-	m_GameCommands.emplace('h', Help());
-	m_GameCommands.emplace('s', Save());
-	m_GameCommands.emplace('q', QuitGame());
+	m_GameCommands.emplace('d', DeleteTroopCommand());
+	m_GameCommands.emplace('a', AddTroopCommand());
+	m_GameCommands.emplace('2', CycleTroopsCommand());
+	m_GameCommands.emplace('1', CycleWavesCommand());
+	m_GameCommands.emplace('r', ReleaseWavesCommand());
+	m_GameCommands.emplace('h', HelpCommand());
+	m_GameCommands.emplace('s', SaveCommand());
+	m_GameCommands.emplace('q', QuitGameCommand());
 }
 
-CCommand CApplication::Quit()
+CCommand CApplication::QuitCommand()
 {
 	return {[this](){m_AppOn = false;},
 		 "Quit game",
 		 Colors::FG_RED};
 }
 
-CCommand CApplication::LoadNew()
+CCommand CApplication::LoadNewCommand()
 {
 	return {[this]()
 		{
@@ -113,7 +113,7 @@ CCommand CApplication::LoadNew()
 		Colors::FG_CYAN};
 }
 
-CCommand CApplication::LoadSaved()
+CCommand CApplication::LoadSavedCommand()
 {
 	return {[this]()
 		{
@@ -125,49 +125,49 @@ CCommand CApplication::LoadSaved()
 		Colors::FG_GREEN};
 }
 
-CCommand CApplication::AddTroop()
+CCommand CApplication::AddTroopCommand()
 {
 	return {[this](){m_Game->AddTroop();},
-		 "Add troop"};
+		 "Add trooper to current wave."};
 }
 
-CCommand CApplication::DeleteTroop()
+CCommand CApplication::DeleteTroopCommand()
 {
 	return {[this](){m_Game->DeleteTroop();},
-		 "Delete troop"};
+		 "Delete trooper from current wave"};
 }
 
-CCommand CApplication::CycleTroops()
+CCommand CApplication::CycleTroopsCommand()
 {
 	return {[this](){m_Game->CycleTroops();},
-		 "Cycle waves"};
+		 "Move cursor to next trooper."};
 }
 
-CCommand CApplication::CycleWaves()
+CCommand CApplication::CycleWavesCommand()
 {
 	return {[this](){m_Game->CycleWaves();},
-			"Cycle troops"};
+			"Move cursor to next wave"};
 }
 
-CCommand CApplication::ReleaseWaves()
+CCommand CApplication::ReleaseWavesCommand()
 {
 	return {[this](){m_Game->ReleaseWaves();},
-		 "Release waves"};
+		 "Release all waves. Careful once this is done no more troops can be released until the map is empty."};
 }
 
-CCommand CApplication::Help()
+CCommand CApplication::HelpCommand()
 {
 	return {[this](){m_Interface.HelpScreen(m_GameCommands, m_Game->GetStack());},
-		 "Help screen"};
+		 "Show this screen"};
 }
 
-CCommand CApplication::Save()
+CCommand CApplication::SaveCommand()
 {
 	return {[this](){m_Interface.Save(*m_Game);},
-		"Save game"};
+		"Save current game"};
 }
 
-CCommand CApplication::QuitGame()
+CCommand CApplication::QuitGameCommand()
 {
 	return {[this](){m_Game->Quit();},
 			"Quit game"};
