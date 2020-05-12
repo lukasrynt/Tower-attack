@@ -8,6 +8,7 @@
 #include "CTrooper.hpp"
 #include "CTower.hpp"
 #include "CArmoredTrooper.hpp"
+#include "CArcherTower.hpp"
 #include "CMageTower.hpp"
 #include "CBuffer.hpp"
 
@@ -20,8 +21,9 @@
 class CUnitStack
 {
 public:
-	CUnitStack();
-	~CUnitStack();
+	CUnitStack()
+		: m_Selected(0)
+	{}
 	
 	// LOADING
 	/**
@@ -103,18 +105,17 @@ public:
 	bool Lost(int resources) const;
 private:
 	// VARIABLES
-	std::map<char, CTrooper*> m_Troops;	//!< vector with all troops templates
-	std::map<char, CTower*> m_Towers;	//!< vector with all towers templates
-	mutable size_t m_Selected;			//!< currently selected trooper
+	std::map<char, std::unique_ptr<CTrooper>> m_Troops;	//!< vector with all troops templates
+	std::map<char, std::unique_ptr<CTower>> m_Towers;	//!< vector with all towers templates
+	mutable size_t m_Selected;							//!< currently selected trooper
 	constexpr static const char * const FORBIDDEN_CHARS = "#12345O";	//!< characters that are used by the map and we can't use them for troops or tower
 	
 	// RENDER
 	std::string RenderTroops() const;
 	
 	// LOADING
-	bool LoadUnit(std::istream & in, char ch, const std::map<char,CTrooper*> & origTroops, const std::map<char,CTower*> & origTowers);
-	static void CreateOriginals(std::map<char,CTrooper*> & origTroops, std::map<char,CTower*> & origTowers);
-	static void DeleteOriginals(std::map<char,CTrooper*> & origTroops, std::map<char,CTower*> & origTowers);
+	bool LoadUnit(std::istream & in, char ch, const std::map<char,std::unique_ptr<CTrooper>> & origTroops, const std::map<char,std::unique_ptr<CTower>> & origTowers);
+	static void CreateOriginals(std::map<char,std::unique_ptr<CTrooper>> & origTroops, std::map<char,std::unique_ptr<CTower>> & origTowers);
 	static bool CharIsValid(char ch) ;
 	char FindSelected() const;
 };

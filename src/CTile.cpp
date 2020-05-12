@@ -65,13 +65,3 @@ ETileType CTile::InitType() const
 			return ETileType::INVALID;
 	}
 }
-
-/**********************************************************************************************************************/
-// PRINTING
-string CTile::PrintChar() const
-{
-	string res = m_Color + m_Char;
-	if (!m_Color.empty())
-		res += Colors::RESET;
-	return res;
-}

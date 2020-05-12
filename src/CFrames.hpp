@@ -10,7 +10,7 @@
 class CFrames
 {
 public:
-	explicit CFrames(int speed);
+	explicit CFrames(int speed = 0);
 	bool ActionAllowed();
 	
 	int GetSpeed() const

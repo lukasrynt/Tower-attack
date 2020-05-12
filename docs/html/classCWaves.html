@@ -82,10 +82,8 @@ Collaboration diagram for CWaves:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aae3d19f15234873089e59fd5a6924efa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#aae3d19f15234873089e59fd5a6924efa">CWaves</a> ()</td></tr>
-<tr class="separator:aae3d19f15234873089e59fd5a6924efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70935c16f8b7bee1c53b3049fa4da925"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#a70935c16f8b7bee1c53b3049fa4da925">~CWaves</a> ()</td></tr>
-<tr class="separator:a70935c16f8b7bee1c53b3049fa4da925"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa600b25e2ad107ba73f9f7c17bae9bac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#aa600b25e2ad107ba73f9f7c17bae9bac">CWaves</a> () noexcept</td></tr>
+<tr class="separator:aa600b25e2ad107ba73f9f7c17bae9bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf0854823e2c194c7e45e3cd26c7d09f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#adf0854823e2c194c7e45e3cd26c7d09f">CWaves</a> (const <a class="el" href="classCWaves.html">CWaves</a> &amp;src)=default</td></tr>
 <tr class="separator:adf0854823e2c194c7e45e3cd26c7d09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00dd8d7969a9deb3d47f8a7ffcd66871"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCWaves.html">CWaves</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#a00dd8d7969a9deb3d47f8a7ffcd66871">operator=</a> (const <a class="el" href="classCWaves.html">CWaves</a> &amp;src)=default</td></tr>
@@ -108,15 +106,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a36a9b266de65181dc8a23c309e9dbb6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e5eacab078c2b55116c8615c4f52b4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#a9e5eacab078c2b55116c8615c4f52b4d">Release</a> (bool &amp;waveOn)</td></tr>
 <tr class="separator:a9e5eacab078c2b55116c8615c4f52b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02358453749d0f23fa0e66e30d744bee"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classCTrooper.html">CTrooper</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#a02358453749d0f23fa0e66e30d744bee">Update</a> (const std::map&lt; int, bool &gt; &amp;spawnersBlocked)</td></tr>
-<tr class="separator:a02358453749d0f23fa0e66e30d744bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59aec540027d15c93b13863c931330f3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#a59aec540027d15c93b13863c931330f3">Update</a> (const std::map&lt; int, bool &gt; &amp;spawnersBlocked)</td></tr>
+<tr class="separator:a59aec540027d15c93b13863c931330f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf9eb5faf442f5ed168c2244e1e94313"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#abf9eb5faf442f5ed168c2244e1e94313">Lost</a> () const</td></tr>
 <tr class="separator:abf9eb5faf442f5ed168c2244e1e94313"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a4480a75014274810d043c6e5720bb69f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#a4480a75014274810d043c6e5720bb69f">LoadWaves</a> (std::istream &amp;in)</td></tr>
-<tr class="separator:a4480a75014274810d043c6e5720bb69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeea398420f0f71e53173eda943b0ed91"><td class="memItemLeft" align="right" valign="top">std::deque&lt; std::unique_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#aeea398420f0f71e53173eda943b0ed91">LoadWaves</a> (std::istream &amp;in)</td></tr>
+<tr class="separator:aeea398420f0f71e53173eda943b0ed91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2748a3f506c4b858d93b090403466b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#aa2748a3f506c4b858d93b090403466b5">CheckCounter</a> (size_t counter)</td></tr>
 <tr class="separator:aa2748a3f506c4b858d93b090403466b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a339cacba9aa41b60b1402701187cbd7f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#a339cacba9aa41b60b1402701187cbd7f">Empty</a> () const</td></tr>
@@ -124,9 +122,9 @@ Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a0abcb468e33004f42f0f9e73d7a744bd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::deque&lt; <a class="el" href="classCTrooper.html">CTrooper</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#a0abcb468e33004f42f0f9e73d7a744bd">m_Waves</a></td></tr>
-<tr class="memdesc:a0abcb468e33004f42f0f9e73d7a744bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector with waves (deque) initialized to the size m_WaveCnt  <a href="#a0abcb468e33004f42f0f9e73d7a744bd">More...</a><br /></td></tr>
-<tr class="separator:a0abcb468e33004f42f0f9e73d7a744bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29f422c9304c77f0d8890d6de0d41eb8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::deque&lt; std::unique_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#a29f422c9304c77f0d8890d6de0d41eb8">m_Waves</a></td></tr>
+<tr class="memdesc:a29f422c9304c77f0d8890d6de0d41eb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector with waves (deque) initialized to the size m_WaveCnt  <a href="#a29f422c9304c77f0d8890d6de0d41eb8">More...</a><br /></td></tr>
+<tr class="separator:a29f422c9304c77f0d8890d6de0d41eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedbf6b17055bf890e2ba0beef97f1ff4"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classCUnitStack.html">CUnitStack</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#aedbf6b17055bf890e2ba0beef97f1ff4">m_UnitStack</a></td></tr>
 <tr class="separator:aedbf6b17055bf890e2ba0beef97f1ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39160c204c1c6d416e8c754e59eba8fe"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCWaves.html#a39160c204c1c6d416e8c754e59eba8fe">m_Selected</a></td></tr>
@@ -153,11 +151,14 @@ Friends</h2></td></tr>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Lukáš Rynt <a href="#" onclick="location.href='mai'+'lto:'+'ryn'+'tl'+'uka'+'@f'+'it.'+'cv'+'ut.'+'cz'; return false;">ryntl<span style="display: none;">.nosp@m.</span>uka@<span style="display: none;">.nosp@m.</span>fit.c<span style="display: none;">.nosp@m.</span>vut.<span style="display: none;">.nosp@m.</span>cz</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>24.4.2020 Represents the stack from which the user can choose troops, add them to certain waves and launch these waves to map </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aae3d19f15234873089e59fd5a6924efa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae3d19f15234873089e59fd5a6924efa">&#9670;&nbsp;</a></span>CWaves() <span class="overload">[1/2]</span></h2>
+<a id="aa600b25e2ad107ba73f9f7c17bae9bac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa600b25e2ad107ba73f9f7c17bae9bac">&#9670;&nbsp;</a></span>CWaves() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">CWaves::CWaves </td>
@@ -166,23 +167,11 @@ Friends</h2></td></tr>
           <td></td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a70935c16f8b7bee1c53b3049fa4da925"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70935c16f8b7bee1c53b3049fa4da925">&#9670;&nbsp;</a></span>~CWaves()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CWaves::~CWaves </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -429,12 +418,9 @@ Here is the call graph for this function:</div>
 <area shape="rect" id="node5" href="classCWaves.html#a024707668a137e4d0714b05f2e97215b" title="CWaves::AddTroop" alt="" coords="219,107,357,133"/>
 <area shape="rect" id="node6" href="classCWaves.html#a36a9b266de65181dc8a23c309e9dbb6a" title="CWaves::DeleteTroop" alt="" coords="212,157,364,184"/>
 <area shape="rect" id="node7" href="classCWaves.html#a9e5eacab078c2b55116c8615c4f52b4d" title="CWaves::Release" alt="" coords="223,208,353,235"/>
-<area shape="rect" id="node9" href="classCWaves.html#a02358453749d0f23fa0e66e30d744bee" title="CWaves::Update" alt="" coords="227,309,349,336"/>
-<area shape="rect" id="node12" href="classCWaves.html#abf9eb5faf442f5ed168c2244e1e94313" title="CWaves::Lost" alt="" coords="235,259,341,285"/>
-<area shape="rect" id="node3" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="437,5,556,32"/>
-<area shape="rect" id="node8" href="classCWaves.html#a339cacba9aa41b60b1402701187cbd7f" title="CWaves::Empty" alt="" coords="437,259,556,285"/>
-<area shape="rect" id="node10" href="classCFrames.html#a14cfc323ff762fba678635a7b76cb8f6" title="CFrames::ActionAllowed" alt="" coords="413,309,580,336"/>
-<area shape="rect" id="node11" href="classCTrooper.html#a90a689b53f761078217c034f7fd7a4c4" title="CTrooper::SetSpawn" alt="" coords="425,360,569,387"/>
+<area shape="rect" id="node8" href="classCWaves.html#a59aec540027d15c93b13863c931330f3" title="CWaves::Update" alt="" coords="227,259,349,285"/>
+<area shape="rect" id="node9" href="classCWaves.html#abf9eb5faf442f5ed168c2244e1e94313" title="CWaves::Lost" alt="" coords="235,309,341,336"/>
+<area shape="rect" id="node3" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="413,5,532,32"/>
 </map>
 </div>
 
@@ -457,8 +443,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a4480a75014274810d043c6e5720bb69f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4480a75014274810d043c6e5720bb69f">&#9670;&nbsp;</a></span>LoadWaves()</h2>
+<a id="aeea398420f0f71e53173eda943b0ed91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeea398420f0f71e53173eda943b0ed91">&#9670;&nbsp;</a></span>LoadWaves()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -467,7 +453,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void CWaves::LoadWaves </td>
+          <td class="memname">deque&lt; unique_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt; &gt; CWaves::LoadWaves </td>
           <td>(</td>
           <td class="paramtype">std::istream &amp;&#160;</td>
           <td class="paramname"><em>in</em></td><td>)</td>
@@ -480,14 +466,6 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCWaves_a4480a75014274810d043c6e5720bb69f_cgraph.png" border="0" usemap="#classCWaves_a4480a75014274810d043c6e5720bb69f_cgraph" alt=""/></div>
-<map name="classCWaves_a4480a75014274810d043c6e5720bb69f_cgraph" id="classCWaves_a4480a75014274810d043c6e5720bb69f_cgraph">
-<area shape="rect" id="node2" href="classCWaves.html#aa2748a3f506c4b858d93b090403466b5" title="CWaves::CheckCounter" alt="" coords="204,5,369,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -506,14 +484,6 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <p>Checks whether we have not lost, this occurs if all waves are empty and we can't afford any troop. </p><dl class="section return"><dt>Returns</dt><dd>true if we have lost </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCWaves_abf9eb5faf442f5ed168c2244e1e94313_cgraph.png" border="0" usemap="#classCWaves_abf9eb5faf442f5ed168c2244e1e94313_cgraph" alt=""/></div>
-<map name="classCWaves_abf9eb5faf442f5ed168c2244e1e94313_cgraph" id="classCWaves_abf9eb5faf442f5ed168c2244e1e94313_cgraph">
-<area shape="rect" id="node2" href="classCWaves.html#a339cacba9aa41b60b1402701187cbd7f" title="CWaves::Empty" alt="" coords="160,5,279,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -570,25 +540,17 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCWaves_a9e5eacab078c2b55116c8615c4f52b4d_cgraph.png" border="0" usemap="#classCWaves_a9e5eacab078c2b55116c8615c4f52b4d_cgraph" alt=""/></div>
-<map name="classCWaves_a9e5eacab078c2b55116c8615c4f52b4d_cgraph" id="classCWaves_a9e5eacab078c2b55116c8615c4f52b4d_cgraph">
-<area shape="rect" id="node2" href="classCWaves.html#a339cacba9aa41b60b1402701187cbd7f" title="CWaves::Empty" alt="" coords="183,5,301,32"/>
-</map>
-</div>
 
 </div>
 </div>
-<a id="a02358453749d0f23fa0e66e30d744bee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02358453749d0f23fa0e66e30d744bee">&#9670;&nbsp;</a></span>Update()</h2>
+<a id="a59aec540027d15c93b13863c931330f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59aec540027d15c93b13863c931330f3">&#9670;&nbsp;</a></span>Update()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; <a class="el" href="classCTrooper.html">CTrooper</a> * &gt; CWaves::Update </td>
+          <td class="memname">vector&lt; unique_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt; &gt; CWaves::Update </td>
           <td>(</td>
           <td class="paramtype">const std::map&lt; int, bool &gt; &amp;&#160;</td>
           <td class="paramname"><em>spawnersBlocked</em></td><td>)</td>
@@ -603,16 +565,6 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>vector of troops that were spawned </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCWaves_a02358453749d0f23fa0e66e30d744bee_cgraph.png" border="0" usemap="#classCWaves_a02358453749d0f23fa0e66e30d744bee_cgraph" alt=""/></div>
-<map name="classCWaves_a02358453749d0f23fa0e66e30d744bee_cgraph" id="classCWaves_a02358453749d0f23fa0e66e30d744bee_cgraph">
-<area shape="rect" id="node2" href="classCFrames.html#a14cfc323ff762fba678635a7b76cb8f6" title="CFrames::ActionAllowed" alt="" coords="176,5,343,32"/>
-<area shape="rect" id="node3" href="classCTrooper.html#a90a689b53f761078217c034f7fd7a4c4" title="CTrooper::SetSpawn" alt="" coords="187,56,331,83"/>
-<area shape="rect" id="node4" href="classCWaves.html#a339cacba9aa41b60b1402701187cbd7f" title="CWaves::Empty" alt="" coords="200,107,319,133"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -842,8 +794,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a0abcb468e33004f42f0f9e73d7a744bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0abcb468e33004f42f0f9e73d7a744bd">&#9670;&nbsp;</a></span>m_Waves</h2>
+<a id="a29f422c9304c77f0d8890d6de0d41eb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29f422c9304c77f0d8890d6de0d41eb8">&#9670;&nbsp;</a></span>m_Waves</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -852,7 +804,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::deque&lt;<a class="el" href="classCTrooper.html">CTrooper</a>*&gt; &gt; CWaves::m_Waves</td>
+          <td class="memname">std::vector&lt;std::deque&lt;std::unique_ptr&lt;<a class="el" href="classCTrooper.html">CTrooper</a>&gt; &gt; &gt; CWaves::m_Waves</td>
         </tr>
       </table>
   </td>

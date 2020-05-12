@@ -77,16 +77,12 @@ $(function() {
 Collaboration diagram for CUnitStack:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCUnitStack__coll__graph.png" border="0" usemap="#CUnitStack_coll__map" alt="Collaboration graph"/></div>
-<map name="CUnitStack_coll__map" id="CUnitStack_coll__map">
-</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa7580e95296866c0faaaac7f7b6b4d09"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#aa7580e95296866c0faaaac7f7b6b4d09">CUnitStack</a> ()</td></tr>
 <tr class="separator:aa7580e95296866c0faaaac7f7b6b4d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3658a0da7e92f856da5ae861029afa7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#af3658a0da7e92f856da5ae861029afa7">~CUnitStack</a> ()</td></tr>
-<tr class="separator:af3658a0da7e92f856da5ae861029afa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5d6e49a7fbde955c0007a3f9055a381"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#ae5d6e49a7fbde955c0007a3f9055a381">IsTrooperChar</a> (char ch) const</td></tr>
 <tr class="separator:ae5d6e49a7fbde955c0007a3f9055a381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6442a9e60b14332c78a411cdb45128f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#aa6442a9e60b14332c78a411cdb45128f">IsTowerChar</a> (char ch) const</td></tr>
@@ -116,28 +112,26 @@ Public Member Functions</h2></td></tr>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:aa4fc46a9c1d2d20bd2070a489e4b4f73"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#aa4fc46a9c1d2d20bd2070a489e4b4f73">RenderTroops</a> () const</td></tr>
 <tr class="separator:aa4fc46a9c1d2d20bd2070a489e4b4f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e83742e833b8f8036deaea1866ff43c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#a1e83742e833b8f8036deaea1866ff43c">LoadUnit</a> (std::istream &amp;in, char ch, const std::map&lt; char, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;origTroops, const std::map&lt; char, <a class="el" href="classCTower.html">CTower</a> *&gt; &amp;origTowers)</td></tr>
-<tr class="separator:a1e83742e833b8f8036deaea1866ff43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9402bcb1d44b917d10a5e5a779bd2ed6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#a9402bcb1d44b917d10a5e5a779bd2ed6">LoadUnit</a> (std::istream &amp;in, char ch, const std::map&lt; char, std::unique_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt;&gt; &amp;origTroops, const std::map&lt; char, std::unique_ptr&lt; <a class="el" href="classCTower.html">CTower</a> &gt;&gt; &amp;origTowers)</td></tr>
+<tr class="separator:a9402bcb1d44b917d10a5e5a779bd2ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13242f9fe0e6f4815fb8f426c1961437"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#a13242f9fe0e6f4815fb8f426c1961437">FindSelected</a> () const</td></tr>
 <tr class="separator:a13242f9fe0e6f4815fb8f426c1961437"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
-<tr class="memitem:a9966aa79e39cc82a935fa6e80e1a6f10"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#a9966aa79e39cc82a935fa6e80e1a6f10">CreateOriginals</a> (std::map&lt; char, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;origTroops, std::map&lt; char, <a class="el" href="classCTower.html">CTower</a> *&gt; &amp;origTowers)</td></tr>
-<tr class="separator:a9966aa79e39cc82a935fa6e80e1a6f10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a251fb5b2dc3913cfc088d64e240d8e19"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#a251fb5b2dc3913cfc088d64e240d8e19">DeleteOriginals</a> (std::map&lt; char, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;origTroops, std::map&lt; char, <a class="el" href="classCTower.html">CTower</a> *&gt; &amp;origTowers)</td></tr>
-<tr class="separator:a251fb5b2dc3913cfc088d64e240d8e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8203db740cd5c02e3f8a5300fb535ae"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#ab8203db740cd5c02e3f8a5300fb535ae">CreateOriginals</a> (std::map&lt; char, std::unique_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt;&gt; &amp;origTroops, std::map&lt; char, std::unique_ptr&lt; <a class="el" href="classCTower.html">CTower</a> &gt;&gt; &amp;origTowers)</td></tr>
+<tr class="separator:ab8203db740cd5c02e3f8a5300fb535ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7997e67fdb5f3f98c899d43740096d03"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#a7997e67fdb5f3f98c899d43740096d03">CharIsValid</a> (char ch)</td></tr>
 <tr class="separator:a7997e67fdb5f3f98c899d43740096d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a02bc88b498a642e7b97bb214e527e734"><td class="memItemLeft" align="right" valign="top">std::map&lt; char, <a class="el" href="classCTrooper.html">CTrooper</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#a02bc88b498a642e7b97bb214e527e734">m_Troops</a></td></tr>
-<tr class="memdesc:a02bc88b498a642e7b97bb214e527e734"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector with all troops templates  <a href="#a02bc88b498a642e7b97bb214e527e734">More...</a><br /></td></tr>
-<tr class="separator:a02bc88b498a642e7b97bb214e527e734"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a286df94a742607f7a3dfc28bcc0f5ca9"><td class="memItemLeft" align="right" valign="top">std::map&lt; char, <a class="el" href="classCTower.html">CTower</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#a286df94a742607f7a3dfc28bcc0f5ca9">m_Towers</a></td></tr>
-<tr class="memdesc:a286df94a742607f7a3dfc28bcc0f5ca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector with all towers templates  <a href="#a286df94a742607f7a3dfc28bcc0f5ca9">More...</a><br /></td></tr>
-<tr class="separator:a286df94a742607f7a3dfc28bcc0f5ca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaff3be03fa014c66bfd260d3b7fa4fc6"><td class="memItemLeft" align="right" valign="top">std::map&lt; char, std::unique_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#aaff3be03fa014c66bfd260d3b7fa4fc6">m_Troops</a></td></tr>
+<tr class="memdesc:aaff3be03fa014c66bfd260d3b7fa4fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector with all troops templates  <a href="#aaff3be03fa014c66bfd260d3b7fa4fc6">More...</a><br /></td></tr>
+<tr class="separator:aaff3be03fa014c66bfd260d3b7fa4fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1417f9d11f598493a0594849df890c62"><td class="memItemLeft" align="right" valign="top">std::map&lt; char, std::unique_ptr&lt; <a class="el" href="classCTower.html">CTower</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#a1417f9d11f598493a0594849df890c62">m_Towers</a></td></tr>
+<tr class="memdesc:a1417f9d11f598493a0594849df890c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector with all towers templates  <a href="#a1417f9d11f598493a0594849df890c62">More...</a><br /></td></tr>
+<tr class="separator:a1417f9d11f598493a0594849df890c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affa48cbe40dc1e7400f6e3b2c22796b6"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCUnitStack.html#affa48cbe40dc1e7400f6e3b2c22796b6">m_Selected</a></td></tr>
 <tr class="memdesc:affa48cbe40dc1e7400f6e3b2c22796b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">currently selected trooper  <a href="#affa48cbe40dc1e7400f6e3b2c22796b6">More...</a><br /></td></tr>
 <tr class="separator:affa48cbe40dc1e7400f6e3b2c22796b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,6 +158,9 @@ Friends</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">CUnitStack::CUnitStack </td>
@@ -172,24 +169,37 @@ Friends</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCUnitStack_aa7580e95296866c0faaaac7f7b6b4d09_cgraph.png" border="0" usemap="#classCUnitStack_aa7580e95296866c0faaaac7f7b6b4d09_cgraph" alt=""/></div>
+<map name="classCUnitStack_aa7580e95296866c0faaaac7f7b6b4d09_cgraph" id="classCUnitStack_aa7580e95296866c0faaaac7f7b6b4d09_cgraph">
+<area shape="rect" id="node2" href="classCUnitStack.html#ae5d6e49a7fbde955c0007a3f9055a381" title="CUnitStack::IsTrooperChar" alt="" coords="229,5,411,32"/>
+<area shape="rect" id="node3" href="classCUnitStack.html#aa6442a9e60b14332c78a411cdb45128f" title="CUnitStack::IsTowerChar" alt="" coords="233,56,407,83"/>
+<area shape="rect" id="node4" href="classCUnitStack.html#a1fd2be002fe4db17c3aafe73466b734d" title="CUnitStack::Check" alt="" coords="252,107,388,133"/>
+<area shape="rect" id="node5" href="classCUnitStack.html#ac3e8e36c878b19057ec2f65d61e525cf" title="CUnitStack::CreateTrooperAt" alt="" coords="223,157,417,184"/>
+<area shape="rect" id="node10" href="classCUnitStack.html#a026c72b1da29916bbbdc2fad80ef156b" title="CUnitStack::CreateTowerAt" alt="" coords="227,208,413,235"/>
+<area shape="rect" id="node12" href="classCUnitStack.html#a41eb12361b7e00311edb8beac3c5b572" title="CUnitStack::CreateSelected" alt="" coords="226,259,414,285"/>
+<area shape="rect" id="node13" href="classCUnitStack.html#a606d4c0f7fc8138b765cec8801bc7693" title="CUnitStack::CreateTroops\lInfoBuffer" alt="" coords="231,310,409,351"/>
+<area shape="rect" id="node15" href="classCUnitStack.html#a798edec58c8ffcb01bb9423abb45fd8f" title="CUnitStack::CreateTowers\lInfoBuffer" alt="" coords="230,375,410,417"/>
+<area shape="rect" id="node16" href="classCUnitStack.html#a659cf1b206cd38f5b105e21e96dbeac8" title="CUnitStack::CreateBuffer" alt="" coords="234,441,406,468"/>
+<area shape="rect" id="node17" href="classCUnitStack.html#a7231b9292967611fbb293c289b8a8b35" title="CUnitStack::Cycle" alt="" coords="254,492,386,519"/>
+<area shape="rect" id="node18" href="classCUnitStack.html#ac496b72bdb523b6edd112eb2d3b54324" title="CUnitStack::GetSelectedPrice" alt="" coords="220,543,420,569"/>
+<area shape="rect" id="node19" href="classCUnitStack.html#a54751829e24cb1cc251862e32e2ab1d7" title="CUnitStack::Lost" alt="" coords="259,593,381,620"/>
+<area shape="rect" id="node6" href="classCTrooper.html#a95079e78dd8cb5f4f64a26e532653b4d" title="CTrooper::Clone" alt="" coords="468,157,587,184"/>
+<area shape="rect" id="node7" href="classCTrooper.html#a1b4903c545e770960a415bdb93d5a492" title="CTrooper::CTrooper" alt="" coords="635,107,773,133"/>
+<area shape="rect" id="node8" href="classCTrooper.html#a906727d6adc0fed813c5c35ff110b5ee" title="CTrooper::Spawn" alt="" coords="642,157,766,184"/>
+<area shape="rect" id="node9" href="classCTrooper.html#aa9ed844761d39cbb08514f71db4041e8" title="CTrooper::Move" alt="" coords="646,208,762,235"/>
+<area shape="rect" id="node11" href="classCTower.html#a6a721a6ee0deb9f52d81baa4fce11f50" title="CTower::Clone" alt="" coords="472,208,583,235"/>
+<area shape="rect" id="node14" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="468,383,587,409"/>
+</map>
 </div>
-</div>
-<a id="af3658a0da7e92f856da5ae861029afa7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3658a0da7e92f856da5ae861029afa7">&#9670;&nbsp;</a></span>~CUnitStack()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">CUnitStack::~CUnitStack </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -265,15 +275,14 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCUnitStack_a659cf1b206cd38f5b105e21e96dbeac8_cgraph.png" border="0" usemap="#classCUnitStack_a659cf1b206cd38f5b105e21e96dbeac8_cgraph" alt=""/></div>
 <map name="classCUnitStack_a659cf1b206cd38f5b105e21e96dbeac8_cgraph" id="classCUnitStack_a659cf1b206cd38f5b105e21e96dbeac8_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="256,5,375,32"/>
-<area shape="rect" id="node3" href="classCUnitStack.html#aa4fc46a9c1d2d20bd2070a489e4b4f73" title="CUnitStack::RenderTroops" alt="" coords="225,56,405,83"/>
+<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="225,5,344,32"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a9966aa79e39cc82a935fa6e80e1a6f10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9966aa79e39cc82a935fa6e80e1a6f10">&#9670;&nbsp;</a></span>CreateOriginals()</h2>
+<a id="ab8203db740cd5c02e3f8a5300fb535ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8203db740cd5c02e3f8a5300fb535ae">&#9670;&nbsp;</a></span>CreateOriginals()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -284,13 +293,13 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void CUnitStack::CreateOriginals </td>
           <td>(</td>
-          <td class="paramtype">std::map&lt; char, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; char, std::unique_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>origTroops</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; char, <a class="el" href="classCTower.html">CTower</a> *&gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; char, std::unique_ptr&lt; <a class="el" href="classCTower.html">CTower</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>origTowers</em>&#160;</td>
         </tr>
         <tr>
@@ -323,14 +332,6 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <p>Create trooper at currently selected position </p><dl class="section return"><dt>Returns</dt><dd>Clone of the created trooper </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCUnitStack_a41eb12361b7e00311edb8beac3c5b572_cgraph.png" border="0" usemap="#classCUnitStack_a41eb12361b7e00311edb8beac3c5b572_cgraph" alt=""/></div>
-<map name="classCUnitStack_a41eb12361b7e00311edb8beac3c5b572_cgraph" id="classCUnitStack_a41eb12361b7e00311edb8beac3c5b572_cgraph">
-<area shape="rect" id="node2" href="classCUnitStack.html#a13242f9fe0e6f4815fb8f426c1961437" title="CUnitStack::FindSelected" alt="" coords="241,5,416,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -356,6 +357,14 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Clone of the created tower </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCUnitStack_a026c72b1da29916bbbdc2fad80ef156b_cgraph.png" border="0" usemap="#classCUnitStack_a026c72b1da29916bbbdc2fad80ef156b_cgraph" alt=""/></div>
+<map name="classCUnitStack_a026c72b1da29916bbbdc2fad80ef156b_cgraph" id="classCUnitStack_a026c72b1da29916bbbdc2fad80ef156b_cgraph">
+<area shape="rect" id="node2" href="classCTower.html#a6a721a6ee0deb9f52d81baa4fce11f50" title="CTower::Clone" alt="" coords="240,5,351,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -407,6 +416,17 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Clone of the created trooper </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classCUnitStack_ac3e8e36c878b19057ec2f65d61e525cf_cgraph.png" border="0" usemap="#classCUnitStack_ac3e8e36c878b19057ec2f65d61e525cf_cgraph" alt=""/></div>
+<map name="classCUnitStack_ac3e8e36c878b19057ec2f65d61e525cf_cgraph" id="classCUnitStack_ac3e8e36c878b19057ec2f65d61e525cf_cgraph">
+<area shape="rect" id="node2" href="classCTrooper.html#a95079e78dd8cb5f4f64a26e532653b4d" title="CTrooper::Clone" alt="" coords="248,56,367,83"/>
+<area shape="rect" id="node3" href="classCTrooper.html#a1b4903c545e770960a415bdb93d5a492" title="CTrooper::CTrooper" alt="" coords="415,5,553,32"/>
+<area shape="rect" id="node4" href="classCTrooper.html#a906727d6adc0fed813c5c35ff110b5ee" title="CTrooper::Spawn" alt="" coords="422,56,546,83"/>
+<area shape="rect" id="node5" href="classCTrooper.html#aa9ed844761d39cbb08514f71db4041e8" title="CTrooper::Move" alt="" coords="426,107,542,133"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -454,42 +474,6 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a251fb5b2dc3913cfc088d64e240d8e19"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a251fb5b2dc3913cfc088d64e240d8e19">&#9670;&nbsp;</a></span>DeleteOriginals()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void CUnitStack::DeleteOriginals </td>
-          <td>(</td>
-          <td class="paramtype">std::map&lt; char, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;&#160;</td>
-          <td class="paramname"><em>origTroops</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::map&lt; char, <a class="el" href="classCTower.html">CTower</a> *&gt; &amp;&#160;</td>
-          <td class="paramname"><em>origTowers</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a13242f9fe0e6f4815fb8f426c1961437"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a13242f9fe0e6f4815fb8f426c1961437">&#9670;&nbsp;</a></span>FindSelected()</h2>
 
@@ -530,14 +514,6 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 <p>Get the price of currently selected unit </p><dl class="section return"><dt>Returns</dt><dd>price </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCUnitStack_ac496b72bdb523b6edd112eb2d3b54324_cgraph.png" border="0" usemap="#classCUnitStack_ac496b72bdb523b6edd112eb2d3b54324_cgraph" alt=""/></div>
-<map name="classCUnitStack_ac496b72bdb523b6edd112eb2d3b54324_cgraph" id="classCUnitStack_ac496b72bdb523b6edd112eb2d3b54324_cgraph">
-<area shape="rect" id="node2" href="classCUnitStack.html#a13242f9fe0e6f4815fb8f426c1961437" title="CUnitStack::FindSelected" alt="" coords="253,5,428,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -591,8 +567,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a1e83742e833b8f8036deaea1866ff43c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e83742e833b8f8036deaea1866ff43c">&#9670;&nbsp;</a></span>LoadUnit()</h2>
+<a id="a9402bcb1d44b917d10a5e5a779bd2ed6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9402bcb1d44b917d10a5e5a779bd2ed6">&#9670;&nbsp;</a></span>LoadUnit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -615,13 +591,13 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::map&lt; char, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;&#160;</td>
+          <td class="paramtype">const std::map&lt; char, std::unique_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>origTroops</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::map&lt; char, <a class="el" href="classCTower.html">CTower</a> *&gt; &amp;&#160;</td>
+          <td class="paramtype">const std::map&lt; char, std::unique_ptr&lt; <a class="el" href="classCTower.html">CTower</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>origTowers</em>&#160;</td>
         </tr>
         <tr>
@@ -636,23 +612,6 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCUnitStack_a1e83742e833b8f8036deaea1866ff43c_cgraph.png" border="0" usemap="#classCUnitStack_a1e83742e833b8f8036deaea1866ff43c_cgraph" alt=""/></div>
-<map name="classCUnitStack_a1e83742e833b8f8036deaea1866ff43c_cgraph" id="classCUnitStack_a1e83742e833b8f8036deaea1866ff43c_cgraph">
-<area shape="rect" id="node2" href="classCTrooper.html#a80aaa7e9156c3c4d8f0a0562cfd12ccb" title="CTrooper::Clone" alt="" coords="228,5,347,32"/>
-<area shape="rect" id="node4" href="classCTrooper.html#ab96d290cd6fe6a74030da663082700e2" title="CTrooper::LoadTemplate" alt="" coords="204,56,371,83"/>
-<area shape="rect" id="node5" href="classCUnitStack.html#a7997e67fdb5f3f98c899d43740096d03" title="CUnitStack::CharIsValid" alt="" coords="204,107,371,133"/>
-<area shape="rect" id="node6" href="classCTrooper.html#af30331c7afafe48b62c9c07c12848c3a" title="CTrooper::GetChar" alt="" coords="221,157,354,184"/>
-<area shape="rect" id="node7" href="classCTower.html#a33be50e3c76855517f7898d1ebb6d349" title="CTower::Clone" alt="" coords="232,208,343,235"/>
-<area shape="rect" id="node9" href="classCTower.html#a89a23cb41014c78dc4563f60de916a23" title="CTower::LoadTemplate" alt="" coords="208,259,367,285"/>
-<area shape="rect" id="node10" href="classCTower.html#a4e47ecc4f45cb4b9fbbcc87d99a74e1c" title="CTower::GetChar" alt="" coords="225,309,350,336"/>
-<area shape="rect" id="node3" href="classCTrooper.html#ad469bbac6bf0dad9fc55c8acec4f89d7" title="CTrooper::CTrooper" alt="" coords="419,5,557,32"/>
-<area shape="rect" id="node8" href="classCTower.html#a15fdac286d1baac5a4dfb8c17e344809" title="CTower::CTower" alt="" coords="427,208,549,235"/>
-<area shape="rect" id="node11" href="classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="433,309,543,336"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -844,8 +803,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a286df94a742607f7a3dfc28bcc0f5ca9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a286df94a742607f7a3dfc28bcc0f5ca9">&#9670;&nbsp;</a></span>m_Towers</h2>
+<a id="a1417f9d11f598493a0594849df890c62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1417f9d11f598493a0594849df890c62">&#9670;&nbsp;</a></span>m_Towers</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -854,7 +813,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;char, <a class="el" href="classCTower.html">CTower</a>*&gt; CUnitStack::m_Towers</td>
+          <td class="memname">std::map&lt;char, std::unique_ptr&lt;<a class="el" href="classCTower.html">CTower</a>&gt; &gt; CUnitStack::m_Towers</td>
         </tr>
       </table>
   </td>
@@ -868,8 +827,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a02bc88b498a642e7b97bb214e527e734"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02bc88b498a642e7b97bb214e527e734">&#9670;&nbsp;</a></span>m_Troops</h2>
+<a id="aaff3be03fa014c66bfd260d3b7fa4fc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaff3be03fa014c66bfd260d3b7fa4fc6">&#9670;&nbsp;</a></span>m_Troops</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -878,7 +837,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;char, <a class="el" href="classCTrooper.html">CTrooper</a>*&gt; CUnitStack::m_Troops</td>
+          <td class="memname">std::map&lt;char, std::unique_ptr&lt;<a class="el" href="classCTrooper.html">CTrooper</a>&gt; &gt; CUnitStack::m_Troops</td>
         </tr>
       </table>
   </td>

@@ -6,24 +6,12 @@
 
 using namespace std;
 
-CUnitStack::CUnitStack()
-	: m_Selected(0)
-{}
-
-CUnitStack::~CUnitStack()
-{
-	for (auto & troop : m_Troops)
-		delete troop.second;
-	for (auto & tower : m_Towers)
-		delete tower.second;
-}
-
 /**********************************************************************************************************************/
 // LOADING
 istream & operator>>(istream & in, CUnitStack & stack)
 {
-	map<char,CTrooper*> origTroops;
-	map<char,CTower*> origTowers;
+	map<char,unique_ptr<CTrooper>> origTroops;
+	map<char,unique_ptr<CTower>> origTowers;
 	CUnitStack::CreateOriginals(origTroops, origTowers);
 	while (true)
 	{
@@ -35,43 +23,34 @@ istream & operator>>(istream & in, CUnitStack & stack)
 		if(!stack.LoadUnit(in, ch, origTroops, origTowers))
 			break;
 	}
-	CUnitStack::DeleteOriginals(origTroops, origTowers);
 	return in;
 }
 
-void CUnitStack::CreateOriginals (map<char,CTrooper*> & origTroops, map<char,CTower*> & origTowers)
+void CUnitStack::CreateOriginals (map<char,unique_ptr<CTrooper>> & origTroops, map<char,unique_ptr<CTower>> & origTowers)
 {
-	origTroops.insert({'T', new CTrooper()});
-	origTroops.insert({'A', new CArmoredTrooper()});
-	origTowers.insert({'R', new CTower()});
-	origTowers.insert({'M', new CMageTower()});
+	origTroops.insert({'T', make_unique<CTrooper>()});
+	origTroops.insert({'A', make_unique<CArmoredTrooper>()});
+	origTowers.insert({'R', make_unique<CArcherTower>()});
+	origTowers.insert({'M', make_unique<CMageTower>()});
 }
 
-void CUnitStack::DeleteOriginals(std::map<char, CTrooper*> & origTroops, std::map<char, CTower*> & origTowers)
-{
-	for (auto & trooper : origTroops)
-		delete trooper.second;
-	for (auto & tower : origTowers)
-		delete tower.second;
-}
-
-bool CUnitStack::LoadUnit(istream & in, char ch, const map<char,CTrooper*> & origTroops, const map<char,CTower*> & origTowers)
+bool CUnitStack::LoadUnit(istream & in, char ch, const map<char,unique_ptr<CTrooper>> & origTroops, const map<char,unique_ptr<CTower>> & origTowers)
 {
 	if (origTroops.count(ch))
 	{
-		CTrooper * trooper = origTroops.at(ch)->Clone();
+		unique_ptr<CTrooper> trooper{origTroops.at(ch)->Clone()};
 		trooper->LoadTemplate(in);
 		if (!CharIsValid(trooper->GetChar()))
 			return false;
-		m_Troops.insert({trooper->GetChar(), trooper});
+		m_Troops.insert({trooper->GetChar(), move(trooper)});
 	}
 	else if (origTowers.count(ch))
 	{
-		CTower * tower = origTowers.at(ch)->Clone();
+		unique_ptr<CTower> tower{origTowers.at(ch)->Clone()};
 		tower->LoadTemplate(in);
 		if (!CharIsValid(tower->GetChar()))
 			return false;
-		m_Towers.insert({tower->GetChar(), tower});
+		m_Towers.insert({tower->GetChar(), move(tower)});
 	}
 	else
 	{

@@ -19,14 +19,6 @@ CMap::CMap()
 	  m_Rows(0)
 {}
 
-CMap::~CMap()
-{
-	for (auto & troop : m_Troops)
-		delete troop;
-	for (auto & tower : m_Towers)
-		delete tower;
-}
-
 void CMap::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 {
 	m_UnitStack = move(unitStack);
@@ -47,7 +39,7 @@ istream & operator>>(istream & in, CMap & self)
 void CMap::PlaceTroops()
 {
 	for (const auto & troop : m_Troops)
-		m_Map.insert({troop->GetPosition(), troop->GetTile()});
+		m_Map.emplace(troop->GetPosition(), troop);
 }
 
 void CMap::LoadMapInfo(istream & in)
@@ -92,23 +84,23 @@ void CMap::LoadEntities(istream & in)
 
 void CMap::LoadTroops(istream & in, char ch)
 {
-	CTrooper * trooper = m_UnitStack->CreateTrooperAt(ch);
+	unique_ptr<CTrooper> trooper(m_UnitStack->CreateTrooperAt(ch));
 	trooper->LoadOnMap(in);
-	m_Troops.push_back(trooper);
 	if (m_Map.count(trooper->GetPosition()))
 		in.setstate(ios::failbit);
+	m_Troops.push_back(move(trooper));
 	auto path = CPath{m_Map, m_Rows, m_Cols, trooper->GetPosition(), m_Gate.Position()}.FindStraightPath();
 	trooper->SetPath(path);
 }
 
 void CMap::LoadTowers(istream & in, char ch)
 {
-	CTower * tower = m_UnitStack->CreateTowerAt(ch);
+	shared_ptr<CTower> tower(m_UnitStack->CreateTowerAt(ch));
 	tower->LoadOnMap(in);
-	m_Towers.push_back(tower);
-	if (!m_Map.count(tower->GetPosition()) || !m_Map.at(tower->GetPosition()).IsWall())
+	if (!m_Map.count(tower->GetPosition()) || !m_Map.at(tower->GetPosition())->IsWall())
 		in.setstate(ios::failbit);
-	m_Map.at(tower->GetPosition()) = tower->GetTile();
+	m_Towers.push_back(tower);
+	m_Map.at(tower->GetPosition()) = tower;
 }
 
 void CMap::LoadWallLine(istream & in, int row)
@@ -160,7 +152,7 @@ bool CMap::LoadWallChar(char ch, pos_t position)
 	}
 	else if (!tile.IsWall())
 		return false;
-	m_Map.insert({position, tile});
+	m_Map.emplace(position, new CTile{tile});
 	return true;
 }
 
@@ -201,7 +193,7 @@ bool CMap::LoadEntity(pos_t position, char ch)
 	
 	// replace tower with walls
 	if (m_UnitStack->IsTowerChar(ch))
-		m_Map.insert({position, CTile{'#'}});
+		m_Map.emplace(position, new CTile{'#'});
 	// skip troops in the loading phase
 	else if (!m_UnitStack->IsTrooperChar(ch))
 		return false;
@@ -213,7 +205,7 @@ bool CMap::InitSpawner(pos_t position, char ch)
 	// redefinition is not allowed
 	if (m_Spawns.count(ch - '0'))
 		return false;
-	m_Spawns.insert({{ch - '0', position}});
+	m_Spawns.emplace(ch - '0', position);
 	return true;
 }
 
@@ -262,12 +254,12 @@ void CMap::SaveMap(ostream & out) const
 		string line;
 		for (int j = 0; j < m_Cols; ++j)
 		{
-			if (!m_Map.count({j,i}) || m_Map.at({j,i}).IsTroop())	// skip troops while saving the map
+			if (!m_Map.count({j,i}) || m_Map.at({j,i})->IsTroop())	// skip troops while saving the map
 				line += ' ';
-			else if (m_Map.at({j,i}).IsTower())
+			else if (m_Map.at({j,i})->IsTower())
 				line += '#';
 			else
-				line += m_Map.at({j, i}).GetChar();
+				line += m_Map.at({j, i})->GetChar();
 		}
 		out << line << endl;
 	}
@@ -304,7 +296,7 @@ CBuffer CMap::RenderMap(int windowWidth) const
 			if (!m_Map.count({j,i}))
 				buffer << " ";
 			else
-				buffer << m_Map.at({j, i});
+				buffer << *m_Map.at({j, i});
 		}
 	}
 	buffer.Center();
@@ -324,15 +316,15 @@ bool CMap::Update(bool & waveOn)
 	return true;
 }
 
-void CMap::Spawn(const vector<CTrooper*> & spawns)
+void CMap::Spawn(vector<unique_ptr<CTrooper>> & spawns)
 {
-	for (auto trooper : spawns)
+	for (auto & trooper : spawns)
 	{
 		trooper->SetPath(m_Paths.at(m_Spawns.at(trooper->GetSpawn())));
 		trooper->Spawn(m_Map);
-		auto it = lower_bound(m_Troops.begin(), m_Troops.end(), trooper,
-				[](const CTrooper * a, const CTrooper * b){return a->DistanceToGoal() < b->DistanceToGoal();});
-		m_Troops.insert(it, trooper);
+//		auto it = lower_bound(m_Troops.begin(), m_Troops.end(), trooper,
+//				[](const unique_ptr<CTrooper> & a, const unique_ptr<CTrooper> & b){return a->DistanceToGoal() < b->DistanceToGoal();});
+//		m_Troops.emplace(it, move(trooper));
 	}
 }
 
@@ -343,7 +335,7 @@ bool CMap::FindPathsFromSpawn()
 		auto path = CPath{m_Map, m_Rows, m_Cols, position.second, m_Gate.Position()}.FindStraightPath();
 		if (path.empty())
 			return false;
-		m_Paths.insert({position.second, path});
+		m_Paths.emplace(position.second, path);
 	}
 	return true;
 }
@@ -359,7 +351,6 @@ bool CMap::MoveTroops()
 			continue;
 		}
 		m_Gate.ReceiveDamage((*troop)->Attack());
-		delete *troop;
 		troop = m_Troops.erase(troop);
 		if (m_Troops.empty())
 			ret = false;
@@ -370,13 +361,13 @@ bool CMap::MoveTroops()
 bool CMap::TowerAttack()
 {
 	// map troopers to their positions
-	unordered_map<pos_t,CTrooper*> troops;
+	unordered_map<pos_t, shared_ptr<CTrooper>> troops;
 	for (auto & troop : m_Troops)
-		troops.insert({troop->GetPosition(), troop});
+		troops.emplace(troop->GetPosition(), troop);
 	
 	// attack troops by towers
-	for (auto tower : m_Towers)
-		tower->Attack(m_Map, m_Rows, m_Cols, troops);
+	for (auto & tower : m_Towers)
+		tower->Attack(m_Map, troops, m_Rows, m_Cols);
 	
 	return CheckTroopsDeaths();
 }
@@ -393,7 +384,6 @@ bool CMap::CheckTroopsDeaths()
 			continue;
 		}
 		m_Map.erase((*troop)->GetPosition());
-		delete *troop;
 		troop = m_Troops.erase(troop);
 		if (m_Troops.empty())
 			ret = false;
@@ -407,7 +397,7 @@ map<int, bool> CMap::SpawnsFree() const
 	for (const auto & spawn : m_Spawns)
 	{
 		pos_t spawnPos = m_Paths.at(spawn.second).front();
-		res.insert({spawn.first, !m_Map.count(spawnPos)});
+		res.emplace(spawn.first, !m_Map.count(spawnPos));
 	}
 	return res;
 }
@@ -420,7 +410,7 @@ void CMap::VisualizePath(pos_t start, pos_t goal)
 	while (!path.empty())
 	{
 		CTile tile = CTile(' ');
-		m_Map.insert({path.front(), tile});
+		m_Map.emplace(path.front(), new CTile{tile});
 		path.pop_front();
 	}
 }
@@ -429,5 +419,5 @@ void CMap::Visualize(const std::deque<pos_t> & positions)
 {
 	for (const auto & pos : positions)
 		if (!m_Map.count(pos))
-			m_Map.insert({pos, {' ', ETileType::BULLET, Colors::BG_RED}});
+			m_Map.emplace(pos, new CTile(' ', ETileType::BULLET, Colors::BG_RED));
 }

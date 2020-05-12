@@ -10,6 +10,7 @@
 #include <utility>
 #include <unordered_map>
 #include <sstream>
+#include <memory>
 #include "escape_sequences.h"
 #include "CTile.hpp"
 #include "CPath.hpp"
@@ -19,18 +20,27 @@
 /**
  * (@) Basic trooper with limited powers
  */
-class CTrooper
+class CTrooper : public CTile
 {
 public:
 	// INIT
-	virtual ~CTrooper() = default;
-	explicit CTrooper(int hp = 0, int speed = 0, int attack = 0, int price = 0, CTile  tile = CTile{'@', ETileType::BASIC_TROOP, Colors::FG_YELLOW});
-	virtual CTrooper * Clone() const;
+	explicit CTrooper(char ch  = '@', ETileType type = ETileType::BASIC_TROOP, std::string color = Colors::FG_YELLOW) noexcept
+		: CTile(ch, type, move(color)),
+		  m_Hp(0),
+		  m_Attack(0),
+		  m_Price(0),
+		  m_SpawnIdx(0)
+	{}
+	
+	virtual CTrooper * Clone() const noexcept
+	{return new CTrooper(*this);}
 	
 	// ACTIONS
-	void Spawn(std::unordered_map<pos_t, CTile> & map);
-	bool Move(std::unordered_map<pos_t, CTile> & map);
-	int Attack() const;
+	void Spawn(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map);
+	bool Move(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map);
+	int Attack() const
+	{return m_Attack;}
+	
 	virtual void ReceiveDamage(int damage);
 	
 	// LOADING
@@ -51,12 +61,6 @@ public:
 	int DistanceToGoal() const
 	{return m_Path.size();}
 	
-	CTile GetTile() const
-	{return m_Tile;}
-	
-	char GetChar() const
-	{return m_Tile.m_Char;}
-	
 	void SetSpawn(size_t idx)
 	{m_SpawnIdx = idx;}
 	
@@ -71,11 +75,7 @@ public:
 	
 	int GetPrice() const
 	{return m_Price;}
-	
-	ETileType GetType() const
-	{return m_Tile.m_Type;}
 protected:
-	CTile m_Tile;
 	pos_t m_Pos;
 	int m_Hp;					//!< Number of health points of the unit
 	int m_Attack;				//!< Attack damage of the trooper

@@ -12,52 +12,42 @@
 /**
  * Represents basic tower with archer attacks
  */
-class CTower
+class CTower : public CTile
 {
 public:
-	// INIT
-	explicit CTower(int attackDamage = 0, int attackSpeed = 0, int range = 0, pos_t position = pos::npos, CTile  tile = {'*', ETileType::ARCHER_TOWER, Colors::BG_RED});
-	virtual ~CTower() = default;
-	virtual CTower * Clone() const;
+	explicit CTower(char ch = ' ', ETileType tileType = ETileType::INVALID, std::string color = "") noexcept
+		: CTile(ch, tileType, move(color)),
+		  m_AttackDamage(0),
+		  m_AttackSpeed(0),
+		  m_Range(0)
+	{}
+	~CTower() override = default;
+	virtual CTower * Clone() const = 0;
 	
 	// LOAD
-	virtual std::istream & LoadTemplate(std::istream & in);
+	virtual std::istream & LoadTemplate(std::istream & in)
+	{return in >> m_Char >> m_AttackDamage >> m_AttackSpeed >> m_Range;}
+	
 	virtual std::istream & LoadOnMap(std::istream & in);
 	
 	// SAVE
-	virtual std::ostream & SaveTemplate(std::ostream & out) const;
-	virtual std::ostream & SaveOnMap(std::ostream & out) const;
+	virtual std::ostream & SaveTemplate(std::ostream & out) const
+	{return out << m_Type << ' ' << GetChar() << ' ' << m_AttackDamage << ' ' << m_AttackSpeed << ' ' << m_Range;}
+	
+	virtual std::ostream & SaveOnMap(std::ostream & out) const
+	{return out << GetChar() << ' ' << m_Pos << ' ' << m_AttackSpeed.GetCurrent();}
 	
 	// ACTIONS
-	virtual CBuffer CreateInfoBuffer(int windowWidth) const;
-	virtual bool Attack(std::unordered_map<pos_t, CTile> & map, int rows, int cols, std::unordered_map<pos_t, CTrooper*> & troops);
-	
-	// GETTER / SETTERS
-	virtual CTile GetTile() const
-	{return m_Tile;}
-	
-	char GetChar() const
-	{return m_Tile.GetChar();}
-	
 	pos_t GetPosition() const
 	{return m_Pos;}
 	
-	ETileType GetType() const
-	{return m_Tile.m_Type;}
-	
+	virtual CBuffer CreateInfoBuffer(int windowWidth) const = 0;
+	virtual bool Attack(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, std::unordered_map<pos_t, std::shared_ptr<CTrooper>> & troops, int rows, int cols) = 0;
 protected:
-	CTile m_Tile;
+	int m_AttackDamage;		//!< attack damage of the tower
+	CFrames m_AttackSpeed;	//!< attack speed of the tower
+	int m_Range;
 	pos_t m_Pos;
-	double m_Range;
-	int m_AttackDamage;	//!< attack damage of the tower
-	CFrames m_Frames;	//!< attack speed of the tower
+
 	
-private:
-	pos_t m_ArrowPos;
-	std::deque<pos_t> m_ArrowPath;
-	
-	bool ArrowMove(std::unordered_map<pos_t, CTile> & map);
-	void ArrowClear(std::unordered_map<pos_t, CTile> & map);
-	bool AssignArrow(std::unordered_map<pos_t, CTile> & map, int rows, int cols, const std::unordered_map<pos_t, CTrooper*> & troops);
-	void DamageTrooper(std::unordered_map<pos_t, CTile> & map, std::unordered_map<pos_t, CTrooper*> & troops);
 };

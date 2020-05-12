@@ -21,23 +21,36 @@ public:
 	 * @param attack
 	 * @param armor
 	 */
-	explicit CArmoredTrooper(int hp = 0, int speed = 0, int attack = 0, int cost = 0, int armor = 0);
+	explicit CArmoredTrooper() noexcept
+		: CTrooper('$', ETileType::ARMORED_TROOP, Colors::FG_CYAN),
+		  m_Armor(0),
+		  m_MaxArmor(0)
+	{}
+	
+	CArmoredTrooper * Clone() const noexcept final
+	{return new CArmoredTrooper(*this);}
+	
 	/**
 	 * Adds armor which can prevent a certain amount of damage
 	 * @param damage
 	 */
 	void ReceiveDamage(int damage) final;
 	CBuffer CreateInfoBuffer(int windowWidth) const final;
-	CArmoredTrooper * Clone() const final;
 	
 	// LOAD
-	std::istream & LoadTemplate(std::istream & in) final;
-	std::istream & LoadOnMap(std::istream & in) final;
+	std::istream & LoadTemplate(std::istream & in) final
+	{return CTrooper::LoadTemplate(in) >> m_MaxArmor;}
+	
+	std::istream & LoadOnMap(std::istream & in) final
+	{return CTrooper::LoadOnMap(in) >> m_Armor;}
 	
 	
 	// SAVE
-	std::ostream & SaveTemplate(std::ostream & out) const final;
-	std::ostream & SaveOnMap(std::ostream & out) const final;
+	std::ostream & SaveTemplate(std::ostream & out) const final
+	{return CTrooper::SaveTemplate(out) << ' ' << m_MaxArmor;}
+	
+	std::ostream & SaveOnMap(std::ostream & out) const final
+	{return CTrooper::SaveOnMap(out) << ' ' << m_Armor;}
 
 private:
 	int m_Armor;	//!< Current armor

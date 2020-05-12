@@ -32,7 +32,6 @@ class CMap
 public:
 	// INIT
 	explicit CMap();
-	~CMap();
 	CMap(const CMap & src) = delete;
 	CMap & operator=(const CMap & src) = delete;
 	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
@@ -86,7 +85,7 @@ public:
 	 * Spawns the give troops on the map
 	 * @param spawns Troopers that were released from CWaves
 	 */
-	void Spawn(const std::vector<CTrooper*> & spawns);
+	void Spawn(std::vector<std::unique_ptr<CTrooper>> & spawns);
 	/**
 	 * Updates the map. Moves troopers and executes tower attacks
 	 * @param waveOn Signal that the wave is on, will be set to false if all troops on the map have either died or reached end
@@ -107,9 +106,9 @@ private:
 	CGate m_Gate;
 	int m_Cols;									//!< map's columns
 	int m_Rows;									//!< map's rows
-	std::vector<CTrooper*> m_Troops;			//!< pointers to troopers on the map
-	std::deque<CTower*> m_Towers;				//!< pointers to towers on the map
-	std::unordered_map<pos_t,CTile> m_Map; 		//!< two dimensional map
+	std::vector<std::shared_ptr<CTrooper>> m_Troops;			//!< pointers to troopers on the map
+	std::deque<std::shared_ptr<CTower>> m_Towers;				//!< pointers to towers on the map
+	std::unordered_map<pos_t,std::shared_ptr<CTile>> m_Map; 		//!< two dimensional map
 	std::map<int, pos_t> m_Spawns;				//!< spawns on the map mapped to their indexes
 	std::map<pos_t, std::deque<pos_t>> m_Paths;	//!< paths from spawn points to finish mapped to positions of spawns
 	std::shared_ptr<CUnitStack> m_UnitStack;	//!< unit stack containing all towers and troopers templates

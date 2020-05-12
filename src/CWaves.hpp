@@ -18,8 +18,7 @@ class CWaves
 {
 public:
 	// INIT
-	CWaves();
-	~CWaves();
+	CWaves() noexcept;
 	CWaves(const CWaves & src) = default;
 	CWaves & operator=(const CWaves & src) = default;
 	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
@@ -82,7 +81,7 @@ public:
 	 * @param spawnersBlocked map of spawners and their occupancy status
 	 * @return vector of troops that were spawned
 	 */
-	std::vector<CTrooper*> Update(const std::map<int,bool> & spawnersBlocked);
+	std::vector<std::unique_ptr<CTrooper>> Update(const std::map<int,bool> & spawnersBlocked);
 	/**
 	 * Checks whether we have not lost, this occurs if all waves are empty and we can't afford any troop.
 	 * @return true if we have lost
@@ -91,7 +90,7 @@ public:
 	
 
 private:
-	std::vector<std::deque<CTrooper*>> m_Waves;	//!< vector with waves (deque) initialized to the size m_WaveCnt
+	std::vector<std::deque<std::unique_ptr<CTrooper>>> m_Waves;	//!< vector with waves (deque) initialized to the size m_WaveCnt
 	std::shared_ptr<CUnitStack> m_UnitStack;
 	size_t m_Selected;						//!< index of currently selected wave
 	size_t m_MaxSize;						//!< maximum size of one wave, specified in constructor
@@ -100,7 +99,7 @@ private:
 	int m_Resources;
 	
 	// LOAD
-	void LoadWaves(std::istream & in);
+	std::deque<std::unique_ptr<CTrooper>> LoadWaves(std::istream & in);
 	bool CheckCounter(size_t counter);
 	
 	bool Empty() const;

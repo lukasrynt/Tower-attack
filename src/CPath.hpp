@@ -7,13 +7,14 @@
 
 #include <unordered_map>
 #include <functional>
+#include <memory>
 #include "CPosition.hpp"
 #include "CTile.hpp"
 
 class CPath
 {
 public:
-	CPath(const std::unordered_map<pos_t, CTile> & map, int rows, int cols, pos_t start, pos_t goal);
+	CPath(const std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, int rows, int cols, pos_t start, pos_t goal);
 	std::deque<pos_t> FindStraightPath();
 	std::deque<pos_t> FindDiagonalPath();
 private:
@@ -30,7 +31,7 @@ private:
 	
 	
 	std::unordered_map<pos_t, CNode> m_NodeMap;
-	const std::unordered_map<pos_t, CTile> & m_TileMap;
+	const std::unordered_map<pos_t, std::shared_ptr<CTile>> & m_TileMap;
 	int m_Rows;
 	int m_Cols;
 	pos_t m_Start;

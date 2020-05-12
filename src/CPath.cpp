@@ -11,7 +11,7 @@ using namespace std;
 
 /**********************************************************************************************************************/
 // INIT
-CPath::CPath(const unordered_map<pos_t, CTile> & map, int rows, int cols, pos_t start, pos_t goal)
+CPath::CPath(const unordered_map<pos_t, shared_ptr<CTile>> & map, int rows, int cols, pos_t start, pos_t goal)
 	: m_TileMap(map),
 	  m_Rows(rows),
 	  m_Cols(cols),

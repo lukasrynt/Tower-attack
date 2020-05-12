@@ -106,7 +106,7 @@ ostream & operator<<(ostream & out, const CGame & self)
 // INGAME
 void CGame::Update()
 {
-	vector<CTrooper*> spawns;
+	vector<unique_ptr<CTrooper>> spawns;
 	spawns = m_Waves.Update(m_Map.SpawnsFree());
 	if (!spawns.empty())
 		m_Map.Spawn(spawns);

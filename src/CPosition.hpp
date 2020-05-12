@@ -18,7 +18,7 @@
 typedef struct CPosition
 {
 public:
-	CPosition(int x = 0, int y = 0);
+	CPosition(int x = -1, int y = -1);
 	CPosition left() const;
 	CPosition right() const;
 	CPosition up() const;

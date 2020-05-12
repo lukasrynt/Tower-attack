@@ -75,7 +75,8 @@ Inheritance diagram for CMageTower:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCMageTower__inherit__graph.png" border="0" usemap="#CMageTower_inherit__map" alt="Inheritance graph"/></div>
 <map name="CMageTower_inherit__map" id="CMageTower_inherit__map">
-<area shape="rect" id="node2" href="classCTower.html" title="{CTower\n|# m_Tile\l# m_Pos\l# m_Range\l# m_AttackDamage\l# m_Frames\l&#45; m_ArrowPos\l&#45; m_ArrowPath\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ CreateInfoBuffer()\l+ Attack()\l+ GetTile()\l+ GetChar()\l+ GetPosition()\l+ GetType()\l&#45; ArrowMove()\l&#45; ArrowClear()\l&#45; AssignArrow()\l&#45; DamageTrooper()\l}" alt="" coords="11,5,149,405"/>
+<area shape="rect" id="node2" href="classCTower.html" title="{CTower\n|# m_AttackDamage\l# m_AttackSpeed\l# m_Range\l# m_Pos\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ GetPosition()\l+ CreateInfoBuffer()\l+ Attack()\l}" alt="" coords="11,336,149,589"/>
+<area shape="rect" id="node3" href="classCTile.html" title="{CTile\n|# m_Char\l# m_Type\l# m_Color\l|+ CTile()\l+ CTile()\l+ CTile()\l+ ~CTile()\l+ CTile()\l+ CTile()\l+ operator=()\l+ operator=()\l+ GetChar()\l+ GetColor()\land 9 more...\l&#45; InitColor()\l&#45; InitType()\l}" alt="" coords="31,5,129,288"/>
 </map>
 </div>
 <div class="dynheader">
@@ -83,53 +84,86 @@ Collaboration diagram for CMageTower:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCMageTower__coll__graph.png" border="0" usemap="#CMageTower_coll__map" alt="Collaboration graph"/></div>
 <map name="CMageTower_coll__map" id="CMageTower_coll__map">
-<area shape="rect" id="node2" href="classCTower.html" title="{CTower\n|# m_Range\l# m_AttackDamage\l&#45; m_ArrowPath\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ CreateInfoBuffer()\l+ Attack()\l+ GetTile()\l+ GetChar()\l+ GetPosition()\l+ GetType()\l&#45; ArrowMove()\l&#45; ArrowClear()\l&#45; AssignArrow()\l&#45; DamageTrooper()\l}" alt="" coords="202,409,341,751"/>
-<area shape="rect" id="node3" href="structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetCrossNeighbours()\l+ GetDiagNeighbours()\l+ LiesInRange()\l+ GetRadius()\l+ Distance()\l}" alt="" coords="5,57,169,281"/>
-<area shape="rect" id="node4" href="classCFrames.html" title="{CFrames\n|&#45; m_Speed\l&#45; m_CurrFrame\l&#45; MAX_FRAME_CNT\l|+ CFrames()\l+ ActionAllowed()\l+ GetSpeed()\l+ GetCurrent()\l+ SetCurrent()\l}" alt="" coords="329,86,477,251"/>
-<area shape="rect" id="node5" href="classCTile.html" title="{CTile\n|&#45; m_Char\l&#45; m_Type\l&#45; m_Color\l|+ CTile()\l+ CTile()\l+ CTile()\l+ PrintChar()\l+ GetChar()\l+ GetColor()\l+ SetColor()\l+ IsTroop()\l+ IsTower()\l+ IsWall()\l+ IsSpawn()\l+ IsGate()\l+ IsBullet()\l+ IsValid()\l&#45; InitColor()\l&#45; InitType()\l}" alt="" coords="193,5,291,332"/>
+<area shape="rect" id="node2" href="classCTower.html" title="{CTower\n|# m_AttackDamage\l# m_Range\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ GetPosition()\l+ CreateInfoBuffer()\l+ Attack()\l}" alt="" coords="184,351,323,575"/>
+<area shape="rect" id="node3" href="classCTile.html" title="{CTile\n|# m_Char\l# m_Type\l# m_Color\l|+ CTile()\l+ CTile()\l+ CTile()\l+ ~CTile()\l+ CTile()\l+ CTile()\l+ operator=()\l+ operator=()\l+ GetChar()\l+ GetColor()\land 9 more...\l&#45; InitColor()\l&#45; InitType()\l}" alt="" coords="5,5,104,288"/>
+<area shape="rect" id="node4" href="structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetCrossNeighbours()\l+ GetDiagNeighbours()\l+ LiesInRange()\l+ GetRadius()\l+ Distance()\l}" alt="" coords="129,35,293,259"/>
+<area shape="rect" id="node5" href="classCFrames.html" title="{CFrames\n|&#45; m_Speed\l&#45; m_CurrFrame\l&#45; MAX_FRAME_CNT\l|+ CFrames()\l+ ActionAllowed()\l+ GetSpeed()\l+ GetCurrent()\l+ SetCurrent()\l}" alt="" coords="331,64,479,229"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a829e7248912ee11f015e46e4c674fed3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a829e7248912ee11f015e46e4c674fed3">CMageTower</a> (int attackDamage=0, int attackSpeed=0, int range=0, int waveSpeed=0, <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> position=<a class="el" href="namespacepos.html#a4e704c6ea5c8ef85d81b735bd0717996">pos::npos</a>)</td></tr>
-<tr class="separator:a829e7248912ee11f015e46e4c674fed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8edf041b02eb4d485a98c5b84fa049c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMageTower.html">CMageTower</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#ad8edf041b02eb4d485a98c5b84fa049c">Clone</a> () const final</td></tr>
-<tr class="separator:ad8edf041b02eb4d485a98c5b84fa049c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5a811b690e33771baa72062d7cde412"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#aa5a811b690e33771baa72062d7cde412">LoadTemplate</a> (std::istream &amp;in) final</td></tr>
-<tr class="separator:aa5a811b690e33771baa72062d7cde412"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70898693f2b743d5e50cdffe3ba35efb"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a70898693f2b743d5e50cdffe3ba35efb">LoadOnMap</a> (std::istream &amp;in) final</td></tr>
-<tr class="separator:a70898693f2b743d5e50cdffe3ba35efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51dd39970e1e392cb6b1245a2af66e18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCTile.html">CTile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a51dd39970e1e392cb6b1245a2af66e18">GetTile</a> () const final</td></tr>
-<tr class="separator:a51dd39970e1e392cb6b1245a2af66e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a979ac2f744c28f8c36c3da503dbdfcff"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a979ac2f744c28f8c36c3da503dbdfcff">SaveTemplate</a> (std::ostream &amp;out) const final</td></tr>
-<tr class="separator:a979ac2f744c28f8c36c3da503dbdfcff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2331e053d7cd45ca7fc3aecdaabe248"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#ad2331e053d7cd45ca7fc3aecdaabe248">SaveOnMap</a> (std::ostream &amp;out) const final</td></tr>
-<tr class="separator:ad2331e053d7cd45ca7fc3aecdaabe248"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82fee2cde6a51672ff2dd1e87a6b9cef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCBuffer.html">CBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a82fee2cde6a51672ff2dd1e87a6b9cef">CreateInfoBuffer</a> (int windowWidth) const final</td></tr>
-<tr class="separator:a82fee2cde6a51672ff2dd1e87a6b9cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebada918c376ae9867d90829e7371cce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#aebada918c376ae9867d90829e7371cce">Attack</a> (std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;map, int rows, int cols, std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;troops) final</td></tr>
-<tr class="separator:aebada918c376ae9867d90829e7371cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeccde4a97cfdd6c53d6dc1409e2d13b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#adeccde4a97cfdd6c53d6dc1409e2d13b">CMageTower</a> () noexcept</td></tr>
+<tr class="separator:adeccde4a97cfdd6c53d6dc1409e2d13b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73ebfbece3375d4d33d6d546d8f7ca4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCMageTower.html">CMageTower</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a73ebfbece3375d4d33d6d546d8f7ca4a">Clone</a> () const override</td></tr>
+<tr class="separator:a73ebfbece3375d4d33d6d546d8f7ca4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a172c96515c16aaeffb020778390d9db1"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a172c96515c16aaeffb020778390d9db1">LoadTemplate</a> (std::istream &amp;in) override</td></tr>
+<tr class="separator:a172c96515c16aaeffb020778390d9db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addaa7a7a4d1be79c596c00797600f619"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#addaa7a7a4d1be79c596c00797600f619">LoadOnMap</a> (std::istream &amp;in) override</td></tr>
+<tr class="separator:addaa7a7a4d1be79c596c00797600f619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a190c25f7fcf7161cf0a3f6a6bf180e"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a2a190c25f7fcf7161cf0a3f6a6bf180e">SaveTemplate</a> (std::ostream &amp;out) const override</td></tr>
+<tr class="separator:a2a190c25f7fcf7161cf0a3f6a6bf180e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf67fac6c1d593a6b7a13134194cd346"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#aaf67fac6c1d593a6b7a13134194cd346">SaveOnMap</a> (std::ostream &amp;out) const override</td></tr>
+<tr class="separator:aaf67fac6c1d593a6b7a13134194cd346"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee9d7a4357faef65c6a7da4d9a09e79d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCBuffer.html">CBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#aee9d7a4357faef65c6a7da4d9a09e79d">CreateInfoBuffer</a> (int windowWidth) const override</td></tr>
+<tr class="separator:aee9d7a4357faef65c6a7da4d9a09e79d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca878427e69f9435bf4e06bd0264e0e4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#aca878427e69f9435bf4e06bd0264e0e4">Attack</a> (std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTile.html">CTile</a> &gt;&gt; &amp;map, std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt;&gt; &amp;troops, int rows, int cols) override</td></tr>
+<tr class="separator:aca878427e69f9435bf4e06bd0264e0e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCTower"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCTower')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCTower.html">CTower</a></td></tr>
-<tr class="memitem:a15fdac286d1baac5a4dfb8c17e344809 inherit pub_methods_classCTower"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a15fdac286d1baac5a4dfb8c17e344809">CTower</a> (int attackDamage=0, int attackSpeed=0, int range=0, <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a> position=<a class="el" href="namespacepos.html#a4e704c6ea5c8ef85d81b735bd0717996">pos::npos</a>, <a class="el" href="classCTile.html">CTile</a> tile={' *', <a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4caa5ebcac11b69f9f79080ae325dc7b7af">ETileType::ARCHER_TOWER</a>, <a class="el" href="namespaceColors.html#a0c4c24da2cbf5856abbe1752b41e91e6">Colors::BG_RED</a>})</td></tr>
-<tr class="separator:a15fdac286d1baac5a4dfb8c17e344809 inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a220ebf69d3ba7c7f934d4d0f9ec022d1 inherit pub_methods_classCTower"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a220ebf69d3ba7c7f934d4d0f9ec022d1">~CTower</a> ()=default</td></tr>
-<tr class="separator:a220ebf69d3ba7c7f934d4d0f9ec022d1 inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e47ecc4f45cb4b9fbbcc87d99a74e1c inherit pub_methods_classCTower"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a4e47ecc4f45cb4b9fbbcc87d99a74e1c">GetChar</a> () const</td></tr>
-<tr class="separator:a4e47ecc4f45cb4b9fbbcc87d99a74e1c inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb1fcaad2e6fcfd20bf1f8e184c47aa8 inherit pub_methods_classCTower"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#afb1fcaad2e6fcfd20bf1f8e184c47aa8">CTower</a> (char ch=' ', <a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a> tileType=<a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4caccc0377a8afbf50e7094f5c23a8af223">ETileType::INVALID</a>, std::string color=&quot;&quot;) noexcept</td></tr>
+<tr class="separator:afb1fcaad2e6fcfd20bf1f8e184c47aa8 inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5909c31c4126d6c87a001911ffa2639b inherit pub_methods_classCTower"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a5909c31c4126d6c87a001911ffa2639b">~CTower</a> () override=default</td></tr>
+<tr class="separator:a5909c31c4126d6c87a001911ffa2639b inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8e4dbc1e3eae50c1fd09e2dc2f770d2 inherit pub_methods_classCTower"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#ac8e4dbc1e3eae50c1fd09e2dc2f770d2">GetPosition</a> () const</td></tr>
 <tr class="separator:ac8e4dbc1e3eae50c1fd09e2dc2f770d2 inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad16822243e73426d07b5e54d92e85719 inherit pub_methods_classCTower"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#ad16822243e73426d07b5e54d92e85719">GetType</a> () const</td></tr>
-<tr class="separator:ad16822243e73426d07b5e54d92e85719 inherit pub_methods_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classCTile"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCTile')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCTile.html">CTile</a></td></tr>
+<tr class="memitem:ab621100ee80415d63c5a1deae2d60cfb inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#ab621100ee80415d63c5a1deae2d60cfb">CTile</a> (char ch=' ')</td></tr>
+<tr class="separator:ab621100ee80415d63c5a1deae2d60cfb inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a495219bd2dd4bfd42e532c4022ca1da4 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a495219bd2dd4bfd42e532c4022ca1da4">CTile</a> (char ch, <a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a> type)</td></tr>
+<tr class="separator:a495219bd2dd4bfd42e532c4022ca1da4 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addd8369f5a7e2fb5afd9fabedaac5e47 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#addd8369f5a7e2fb5afd9fabedaac5e47">CTile</a> (char ch, <a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a> type, std::string color)</td></tr>
+<tr class="separator:addd8369f5a7e2fb5afd9fabedaac5e47 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a667f8904101721c788a00e72ff1f8074 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a667f8904101721c788a00e72ff1f8074">~CTile</a> () noexcept=default</td></tr>
+<tr class="separator:a667f8904101721c788a00e72ff1f8074 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d2ce6277168fe5f1c5a1400335c40af inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a6d2ce6277168fe5f1c5a1400335c40af">CTile</a> (const <a class="el" href="classCTile.html">CTile</a> &amp;src)=default</td></tr>
+<tr class="separator:a6d2ce6277168fe5f1c5a1400335c40af inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f37cc6ff3ce15a1658e73d16b0243ed inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a7f37cc6ff3ce15a1658e73d16b0243ed">CTile</a> (<a class="el" href="classCTile.html">CTile</a> &amp;&amp;src)=default</td></tr>
+<tr class="separator:a7f37cc6ff3ce15a1658e73d16b0243ed inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ebc63a125b56b3750aff7e3298be7c4 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCTile.html">CTile</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a8ebc63a125b56b3750aff7e3298be7c4">operator=</a> (const <a class="el" href="classCTile.html">CTile</a> &amp;src)=default</td></tr>
+<tr class="separator:a8ebc63a125b56b3750aff7e3298be7c4 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a698c44ccf3db482554fd264db0ee94d5 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCTile.html">CTile</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a698c44ccf3db482554fd264db0ee94d5">operator=</a> (<a class="el" href="classCTile.html">CTile</a> &amp;&amp;src)=default</td></tr>
+<tr class="separator:a698c44ccf3db482554fd264db0ee94d5 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aead279d70cc3e08d556947c9e17b586e inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#aead279d70cc3e08d556947c9e17b586e">GetChar</a> () const</td></tr>
+<tr class="separator:aead279d70cc3e08d556947c9e17b586e inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6981129ff243d97fde79c380330b2c3d inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a6981129ff243d97fde79c380330b2c3d">GetColor</a> () const</td></tr>
+<tr class="separator:a6981129ff243d97fde79c380330b2c3d inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d68e6cce9f10d93114311f04d43bd32 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a8d68e6cce9f10d93114311f04d43bd32">SetColor</a> (std::string color)</td></tr>
+<tr class="separator:a8d68e6cce9f10d93114311f04d43bd32 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3bc1a59ef486ad069a52ee13ae47c0f inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#ae3bc1a59ef486ad069a52ee13ae47c0f">GetType</a> () const</td></tr>
+<tr class="separator:ae3bc1a59ef486ad069a52ee13ae47c0f inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71753c42d46222021406c64ef221efa9 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a71753c42d46222021406c64ef221efa9">IsTroop</a> () const</td></tr>
+<tr class="separator:a71753c42d46222021406c64ef221efa9 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff443072dd2ab83898ef0c850c56b01a inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#aff443072dd2ab83898ef0c850c56b01a">IsTower</a> () const</td></tr>
+<tr class="separator:aff443072dd2ab83898ef0c850c56b01a inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76961764cfcc62e9310825fd677c6d77 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a76961764cfcc62e9310825fd677c6d77">IsWall</a> () const</td></tr>
+<tr class="separator:a76961764cfcc62e9310825fd677c6d77 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eeb3feb126c704e1d1bbf54b3e7fef4 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a0eeb3feb126c704e1d1bbf54b3e7fef4">IsSpawn</a> () const</td></tr>
+<tr class="separator:a0eeb3feb126c704e1d1bbf54b3e7fef4 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44e3ccca609e502d32c232b3167f0bda inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a44e3ccca609e502d32c232b3167f0bda">IsGate</a> () const</td></tr>
+<tr class="separator:a44e3ccca609e502d32c232b3167f0bda inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c0583acc271c83cf06e3701efedcfb1 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a0c0583acc271c83cf06e3701efedcfb1">IsBullet</a> () const</td></tr>
+<tr class="separator:a0c0583acc271c83cf06e3701efedcfb1 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e10c84f50949bb362af5214d95a18f3 inherit pub_methods_classCTile"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a2e10c84f50949bb362af5214d95a18f3">IsValid</a> () const</td></tr>
+<tr class="separator:a2e10c84f50949bb362af5214d95a18f3 inherit pub_methods_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:aa46c1366b950813054556a712efa3b67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#aa46c1366b950813054556a712efa3b67">PerimeterBreached</a> (const std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;troops) const</td></tr>
-<tr class="separator:aa46c1366b950813054556a712efa3b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b95f185bb039948ffd716a49d931e4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a6b95f185bb039948ffd716a49d931e4e">ClearLastWave</a> (std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;map) const</td></tr>
-<tr class="separator:a6b95f185bb039948ffd716a49d931e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d76f97faf9ecda6437be0ecc38cec6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a7d76f97faf9ecda6437be0ecc38cec6b">SendNewWave</a> (std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;map, std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;troops)</td></tr>
-<tr class="separator:a7d76f97faf9ecda6437be0ecc38cec6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef97cc95aaa7c2ea2f7411d6d4068986"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#aef97cc95aaa7c2ea2f7411d6d4068986">PerimeterBreached</a> (const std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt;&gt; &amp;troops) const</td></tr>
+<tr class="separator:aef97cc95aaa7c2ea2f7411d6d4068986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b74b1725e81a6a095378c573b93837c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#a3b74b1725e81a6a095378c573b93837c">ClearLastWave</a> (std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTile.html">CTile</a> &gt;&gt; &amp;map) const</td></tr>
+<tr class="separator:a3b74b1725e81a6a095378c573b93837c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9ab6e240653191a144d1d4a4387a9ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCMageTower.html#aa9ab6e240653191a144d1d4a4387a9ea">SendNewWave</a> (std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTile.html">CTile</a> &gt;&gt; &amp;map, std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt;&gt; &amp;troops)</td></tr>
+<tr class="separator:aa9ab6e240653191a144d1d4a4387a9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -143,25 +177,32 @@ Private Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_classCTower"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCTower')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classCTower.html">CTower</a></td></tr>
-<tr class="memitem:a3acd152b1506a29bb93e0d417f9824b0 inherit pro_attribs_classCTower"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCTile.html">CTile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a3acd152b1506a29bb93e0d417f9824b0">m_Tile</a></td></tr>
-<tr class="separator:a3acd152b1506a29bb93e0d417f9824b0 inherit pro_attribs_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18ba37322076a2119fa23f2d6383811d inherit pro_attribs_classCTower"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a18ba37322076a2119fa23f2d6383811d">m_Pos</a></td></tr>
-<tr class="separator:a18ba37322076a2119fa23f2d6383811d inherit pro_attribs_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ce9250fd9148e5ca62c603388c6b4c2 inherit pro_attribs_classCTower"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a3ce9250fd9148e5ca62c603388c6b4c2">m_Range</a></td></tr>
-<tr class="separator:a3ce9250fd9148e5ca62c603388c6b4c2 inherit pro_attribs_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afccb1697db1f922a5692d539c7f57276 inherit pro_attribs_classCTower"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#afccb1697db1f922a5692d539c7f57276">m_AttackDamage</a></td></tr>
 <tr class="memdesc:afccb1697db1f922a5692d539c7f57276 inherit pro_attribs_classCTower"><td class="mdescLeft">&#160;</td><td class="mdescRight">attack damage of the tower  <a href="classCTower.html#afccb1697db1f922a5692d539c7f57276">More...</a><br /></td></tr>
 <tr class="separator:afccb1697db1f922a5692d539c7f57276 inherit pro_attribs_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90b33df0f977011e3897581f2ca4d937 inherit pro_attribs_classCTower"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrames.html">CFrames</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a90b33df0f977011e3897581f2ca4d937">m_Frames</a></td></tr>
-<tr class="memdesc:a90b33df0f977011e3897581f2ca4d937 inherit pro_attribs_classCTower"><td class="mdescLeft">&#160;</td><td class="mdescRight">attack speed of the tower  <a href="classCTower.html#a90b33df0f977011e3897581f2ca4d937">More...</a><br /></td></tr>
-<tr class="separator:a90b33df0f977011e3897581f2ca4d937 inherit pro_attribs_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7553e9b38cfd3c414d5912285dd75f95 inherit pro_attribs_classCTower"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCFrames.html">CFrames</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a7553e9b38cfd3c414d5912285dd75f95">m_AttackSpeed</a></td></tr>
+<tr class="memdesc:a7553e9b38cfd3c414d5912285dd75f95 inherit pro_attribs_classCTower"><td class="mdescLeft">&#160;</td><td class="mdescRight">attack speed of the tower  <a href="classCTower.html#a7553e9b38cfd3c414d5912285dd75f95">More...</a><br /></td></tr>
+<tr class="separator:a7553e9b38cfd3c414d5912285dd75f95 inherit pro_attribs_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0225b922a4ff50f3643a7cef0e0b9d2 inherit pro_attribs_classCTower"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#ad0225b922a4ff50f3643a7cef0e0b9d2">m_Range</a></td></tr>
+<tr class="separator:ad0225b922a4ff50f3643a7cef0e0b9d2 inherit pro_attribs_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18ba37322076a2119fa23f2d6383811d inherit pro_attribs_classCTower"><td class="memItemLeft" align="right" valign="top"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTower.html#a18ba37322076a2119fa23f2d6383811d">m_Pos</a></td></tr>
+<tr class="separator:a18ba37322076a2119fa23f2d6383811d inherit pro_attribs_classCTower"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classCTile"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCTile')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classCTile.html">CTile</a></td></tr>
+<tr class="memitem:a22148584be457a460e4b8fef8476c119 inherit pro_attribs_classCTile"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#a22148584be457a460e4b8fef8476c119">m_Char</a></td></tr>
+<tr class="memdesc:a22148584be457a460e4b8fef8476c119 inherit pro_attribs_classCTile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Character representation of the tile.  <a href="classCTile.html#a22148584be457a460e4b8fef8476c119">More...</a><br /></td></tr>
+<tr class="separator:a22148584be457a460e4b8fef8476c119 inherit pro_attribs_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad09a69f329fbba1e54884f9b1661ef18 inherit pro_attribs_classCTile"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4c">ETileType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#ad09a69f329fbba1e54884f9b1661ef18">m_Type</a></td></tr>
+<tr class="memdesc:ad09a69f329fbba1e54884f9b1661ef18 inherit pro_attribs_classCTile"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the tile.  <a href="classCTile.html#ad09a69f329fbba1e54884f9b1661ef18">More...</a><br /></td></tr>
+<tr class="separator:ad09a69f329fbba1e54884f9b1661ef18 inherit pro_attribs_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa19295d2e23e609ffb4296990487a4b6 inherit pro_attribs_classCTile"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCTile.html#aa19295d2e23e609ffb4296990487a4b6">m_Color</a></td></tr>
+<tr class="separator:aa19295d2e23e609ffb4296990487a4b6 inherit pro_attribs_classCTile"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Lukáš Rynt <a href="#" onclick="location.href='mai'+'lto:'+'ryn'+'tl'+'uka'+'@f'+'it.'+'cv'+'ut.'+'cz'; return false;">ryntl<span style="display: none;">.nosp@m.</span>uka@<span style="display: none;">.nosp@m.</span>fit.c<span style="display: none;">.nosp@m.</span>vut.<span style="display: none;">.nosp@m.</span>cz</a> </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>24.4.2020 (%) Mage tower with magic attacks </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a829e7248912ee11f015e46e4c674fed3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a829e7248912ee11f015e46e4c674fed3">&#9670;&nbsp;</a></span>CMageTower()</h2>
+<a id="adeccde4a97cfdd6c53d6dc1409e2d13b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adeccde4a97cfdd6c53d6dc1409e2d13b">&#9670;&nbsp;</a></span>CMageTower()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,59 +213,22 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">CMageTower::CMageTower </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>attackDamage</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>attackSpeed</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>range</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>waveSpeed</em> = <code>0</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>&#160;</td>
-          <td class="paramname"><em>position</em> = <code><a class="el" href="namespacepos.html#a4e704c6ea5c8ef85d81b735bd0717996">pos::npos</a></code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructor </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">attackDamage</td><td></td></tr>
-    <tr><td class="paramname">attackSpeed</td><td></td></tr>
-    <tr><td class="paramname">maxMana</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aebada918c376ae9867d90829e7371cce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebada918c376ae9867d90829e7371cce">&#9670;&nbsp;</a></span>Attack()</h2>
+<a id="aca878427e69f9435bf4e06bd0264e0e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca878427e69f9435bf4e06bd0264e0e4">&#9670;&nbsp;</a></span>Attack()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,8 +239,14 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">bool CMageTower::Attack </td>
           <td>(</td>
-          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTile.html">CTile</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>troops</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -248,13 +258,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>cols</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;&#160;</td>
-          <td class="paramname"><em>troops</em>&#160;</td>
+          <td class="paramname"><em>cols</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -264,30 +268,17 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCTower.html#ac9b2ec01e43fa571e090af051a2a3745">CTower</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCMageTower_aebada918c376ae9867d90829e7371cce_cgraph.png" border="0" usemap="#classCMageTower_aebada918c376ae9867d90829e7371cce_cgraph" alt=""/></div>
-<map name="classCMageTower_aebada918c376ae9867d90829e7371cce_cgraph" id="classCMageTower_aebada918c376ae9867d90829e7371cce_cgraph">
-<area shape="rect" id="node2" href="classCFrames.html#a14cfc323ff762fba678635a7b76cb8f6" title="CFrames::ActionAllowed" alt="" coords="216,5,383,32"/>
-<area shape="rect" id="node3" href="classCMageTower.html#aa46c1366b950813054556a712efa3b67" title="CMageTower::PerimeterBreached" alt="" coords="447,69,665,96"/>
-<area shape="rect" id="node5" href="classCMageTower.html#a6b95f185bb039948ffd716a49d931e4e" title="CMageTower::ClearLastWave" alt="" coords="200,107,399,133"/>
-<area shape="rect" id="node6" href="classCMageTower.html#a7d76f97faf9ecda6437be0ecc38cec6b" title="CMageTower::SendNewWave" alt="" coords="200,157,399,184"/>
-<area shape="rect" id="node4" href="structCPosition.html#a34e66c8cab7dc8d084003cde1e828fe6" title="CPosition::Distance" alt="" coords="713,107,852,133"/>
-<area shape="rect" id="node7" href="structCPosition.html#a7e8bbc9c100eb0b850a4c1b994f0d45b" title="CPosition::GetRadius" alt="" coords="481,132,631,159"/>
-</map>
-</div>
+<p>Implements <a class="el" href="classCTower.html#af1643bb6f499cdc93de12f1f7b80988e">CTower</a>.</p>
 
 </div>
 </div>
-<a id="a6b95f185bb039948ffd716a49d931e4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b95f185bb039948ffd716a49d931e4e">&#9670;&nbsp;</a></span>ClearLastWave()</h2>
+<a id="a3b74b1725e81a6a095378c573b93837c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b74b1725e81a6a095378c573b93837c">&#9670;&nbsp;</a></span>ClearLastWave()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -298,7 +289,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void CMageTower::ClearLastWave </td>
           <td>(</td>
-          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTile.html">CTile</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -312,8 +303,8 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="ad8edf041b02eb4d485a98c5b84fa049c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8edf041b02eb4d485a98c5b84fa049c">&#9670;&nbsp;</a></span>Clone()</h2>
+<a id="a73ebfbece3375d4d33d6d546d8f7ca4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73ebfbece3375d4d33d6d546d8f7ca4a">&#9670;&nbsp;</a></span>Clone()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -330,30 +321,25 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCTower.html#a33be50e3c76855517f7898d1ebb6d349">CTower</a>.</p>
+<p>Implements <a class="el" href="classCTower.html#a6a721a6ee0deb9f52d81baa4fce11f50">CTower</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCMageTower_ad8edf041b02eb4d485a98c5b84fa049c_cgraph.png" border="0" usemap="#classCMageTower_ad8edf041b02eb4d485a98c5b84fa049c_cgraph" alt=""/></div>
-<map name="classCMageTower_ad8edf041b02eb4d485a98c5b84fa049c_cgraph" id="classCMageTower_ad8edf041b02eb4d485a98c5b84fa049c_cgraph">
-<area shape="rect" id="node2" href="classCMageTower.html#a829e7248912ee11f015e46e4c674fed3" title="CMageTower::CMageTower" alt="" coords="198,5,385,32"/>
-<area shape="rect" id="node3" href="classCMageTower.html#aa5a811b690e33771baa72062d7cde412" title="CMageTower::LoadTemplate" alt="" coords="196,56,387,83"/>
-<area shape="rect" id="node5" href="classCMageTower.html#a70898693f2b743d5e50cdffe3ba35efb" title="CMageTower::LoadOnMap" alt="" coords="202,107,381,133"/>
-<area shape="rect" id="node4" href="classCTower.html#a89a23cb41014c78dc4563f60de916a23" title="CTower::LoadTemplate" alt="" coords="435,56,593,83"/>
-<area shape="rect" id="node6" href="classCTower.html#a17c8980c847001e32d2b620814e4c3b5" title="CTower::LoadOnMap" alt="" coords="441,107,587,133"/>
-<area shape="rect" id="node7" href="classCFrames.html#ab685bef808bf1b679ab361971b5214af" title="CFrames::SetCurrent" alt="" coords="641,132,788,159"/>
+<div class="center"><img src="classCMageTower_a73ebfbece3375d4d33d6d546d8f7ca4a_cgraph.png" border="0" usemap="#classCMageTower_a73ebfbece3375d4d33d6d546d8f7ca4a_cgraph" alt=""/></div>
+<map name="classCMageTower_a73ebfbece3375d4d33d6d546d8f7ca4a_cgraph" id="classCMageTower_a73ebfbece3375d4d33d6d546d8f7ca4a_cgraph">
+<area shape="rect" id="node2" href="classCMageTower.html#adeccde4a97cfdd6c53d6dc1409e2d13b" title="CMageTower::CMageTower" alt="" coords="196,5,383,32"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a82fee2cde6a51672ff2dd1e87a6b9cef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82fee2cde6a51672ff2dd1e87a6b9cef">&#9670;&nbsp;</a></span>CreateInfoBuffer()</h2>
+<a id="aee9d7a4357faef65c6a7da4d9a09e79d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee9d7a4357faef65c6a7da4d9a09e79d">&#9670;&nbsp;</a></span>CreateInfoBuffer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -371,79 +357,25 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCTower.html#ae1f3f2274d187dd4fbe80a81b40b3ddc">CTower</a>.</p>
+<p>Implements <a class="el" href="classCTower.html#aaea7cdfdc4c85e5f2d496ad68704f6be">CTower</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCMageTower_a82fee2cde6a51672ff2dd1e87a6b9cef_cgraph.png" border="0" usemap="#classCMageTower_a82fee2cde6a51672ff2dd1e87a6b9cef_cgraph" alt=""/></div>
-<map name="classCMageTower_a82fee2cde6a51672ff2dd1e87a6b9cef_cgraph" id="classCMageTower_a82fee2cde6a51672ff2dd1e87a6b9cef_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="269,5,388,32"/>
-<area shape="rect" id="node3" href="classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="273,56,384,83"/>
-<area shape="rect" id="node4" href="classCFrames.html#aacba83e9cdf9c45e394c4ed2941c1950" title="CFrames::GetSpeed" alt="" coords="257,107,400,133"/>
+<div class="center"><img src="classCMageTower_aee9d7a4357faef65c6a7da4d9a09e79d_cgraph.png" border="0" usemap="#classCMageTower_aee9d7a4357faef65c6a7da4d9a09e79d_cgraph" alt=""/></div>
+<map name="classCMageTower_aee9d7a4357faef65c6a7da4d9a09e79d_cgraph" id="classCMageTower_aee9d7a4357faef65c6a7da4d9a09e79d_cgraph">
+<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="257,5,376,32"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a51dd39970e1e392cb6b1245a2af66e18"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51dd39970e1e392cb6b1245a2af66e18">&#9670;&nbsp;</a></span>GetTile()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classCTile.html">CTile</a> CMageTower::GetTile </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Reimplemented from <a class="el" href="classCTower.html#a9b847dce0eea489a813176aa5d1ddfed">CTower</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCMageTower_a51dd39970e1e392cb6b1245a2af66e18_cgraph.png" border="0" usemap="#classCMageTower_a51dd39970e1e392cb6b1245a2af66e18_cgraph" alt=""/></div>
-<map name="classCMageTower_a51dd39970e1e392cb6b1245a2af66e18_cgraph" id="classCMageTower_a51dd39970e1e392cb6b1245a2af66e18_cgraph">
-<area shape="rect" id="node2" href="classCMageTower.html#a979ac2f744c28f8c36c3da503dbdfcff" title="CMageTower::SaveTemplate" alt="" coords="210,31,402,57"/>
-<area shape="rect" id="node7" href="classCMageTower.html#ad2331e053d7cd45ca7fc3aecdaabe248" title="CMageTower::SaveOnMap" alt="" coords="216,107,396,133"/>
-<area shape="rect" id="node10" href="classCMageTower.html#a82fee2cde6a51672ff2dd1e87a6b9cef" title="CMageTower::CreateInfoBuffer" alt="" coords="204,183,408,209"/>
-<area shape="rect" id="node13" href="classCMageTower.html#aebada918c376ae9867d90829e7371cce" title="CMageTower::Attack" alt="" coords="233,360,379,387"/>
-<area shape="rect" id="node3" href="classCTower.html#a376ad884b2edc7a12c5bf4639ce83833" title="CTower::SaveTemplate" alt="" coords="475,5,635,32"/>
-<area shape="rect" id="node4" href="classCTower.html#ad16822243e73426d07b5e54d92e85719" title="CTower::GetType" alt="" coords="749,5,875,32"/>
-<area shape="rect" id="node5" href="classCTower.html#a4e47ecc4f45cb4b9fbbcc87d99a74e1c" title="CTower::GetChar" alt="" coords="749,56,875,83"/>
-<area shape="rect" id="node6" href="classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="983,107,1094,133"/>
-<area shape="rect" id="node8" href="classCTower.html#a994c2b5fdabe0c175379ea6981461a3a" title="CTower::SaveOnMap" alt="" coords="481,56,629,83"/>
-<area shape="rect" id="node9" href="classCFrames.html#a000fb68d5dedf084f89a67fcccbe6fc2" title="CFrames::GetCurrent" alt="" coords="738,107,886,133"/>
-<area shape="rect" id="node11" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="496,208,615,235"/>
-<area shape="rect" id="node12" href="classCFrames.html#aacba83e9cdf9c45e394c4ed2941c1950" title="CFrames::GetSpeed" alt="" coords="484,259,627,285"/>
-<area shape="rect" id="node14" href="classCFrames.html#a14cfc323ff762fba678635a7b76cb8f6" title="CFrames::ActionAllowed" alt="" coords="472,309,639,336"/>
-<area shape="rect" id="node15" href="classCMageTower.html#aa46c1366b950813054556a712efa3b67" title="CMageTower::PerimeterBreached" alt="" coords="703,385,921,412"/>
-<area shape="rect" id="node17" href="classCMageTower.html#a6b95f185bb039948ffd716a49d931e4e" title="CMageTower::ClearLastWave" alt="" coords="456,411,655,437"/>
-<area shape="rect" id="node18" href="classCMageTower.html#a7d76f97faf9ecda6437be0ecc38cec6b" title="CMageTower::SendNewWave" alt="" coords="456,461,655,488"/>
-<area shape="rect" id="node16" href="structCPosition.html#a34e66c8cab7dc8d084003cde1e828fe6" title="CPosition::Distance" alt="" coords="969,416,1108,443"/>
-<area shape="rect" id="node19" href="structCPosition.html#a7e8bbc9c100eb0b850a4c1b994f0d45b" title="CPosition::GetRadius" alt="" coords="737,448,887,475"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a70898693f2b743d5e50cdffe3ba35efb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70898693f2b743d5e50cdffe3ba35efb">&#9670;&nbsp;</a></span>LoadOnMap()</h2>
+<a id="addaa7a7a4d1be79c596c00797600f619"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addaa7a7a4d1be79c596c00797600f619">&#9670;&nbsp;</a></span>LoadOnMap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -461,26 +393,25 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCTower.html#a17c8980c847001e32d2b620814e4c3b5">CTower</a>.</p>
+<p>Reimplemented from <a class="el" href="classCTower.html#a621a7a5531a837af4e9bd53ff03a705e">CTower</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCMageTower_a70898693f2b743d5e50cdffe3ba35efb_cgraph.png" border="0" usemap="#classCMageTower_a70898693f2b743d5e50cdffe3ba35efb_cgraph" alt=""/></div>
-<map name="classCMageTower_a70898693f2b743d5e50cdffe3ba35efb_cgraph" id="classCMageTower_a70898693f2b743d5e50cdffe3ba35efb_cgraph">
-<area shape="rect" id="node2" href="classCTower.html#a17c8980c847001e32d2b620814e4c3b5" title="CTower::LoadOnMap" alt="" coords="232,5,379,32"/>
-<area shape="rect" id="node3" href="classCFrames.html#ab685bef808bf1b679ab361971b5214af" title="CFrames::SetCurrent" alt="" coords="427,31,573,57"/>
+<div class="center"><img src="classCMageTower_addaa7a7a4d1be79c596c00797600f619_cgraph.png" border="0" usemap="#classCMageTower_addaa7a7a4d1be79c596c00797600f619_cgraph" alt=""/></div>
+<map name="classCMageTower_addaa7a7a4d1be79c596c00797600f619_cgraph" id="classCMageTower_addaa7a7a4d1be79c596c00797600f619_cgraph">
+<area shape="rect" id="node2" href="classCTower.html#a621a7a5531a837af4e9bd53ff03a705e" title="CTower::LoadOnMap" alt="" coords="232,5,379,32"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="aa5a811b690e33771baa72062d7cde412"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5a811b690e33771baa72062d7cde412">&#9670;&nbsp;</a></span>LoadTemplate()</h2>
+<a id="a172c96515c16aaeffb020778390d9db1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a172c96515c16aaeffb020778390d9db1">&#9670;&nbsp;</a></span>LoadTemplate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -489,7 +420,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">istream &amp; CMageTower::LoadTemplate </td>
+          <td class="memname">std::istream&amp; CMageTower::LoadTemplate </td>
           <td>(</td>
           <td class="paramtype">std::istream &amp;&#160;</td>
           <td class="paramname"><em>in</em></td><td>)</td>
@@ -498,25 +429,27 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCTower.html#a89a23cb41014c78dc4563f60de916a23">CTower</a>.</p>
+<p>Reimplemented from <a class="el" href="classCTower.html#aae98fdb30aef77ce8f54893557454908">CTower</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCMageTower_aa5a811b690e33771baa72062d7cde412_cgraph.png" border="0" usemap="#classCMageTower_aa5a811b690e33771baa72062d7cde412_cgraph" alt=""/></div>
-<map name="classCMageTower_aa5a811b690e33771baa72062d7cde412_cgraph" id="classCMageTower_aa5a811b690e33771baa72062d7cde412_cgraph">
-<area shape="rect" id="node2" href="classCTower.html#a89a23cb41014c78dc4563f60de916a23" title="CTower::LoadTemplate" alt="" coords="244,5,403,32"/>
+<div class="center"><img src="classCMageTower_a172c96515c16aaeffb020778390d9db1_cgraph.png" border="0" usemap="#classCMageTower_a172c96515c16aaeffb020778390d9db1_cgraph" alt=""/></div>
+<map name="classCMageTower_a172c96515c16aaeffb020778390d9db1_cgraph" id="classCMageTower_a172c96515c16aaeffb020778390d9db1_cgraph">
+<area shape="rect" id="node2" href="classCTower.html#aae98fdb30aef77ce8f54893557454908" title="CTower::LoadTemplate" alt="" coords="254,5,413,32"/>
+<area shape="rect" id="node4" href="classCMageTower.html#addaa7a7a4d1be79c596c00797600f619" title="CMageTower::LoadOnMap" alt="" coords="244,56,423,83"/>
+<area shape="rect" id="node3" href="classCTower.html#a621a7a5531a837af4e9bd53ff03a705e" title="CTower::LoadOnMap" alt="" coords="471,31,617,57"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="aa46c1366b950813054556a712efa3b67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa46c1366b950813054556a712efa3b67">&#9670;&nbsp;</a></span>PerimeterBreached()</h2>
+<a id="aef97cc95aaa7c2ea2f7411d6d4068986"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef97cc95aaa7c2ea2f7411d6d4068986">&#9670;&nbsp;</a></span>PerimeterBreached()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -527,7 +460,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">bool CMageTower::PerimeterBreached </td>
           <td>(</td>
-          <td class="paramtype">const std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;&#160;</td>
+          <td class="paramtype">const std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>troops</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -538,19 +471,11 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCMageTower_aa46c1366b950813054556a712efa3b67_cgraph.png" border="0" usemap="#classCMageTower_aa46c1366b950813054556a712efa3b67_cgraph" alt=""/></div>
-<map name="classCMageTower_aa46c1366b950813054556a712efa3b67_cgraph" id="classCMageTower_aa46c1366b950813054556a712efa3b67_cgraph">
-<area shape="rect" id="node2" href="structCPosition.html#a34e66c8cab7dc8d084003cde1e828fe6" title="CPosition::Distance" alt="" coords="272,5,411,32"/>
-</map>
-</div>
 
 </div>
 </div>
-<a id="ad2331e053d7cd45ca7fc3aecdaabe248"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2331e053d7cd45ca7fc3aecdaabe248">&#9670;&nbsp;</a></span>SaveOnMap()</h2>
+<a id="aaf67fac6c1d593a6b7a13134194cd346"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf67fac6c1d593a6b7a13134194cd346">&#9670;&nbsp;</a></span>SaveOnMap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -559,7 +484,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ostream &amp; CMageTower::SaveOnMap </td>
+          <td class="memname">std::ostream&amp; CMageTower::SaveOnMap </td>
           <td>(</td>
           <td class="paramtype">std::ostream &amp;&#160;</td>
           <td class="paramname"><em>out</em></td><td>)</td>
@@ -568,28 +493,30 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCTower.html#a994c2b5fdabe0c175379ea6981461a3a">CTower</a>.</p>
+<p>Reimplemented from <a class="el" href="classCTower.html#aa9ea3633475f4a0cb37ca9f34e1aadde">CTower</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCMageTower_ad2331e053d7cd45ca7fc3aecdaabe248_cgraph.png" border="0" usemap="#classCMageTower_ad2331e053d7cd45ca7fc3aecdaabe248_cgraph" alt=""/></div>
-<map name="classCMageTower_ad2331e053d7cd45ca7fc3aecdaabe248_cgraph" id="classCMageTower_ad2331e053d7cd45ca7fc3aecdaabe248_cgraph">
-<area shape="rect" id="node2" href="classCTower.html#a994c2b5fdabe0c175379ea6981461a3a" title="CTower::SaveOnMap" alt="" coords="233,5,381,32"/>
-<area shape="rect" id="node5" href="classCFrames.html#a000fb68d5dedf084f89a67fcccbe6fc2" title="CFrames::GetCurrent" alt="" coords="429,56,577,83"/>
-<area shape="rect" id="node3" href="classCTower.html#a4e47ecc4f45cb4b9fbbcc87d99a74e1c" title="CTower::GetChar" alt="" coords="441,5,566,32"/>
-<area shape="rect" id="node4" href="classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="625,5,736,32"/>
+<div class="center"><img src="classCMageTower_aaf67fac6c1d593a6b7a13134194cd346_cgraph.png" border="0" usemap="#classCMageTower_aaf67fac6c1d593a6b7a13134194cd346_cgraph" alt=""/></div>
+<map name="classCMageTower_aaf67fac6c1d593a6b7a13134194cd346_cgraph" id="classCMageTower_aaf67fac6c1d593a6b7a13134194cd346_cgraph">
+<area shape="rect" id="node2" href="classCTower.html#aa9ea3633475f4a0cb37ca9f34e1aadde" title="CTower::SaveOnMap" alt="" coords="261,5,409,32"/>
+<area shape="rect" id="node4" href="classCFrames.html#a000fb68d5dedf084f89a67fcccbe6fc2" title="CFrames::GetCurrent" alt="" coords="485,56,633,83"/>
+<area shape="rect" id="node5" href="classCMageTower.html#aee9d7a4357faef65c6a7da4d9a09e79d" title="CMageTower::CreateInfoBuffer" alt="" coords="233,107,437,133"/>
+<area shape="rect" id="node7" href="classCMageTower.html#aca878427e69f9435bf4e06bd0264e0e4" title="CMageTower::Attack" alt="" coords="262,157,409,184"/>
+<area shape="rect" id="node3" href="classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="504,5,615,32"/>
+<area shape="rect" id="node6" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="500,107,619,133"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a979ac2f744c28f8c36c3da503dbdfcff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a979ac2f744c28f8c36c3da503dbdfcff">&#9670;&nbsp;</a></span>SaveTemplate()</h2>
+<a id="a2a190c25f7fcf7161cf0a3f6a6bf180e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a190c25f7fcf7161cf0a3f6a6bf180e">&#9670;&nbsp;</a></span>SaveTemplate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -598,7 +525,7 @@ Here is the call graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ostream &amp; CMageTower::SaveTemplate </td>
+          <td class="memname">std::ostream&amp; CMageTower::SaveTemplate </td>
           <td>(</td>
           <td class="paramtype">std::ostream &amp;&#160;</td>
           <td class="paramname"><em>out</em></td><td>)</td>
@@ -607,28 +534,26 @@ Here is the call graph for this function:</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCTower.html#a376ad884b2edc7a12c5bf4639ce83833">CTower</a>.</p>
+<p>Reimplemented from <a class="el" href="classCTower.html#a6d74cb59655c5048c97c97328c884237">CTower</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCMageTower_a979ac2f744c28f8c36c3da503dbdfcff_cgraph.png" border="0" usemap="#classCMageTower_a979ac2f744c28f8c36c3da503dbdfcff_cgraph" alt=""/></div>
-<map name="classCMageTower_a979ac2f744c28f8c36c3da503dbdfcff_cgraph" id="classCMageTower_a979ac2f744c28f8c36c3da503dbdfcff_cgraph">
-<area shape="rect" id="node2" href="classCTower.html#a376ad884b2edc7a12c5bf4639ce83833" title="CTower::SaveTemplate" alt="" coords="245,31,405,57"/>
-<area shape="rect" id="node3" href="classCTower.html#ad16822243e73426d07b5e54d92e85719" title="CTower::GetType" alt="" coords="453,5,580,32"/>
-<area shape="rect" id="node4" href="classCTower.html#a4e47ecc4f45cb4b9fbbcc87d99a74e1c" title="CTower::GetChar" alt="" coords="454,56,579,83"/>
-<area shape="rect" id="node5" href="classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="628,56,739,83"/>
+<div class="center"><img src="classCMageTower_a2a190c25f7fcf7161cf0a3f6a6bf180e_cgraph.png" border="0" usemap="#classCMageTower_a2a190c25f7fcf7161cf0a3f6a6bf180e_cgraph" alt=""/></div>
+<map name="classCMageTower_a2a190c25f7fcf7161cf0a3f6a6bf180e_cgraph" id="classCMageTower_a2a190c25f7fcf7161cf0a3f6a6bf180e_cgraph">
+<area shape="rect" id="node2" href="classCTower.html#a6d74cb59655c5048c97c97328c884237" title="CTower::SaveTemplate" alt="" coords="245,5,405,32"/>
+<area shape="rect" id="node3" href="classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="453,5,564,32"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a7d76f97faf9ecda6437be0ecc38cec6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d76f97faf9ecda6437be0ecc38cec6b">&#9670;&nbsp;</a></span>SendNewWave()</h2>
+<a id="aa9ab6e240653191a144d1d4a4387a9ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9ab6e240653191a144d1d4a4387a9ea">&#9670;&nbsp;</a></span>SendNewWave()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -639,13 +564,13 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname">void CMageTower::SendNewWave </td>
           <td>(</td>
-          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTile.html">CTile</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTile.html">CTile</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>map</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, <a class="el" href="classCTrooper.html">CTrooper</a> *&gt; &amp;&#160;</td>
+          <td class="paramtype">std::unordered_map&lt; <a class="el" href="CPosition_8hpp.html#a62642ae895d1122bcd672f9ad5034647">pos_t</a>, std::shared_ptr&lt; <a class="el" href="classCTrooper.html">CTrooper</a> &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>troops</em>&#160;</td>
         </tr>
         <tr>
@@ -660,15 +585,6 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCMageTower_a7d76f97faf9ecda6437be0ecc38cec6b_cgraph.png" border="0" usemap="#classCMageTower_a7d76f97faf9ecda6437be0ecc38cec6b_cgraph" alt=""/></div>
-<map name="classCMageTower_a7d76f97faf9ecda6437be0ecc38cec6b_cgraph" id="classCMageTower_a7d76f97faf9ecda6437be0ecc38cec6b_cgraph">
-<area shape="rect" id="node2" href="structCPosition.html#a7e8bbc9c100eb0b850a4c1b994f0d45b" title="CPosition::GetRadius" alt="" coords="252,5,401,32"/>
-<area shape="rect" id="node3" href="structCPosition.html#a34e66c8cab7dc8d084003cde1e828fe6" title="CPosition::Distance" alt="" coords="449,5,588,32"/>
-</map>
-</div>
 
 </div>
 </div>

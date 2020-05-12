@@ -2,7 +2,7 @@ var searchData=
 [
   ['gameover',['GameOver',['../classCInterface.html#a2f406f0b3d4e9766e63146c8ef5d014d',1,'CInterface']]],
   ['gamescreen',['GameScreen',['../classCInterface.html#a6118a7a9c0ed8e8ddf2a0d2b693a6042',1,'CInterface']]],
-  ['getchar',['GetChar',['../classCInterface.html#a5c2aefa571493d6d8dd19cc7f076e065',1,'CInterface::GetChar()'],['../classCTile.html#aead279d70cc3e08d556947c9e17b586e',1,'CTile::GetChar()'],['../classCTower.html#a4e47ecc4f45cb4b9fbbcc87d99a74e1c',1,'CTower::GetChar()'],['../classCTrooper.html#af30331c7afafe48b62c9c07c12848c3a',1,'CTrooper::GetChar()']]],
+  ['getchar',['GetChar',['../classCInterface.html#a5c2aefa571493d6d8dd19cc7f076e065',1,'CInterface::GetChar()'],['../classCTile.html#aead279d70cc3e08d556947c9e17b586e',1,'CTile::GetChar()']]],
   ['getcolor',['GetColor',['../classCTile.html#a6981129ff243d97fde79c380330b2c3d',1,'CTile']]],
   ['getcrossneighbours',['GetCrossNeighbours',['../structCPosition.html#ab67b5cc5823f6a0f02be12d0f9ff1757',1,'CPosition']]],
   ['getcurrent',['GetCurrent',['../classCFrames.html#a000fb68d5dedf084f89a67fcccbe6fc2',1,'CFrames']]],
@@ -15,8 +15,7 @@ var searchData=
   ['getspawn',['GetSpawn',['../classCTrooper.html#aa4f443661e74e85a3eff9dca21dbd7a4',1,'CTrooper']]],
   ['getspeed',['GetSpeed',['../classCFrames.html#aacba83e9cdf9c45e394c4ed2941c1950',1,'CFrames']]],
   ['getstack',['GetStack',['../classCGame.html#ae80aa32bafa66f0e5092fb38869c38ac',1,'CGame']]],
-  ['gettile',['GetTile',['../classCMageTower.html#a51dd39970e1e392cb6b1245a2af66e18',1,'CMageTower::GetTile()'],['../classCTower.html#a9b847dce0eea489a813176aa5d1ddfed',1,'CTower::GetTile()'],['../classCTrooper.html#a91f22583e6d60756a9f179e7de625104',1,'CTrooper::GetTile()']]],
-  ['gettype',['GetType',['../classCTower.html#ad16822243e73426d07b5e54d92e85719',1,'CTower::GetType()'],['../classCTrooper.html#aed52eabef25c7783bc9b908fe5e75b39',1,'CTrooper::GetType()']]],
+  ['gettype',['GetType',['../classCTile.html#ae3bc1a59ef486ad069a52ee13ae47c0f',1,'CTile']]],
   ['getwavecnt',['GetWaveCnt',['../classCWaves.html#a52bf224ae9825e7ca89d41bac6520b34',1,'CWaves']]],
   ['getwavesize',['GetWaveSize',['../classCWaves.html#a10f729e7392df0fd0b12d915fdd7419a',1,'CWaves']]]
 ];

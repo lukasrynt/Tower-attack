@@ -1,3 +1,4 @@
 <map id="CMageTower" name="CMageTower">
-<area shape="rect" id="node2" href="$classCTower.html" title="{CTower\n|# m_Tile\l# m_Pos\l# m_Range\l# m_AttackDamage\l# m_Frames\l&#45; m_ArrowPos\l&#45; m_ArrowPath\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ CreateInfoBuffer()\l+ Attack()\l+ GetTile()\l+ GetChar()\l+ GetPosition()\l+ GetType()\l&#45; ArrowMove()\l&#45; ArrowClear()\l&#45; AssignArrow()\l&#45; DamageTrooper()\l}" alt="" coords="11,5,149,405"/>
+<area shape="rect" id="node2" href="$classCTower.html" title="{CTower\n|# m_AttackDamage\l# m_AttackSpeed\l# m_Range\l# m_Pos\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ GetPosition()\l+ CreateInfoBuffer()\l+ Attack()\l}" alt="" coords="11,336,149,589"/>
+<area shape="rect" id="node3" href="$classCTile.html" title="{CTile\n|# m_Char\l# m_Type\l# m_Color\l|+ CTile()\l+ CTile()\l+ CTile()\l+ ~CTile()\l+ CTile()\l+ CTile()\l+ operator=()\l+ operator=()\l+ GetChar()\l+ GetColor()\land 9 more...\l&#45; InitColor()\l&#45; InitType()\l}" alt="" coords="31,5,129,288"/>
 </map>

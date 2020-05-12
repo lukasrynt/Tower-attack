@@ -1,16 +1,17 @@
 <map id="src/CMap.cpp" name="src/CMap.cpp">
-<area shape="rect" id="node7" href="$CMap_8hpp.html" title="CMap.hpp" alt="" coords="844,80,927,107"/>
-<area shape="rect" id="node33" href="$CMageTower_8hpp.html" title="CMageTower.hpp" alt="" coords="360,229,485,256"/>
-<area shape="rect" id="node16" href="$CTrooper_8hpp.html" title="CTrooper.hpp" alt="" coords="631,379,732,405"/>
-<area shape="rect" id="node18" href="$escape__sequences_8h.html" title="escape_sequences.h" alt="" coords="687,528,833,555"/>
-<area shape="rect" id="node25" href="$CPath_8hpp.html" title="CPath.hpp" alt="" coords="923,453,1007,480"/>
-<area shape="rect" id="node28" href="$CBuffer_8hpp.html" title="CBuffer.hpp" alt="" coords="1106,453,1198,480"/>
-<area shape="rect" id="node30" href="$CTower_8hpp.html" title="CTower.hpp" alt="" coords="376,304,469,331"/>
-<area shape="rect" id="node31" href="$CUnitStack_8hpp.html" title="CUnitStack.hpp" alt="" coords="567,155,681,181"/>
-<area shape="rect" id="node34" href="$CGate_8hpp.html" title="CGate.hpp" alt="" coords="1263,379,1348,405"/>
-<area shape="rect" id="node19" href="$CTile_8hpp.html" title="CTile.hpp" alt="" coords="533,528,611,555"/>
-<area shape="rect" id="node27" href="$CFrames_8hpp.html" title="CFrames.hpp" alt="" coords="356,528,457,555"/>
-<area shape="rect" id="node20" href="$CPosition_8hpp.html" title="CPosition.hpp" alt="" coords="1329,603,1433,629"/>
-<area shape="rect" id="node24" href="$ETileType_8hpp.html" title="ETileType.hpp" alt="" coords="444,603,551,629"/>
-<area shape="rect" id="node32" href="$CArmoredTrooper_8hpp.html" title="CArmoredTrooper.hpp" alt="" coords="545,304,695,331"/>
+<area shape="rect" id="node7" href="$CMap_8hpp.html" title="CMap.hpp" alt="" coords="759,80,841,107"/>
+<area shape="rect" id="node34" href="$CMageTower_8hpp.html" title="CMageTower.hpp" alt="" coords="1296,229,1421,256"/>
+<area shape="rect" id="node16" href="$CTrooper_8hpp.html" title="CTrooper.hpp" alt="" coords="1128,379,1229,405"/>
+<area shape="rect" id="node18" href="$escape__sequences_8h.html" title="escape_sequences.h" alt="" coords="145,528,290,555"/>
+<area shape="rect" id="node25" href="$CPath_8hpp.html" title="CPath.hpp" alt="" coords="727,453,811,480"/>
+<area shape="rect" id="node28" href="$CBuffer_8hpp.html" title="CBuffer.hpp" alt="" coords="441,453,533,480"/>
+<area shape="rect" id="node30" href="$CTower_8hpp.html" title="CTower.hpp" alt="" coords="1027,304,1120,331"/>
+<area shape="rect" id="node31" href="$CUnitStack_8hpp.html" title="CUnitStack.hpp" alt="" coords="1075,155,1189,181"/>
+<area shape="rect" id="node35" href="$CGate_8hpp.html" title="CGate.hpp" alt="" coords="364,379,449,405"/>
+<area shape="rect" id="node19" href="$CTile_8hpp.html" title="CTile.hpp" alt="" coords="915,528,994,555"/>
+<area shape="rect" id="node27" href="$CFrames_8hpp.html" title="CFrames.hpp" alt="" coords="1284,453,1385,480"/>
+<area shape="rect" id="node20" href="$CPosition_8hpp.html" title="CPosition.hpp" alt="" coords="608,603,712,629"/>
+<area shape="rect" id="node24" href="$ETileType_8hpp.html" title="ETileType.hpp" alt="" coords="964,603,1071,629"/>
+<area shape="rect" id="node32" href="$CArmoredTrooper_8hpp.html" title="CArmoredTrooper.hpp" alt="" coords="1195,304,1346,331"/>
+<area shape="rect" id="node33" href="$CArcherTower_8hpp.html" title="CArcherTower.hpp" alt="" coords="939,229,1069,256"/>
 </map>

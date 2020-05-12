@@ -11,29 +11,12 @@
 
 using namespace std;
 /**********************************************************************************************************************/
-// INIT
-CTrooper::CTrooper(int hp, int speed, int attack, int price, CTile tile)
-	: m_Tile(std::move(tile)),
-	  m_Pos(pos::npos),
-	  m_Hp(hp),
-	  m_Attack(attack),
-	  m_Price(price),
-	  m_Frames(speed),
-	  m_SpawnIdx(0)
-{}
-
-CTrooper * CTrooper::Clone() const
-{
-	return new CTrooper(*this);
-}
-
-/**********************************************************************************************************************/
 // ACTIONS
-void CTrooper::Spawn(unordered_map<pos_t,CTile> & map)
+void CTrooper::Spawn(unordered_map<pos_t,shared_ptr<CTile>> & map)
 {
 	pos_t target = m_Path.front();
 	if (!map.count(target))
-		map.insert({target, GetTile()});
+		map.emplace(target, this);
 	m_Pos = target;
 	m_Path.pop_front();
 }
@@ -43,7 +26,7 @@ void CTrooper::ReceiveDamage(int damage)
 	m_Hp -= damage;
 }
 
-bool CTrooper::Move(unordered_map<pos_t,CTile> & map)
+bool CTrooper::Move(unordered_map<pos_t,shared_ptr<CTile>> & map)
 {
 	// move according to current frame
 	if (!m_Frames.ActionAllowed() || m_Path.empty())
@@ -53,7 +36,7 @@ bool CTrooper::Move(unordered_map<pos_t,CTile> & map)
 	pos_t target = m_Path.front();
 	
 	// if there is trooper in the way, wait till he's gone
-	if (map.count(target) && map.at(target).IsTroop())
+	if (map.count(target) && map.at(target)->IsTroop())
 		return false;
 	
 	// if we reached gate return true
@@ -70,19 +53,14 @@ bool CTrooper::Move(unordered_map<pos_t,CTile> & map)
 	if (map.count(m_Pos))
 		map.erase(m_Pos);
 	m_Pos = target;
-	map.insert({m_Pos, GetTile()});
+	map.emplace(m_Pos, this);
 	return false;
-}
-
-int CTrooper::Attack() const
-{
-	return m_Attack;
 }
 
 CBuffer CTrooper::CreateInfoBuffer(int windowWidth) const
 {
 	return move(CBuffer{windowWidth}
-						.Append("   ").Append("("s + m_Tile.m_Char + ")", string(Colors::BG_YELLOW) + Colors::FG_BLACK)
+						.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_YELLOW) + Colors::FG_BLACK)
 						.AddEscapeSequence(Colors::FG_YELLOW)
 						.Append("\tHP: " + to_string(m_Hp))
 						.Append("\tSpeed: " + to_string(m_Frames.GetSpeed()))
@@ -95,7 +73,7 @@ CBuffer CTrooper::CreateInfoBuffer(int windowWidth) const
 // LOADING
 istream & CTrooper::LoadTemplate(istream & in)
 {
-	return in >> m_Tile.m_Char >> m_Price >> m_Hp >> m_Frames >> m_Attack;
+	return in >> m_Char >> m_Price >> m_Hp >> m_Frames >> m_Attack;
 }
 
 istream & CTrooper::LoadOnMap(istream & in)
@@ -110,10 +88,10 @@ istream & CTrooper::LoadOnMap(istream & in)
 // SAVING
 ostream & CTrooper::SaveTemplate(ostream & out) const
 {
-	return out << m_Tile.m_Type << ' ' << m_Tile.m_Char << ' ' << m_Price << ' ' << m_Hp << ' ' << m_Frames << ' ' << m_Attack;
+	return out << m_Type << ' ' << m_Char << ' ' << m_Price << ' ' << m_Hp << ' ' << m_Frames << ' ' << m_Attack;
 }
 
 ostream & CTrooper::SaveOnMap(ostream & out) const
 {
-	return out << m_Tile.m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent();
+	return out << m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent();
 }

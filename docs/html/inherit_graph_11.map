@@ -1,3 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCTile.html" title="CTile" alt="" coords="5,5,59,32"/>
+<area shape="rect" id="node1" href="$classCTile.html" title="CTile" alt="" coords="5,81,59,108"/>
+<area shape="rect" id="node2" href="$classCTower.html" title="CTower" alt="" coords="111,56,179,83"/>
+<area shape="rect" id="node5" href="$classCTrooper.html" title="CTrooper" alt="" coords="107,107,183,133"/>
+<area shape="rect" id="node3" href="$classCArcherTower.html" title="CArcherTower" alt="" coords="240,5,347,32"/>
+<area shape="rect" id="node4" href="$classCMageTower.html" title="CMageTower" alt="" coords="243,56,343,83"/>
+<area shape="rect" id="node6" href="$classCArmoredTrooper.html" title="CArmoredTrooper" alt="" coords="231,107,356,133"/>
 </map>

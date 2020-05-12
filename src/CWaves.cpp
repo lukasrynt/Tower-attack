@@ -13,25 +13,17 @@ using namespace std;
 
 /**********************************************************************************************************************/
 // INIT
-CWaves::CWaves()
-	: m_Selected(0),
+CWaves::CWaves() noexcept
+	: m_Waves(10),
+	  m_Selected(0),
 	  m_MaxSize(0),
 	  m_Frames(0),
 	  m_ReleasingWave(false),
 	  m_Resources(0)
 {}
 
-CWaves::~CWaves()
-{
-	for (auto & wave : m_Waves)
-		for (auto & troop : wave)
-			delete troop;
-}
-
 void CWaves::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
-{
-	m_UnitStack = move(unitStack);
-}
+{m_UnitStack = move(unitStack);}
 
 /**********************************************************************************************************************/
 // LOADING
@@ -39,8 +31,9 @@ istream & operator>>(istream & in, CWaves & waves)
 {
 	char ch;
 	in >> waves.m_ReleasingWave >> waves.m_Frames >> waves.m_Resources;
+	size_t pos = 0;
 	
-	while (true)
+	while (pos < 10)
 	{
 		// if we have read something else than [ on the beggining of the row we need to quit
 		in >> ch;
@@ -51,17 +44,17 @@ istream & operator>>(istream & in, CWaves & waves)
 		}
 		
 		// load the troopers in the wawes
-		waves.LoadWaves(in);
+		waves.m_Waves[pos++] = waves.LoadWaves(in);
 	}
 	return in;
 }
 
-void CWaves::LoadWaves(std::istream & in)
+deque<unique_ptr<CTrooper>> CWaves::LoadWaves(std::istream & in)
 {
 	if (!m_UnitStack)
 		in.setstate(ios::failbit);
 	
-	deque<CTrooper *> wave;
+	deque<unique_ptr<CTrooper>> wave;
 	size_t counter = 0;
 	while (true)
 	{
@@ -83,7 +76,7 @@ void CWaves::LoadWaves(std::istream & in)
 		if (m_UnitStack->IsTrooperChar(ch))
 		{
 			counter++;
-			wave.push_back(m_UnitStack->CreateTrooperAt(ch));
+			wave.emplace_back(m_UnitStack->CreateTrooperAt(ch));
 		}
 		else
 			in.setstate(ios::failbit);
@@ -91,7 +84,7 @@ void CWaves::LoadWaves(std::istream & in)
 	
 	if(!CheckCounter(counter))
 		in.setstate(ios::failbit);
-	m_Waves.push_back(wave);
+	return wave;
 }
 
 bool CWaves::CheckCounter(size_t counter)
@@ -213,16 +206,15 @@ void CWaves::DeleteTroop()
 	
 	// delete trooper from the back
 	m_Resources += m_Waves[m_Selected].back()->GetPrice();
-	delete m_Waves[m_Selected].back();
 	m_Waves[m_Selected].pop_back();
 }
 
 /**********************************************************************************************************************/
 // UPDATE
-vector<CTrooper*> CWaves::Update(const map<int,bool> & spawnsFree)
+vector<unique_ptr<CTrooper>> CWaves::Update(const map<int,bool> & spawnsFree)
 {
 	// if 'p' wasn't pressed or we have yet to wait for action, return
-	vector<CTrooper*> res;
+	vector<unique_ptr<CTrooper>> res;
 	if (!m_ReleasingWave || !m_Frames.ActionAllowed())
 		return res;
 
@@ -235,10 +227,10 @@ vector<CTrooper*> CWaves::Update(const map<int,bool> & spawnsFree)
 			continue;
 		
 		// get the first trooper in wave
-		CTrooper * spawned = m_Waves[i].front();
+		unique_ptr<CTrooper> spawned = move(m_Waves[i].front());
 		m_Waves[i].pop_front();
 		spawned->SetSpawn(i + 1);
-		res.push_back(spawned);
+		res.emplace_back(move(spawned));
 	}
 	
 	// check if there are still troops to release

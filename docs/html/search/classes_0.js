@@ -1,6 +1,7 @@
 var searchData=
 [
   ['capplication',['CApplication',['../classCApplication.html',1,'']]],
+  ['carchertower',['CArcherTower',['../classCArcherTower.html',1,'']]],
   ['carmoredtrooper',['CArmoredTrooper',['../classCArmoredTrooper.html',1,'']]],
   ['cbuffer',['CBuffer',['../classCBuffer.html',1,'']]],
   ['ccommand',['CCommand',['../classCCommand.html',1,'']]],
