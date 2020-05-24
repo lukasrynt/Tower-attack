@@ -35,7 +35,7 @@ public:
 	// ACTIONS
 	bool Update() override;
 	
-	CBuffer CreateInfoBuffer(int windowWidth) const override;
+	CBuffer CreateInfoBuffer(size_t width) const override;
 	
 	void ReceiveDamage(int damage, std::string bulletColor) override;
 };

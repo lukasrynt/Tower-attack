@@ -81,7 +81,7 @@ public:
 	 * @param windowWidth Size of the window to be rendered into
 	 * @return Created buffer
 	 */
-	CBuffer CreateBuffer(int windowWidth) const;
+	CBuffer CreateBuffer(size_t width) const;
 
 	// UPDATE
 	/**
@@ -118,9 +118,9 @@ private:
 	std::shared_ptr<CUnitStack> m_UnitStack;					//!< unit stack containing all towers and troopers templates
 	
 	// LOADING
-	void LoadMap(std::istream & in);
-	void LoadMapInfo(std::istream & in);
-	void LoadEntities(std::istream & in);
+	CMap & LoadMap(std::istream & in);
+	CMap & LoadMapInfo(std::istream & in);
+	CMap & LoadEntities(std::istream & in);
 	void LoadWallLine(std::istream & in, int row);
 	void LoadMapCenter(std::istream & in, int row);
 	bool LoadWallChar(char ch, pos_t position);
@@ -136,7 +136,7 @@ private:
 	void LoadTowers(std::istream & in, char ch);
 	
 	// RENDER
-	CBuffer RenderMap(int windowWidth) const;
+	CBuffer RenderMap(size_t width) const;
 	
 	// SAVING
 	void SaveMapInfo(std::ostream & out) const;

@@ -35,7 +35,7 @@ public:
 	 * @param damage
 	 */
 	void ReceiveDamage(int damage, std::string bulletColor) final;
-	CBuffer CreateInfoBuffer(int windowWidth) const final;
+	CBuffer CreateInfoBuffer(size_t width) const final;
 	
 	// LOAD
 	std::istream & LoadTemplate(std::istream & in) final

@@ -68,7 +68,7 @@ public:
 	 * @param windowWidth size of the window
 	 * @return Created buffer
 	 */
-	CBuffer CreateBuffer(int windowWidth) const;
+	CBuffer CreateBuffer(size_t height) const;
 	
 	bool Won() const
 	{return m_GameState == EGameState::GAME_WON;}

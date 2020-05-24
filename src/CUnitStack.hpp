@@ -80,14 +80,14 @@ public:
 	std::unique_ptr<CTrooper> CreateSelected() const;
 	
 	// INGAME
-	CBuffer CreateTroopsInfoBuffer(int windowWidth) const;
-	CBuffer CreateTowersInfoBuffer(int windowWidth) const;
+	CBuffer CreateTroopsInfoBuffer(size_t windowWidth) const;
+	CBuffer CreateTowersInfoBuffer(size_t windowWidth) const;
 	/**
 	 * Creates a buffer with unit stack that we can later render
 	 * @param windowWidth Width of the window we want to render in
 	 * @return created buffer
 	 */
-	CBuffer CreateBuffer(int windowWidth) const;
+	CBuffer CreateBuffer(size_t windowWidth) const;
 	/**
 	 * Cycle through trooper selection
 	 */

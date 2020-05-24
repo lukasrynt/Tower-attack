@@ -15,9 +15,9 @@ bool CBasicTrooper::Update()
 	return true;
 }
 
-CBuffer CBasicTrooper::CreateInfoBuffer(int windowWidth) const
+CBuffer CBasicTrooper::CreateInfoBuffer(size_t width) const
 {
-	return move(CBuffer{windowWidth}
+	return move(CBuffer{width}
 		.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_YELLOW) + Colors::FG_BLACK)
 		.AddEscapeSequence(Colors::FG_YELLOW)
 		.Append("\tHP: " + to_string(m_Hp))

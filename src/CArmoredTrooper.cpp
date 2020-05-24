@@ -25,9 +25,9 @@ void CArmoredTrooper::ReceiveDamage(int damage, string bulletColor)
 	}
 }
 
-CBuffer CArmoredTrooper::CreateInfoBuffer(int windowWidth) const
+CBuffer CArmoredTrooper::CreateInfoBuffer(size_t width) const
 {
-	return move(CBuffer{windowWidth}
+	return move(CBuffer{width}
 		.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_CYAN) + Colors::FG_BLACK)
 		.Append("\tHP: " + to_string(m_Hp), Colors::FG_CYAN)
 		.Append("\tSpeed: " + to_string(m_Frames.GetSpeed()), Colors::FG_CYAN)

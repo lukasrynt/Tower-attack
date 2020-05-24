@@ -74,13 +74,13 @@ CBuffer & CBuffer::Concat(CBuffer && other)
 	return *this;
 }
 
-CBuffer & CBuffer::Center()
+CBuffer & CBuffer::CenterVertical()
 {
 	size_t longest = LongestSize();
-	if (longest > m_WindowWidth)
+	if (longest > m_Width)
 		return *this;
 	for (auto & str : m_Buffer)
-		str = string((m_WindowWidth - longest) / 2,' ').append(str);
+		str = string((m_Width - longest) / 2, ' ').append(str);
 	return *this;
 }
 
@@ -106,6 +106,7 @@ CBuffer & CBuffer::operator+=(CBuffer other)
 
 ostream & operator<<(ostream & out, const CBuffer & self)
 {
+	// print buffer
 	for (const auto & str : self.m_Buffer)
 		if (!(out << noskipws << str << endl))
 			return out;
@@ -144,4 +145,16 @@ std::string & CBuffer::At(size_t idx)
 	if (idx > m_Buffer.size())
 		throw out_of_range("Given index is out of bounds of buffer");
 	return m_Buffer[idx];
+}
+
+CBuffer & CBuffer::CenterHorizontal(size_t height)
+{
+	// center horizontally
+	CBuffer tmp{m_Width};
+	if (Height() < height)
+		for (size_t i = 0; i < (height - Height()) / 2; ++i)
+			tmp.Append("");
+	tmp.Append(move(*this));
+	*this = tmp;
+	return *this;
 }

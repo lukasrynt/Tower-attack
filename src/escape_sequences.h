@@ -44,8 +44,8 @@ namespace Escapes
 	constexpr const char * const RESET_CURSOR   = 	"\x1b[H";
 	inline std::string REPOSITION_CURSOR(int row, int col)
 	{return std::string("\x1b[") + std::to_string(row) + ";"+ std::to_string(col) + 'H';}
-	inline std::string CHANGE_WINDOW_SIZE(int rows, int cols)
+	inline std::string CHANGE_WINDOW_SIZE(int height, int width)
 	{
-		return std::string("\x1b[8;") + std::to_string(rows) + ';' + std::to_string(cols) + 't';
+		return std::string("\x1b[8;") + std::to_string(height) + ';' + std::to_string(width) + 't';
 	}
 }

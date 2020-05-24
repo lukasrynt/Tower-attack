@@ -122,13 +122,12 @@ void CGame::Update()
 		m_GameState = EGameState::GAME_OVER;
 }
 
-CBuffer CGame::CreateBuffer(int windowWidth) const
+CBuffer CGame::CreateBuffer(size_t width) const
 {
-	CBuffer buffer{windowWidth};
-	buffer += move(m_Waves.CreateBuffer(windowWidth).Concat(m_UnitStack->CreateBuffer(windowWidth)).Center());
-	buffer += move(CBuffer{windowWidth}.Append().Append());
-	buffer += m_Map.CreateBuffer(windowWidth);
-	return buffer;
+	return move(CBuffer{width}
+		.Append(move(m_Waves.CreateBuffer(width).Concat(m_UnitStack->CreateBuffer(width)).CenterVertical()))
+		.Append(move(CBuffer{width}.Append().Append()))
+		.Append(m_Map.CreateBuffer(width)));
 }
 
 void CGame::Visualize(const deque<pos_t> & positions)

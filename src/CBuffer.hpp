@@ -16,19 +16,12 @@
 class CBuffer
 {
 public:
-	~CBuffer() = default;
-	CBuffer(const CBuffer & other) = delete;
-	CBuffer(CBuffer && other) = default;
-	CBuffer & operator=(const CBuffer & other) = delete;
-	CBuffer & operator=(CBuffer && other) = default;
-	
-	explicit CBuffer(const int WINDOW_WIDTH) noexcept
-		: m_WindowWidth(WINDOW_WIDTH)
+	explicit CBuffer(size_t width) noexcept
+		: m_Width(width)
 	{}
 	
-	CBuffer(const int WINDOW_WIDTH, std::vector<std::string> buffer)
-		: m_WindowWidth(WINDOW_WIDTH),
-		  m_Buffer(move(buffer))
+	CBuffer(std::vector<std::string> buffer)
+		: m_Buffer(move(buffer))
 	{}
 	
 	/**
@@ -92,7 +85,8 @@ public:
 	 * Centers the buffer so that it is in center of the screen and left aligned
 	 * @return Reference to this
 	 */
-	CBuffer & Center();
+	CBuffer & CenterVertical();
+	CBuffer & CenterHorizontal(size_t height);
 	/**
 	 * Adds text to the line at the given index
 	 * @param idx Index of the line to which we want to append
@@ -115,14 +109,14 @@ public:
 	 */
 	friend std::ostream & operator<<(std::ostream & out, const CBuffer & self);
 	
-	int Height() const
+	size_t Height() const
 	{return m_Buffer.size();}
 	
-	int Width() const
+	size_t Width() const
 	{return LongestSize();}
 	
 private:
-	size_t m_WindowWidth;
+	size_t m_Width;
 	std::vector<size_t> m_Sizes;
 	std::vector<std::string> m_Buffer;
 	

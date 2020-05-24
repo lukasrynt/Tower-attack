@@ -132,9 +132,9 @@ ostream & operator<<(ostream & out, const CWaves & waves)
 
 /**********************************************************************************************************************/
 // RENDER
-CBuffer CWaves::CreateBuffer(int windowWidth) const
+CBuffer CWaves::CreateBuffer(size_t width) const
 {
-	CBuffer buffer{windowWidth};
+	CBuffer buffer{width};
 	buffer.Append("Waves:", Colors::FG_GREEN)
 			.Append(string(10 + m_MaxSize, '-'), Colors::FG_GREEN);
 	

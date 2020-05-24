@@ -20,17 +20,16 @@ istream & operator>>(istream & in, CGate & self)
 	return in;
 }
 
-CBuffer CGate::Render(int windowWidth) const
+CBuffer CGate::Render(size_t width) const
 {
 	int part = 0;
 	if (m_Hp > 0)
 		part = round<int>(m_Hp / static_cast<double> (m_MaxHp) * 10);
-	CBuffer buffer{windowWidth};
-	buffer.Append("Gate: [")
+	return move(CBuffer{width}
+		.Append("Gate: [")
 		.AddText(string(part, ' '), Colors::BG_RED)
 		.AddText(string(10 - part, ' ') + ']')
 		.Append()
 		.Append()
-		.Center();
-	return buffer;
+		.CenterVertical());
 }

@@ -49,18 +49,6 @@ bool CTrooper::Move(const unordered_map<pos_t,shared_ptr<CTile>> & map, bool & e
 	return false;
 }
 
-CBuffer CTrooper::CreateInfoBuffer(int windowWidth) const
-{
-	return move(CBuffer{windowWidth}
-						.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_YELLOW) + Colors::FG_BLACK)
-						.AddEscapeSequence(Colors::FG_YELLOW)
-						.Append("\tHP: " + to_string(m_Hp))
-						.Append("\tSpeed: " + to_string(m_Frames.GetSpeed()))
-						.Append("\tAttack: " + to_string(m_Attack))
-						.Append("\tCost: " + to_string(m_Price) + " ©")
-		.AddEscapeSequence(Colors::RESET));
-}
-
 /**********************************************************************************************************************/
 // LOADING
 istream & CTrooper::LoadOnMap(istream & in)

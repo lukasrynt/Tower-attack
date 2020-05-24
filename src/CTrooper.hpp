@@ -63,7 +63,7 @@ public:
 	{return out << m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent();}
 	
 	// RENDERING
-	virtual CBuffer CreateInfoBuffer(int windowWidth) const = 0;
+	virtual CBuffer CreateInfoBuffer(size_t width) const = 0;
 	
 	// GETTERS/ SETTERS
 	bool Died() const

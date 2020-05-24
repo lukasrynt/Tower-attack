@@ -31,8 +31,7 @@ int main ()
 	if (!game.CheckNew())
 		return 3;
 	game.Update();
-	CInterface interface{cout};
-	interface.Render(game.CreateBuffer(150));
+	cout << game.CreateBuffer(150);
 //	game.AddTroop();
 //	game.AddTroop();
 //	game.ReleaseWaves();

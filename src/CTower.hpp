@@ -44,7 +44,7 @@ public:
 	
 	CTower & SetPosition(pos_t position);
 	
-	virtual CBuffer CreateInfoBuffer(int windowWidth) const = 0;
+	virtual CBuffer CreateInfoBuffer(size_t width) const = 0;
 	virtual bool Attack(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, std::unordered_map<pos_t, std::shared_ptr<CTrooper>> & troops, int rows, int cols) = 0;
 protected:
 	int m_AttackDamage;		//!< attack damage of the tower

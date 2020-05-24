@@ -33,7 +33,7 @@ public:
 	{return CTower::SaveOnMap(out);}
 	
 	// ACTIONS
-	CBuffer CreateInfoBuffer(int windowWidth) const override;
+	CBuffer CreateInfoBuffer(size_t width) const override;
 	bool Attack(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, std::unordered_map<pos_t, std::shared_ptr<CTrooper>> & troops, int rows, int cols) override;
 
 private:

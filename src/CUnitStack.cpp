@@ -113,18 +113,18 @@ unique_ptr<CTrooper> CUnitStack::CreateSelected() const
 	return nullptr;
 }
 
-CBuffer CUnitStack::CreateBuffer(int windowWidth) const
+CBuffer CUnitStack::CreateBuffer(size_t width) const
 {
-	return move(CBuffer{windowWidth}
+	return move(CBuffer{width}
 		.Append("Units:", Colors::FG_CYAN)
 		.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
 		.Append(RenderTroops())
 		.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN));
 }
 
-CBuffer CUnitStack::CreateTroopsInfoBuffer(int windowWidth) const
+CBuffer CUnitStack::CreateTroopsInfoBuffer(size_t width) const
 {
-	CBuffer buffer{windowWidth};
+	CBuffer buffer{width};
 	buffer.Append()
 			.Append("Basic trooper", string(Colors::BG_YELLOW) + Colors::FG_BLACK)
 			.Append(" ● Basic unit with limited health and options.", Colors::FG_YELLOW)
@@ -132,7 +132,7 @@ CBuffer CUnitStack::CreateTroopsInfoBuffer(int windowWidth) const
 	for (const auto & troop : m_Troops)
 		// for this way of formatting i see no other way than this, i want to have some common info on the troops and then the units
 		if (troop.second->GetType() == ETileType::BASIC_TROOP)
-			buffer.Append(troop.second->CreateInfoBuffer(windowWidth));
+			buffer.Append(troop.second->CreateInfoBuffer(width));
 	
 	
 	buffer.Append("Basic trooper", string(Colors::BG_CYAN) + Colors::FG_BLACK)
@@ -140,20 +140,20 @@ CBuffer CUnitStack::CreateTroopsInfoBuffer(int windowWidth) const
 			.Append(" ● He can wall up to prevent incoming damage, before his shields deplete.", Colors::FG_CYAN);
 	for (const auto & troop : m_Troops)
 		if (troop.second->GetType() == ETileType::ARMORED_TROOP)
-			buffer.Append(troop.second->CreateInfoBuffer(windowWidth));
+			buffer.Append(troop.second->CreateInfoBuffer(width));
 	return buffer;
 }
 
-CBuffer CUnitStack::CreateTowersInfoBuffer(int windowWidth) const
+CBuffer CUnitStack::CreateTowersInfoBuffer(size_t width) const
 {
-	CBuffer buffer{windowWidth};
+	CBuffer buffer{width};
 	buffer.Append()
 			.Append("Archer tower", string(Colors::BG_RED) + Colors::FG_BLACK)
 			.Append(" ● Basic tower with archer attacks.", Colors::FG_RED)
 			.Append(" ● Can focus only one trooper at once and it will be always the closest.", Colors::FG_RED);
 	for (const auto & tower : m_Towers)
 		if (tower.second->GetType() == ETileType::ARCHER_TOWER)
-			buffer.Append(tower.second->CreateInfoBuffer(windowWidth));
+			buffer.Append(tower.second->CreateInfoBuffer(width));
 	
 	buffer.Append("Mage tower", string(Colors::BG_BLUE) + Colors::FG_BLACK)
 			.Append(" ● Mage tower which can cast magic attacks", Colors::FG_BLUE)
@@ -161,7 +161,7 @@ CBuffer CUnitStack::CreateTowersInfoBuffer(int windowWidth) const
 					Colors::FG_BLUE);
 	for (const auto & tower : m_Towers)
 		if (tower.second->GetType() == ETileType::MAGE_TOWER)
-			buffer.Append(tower.second->CreateInfoBuffer(windowWidth));
+			buffer.Append(tower.second->CreateInfoBuffer(width));
 	return buffer;
 }
 

@@ -72,9 +72,9 @@ void CMageTower::SendNewWave(unordered_map<pos_t, shared_ptr<CTile>> & map, unor
 	}
 }
 
-CBuffer CMageTower::CreateInfoBuffer(int windowWidth) const
+CBuffer CMageTower::CreateInfoBuffer(size_t width) const
 {
-	return move(CBuffer{windowWidth}
+	return move(CBuffer{width}
 						.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_BLUE) + Colors::FG_BLACK)
 						.Append("\tAttack damage: " + to_string(m_AttackDamage), Colors::FG_BLUE)
 						.Append("\tAttack speed: " + to_string(m_AttackSpeed.GetSpeed()), Colors::FG_BLUE)

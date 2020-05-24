@@ -30,11 +30,6 @@ public:
 	
 	// SCREENS
 	/**
-	 * Renders given buffer
-	 * @param buffer Buffer to be rendered
-	 */
-	void Render(CBuffer buffer) const;
-	/**
 	 * Saves the game and handles save screen
 	 * @param game Game to be saved
 	 * @return false if the user wanted to return
@@ -145,7 +140,6 @@ private:
 	// COMMON
 	std::string PromptFileName(const std::string & message) const;
 	static void NullTimeout();
-	void ChangeWindowSize(int width, int height) const;
 	void ResetScreen() const;
 };
 

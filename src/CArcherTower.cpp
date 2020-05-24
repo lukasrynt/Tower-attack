@@ -75,9 +75,9 @@ void CArcherTower::ArrowClear(unordered_map<pos_t,shared_ptr<CTile>> & map)
 	m_ArrowPos = pos::npos;
 }
 
-CBuffer CArcherTower::CreateInfoBuffer(int windowWidth) const
+CBuffer CArcherTower::CreateInfoBuffer(size_t width) const
 {
-	return move(CBuffer{windowWidth}
+	return move(CBuffer{width}
 		.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_RED) + Colors::FG_BLACK)
 		.Append("\tAttack damage: " + to_string(m_AttackDamage), Colors::FG_RED)
 		.Append("\tAttack speed: " + to_string(m_AttackSpeed.GetSpeed()), Colors::FG_RED)

@@ -51,7 +51,7 @@ public:
 	 * @param windowWidth Size of the window to be rendered into
 	 * @return Created buffer
 	 */
-	CBuffer CreateBuffer(int windowWidth) const;
+	CBuffer CreateBuffer(size_t width) const;
 	
 	// INPUT PROCESSING
 	/**

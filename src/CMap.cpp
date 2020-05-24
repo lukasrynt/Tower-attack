@@ -29,9 +29,9 @@ void CMap::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 
 istream & operator>>(istream & in, CMap & self)
 {
-	self.LoadMapInfo(in);
-	self.LoadMap(in);
-	self.LoadEntities(in);
+	self.LoadMapInfo(in)
+		.LoadMap(in)
+		.LoadEntities(in);
 	return in;
 }
 
@@ -96,12 +96,13 @@ CMap & CMap::PlaceTroops()
 	return *this;
 }
 
-void CMap::LoadMapInfo(istream & in)
+CMap & CMap::LoadMapInfo(istream & in)
 {
 	in >> m_Rows >> m_Cols >> m_Gate >> m_TowerCount;
+	return *this;
 }
 
-void CMap::LoadMap(istream & in)
+CMap & CMap::LoadMap(istream & in)
 {
 	LoadWallLine(in, 0);
 	
@@ -112,9 +113,10 @@ void CMap::LoadMap(istream & in)
 	
 	if (!FindPathsFromSpawn())
 		in.setstate(ios::failbit);
+	return *this;
 }
 
-void CMap::LoadEntities(istream & in)
+CMap & CMap::LoadEntities(istream & in)
 {
 	if (!m_UnitStack)
 		in.setstate(ios::failbit);
@@ -134,6 +136,7 @@ void CMap::LoadEntities(istream & in)
 			break;
 		}
 	}
+	return *this;
 }
 
 void CMap::LoadTroops(istream & in, char ch)
@@ -296,7 +299,7 @@ ostream & operator<<(ostream & out, const CMap & self)
 
 void CMap::SaveMapInfo(ostream & out) const
 {
-	out << "(M)" << endl << m_Rows << ' ' << m_Cols << ' ' << m_Gate << endl;
+	out << "(M)" << endl << m_Rows << ' ' << m_Cols << ' ' << m_Gate << ' ' << m_TowerCount << endl;
 }
 
 void CMap::SaveMap(ostream & out) const
@@ -329,17 +332,16 @@ void CMap::SaveEntities(ostream & out) const
 
 /**********************************************************************************************************************/
 // RENDER
-CBuffer CMap::CreateBuffer(int windowWidth) const
+CBuffer CMap::CreateBuffer(size_t width) const
 {
-	CBuffer buffer{windowWidth};
-	buffer += m_Gate.Render(windowWidth);
-	buffer += RenderMap(windowWidth);
-	return buffer;
+	return move(CBuffer{width}
+		.Append(m_Gate.Render(width))
+		.Append(RenderMap(width)));
 }
 
-CBuffer CMap::RenderMap(int windowWidth) const
+CBuffer CMap::RenderMap(size_t width) const
 {
-	CBuffer buffer{windowWidth};
+	CBuffer buffer{width};
 	for (int i = 0; i < m_Rows; ++i)
 	{
 		buffer.Append();
@@ -351,7 +353,7 @@ CBuffer CMap::RenderMap(int windowWidth) const
 				buffer << *m_Map.at({j, i});
 		}
 	}
-	buffer.Center();
+	buffer.CenterVertical();
 	return buffer;
 }
 

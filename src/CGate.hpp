@@ -17,7 +17,7 @@ public:
 	void ReceiveDamage(int damage)
 	{m_Hp -= damage;}
 	
-	CBuffer Render(int windowWidth) const;
+	CBuffer Render(size_t width) const;
 	
 	pos_t & Position()
 	{return m_Pos;}
