@@ -47,10 +47,15 @@ depend:
 	echo "Dependencies created...";
 
 # Generate documentation
-.PHONY: doc
-doc:
-	@ doxygen Doxyfile > /dev/null; \
+doc: doc src/*.hpp
+	@ doxygen Doxyfile; \
  	echo "Documentation updated...";
+
+# ZIP the directories
+zip: src/* testing/* Makefile Doxyfile
+	@ zip ryntluka.zip $^; \
+ 	echo "Zip created..."
+
 
 # Include dependencies
 -include $(DEP_TARGET);

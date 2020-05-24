@@ -1,8 +1,0 @@
-<map id="CGame::Save" name="CGame::Save">
-<area shape="rect" id="node2" href="$classCWaves.html#ac1e5f5097a6a17b7bed3cc7d2339f8d5" title="CWaves::Save" alt="" coords="171,5,282,32"/>
-<area shape="rect" id="node3" href="$classCGame.html#ae35c7ce1f6651b855ec254ba0eebc7b2" title="CGame::SaveState" alt="" coords="159,56,295,83"/>
-<area shape="rect" id="node4" href="$classCMap.html#a804c80310a23591ccf8f43d5da6eec10" title="CMap::Save" alt="" coords="179,107,274,133"/>
-<area shape="rect" id="node5" href="$classCMap.html#a4c183f0677c3b1b4c14f2fb09bc0bb7d" title="CMap::SaveDimensions" alt="" coords="343,56,507,83"/>
-<area shape="rect" id="node6" href="$classCMap.html#ad71300b066bd6f4e9824cd2f41efa224" title="CMap::SaveGate" alt="" coords="363,107,486,133"/>
-<area shape="rect" id="node7" href="$classCMap.html#aed67ccc2fbb6c6fb8b76da98046aab4c" title="CMap::SaveMap" alt="" coords="365,157,485,184"/>
-</map>

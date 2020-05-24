@@ -62,6 +62,9 @@ public:
 	bool CheckSpawnCount(int count) const;
 	bool WaveIsRunning() const
 	{return !m_Troops.empty();}
+	CMap & PlaceTroops();
+	CMap & PlaceTowers();
+	CMap & GenerateTowers();
 	
 	// SAVING
 	/**
@@ -98,26 +101,26 @@ public:
 	 */
 	std::map<int, bool> SpawnsFree() const;
 	
-	// TESTING STUFFs
+	// TESTING STUFF
 	void VisualizePath(pos_t start, pos_t goal);
 	void Visualize(const std::deque<pos_t> & positions);
 private:
 	// VARIABLES
 	CGate m_Gate;
-	int m_Cols;									//!< map's columns
-	int m_Rows;									//!< map's rows
+	int m_Cols;													//!< map's columns
+	int m_Rows;													//!< map's rows
+	size_t m_TowerCount;
 	std::vector<std::shared_ptr<CTrooper>> m_Troops;			//!< pointers to troopers on the map
 	std::deque<std::shared_ptr<CTower>> m_Towers;				//!< pointers to towers on the map
-	std::unordered_map<pos_t,std::shared_ptr<CTile>> m_Map; 		//!< two dimensional map
-	std::map<int, pos_t> m_Spawns;				//!< spawns on the map mapped to their indexes
-	std::map<pos_t, std::deque<pos_t>> m_Paths;	//!< paths from spawn points to finish mapped to positions of spawns
-	std::shared_ptr<CUnitStack> m_UnitStack;	//!< unit stack containing all towers and troopers templates
+	std::unordered_map<pos_t,std::shared_ptr<CTile>> m_Map; 	//!< two dimensional map
+	std::map<int, pos_t> m_Spawns;								//!< spawns on the map mapped to their indexes
+	std::map<pos_t, std::deque<pos_t>> m_Paths;					//!< paths from spawn points to finish mapped to positions of spawns
+	std::shared_ptr<CUnitStack> m_UnitStack;					//!< unit stack containing all towers and troopers templates
 	
 	// LOADING
 	void LoadMap(std::istream & in);
 	void LoadMapInfo(std::istream & in);
 	void LoadEntities(std::istream & in);
-	void PlaceTroops();
 	void LoadWallLine(std::istream & in, int row);
 	void LoadMapCenter(std::istream & in, int row);
 	bool LoadWallChar(char ch, pos_t position);
@@ -142,6 +145,7 @@ private:
 	
 	// UPDATE PHASE
 	bool CheckTroopsDeaths();
+	bool MoveOnMap(std::shared_ptr<CTrooper> & troop);
 	bool MoveTroops();
 	bool TowerAttack();
 };

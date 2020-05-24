@@ -80,7 +80,7 @@ R * 20 20 3                 -- lukostřelecká věž: znak, rychlost, útok, dos
 
 --Vlny--
 (W)                         -- počet a velikost se odvodí z formátu
-0 20 300                    -- značí zda je zrovna spuštěná vlna nebo ne, rychlost spawneru, zdroje dostupné pro hru
+0 2 20 300                  -- značí zda je zrovna spuštěná vlna nebo ne, počet vln, rychlost spawneru, zdroje dostupné pro hru
 [@    ]                     -- včetně uložených jednotek
 [     ]
 

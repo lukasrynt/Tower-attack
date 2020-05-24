@@ -1,7 +1,0 @@
-<map id="CPosition::GetNeighbours" name="CPosition::GetNeighbours">
-<area shape="rect" id="node2" href="$structCPosition.html#a9486f04aa59bf6bdac30ef26812b4ea9" title="CPosition::left" alt="" coords="235,5,340,32"/>
-<area shape="rect" id="node4" href="$structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c" title="CPosition::right" alt="" coords="231,56,343,83"/>
-<area shape="rect" id="node5" href="$structCPosition.html#a114c7b43da16023e32f8557d3bc90b65" title="CPosition::up" alt="" coords="237,107,338,133"/>
-<area shape="rect" id="node6" href="$structCPosition.html#a5d814dc0e8b552491ad93212ba57c901" title="CPosition::down" alt="" coords="228,157,347,184"/>
-<area shape="rect" id="node3" href="$structCPosition.html#ab97ec1a59dc7e57fef6b4aa36b28ac75" title="CPosition::CPosition" alt="" coords="395,81,539,108"/>
-</map>

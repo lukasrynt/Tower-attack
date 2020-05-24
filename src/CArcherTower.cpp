@@ -26,6 +26,8 @@ bool CArcherTower::Attack(unordered_map<pos_t, shared_ptr<CTile>> & map, unorder
 	if (ArrowMove(map))
 	{
 		DamageTrooper(troops);
+		// TODO should implement recolor
+//		map.at(m_ArrowPos)->AddBackground(Colors::BG_RED);
 		return true;
 	}
 	map.emplace(m_ArrowPos, new CTile(' ', ETileType::BULLET, Colors::BG_RED));
@@ -51,10 +53,10 @@ bool CArcherTower::AssignArrow(unordered_map<pos_t, shared_ptr<CTile>> & map, co
 
 void CArcherTower::DamageTrooper(unordered_map<pos_t, shared_ptr<CTrooper>> & troops)
 {
-	if (!troops.count(m_ArrowPos))
-		return;
 	auto troop = troops.at(m_ArrowPos);
-	troop->ReceiveDamage(m_AttackDamage);	// TODO should implement recolor
+	m_ArrowPath.clear();
+	m_ArrowPos = pos::npos;
+	troop->ReceiveDamage(m_AttackDamage);
 }
 
 bool CArcherTower::ArrowMove(unordered_map<pos_t,shared_ptr<CTile>> & map)
@@ -77,9 +79,9 @@ void CArcherTower::ArrowClear(unordered_map<pos_t,shared_ptr<CTile>> & map)
 CBuffer CArcherTower::CreateInfoBuffer(int windowWidth) const
 {
 	return move(CBuffer{windowWidth}
-						.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_RED) + Colors::FG_BLACK)
-						.Append("\tAttack damage: " + to_string(m_AttackDamage), Colors::FG_RED)
-						.Append("\tAttack speed: " + to_string(m_AttackSpeed.GetSpeed()), Colors::FG_RED)
-						.Append("\tRange: " + to_string(m_Range), Colors::FG_RED));
+		.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_RED) + Colors::FG_BLACK)
+		.Append("\tAttack damage: " + to_string(m_AttackDamage), Colors::FG_RED)
+		.Append("\tAttack speed: " + to_string(m_AttackSpeed.GetSpeed()), Colors::FG_RED)
+		.Append("\tRange: " + to_string(m_Range), Colors::FG_RED));
 }
 

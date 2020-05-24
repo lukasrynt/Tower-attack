@@ -78,15 +78,19 @@ char CGame::LoadSignatureChar(istream & in)
 	return res;
 }
 
-bool CGame::CheckSaved() const
+bool CGame::CheckSaved()
 {
+	m_Map.PlaceTroops()
+		.PlaceTowers();
 	return m_Map.CheckSaved()
 		&& m_UnitStack->Check()
 		&& m_Map.CheckSpawnCount(m_Waves.GetWaveCnt());
 }
 
-bool CGame::CheckNew() const
+bool CGame::CheckNew()
 {
+	m_Map.GenerateTowers()
+		.PlaceTowers();
 	return m_Map.CheckNew()
 		&& m_UnitStack->Check()
 		&& m_Waves.CheckNew()

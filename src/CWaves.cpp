@@ -14,7 +14,7 @@ using namespace std;
 /**********************************************************************************************************************/
 // INIT
 CWaves::CWaves() noexcept
-	: m_Waves(10),
+	: m_Waves(0),
 	  m_Selected(0),
 	  m_MaxSize(0),
 	  m_Frames(0),
@@ -30,7 +30,9 @@ void CWaves::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 istream & operator>>(istream & in, CWaves & waves)
 {
 	char ch;
-	in >> waves.m_ReleasingWave >> waves.m_Frames >> waves.m_Resources;
+	int tmp;
+	in >> waves.m_ReleasingWave >> tmp >> waves.m_Frames >> waves.m_Resources;
+	waves.m_Waves = vector<deque<unique_ptr<CTrooper>>>(tmp);
 	size_t pos = 0;
 	
 	while (pos < 10)
@@ -49,7 +51,7 @@ istream & operator>>(istream & in, CWaves & waves)
 	return in;
 }
 
-deque<unique_ptr<CTrooper>> CWaves::LoadWaves(std::istream & in)
+deque<unique_ptr<CTrooper>> CWaves::LoadWaves(istream & in)
 {
 	if (!m_UnitStack)
 		in.setstate(ios::failbit);
@@ -192,8 +194,7 @@ void CWaves::AddTroop()
 	
 	// add trooper to the wave
 	m_Resources -= price;
-	auto troop = m_UnitStack->CreateSelected();
-	m_Waves[m_Selected].emplace_back(troop);
+	m_Waves[m_Selected].emplace_back(m_UnitStack->CreateSelected());
 }
 
 void CWaves::DeleteTroop()

@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <memory>
 #include <sstream>
+#include <CInterface.hpp>
 #include "CWaves.hpp"
 #include "CMap.hpp"
 #include "CPath.hpp"
@@ -13,28 +14,32 @@ using namespace std;
 
 int main ()
 {
-	
-	shared_ptr<CTrooper> trooper(new CTrooper());
-	shared_ptr<CTrooper> inMap = trooper;
 
-//	ifstream inFile("/home/lukas/School/PA2/semestralka/maps/test2.map");
-//	inFile.exceptions(ios::failbit | ios::badbit | ios::eofbit);
+	ifstream inFile("/home/lukas/School/PA2/semestralka/maps/test4.map");
+	inFile.exceptions(ios::failbit | ios::badbit | ios::eofbit);
 
-//	CGame game;
-//	try
-//	{
-//		inFile >> game;
-//	}
-//	catch(const ios::failure &)
-//	{
-//		if (inFile.eof())
-//			return 0;
-//		return 2;
-//	}
-//	game.Render(cout);
+	CGame game;
+	try
+	{
+		inFile >> game;
+	}
+	catch(const ios::failure &)
+	{
+		if (!inFile.eof())
+			return 2;
+	}
+	if (!game.CheckNew())
+		return 3;
+	game.Update();
+	CInterface interface{cout};
+	interface.Render(game.CreateBuffer(150));
+//	game.AddTroop();
+//	game.AddTroop();
+//	game.ReleaseWaves();
+//	interface.Render(game.CreateBuffer(150));
 //	for (int i = 0; i < 60; ++i)
 //	{
-//		game.Render(cout);
+//		interface.Render(game.CreateBuffer(150));
 //		game.Update();
 //	}
 

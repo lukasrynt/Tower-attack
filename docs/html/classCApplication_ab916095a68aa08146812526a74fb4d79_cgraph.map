@@ -1,7 +1,0 @@
-<map id="CApplication::LoadSavedGame" name="CApplication::LoadSavedGame">
-<area shape="rect" id="node2" href="$classCApplication.html#aae7f4bad794f5c7763e047e8586f1ea6" title="CApplication::PromptFileName" alt="" coords="257,56,460,83"/>
-<area shape="rect" id="node6" href="$classCApplication.html#a9d9bb6b9f137928bfaef154d58e175b6" title="CApplication::InvalidInput" alt="" coords="273,107,444,133"/>
-<area shape="rect" id="node3" href="$classCApplication.html#acdcdce972810067eb5acaa3c780051f5" title="CApplication::ResetScreen" alt="" coords="508,5,688,32"/>
-<area shape="rect" id="node4" href="$classCApplication.html#a3cb29b850cceb37ceb718f385b05ddae" title="CApplication::Die" alt="" coords="736,81,860,108"/>
-<area shape="rect" id="node5" href="$classCApplication.html#a12d92fc8f98ea2b8007403ee15b2ca60" title="CApplication::GetChar" alt="" coords="521,107,675,133"/>
-</map>

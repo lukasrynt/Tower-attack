@@ -1,5 +1,0 @@
-<map id="CTower" name="CTower">
-<area shape="rect" id="node3" href="$classCArcherTower.html" title="{CArcherTower\n|&#45; m_ArrowPos\l&#45; m_ArrowPath\l|+ CArcherTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ CreateInfoBuffer()\l+ Attack()\l&#45; ArrowMove()\l&#45; ArrowClear()\l&#45; AssignArrow()\l&#45; DamageTrooper()\l}" alt="" coords="5,637,144,891"/>
-<area shape="rect" id="node4" href="$classCMageTower.html" title="{CMageTower\n|&#45; m_WaveStatus\l&#45; m_WaveLevel\l&#45; m_LastWave\l|+ CMageTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ CreateInfoBuffer()\l+ Attack()\l&#45; PerimeterBreached()\l&#45; ClearLastWave()\l&#45; SendNewWave()\l}" alt="" coords="168,637,317,891"/>
-<area shape="rect" id="node2" href="$classCTile.html" title="{CTile\n|# m_Char\l# m_Type\l# m_Color\l|+ CTile()\l+ CTile()\l+ CTile()\l+ ~CTile()\l+ CTile()\l+ CTile()\l+ operator=()\l+ operator=()\l+ GetChar()\l+ GetColor()\land 9 more...\l&#45; InitColor()\l&#45; InitType()\l}" alt="" coords="109,5,208,288"/>
-</map>

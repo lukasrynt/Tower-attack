@@ -1,8 +1,0 @@
-<map id="CMap::AddFromSaved" name="CMap::AddFromSaved">
-<area shape="rect" id="node2" href="$classCTile.html#aff443072dd2ab83898ef0c850c56b01a" title="CTile::IsTower" alt="" coords="229,5,337,32"/>
-<area shape="rect" id="node3" href="$classCTile.html#ad30425f52c7e98a8834df1442c89a49e" title="CTile::GetRawChar" alt="" coords="215,56,352,83"/>
-<area shape="rect" id="node4" href="$classCTower.html#a2fc8badd35a2a938f531777385f31f50" title="CTower::SetPosition" alt="" coords="212,107,355,133"/>
-<area shape="rect" id="node5" href="$classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="231,157,336,184"/>
-<area shape="rect" id="node6" href="$classCTrooper.html#a358f7bd720fa4e902fdd6833e06cff01" title="CTrooper::SetPath" alt="" coords="218,208,349,235"/>
-<area shape="rect" id="node7" href="$classCTrooper.html#aa16f3acb6263d55c0f19eec3a6c09ade" title="CTrooper::SetPosition" alt="" coords="208,259,359,285"/>
-</map>

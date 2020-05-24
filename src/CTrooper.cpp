@@ -12,12 +12,9 @@
 using namespace std;
 /**********************************************************************************************************************/
 // ACTIONS
-void CTrooper::Spawn(unordered_map<pos_t,shared_ptr<CTile>> & map)
+void CTrooper::Spawn()
 {
-	pos_t target = m_Path.front();
-	if (!map.count(target))
-		map.emplace(target, this);
-	m_Pos = target;
+	m_Pos = m_Path.front();
 	m_Path.pop_front();
 }
 
@@ -26,8 +23,10 @@ void CTrooper::ReceiveDamage(int damage)
 	m_Hp -= damage;
 }
 
-bool CTrooper::Move(unordered_map<pos_t,shared_ptr<CTile>> & map)
+bool CTrooper::Move(const unordered_map<pos_t,shared_ptr<CTile>> & map, bool & emplace, bool & erase)
 {
+	emplace = erase = false;
+	
 	// move according to current frame
 	if (!m_Frames.ActionAllowed() || m_Path.empty())
 		return false;
@@ -43,17 +42,15 @@ bool CTrooper::Move(unordered_map<pos_t,shared_ptr<CTile>> & map)
 	if (target == m_Path.back())
 	{
 		m_Path.pop_front();
-		if (map.count(m_Pos))
-			map.erase(m_Pos);
+		erase = true;
 		return true;
 	}
 	
 	// move
 	m_Path.pop_front();
-	if (map.count(m_Pos))
-		map.erase(m_Pos);
 	m_Pos = target;
-	map.emplace(m_Pos, this);
+	erase = true;
+	emplace = true;
 	return false;
 }
 

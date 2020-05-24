@@ -32,12 +32,12 @@ public:
 		  m_SpawnIdx(0)
 	{}
 	
-	virtual CTrooper * Clone() const noexcept
-	{return new CTrooper(*this);}
+	virtual std::unique_ptr<CTrooper> Clone() const noexcept
+	{return std::make_unique<CTrooper>(*this);}
 	
 	// ACTIONS
-	void Spawn(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map);
-	bool Move(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map);
+	void Spawn();
+	bool Move(const std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, bool & emplace, bool & erase);
 	int Attack() const
 	{return m_Attack;}
 	

@@ -1,4 +1,0 @@
-<map id="CTrooper" name="CTrooper">
-<area shape="rect" id="node3" href="$classCArmoredTrooper.html" title="{CArmoredTrooper\n|&#45; m_Armor\l&#45; m_MaxArmor\l|+ CArmoredTrooper()\l+ Clone()\l+ ReceiveDamage()\l+ CreateInfoBuffer()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l}" alt="" coords="5,696,151,891"/>
-<area shape="rect" id="node2" href="$classCTile.html" title="{CTile\n|# m_Char\l# m_Type\l# m_Color\l|+ CTile()\l+ CTile()\l+ CTile()\l+ ~CTile()\l+ CTile()\l+ CTile()\l+ operator=()\l+ operator=()\l+ GetChar()\l+ GetColor()\land 9 more...\l&#45; InitColor()\l&#45; InitType()\l}" alt="" coords="29,5,127,288"/>
-</map>

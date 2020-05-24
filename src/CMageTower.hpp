@@ -20,8 +20,8 @@ public:
 		  m_WaveLevel(0)
 	{}
 	
-	CMageTower * Clone() const override
-	{return new CMageTower(*this);}
+	std::unique_ptr<CTower> Clone() const override
+	{return std::make_unique<CMageTower>(*this);}
 	
 	// LOADING
 	std::istream & LoadTemplate(std::istream & in) override

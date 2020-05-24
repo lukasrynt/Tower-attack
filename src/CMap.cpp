@@ -5,9 +5,8 @@
 
 #include <cstring>
 #include <iostream>
-#include <fstream>
 #include <algorithm>
-#include <zconf.h>
+#include <random>
 #include "CMap.hpp"
 #include "CMageTower.hpp"
 
@@ -16,7 +15,8 @@ using namespace std;
 // INIT
 CMap::CMap()
 	: m_Cols(0),
-	  m_Rows(0)
+	  m_Rows(0),
+	  m_TowerCount(0)
 {}
 
 void CMap::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
@@ -32,19 +32,73 @@ istream & operator>>(istream & in, CMap & self)
 	self.LoadMapInfo(in);
 	self.LoadMap(in);
 	self.LoadEntities(in);
-	self.PlaceTroops();
 	return in;
 }
 
-void CMap::PlaceTroops()
+CMap & CMap::PlaceTowers()
+{
+	if (m_Towers.empty())
+		GenerateTowers();
+	
+	for (const auto & tower : m_Towers)
+		if (m_Map.count(tower->GetPosition()) && m_Map.at(tower->GetPosition())->IsWall())
+			m_Map.at(tower->GetPosition()) = tower;
+	return *this;
+}
+
+CMap & CMap::GenerateTowers()
+{
+	string towerChars = m_UnitStack->GetTowerChars();
+	
+	/** @source https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution */
+	random_device rd;
+	mt19937 gen(rd());
+	
+	uniform_int_distribution<int> disRow(0, m_Rows - 1);
+	uniform_int_distribution<int> disCol(0, m_Cols - 1);
+	uniform_int_distribution<size_t> disChar(0, towerChars.size() - 1);
+	size_t space = round<size_t>(sqrt(((m_Rows - 1) * (m_Cols - 1)) / m_TowerCount));
+	
+	while (m_Towers.size() < m_TowerCount)
+	{
+		// generate random numbers while their distance is smaller than 3 - that way they won't be grouped next to each other
+		while (true)
+		{
+			size_t charIdx = disChar(gen);
+			pos_t point = {disCol(gen), disRow(gen)};
+			
+			// check if the position is ok - towers are not somewhere on blank spaces - would block troops paths
+			if (!m_Map.count(point)
+				|| !m_Map.at(point)->IsWall())
+				continue;
+			
+			// check if the towers aren't too close to each other
+			bool end = true;
+			for (const auto & tower : m_Towers)
+				if (tower->GetPosition().Distance(point) < space)
+					end = false;
+			if (!end)
+				continue;
+			
+			unique_ptr<CTower> tmp = m_UnitStack->CreateTowerAt(towerChars[charIdx]);
+			tmp->SetPosition(point);
+			m_Towers.emplace_back(move(tmp));
+			break;
+		}
+	}
+	return *this;
+}
+
+CMap & CMap::PlaceTroops()
 {
 	for (const auto & troop : m_Troops)
 		m_Map.emplace(troop->GetPosition(), troop);
+	return *this;
 }
 
 void CMap::LoadMapInfo(istream & in)
 {
-	in >> m_Rows >> m_Cols >> m_Gate;
+	in >> m_Rows >> m_Cols >> m_Gate >> m_TowerCount;
 }
 
 void CMap::LoadMap(istream & in)
@@ -88,9 +142,9 @@ void CMap::LoadTroops(istream & in, char ch)
 	trooper->LoadOnMap(in);
 	if (m_Map.count(trooper->GetPosition()))
 		in.setstate(ios::failbit);
-	m_Troops.push_back(move(trooper));
 	auto path = CPath{m_Map, m_Rows, m_Cols, trooper->GetPosition(), m_Gate.Position()}.FindStraightPath();
 	trooper->SetPath(path);
+	m_Troops.emplace_back(move(trooper));
 }
 
 void CMap::LoadTowers(istream & in, char ch)
@@ -100,7 +154,6 @@ void CMap::LoadTowers(istream & in, char ch)
 	if (!m_Map.count(tower->GetPosition()) || !m_Map.at(tower->GetPosition())->IsWall())
 		in.setstate(ios::failbit);
 	m_Towers.push_back(tower);
-	m_Map.at(tower->GetPosition()) = tower;
 }
 
 void CMap::LoadWallLine(istream & in, int row)
@@ -221,7 +274,6 @@ bool CMap::CheckSpawnCount(int count) const
 bool CMap::CheckNew() const
 {
 	return m_Troops.empty()
-		&& m_Towers.empty()
 		&& m_Gate.Full()
 		&& CheckSaved();
 }
@@ -320,11 +372,15 @@ void CMap::Spawn(vector<unique_ptr<CTrooper>> & spawns)
 {
 	for (auto & trooper : spawns)
 	{
-		trooper->SetPath(m_Paths.at(m_Spawns.at(trooper->GetSpawn())));
-		trooper->Spawn(m_Map);
-//		auto it = lower_bound(m_Troops.begin(), m_Troops.end(), trooper,
-//				[](const unique_ptr<CTrooper> & a, const unique_ptr<CTrooper> & b){return a->DistanceToGoal() < b->DistanceToGoal();});
-//		m_Troops.emplace(it, move(trooper));
+		shared_ptr<CTrooper> troopRef(move(trooper));
+		troopRef->SetPath(m_Paths.at(m_Spawns.at(troopRef->GetSpawn())));
+		troopRef->Spawn();
+		if (!m_Map.count(troopRef->GetPosition()))
+			m_Map.emplace(troopRef->GetPosition(), troopRef);
+		auto it = lower_bound(m_Troops.begin(), m_Troops.end(), troopRef,
+							  [](const shared_ptr<CTrooper> & a, const shared_ptr<CTrooper> & b)
+							  {return a->DistanceToGoal() < b->DistanceToGoal();});
+		m_Troops.emplace(it, troopRef);
 	}
 }
 
@@ -340,12 +396,24 @@ bool CMap::FindPathsFromSpawn()
 	return true;
 }
 
+bool CMap::MoveOnMap(shared_ptr<CTrooper> & troop)
+{
+	bool emplace, erase, goal;
+	pos_t origPos = troop->GetPosition();
+	goal = troop->Move(m_Map, emplace, erase);
+	if (erase)
+		m_Map.erase(origPos);
+	if (emplace)
+		m_Map.emplace(troop->GetPosition(), troop);
+	return goal;
+}
+
 bool CMap::MoveTroops()
 {
 	bool ret = true;
 	for (auto troop = m_Troops.begin(); troop != m_Troops.end();)
 	{
-		if (!(*troop)->Move(m_Map))
+		if (!MoveOnMap(*troop))
 		{
 			troop++;
 			continue;
@@ -403,7 +471,7 @@ map<int, bool> CMap::SpawnsFree() const
 }
 
 /**********************************************************************************************************************/
-// TESTINGc
+// TESTING
 void CMap::VisualizePath(pos_t start, pos_t goal)
 {
 	auto path = CPath{m_Map, m_Rows, m_Cols, start, goal}.FindStraightPath();

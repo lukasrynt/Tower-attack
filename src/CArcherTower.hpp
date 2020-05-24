@@ -15,8 +15,8 @@ public:
 		: CTower('*', ETileType::ARCHER_TOWER, Colors::BG_RED)
 	{}
 	
-	CArcherTower * Clone() const override
-	{return new CArcherTower(*this);}
+	std::unique_ptr<CTower> Clone() const override
+	{return std::make_unique<CArcherTower>(*this);}
 	
 	// LOAD
 	std::istream & LoadTemplate(std::istream & in) override

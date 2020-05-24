@@ -21,8 +21,9 @@ public:
 		  m_AttackSpeed(0),
 		  m_Range(0)
 	{}
+	
 	~CTower() override = default;
-	virtual CTower * Clone() const = 0;
+	virtual std::unique_ptr<CTower> Clone() const = 0;
 	
 	// LOAD
 	virtual std::istream & LoadTemplate(std::istream & in)
@@ -40,6 +41,8 @@ public:
 	// ACTIONS
 	pos_t GetPosition() const
 	{return m_Pos;}
+	
+	CTower & SetPosition(pos_t position);
 	
 	virtual CBuffer CreateInfoBuffer(int windowWidth) const = 0;
 	virtual bool Attack(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, std::unordered_map<pos_t, std::shared_ptr<CTrooper>> & troops, int rows, int cols) = 0;

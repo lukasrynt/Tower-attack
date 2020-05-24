@@ -90,21 +90,21 @@ bool CUnitStack::Check() const
 
 /**********************************************************************************************************************/
 // INTERFACE
-CTower * CUnitStack::CreateTowerAt(char ch) const
+unique_ptr<CTower> CUnitStack::CreateTowerAt(char ch) const
 {
 	if (m_Towers.count(ch))
 		return m_Towers.at(ch)->Clone();
 	return nullptr;
 }
 
-CTrooper * CUnitStack::CreateTrooperAt(char ch) const
+unique_ptr<CTrooper> CUnitStack::CreateTrooperAt(char ch) const
 {
 	if (m_Troops.count(ch))
 		return m_Troops.at(ch)->Clone();
 	return nullptr;
 }
 
-CTrooper * CUnitStack::CreateSelected() const
+unique_ptr<CTrooper> CUnitStack::CreateSelected() const
 {
 	char ch = FindSelected();
 	if (m_Troops.count(ch))
@@ -217,4 +217,11 @@ ostream & operator<<(ostream & out, const CUnitStack & stack)
 	for (auto & tower : stack.m_Towers)
 		tower.second->SaveTemplate(out) << endl;
 	return out << endl;
+}
+
+string CUnitStack::GetTowerChars() const {
+	string message;
+	for (const auto & tower : m_Towers)
+		message += tower.first;
+	return message;
 }

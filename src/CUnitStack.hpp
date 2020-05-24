@@ -66,18 +66,18 @@ public:
 	 * @param ch Character defining the character
 	 * @return Clone of the created trooper
 	 */
-	CTrooper * CreateTrooperAt(char ch) const;
+	std::unique_ptr<CTrooper> CreateTrooperAt(char ch) const;
 	/**
 	 * Create tower from template defined by character
 	 * @param ch Character defining the character
 	 * @return Clone of the created tower
 	 */
-	CTower * CreateTowerAt(char ch) const;
+	std::unique_ptr<CTower> CreateTowerAt(char ch) const;
 	/**
 	 * Create trooper at currently selected position
 	 * @return Clone of the created trooper
 	 */
-	CTrooper * CreateSelected() const;
+	std::unique_ptr<CTrooper> CreateSelected() const;
 	
 	// INGAME
 	CBuffer CreateTroopsInfoBuffer(int windowWidth) const;
@@ -103,6 +103,11 @@ public:
 	 * @return false when we can no longer afford anything
 	 */
 	bool Lost(int resources) const;
+	
+	/**
+	 * @return All characters that are registered for towers
+	 */
+	std::string GetTowerChars() const;
 private:
 	// VARIABLES
 	std::map<char, std::unique_ptr<CTrooper>> m_Troops;	//!< vector with all troops templates

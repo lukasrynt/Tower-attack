@@ -65,6 +65,7 @@ protected:
 	char m_Char;			//!< Character representation of the tile
 	ETileType m_Type;		//!< Type of the tile
 	std::string m_Color;
+	// TODO add fore and background colors
 	
 private:
 	std::string InitColor() const;

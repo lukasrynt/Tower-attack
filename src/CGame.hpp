@@ -42,12 +42,12 @@ public:
 	 * Checks if new game was correctly loaded
 	 * @return true if it was loaded correctly
 	 */
-	bool CheckNew() const;
+	bool CheckNew();
 	/**
 	 * Checks if saved game was correctly loaded
 	 * @return true if it was loaded correctly
 	 */
-	bool CheckSaved() const;
+	bool CheckSaved();
 	
 	// SAVING
 	/**

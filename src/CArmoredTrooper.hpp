@@ -27,8 +27,8 @@ public:
 		  m_MaxArmor(0)
 	{}
 	
-	CArmoredTrooper * Clone() const noexcept final
-	{return new CArmoredTrooper(*this);}
+	std::unique_ptr<CTrooper> Clone() const noexcept final
+	{return std::make_unique<CArmoredTrooper>(*this);}
 	
 	/**
 	 * Adds armor which can prevent a certain amount of damage

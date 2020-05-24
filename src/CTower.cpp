@@ -15,3 +15,9 @@ istream & CTower::LoadOnMap(istream & in) {
 	m_AttackSpeed.SetCurrent(current);
 	return in;
 }
+
+CTower & CTower::SetPosition(pos_t position)
+{
+	m_Pos = position;
+	return *this;
+}
