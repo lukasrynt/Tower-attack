@@ -18,17 +18,12 @@ void CTrooper::Spawn()
 	m_Path.pop_front();
 }
 
-void CTrooper::ReceiveDamage(int damage)
-{
-	m_Hp -= damage;
-}
-
 bool CTrooper::Move(const unordered_map<pos_t,shared_ptr<CTile>> & map, bool & emplace, bool & erase)
 {
 	emplace = erase = false;
 	
 	// move according to current frame
-	if (!m_Frames.ActionAllowed() || m_Path.empty())
+	if (m_Path.empty())
 		return false;
 	
 	// move the trooper on the next tile
@@ -68,27 +63,10 @@ CBuffer CTrooper::CreateInfoBuffer(int windowWidth) const
 
 /**********************************************************************************************************************/
 // LOADING
-istream & CTrooper::LoadTemplate(istream & in)
-{
-	return in >> m_Char >> m_Price >> m_Hp >> m_Frames >> m_Attack;
-}
-
 istream & CTrooper::LoadOnMap(istream & in)
 {
 	int current;
 	in >> m_Pos >> current;
 	m_Frames.SetCurrent(current);
 	return in;
-}
-
-/**********************************************************************************************************************/
-// SAVING
-ostream & CTrooper::SaveTemplate(ostream & out) const
-{
-	return out << m_Type << ' ' << m_Char << ' ' << m_Price << ' ' << m_Hp << ' ' << m_Frames << ' ' << m_Attack;
-}
-
-ostream & CTrooper::SaveOnMap(ostream & out) const
-{
-	return out << m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent();
 }

@@ -27,7 +27,6 @@ bool CArcherTower::Attack(unordered_map<pos_t, shared_ptr<CTile>> & map, unorder
 	{
 		DamageTrooper(troops);
 		// TODO should implement recolor
-//		map.at(m_ArrowPos)->AddBackground(Colors::BG_RED);
 		return true;
 	}
 	map.emplace(m_ArrowPos, new CTile(' ', ETileType::BULLET, Colors::BG_RED));
@@ -56,7 +55,7 @@ void CArcherTower::DamageTrooper(unordered_map<pos_t, shared_ptr<CTrooper>> & tr
 	auto troop = troops.at(m_ArrowPos);
 	m_ArrowPath.clear();
 	m_ArrowPos = pos::npos;
-	troop->ReceiveDamage(m_AttackDamage);
+	troop->ReceiveDamage(m_AttackDamage, m_BackColor);
 }
 
 bool CArcherTower::ArrowMove(unordered_map<pos_t,shared_ptr<CTile>> & map)

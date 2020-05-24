@@ -10,7 +10,7 @@ using namespace std;
 CBuffer & CBuffer::Append(string line, string color)
 {
 	string res = move(line);
-	m_Sizes.push_back(res.length());	//TODO detect if the line is longer than window size
+	m_Sizes.push_back(res.length());
 	if (!color.empty())
 		res = move(color) + res + Colors::RESET;
 	m_Buffer.emplace_back(move(res));
@@ -80,7 +80,7 @@ CBuffer & CBuffer::Center()
 	if (longest > m_WindowWidth)
 		return *this;
 	for (auto & str : m_Buffer)
-		str = string((m_WindowWidth - longest) / 2,' ') + str;
+		str = string((m_WindowWidth - longest) / 2,' ').append(str);
 	return *this;
 }
 

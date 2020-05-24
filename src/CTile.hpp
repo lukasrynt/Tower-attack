@@ -20,7 +20,7 @@ class CTile{
 public:
 	explicit CTile(char ch = ' ');
 	CTile(char ch, ETileType type);
-	CTile(char ch, ETileType type, std::string color);
+	CTile(char ch, ETileType type, std::string foreColor, std::string backColor = "");
 	virtual ~CTile() noexcept = default;
 	CTile(const CTile & src) = default;
 	CTile(CTile && src) = default;
@@ -31,10 +31,11 @@ public:
 	{return m_Char;}
 	
 	std::string GetColor() const
-	{return m_Color;}
+	{return m_ForeColor + m_BackColor;}
 	
-	void SetColor(std::string color)
-	{m_Color = std::move(color);}
+	CTile & SetBackground(std::string color);
+	
+	CTile & SetForeground(std::string color);
 	
 	// TYPES FUNCTIONS
 	ETileType GetType() const
@@ -58,16 +59,13 @@ public:
 	bool IsBullet() const
 	{return m_Type == ETileType::BULLET;}
 	
-	bool IsValid() const
-	{return m_Type != ETileType::INVALID;}
-	
 protected:
 	char m_Char;			//!< Character representation of the tile
 	ETileType m_Type;		//!< Type of the tile
-	std::string m_Color;
-	// TODO add fore and background colors
+	std::string m_ForeColor;
+	std::string m_BackColor;
 	
 private:
-	std::string InitColor() const;
+	void InitColor();
 	ETileType InitType() const;
 };

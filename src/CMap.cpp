@@ -413,7 +413,7 @@ bool CMap::MoveTroops()
 	bool ret = true;
 	for (auto troop = m_Troops.begin(); troop != m_Troops.end();)
 	{
-		if (!MoveOnMap(*troop))
+		if (!(**troop).Update() || !MoveOnMap(*troop))
 		{
 			troop++;
 			continue;

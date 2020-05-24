@@ -3,6 +3,7 @@
  * @date 24.4.2020
  */
 #include "CUnitStack.hpp"
+#include "CBasicTrooper.hpp"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ istream & operator>>(istream & in, CUnitStack & stack)
 
 void CUnitStack::CreateOriginals (map<char,unique_ptr<CTrooper>> & origTroops, map<char,unique_ptr<CTower>> & origTowers)
 {
-	origTroops.insert({'T', make_unique<CTrooper>()});
+	origTroops.insert({'T', make_unique<CBasicTrooper>()});
 	origTroops.insert({'A', make_unique<CArmoredTrooper>()});
 	origTowers.insert({'R', make_unique<CArcherTower>()});
 	origTowers.insert({'M', make_unique<CMageTower>()});
@@ -115,10 +116,10 @@ unique_ptr<CTrooper> CUnitStack::CreateSelected() const
 CBuffer CUnitStack::CreateBuffer(int windowWidth) const
 {
 	return move(CBuffer{windowWidth}
-						.Append("Units:", Colors::FG_CYAN)
-						.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
-						.Append(RenderTroops())
-						.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN));
+		.Append("Units:", Colors::FG_CYAN)
+		.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
+		.Append(RenderTroops())
+		.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN));
 }
 
 CBuffer CUnitStack::CreateTroopsInfoBuffer(int windowWidth) const

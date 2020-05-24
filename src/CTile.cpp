@@ -16,34 +16,38 @@ CTile::CTile(char ch)
 	: m_Char(ch)
 {
 	m_Type = InitType();
-	m_Color = InitColor();
+	InitColor();
 }
 
 CTile::CTile(char ch, ETileType type)
 	: m_Char(ch),
 	  m_Type(type)
 {
-	m_Color = InitColor();
+	InitColor();
 }
 
-CTile::CTile(char ch, ETileType type, string color)
+CTile::CTile(char ch, ETileType type, string foreColor, string backColor)
 	: m_Char(ch),
 	  m_Type(type),
-	  m_Color(move(color))
+	  m_ForeColor(move(foreColor)),
+	  m_BackColor(move(backColor))
 {}
 
-string CTile::InitColor() const
+void CTile::InitColor()
 {
 	switch(m_Type)
 	{
 		case ETileType::WALL:
-			return Colors::FG_MAGENTA;
+			m_ForeColor = Colors::FG_MAGENTA;
+			break;
 		case ETileType::SPAWN:
-			return Colors::BG_CYAN;
+			m_BackColor = Colors::BG_CYAN;
+			break;
 		case ETileType::GATE:
-			return Colors::BG_MAGENTA;
+			m_BackColor = Colors::BG_MAGENTA;
+			break;
 		default:
-			return "";
+			break;
 	}
 }
 
@@ -64,4 +68,16 @@ ETileType CTile::InitType() const
 		default:
 			return ETileType::INVALID;
 	}
+}
+
+CTile & CTile::SetForeground(std::string color)
+{
+	m_ForeColor = std::move(color);
+	return *this;
+}
+
+CTile & CTile::SetBackground(std::string color)
+{
+	m_BackColor = std::move(color);
+	return *this;
 }

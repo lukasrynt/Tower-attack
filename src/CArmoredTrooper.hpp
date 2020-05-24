@@ -34,7 +34,7 @@ public:
 	 * Adds armor which can prevent a certain amount of damage
 	 * @param damage
 	 */
-	void ReceiveDamage(int damage) final;
+	void ReceiveDamage(int damage, std::string bulletColor) final;
 	CBuffer CreateInfoBuffer(int windowWidth) const final;
 	
 	// LOAD
@@ -51,6 +51,8 @@ public:
 	
 	std::ostream & SaveOnMap(std::ostream & out) const final
 	{return CTrooper::SaveOnMap(out) << ' ' << m_Armor;}
+	
+	bool Update() override;
 
 private:
 	int m_Armor;	//!< Current armor

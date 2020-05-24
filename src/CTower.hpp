@@ -16,7 +16,7 @@ class CTower : public CTile
 {
 public:
 	explicit CTower(char ch = ' ', ETileType tileType = ETileType::INVALID, std::string color = "") noexcept
-		: CTile(ch, tileType, move(color)),
+		: CTile(ch, tileType, "", move(color)),
 		  m_AttackDamage(0),
 		  m_AttackSpeed(0),
 		  m_Range(0)

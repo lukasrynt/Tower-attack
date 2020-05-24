@@ -68,7 +68,7 @@ void CMageTower::SendNewWave(unordered_map<pos_t, shared_ptr<CTile>> & map, unor
 		if (!map.count(pos))
 			map.emplace(pos, new CTile{' ', ETileType::BULLET, Colors::BG_BLUE});
 		else if (map.at(pos)->IsTroop())
-			troops.at(pos)->ReceiveDamage(m_AttackDamage);
+			troops.at(pos)->ReceiveDamage(m_AttackDamage, m_BackColor);
 	}
 }
 
