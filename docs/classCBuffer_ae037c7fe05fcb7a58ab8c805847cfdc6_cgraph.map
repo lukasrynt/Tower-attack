@@ -1,0 +1,7 @@
+<map id="CBuffer::operator&lt;&lt;" name="CBuffer::operator&lt;&lt;">
+<area shape="rect" id="node2" href="$classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="206,5,317,32"/>
+<area shape="rect" id="node3" href="$classCTile.html#a6981129ff243d97fde79c380330b2c3d" title="CTile::GetColor" alt="" coords="205,56,318,83"/>
+<area shape="rect" id="node6" href="$classCBuffer.html#a0d8d3e91db7293943be3a1d7e2200523" title="CBuffer::operator+=" alt="" coords="192,107,331,133"/>
+<area shape="rect" id="node4" href="$classCTile.html#a35c6d20b8be89ed3bc8cb63e61822af0" title="CTile::SetBackground" alt="" coords="379,31,529,57"/>
+<area shape="rect" id="node5" href="$classCTile.html#aa4c5c2a4b157e8b521a29a0096567268" title="CTile::SetForeground" alt="" coords="381,81,527,108"/>
+</map>

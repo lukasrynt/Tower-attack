@@ -46,6 +46,11 @@ depend:
 	mv tmp $(DEP_TARGET); \
 	echo "Dependencies created...";
 
+.PHONY: memtest
+memtest: $(COMPILE_TARGET)
+	@ echo "Testing memory..."; \
+ 	valgrind ./$(COMPILE_TARGET)
+
 # Generate documentation
 doc: doc src/*.hpp
 	@ doxygen Doxyfile; \

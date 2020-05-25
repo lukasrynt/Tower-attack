@@ -15,7 +15,7 @@ using namespace std;
 int main ()
 {
 
-	ifstream inFile("/home/lukas/School/PA2/semestralka/maps/test4.map");
+	ifstream inFile("/home/lukas/School/PA2/semestralka/maps/test2.map");
 	inFile.exceptions(ios::failbit | ios::badbit | ios::eofbit);
 
 	CGame game;
@@ -30,17 +30,19 @@ int main ()
 	}
 	if (!game.CheckNew())
 		return 3;
-	game.Update();
 	cout << game.CreateBuffer(150);
-//	game.AddTroop();
-//	game.AddTroop();
+	game.AddTroop();
+	game.ReleaseWaves();
+//	game.Update();
+//	for (int i = 0; i < 5; ++i)
+//		game.AddTroop();
 //	game.ReleaseWaves();
-//	interface.Render(game.CreateBuffer(150));
-//	for (int i = 0; i < 60; ++i)
-//	{
-//		interface.Render(game.CreateBuffer(150));
-//		game.Update();
-//	}
+	cout << game.CreateBuffer(150);
+	for (int i = 0; i < 60; ++i)
+	{
+		cout << game.CreateBuffer(150);
+		game.Update();
+	}
 
 //	LoadSign(inFile);
 //	shared_ptr<CUnitStack> stack(new CUnitStack);

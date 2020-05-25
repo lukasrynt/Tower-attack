@@ -7,17 +7,20 @@
 
 #include <iostream>
 
+/**
+ * Type of the tile
+ */
 enum class ETileType : char
 {
-	WALL = 'W',			//!< Tile with wall
-	BASIC_TROOP = 'T',	//!< Tile with troop
+	WALL = 'W',
+	BASIC_TROOP = 'T',
 	ARMORED_TROOP = 'A',
-	ARCHER_TOWER = 'R',	//!< Tile with tower
+	ARCHER_TOWER = 'R',
 	MAGE_TOWER = 'M',
-	SPAWN = 'S',			//!< Tile with spawn point
-	GATE = 'G',			//!< Target of troops
+	SPAWN = 'S',
+	GATE = 'G',
 	BULLET = 'B',
-	INVALID = 'I'			//!< Invalid character
+	INVALID = 'I'
 };
 
 inline std::ostream & operator<<(std::ostream & out, const ETileType & type)

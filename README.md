@@ -86,7 +86,7 @@ R * 20 20 3                 -- lukostřelecká věž: znak, rychlost, útok, dos
 
 --Mapa--
 (M)
- 6 5 (20 100)               -- dimenze mapy - řádek, sloupec, brána (aktuální, max život)
+6 5 (20 100) 5              -- dimenze mapy - řádek, sloupec, brána (aktuální, max život), počet věží na mapě
 #####                       -- mapa
 # # O
 1   #

@@ -37,6 +37,7 @@ public:
 	bool Attack(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, std::unordered_map<pos_t, std::shared_ptr<CTrooper>> & troops, int rows, int cols) override;
 
 private:
+	CCounter m_ArrowSpeed;	//TODO
 	pos_t m_ArrowPos;
 	std::deque<pos_t> m_ArrowPath;
 	

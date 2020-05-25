@@ -16,10 +16,7 @@ class CTower : public CTile
 {
 public:
 	explicit CTower(char ch = ' ', ETileType tileType = ETileType::INVALID, std::string color = "") noexcept
-		: CTile(ch, tileType, "", move(color)),
-		  m_AttackDamage(0),
-		  m_AttackSpeed(0),
-		  m_Range(0)
+		: CTile(ch, tileType, "", move(color))
 	{}
 	
 	~CTower() override = default;
@@ -47,10 +44,8 @@ public:
 	virtual CBuffer CreateInfoBuffer(size_t width) const = 0;
 	virtual bool Attack(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, std::unordered_map<pos_t, std::shared_ptr<CTrooper>> & troops, int rows, int cols) = 0;
 protected:
-	int m_AttackDamage;		//!< attack damage of the tower
-	CFrames m_AttackSpeed;	//!< attack speed of the tower
-	int m_Range;
-	pos_t m_Pos;
-
-	
+	int m_AttackDamage = 0;	//!< attack damage of the tower
+	CCounter m_AttackSpeed;	//!< attack speed of the tower
+	int m_Range = 0;		//!< range of the towers
+	pos_t m_Pos;			//!< position of the tower
 };

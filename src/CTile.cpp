@@ -11,7 +11,6 @@
 using namespace std;
 
 /**********************************************************************************************************************/
-// INIT
 CTile::CTile(char ch)
 	: m_Char(ch)
 {
@@ -68,16 +67,4 @@ ETileType CTile::InitType() const
 		default:
 			return ETileType::INVALID;
 	}
-}
-
-CTile & CTile::SetForeground(std::string color)
-{
-	m_ForeColor = std::move(color);
-	return *this;
-}
-
-CTile & CTile::SetBackground(std::string color)
-{
-	m_BackColor = std::move(color);
-	return *this;
 }

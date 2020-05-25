@@ -122,7 +122,7 @@ CBuffer CUnitStack::CreateBuffer(size_t width) const
 		.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN));
 }
 
-CBuffer CUnitStack::CreateTroopsInfoBuffer(size_t width) const
+CBuffer CUnitStack::DrawTroopsInfo(size_t width) const
 {
 	CBuffer buffer{width};
 	buffer.Append()
@@ -144,7 +144,7 @@ CBuffer CUnitStack::CreateTroopsInfoBuffer(size_t width) const
 	return buffer;
 }
 
-CBuffer CUnitStack::CreateTowersInfoBuffer(size_t width) const
+CBuffer CUnitStack::DrawTowersInfo(size_t width) const
 {
 	CBuffer buffer{width};
 	buffer.Append()

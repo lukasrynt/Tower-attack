@@ -1,0 +1,5 @@
+<map id="CTrooper::ReceiveDamage" name="CTrooper::ReceiveDamage">
+<area shape="rect" id="node2" href="$classCArmoredTrooper.html#a1e90759a9f4c9601e05bfee2c5572a2b" title="CArmoredTrooper::Receive\lDamage" alt="" coords="235,5,416,47"/>
+<area shape="rect" id="node4" href="$classCTrooper.html#aac178f7553747542df6c2c1c59f9c502" title="CTrooper::Attack" alt="" coords="264,71,387,98"/>
+<area shape="rect" id="node3" href="$classCArmoredTrooper.html#affb5664e5c0fcdfe2398d8bb4a164033" title="CArmoredTrooper::Clone" alt="" coords="464,13,631,39"/>
+</map>

@@ -13,12 +13,6 @@
 using namespace std;
 /**********************************************************************************************************************/
 // INIT
-CMap::CMap()
-	: m_Cols(0),
-	  m_Rows(0),
-	  m_TowerCount(0)
-{}
-
 void CMap::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 {
 	m_UnitStack = move(unitStack);
@@ -37,9 +31,6 @@ istream & operator>>(istream & in, CMap & self)
 
 CMap & CMap::PlaceTowers()
 {
-	if (m_Towers.empty())
-		GenerateTowers();
-	
 	for (const auto & tower : m_Towers)
 		if (m_Map.count(tower->GetPosition()) && m_Map.at(tower->GetPosition())->IsWall())
 			m_Map.at(tower->GetPosition()) = tower;
@@ -57,7 +48,6 @@ CMap & CMap::GenerateTowers()
 	uniform_int_distribution<int> disRow(0, m_Rows - 1);
 	uniform_int_distribution<int> disCol(0, m_Cols - 1);
 	uniform_int_distribution<size_t> disChar(0, towerChars.size() - 1);
-	size_t space = round<size_t>(sqrt(((m_Rows - 1) * (m_Cols - 1)) / m_TowerCount));
 	
 	while (m_Towers.size() < m_TowerCount)
 	{
@@ -70,14 +60,6 @@ CMap & CMap::GenerateTowers()
 			// check if the position is ok - towers are not somewhere on blank spaces - would block troops paths
 			if (!m_Map.count(point)
 				|| !m_Map.at(point)->IsWall())
-				continue;
-			
-			// check if the towers aren't too close to each other
-			bool end = true;
-			for (const auto & tower : m_Towers)
-				if (tower->GetPosition().Distance(point) < space)
-					end = false;
-			if (!end)
 				continue;
 			
 			unique_ptr<CTower> tmp = m_UnitStack->CreateTowerAt(towerChars[charIdx]);
@@ -121,7 +103,7 @@ CMap & CMap::LoadEntities(istream & in)
 	if (!m_UnitStack)
 		in.setstate(ios::failbit);
 	
-	while (true)	// will end with exception earlier anyway
+	while (true)
 	{
 		// check first character
 		char ch;
@@ -170,7 +152,7 @@ void CMap::LoadWallLine(istream & in, int row)
 	{
 		in.get(ch);
 		if (m_UnitStack->IsTowerChar(ch))
-			LoadEntity({col, row}, ch);
+			LoadEntityChar({col, row}, ch);
 		else
 			LoadWallChar(ch, {col, row});
 	}
@@ -224,7 +206,7 @@ bool CMap::LoadCenterChar(char ch, pos_t position)
 	
 	// if it's not load entity
 	else
-		return LoadEntity(position, ch);
+		return LoadEntityChar(position, ch);
 }
 
 void CMap::DeleteWs(istream & in)
@@ -242,7 +224,7 @@ bool CMap::InitGatePosition(pos_t position)
 	return true;
 }
 
-bool CMap::LoadEntity(pos_t position, char ch)
+bool CMap::LoadEntityChar(pos_t position, char ch)
 {
 	if (!m_UnitStack)
 		return false;
@@ -332,14 +314,14 @@ void CMap::SaveEntities(ostream & out) const
 
 /**********************************************************************************************************************/
 // RENDER
-CBuffer CMap::CreateBuffer(size_t width) const
+CBuffer CMap::Draw(size_t width) const
 {
 	return move(CBuffer{width}
-		.Append(m_Gate.Render(width))
-		.Append(RenderMap(width)));
+		.Append(m_Gate.Draw(width))
+		.Append(DrawMap(width)));
 }
 
-CBuffer CMap::RenderMap(size_t width) const
+CBuffer CMap::DrawMap(size_t width) const
 {
 	CBuffer buffer{width};
 	for (int i = 0; i < m_Rows; ++i)
@@ -353,7 +335,24 @@ CBuffer CMap::RenderMap(size_t width) const
 				buffer << *m_Map.at({j, i});
 		}
 	}
+	buffer.Append(DrawTroopsOnMap(width));
 	buffer.CenterVertical();
+	return buffer;
+}
+
+CBuffer CMap::DrawTroopsOnMap(size_t width) const
+{
+	// map troops to their spawns
+	CBuffer buffer{width};
+	map<int, CBuffer> lines;
+	for (const auto & troop : m_Troops)
+	{
+		if (!lines.count(troop->GetSpawn()))
+			lines.emplace(troop->GetSpawn(), CBuffer{width}.Append("Wave " + to_string(troop->GetSpawn()) + ": ", Colors::FG_GREEN));
+		lines.at(troop->GetSpawn()).AddText(to_string(troop->GetHp()), troop->GetColor()).AddText(" ");
+	}
+	for (const auto & line : lines)
+		buffer.Append(line.second);
 	return buffer;
 }
 
@@ -444,8 +443,8 @@ bool CMap::TowerAttack()
 
 bool CMap::CheckTroopsDeaths()
 {
-	bool ret = true;
 	// check if a trooper has died - if so delete him from map
+	bool ret = true;
 	for (auto troop = m_Troops.begin(); troop != m_Troops.end();)
 	{
 		if (!(*troop)->Died())
@@ -474,7 +473,7 @@ map<int, bool> CMap::SpawnsFree() const
 
 /**********************************************************************************************************************/
 // TESTING
-void CMap::VisualizePath(pos_t start, pos_t goal)
+void CMap::Visualize(pos_t start, pos_t goal)
 {
 	auto path = CPath{m_Map, m_Rows, m_Cols, start, goal}.FindStraightPath();
 	while (!path.empty())
@@ -485,7 +484,7 @@ void CMap::VisualizePath(pos_t start, pos_t goal)
 	}
 }
 
-void CMap::Visualize(const std::deque<pos_t> & positions)
+void CMap::Visualize(const deque<pos_t> & positions)
 {
 	for (const auto & pos : positions)
 		if (!m_Map.count(pos))

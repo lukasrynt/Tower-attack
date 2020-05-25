@@ -40,7 +40,7 @@ public:
 	CBuffer CreateInfoBuffer(size_t width) const override;
 	bool Attack(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, std::unordered_map<pos_t, std::shared_ptr<CTrooper>> & troops, int rows, int cols) override;
 private:
-	CFrames m_WaveStatus;
+	CCounter m_WaveStatus;
 	int m_WaveLevel;
 	std::deque<pos_t> m_LastWave;
 	

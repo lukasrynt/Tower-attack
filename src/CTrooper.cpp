@@ -58,3 +58,11 @@ istream & CTrooper::LoadOnMap(istream & in)
 	m_Frames.SetCurrent(current);
 	return in;
 }
+
+void CTrooper::ReceiveDamage(int damage, std::string bulletColor)
+{
+	m_Hp -= damage;
+	// if it hasn't been hit by another turret recolor it
+	if(m_BackColor.empty())
+		m_BackColor = move(bulletColor);
+}

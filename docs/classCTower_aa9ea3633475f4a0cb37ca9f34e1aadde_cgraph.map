@@ -1,0 +1,4 @@
+<map id="CTower::SaveOnMap" name="CTower::SaveOnMap">
+<area shape="rect" id="node2" href="$classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="220,5,331,32"/>
+<area shape="rect" id="node3" href="$classCFrames.html#a000fb68d5dedf084f89a67fcccbe6fc2" title="CFrames::GetCurrent" alt="" coords="201,56,349,83"/>
+</map>

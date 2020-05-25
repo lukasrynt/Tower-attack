@@ -1,0 +1,4 @@
+<map id="CGame::CheckSaved" name="CGame::CheckSaved">
+<area shape="rect" id="node2" href="$classCGame.html#aa0b28c798a6198998d018047e96f188e" title="CGame::CGame" alt="" coords="239,5,359,32"/>
+<area shape="rect" id="node3" href="$classCInterface.html#ae7b581aa6c5fb5b2cf5417cd2a32f55a" title="CInterface::LoadSavedGame" alt="" coords="204,56,395,83"/>
+</map>

@@ -104,8 +104,8 @@ public:
 private:
 	std::ostream & m_Out;					//!< output stream
 	termios m_Term;							//!< original terminal settings
-	static const int WINDOW_WIDTH = 150;	//!< width of the window
-	static const int WINDOW_HEIGHT = 50;	//!< height of the window
+	static const int m_WindowWidth = 150;	//!< width of the window
+	static const int m_WindowHeight = 50;	//!< height of the window
 	
 	// MENU SCREEN
 	static CBuffer CreateMenuOptions(const std::map<char, CCommand> & commands);

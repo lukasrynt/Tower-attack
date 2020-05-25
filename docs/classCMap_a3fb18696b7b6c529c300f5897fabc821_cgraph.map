@@ -1,0 +1,7 @@
+<map id="CMap::CreateBuffer" name="CMap::CreateBuffer">
+<area shape="rect" id="node2" href="$classCGate.html#ac227c504419ab23e874a2a90cb68551e" title="CGate::Render" alt="" coords="203,56,313,83"/>
+<area shape="rect" id="node6" href="$classCMap.html#a0187e5d0ce7ef35922795b1755b17088" title="CMap::RenderMap" alt="" coords="192,5,324,32"/>
+<area shape="rect" id="node3" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="375,5,493,32"/>
+<area shape="rect" id="node4" href="$classCBuffer.html#ab896eab1ef3ec891a0a2d6e0190e7204" title="CBuffer::AddText" alt="" coords="372,56,496,83"/>
+<area shape="rect" id="node5" href="$classCBuffer.html#a065d323ebbee8fb7bfe67b8f8a7035a1" title="CBuffer::Center" alt="" coords="377,107,491,133"/>
+</map>

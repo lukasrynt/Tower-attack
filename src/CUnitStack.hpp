@@ -21,10 +21,6 @@
 class CUnitStack
 {
 public:
-	CUnitStack()
-		: m_Selected(0)
-	{}
-	
 	// LOADING
 	/**
 	 * Loads unit stack from input stream
@@ -79,15 +75,20 @@ public:
 	 */
 	std::unique_ptr<CTrooper> CreateSelected() const;
 	
-	// INGAME
-	CBuffer CreateTroopsInfoBuffer(size_t windowWidth) const;
-	CBuffer CreateTowersInfoBuffer(size_t windowWidth) const;
+	// IN GAME
 	/**
-	 * Creates a buffer with unit stack that we can later render
-	 * @param windowWidth Width of the window we want to render in
-	 * @return created buffer
+	 * Creates buffer with information about individual troopers
+	 * @param width Width of the window
+	 * @return Created buffer
 	 */
-	CBuffer CreateBuffer(size_t windowWidth) const;
+	CBuffer DrawTroopsInfo(size_t width) const;
+	CBuffer DrawTowersInfo(size_t width) const;
+	/**
+	 * Creates buffer with troopers in unit stack and current selection
+	 * @param width Width of the window
+	 * @return Created buffer
+	 */
+	CBuffer CreateBuffer(size_t width) const;
 	/**
 	 * Cycle through trooper selection
 	 */
@@ -110,10 +111,10 @@ public:
 	std::string GetTowerChars() const;
 private:
 	// VARIABLES
-	std::map<char, std::unique_ptr<CTrooper>> m_Troops;	//!< vector with all troops templates
-	std::map<char, std::unique_ptr<CTower>> m_Towers;	//!< vector with all towers templates
-	mutable size_t m_Selected;							//!< currently selected trooper
-	constexpr static const char * const FORBIDDEN_CHARS = "#12345O";	//!< characters that are used by the map and we can't use them for troops or tower
+	std::map<char, std::unique_ptr<CTrooper>> m_Troops;					//!< Vector with all troops templates
+	std::map<char, std::unique_ptr<CTower>> m_Towers;					//!< Vector with all towers templates
+	mutable size_t m_Selected = 0;										//!< Currently selected trooper
+	constexpr static const char * const FORBIDDEN_CHARS = "#12345O";	//!< Characters that are used by the map and we can't use them for troops or tower
 	
 	// RENDER
 	std::string RenderTroops() const;
@@ -121,6 +122,6 @@ private:
 	// LOADING
 	bool LoadUnit(std::istream & in, char ch, const std::map<char,std::unique_ptr<CTrooper>> & origTroops, const std::map<char,std::unique_ptr<CTower>> & origTowers);
 	static void CreateOriginals(std::map<char,std::unique_ptr<CTrooper>> & origTroops, std::map<char,std::unique_ptr<CTower>> & origTowers);
-	static bool CharIsValid(char ch) ;
+	static bool CharIsValid(char ch);
 	char FindSelected() const;
 };

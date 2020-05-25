@@ -20,13 +20,11 @@
 class CGame
 {
 public:
-	CGame()
-		: m_WaveOn(false),
-		  m_GameState(EGameState::GAME_RUNNING),
-		  m_Resources(0)
-	{}
-	
 	// TESTING
+	/**
+	 * Visualizes the positions on the map
+	 * @param positions Positions to be visualized
+	 */
 	void Visualize(const std::deque<pos_t> & positions);
 	
 	// LOADING
@@ -37,14 +35,17 @@ public:
 	 * @return in
 	 */
 	friend std::istream & operator>>(std::istream & in, CGame & self);
-	void SetUnitStack();
 	/**
-	 * Checks if new game was correctly loaded
+	 * Create and assign CUnitStack to elements in game
+	 */
+	void AssignUnitStack();
+	/**
+	 * Checks if new game was correctly loaded and generates + places towers on map
 	 * @return true if it was loaded correctly
 	 */
 	bool CheckNew();
 	/**
-	 * Checks if saved game was correctly loaded
+	 * Checks if saved game was correctly loaded and places towers and troops on map
 	 * @return true if it was loaded correctly
 	 */
 	bool CheckSaved();
@@ -101,12 +102,11 @@ public:
 	{return *m_UnitStack;}
 private:
 	// VARIABLES
-	std::shared_ptr<CUnitStack> m_UnitStack;
-	CWaves m_Waves;								//!< Troops waiting in waves and user's selection of troops and waves
-	CMap m_Map;									//!< Map with tiles occupied by troops, walls or towers
-	bool m_WaveOn;								//!< Signalizes start and end of wave
-	EGameState m_GameState;
-	int m_Resources;
+	std::shared_ptr<CUnitStack> m_UnitStack;			//!< Unit stack with units templates
+	CWaves m_Waves;										//!< Troops waiting in waves and user's selection of troops and waves
+	CMap m_Map;											//!< Map with tiles occupied by troops, walls or towers
+	bool m_WaveOn = false;								//!< Signalizes start and end of wave
+	EGameState m_GameState = EGameState::GAME_RUNNING;	//!< Current state of the game
 	
 	// LOADING
 	void LoadObjects(std::istream & in, std::set<char> & signs, bool & end);

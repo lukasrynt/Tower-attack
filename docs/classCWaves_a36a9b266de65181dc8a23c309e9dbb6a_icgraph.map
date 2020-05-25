@@ -1,0 +1,4 @@
+<map id="CWaves::DeleteTroop" name="CWaves::DeleteTroop">
+<area shape="rect" id="node2" href="$classCGame.html#a052c4617438fdb95251623637863ae92" title="CGame::DeleteTroop" alt="" coords="211,5,357,32"/>
+<area shape="rect" id="node3" href="$classCWaves.html#a52bf224ae9825e7ca89d41bac6520b34" title="CWaves::GetWaveCnt" alt="" coords="205,56,363,83"/>
+</map>

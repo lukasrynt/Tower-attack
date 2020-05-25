@@ -10,6 +10,15 @@ using namespace std;
 int main()
 {
 	// run the game
-	CApplication{CInterface{cout}}.Run();
+	try
+	{
+		CApplication{CInterface{cout}}.Run();
+	}
+	// catch exceptions related to I/O
+	catch (const ios::failure & e)
+	{
+		cerr << e.what() << endl;
+		return 66;
+	}
 	return 0;
 }

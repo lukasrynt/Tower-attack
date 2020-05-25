@@ -1,0 +1,6 @@
+<map id="CTile::InitColor" name="CTile::InitColor">
+<area shape="rect" id="node2" href="$classCTile.html#ab621100ee80415d63c5a1deae2d60cfb" title="CTile::CTile" alt="" coords="164,31,256,57"/>
+<area shape="rect" id="node3" href="$classCMap.html#ac4f55c45206bc558b3be8c5f289dccf9" title="CMap::Visualize" alt="" coords="304,5,423,32"/>
+<area shape="rect" id="node5" href="$classCTile.html#a495219bd2dd4bfd42e532c4022ca1da4" title="CTile::CTile" alt="" coords="317,56,409,83"/>
+<area shape="rect" id="node4" href="$classCMap.html#a90fabe75887f5bd9bbbe8792bb9c9611" title="CMap::WaveIsRunning" alt="" coords="471,5,629,32"/>
+</map>

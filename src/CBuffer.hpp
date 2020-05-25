@@ -108,17 +108,18 @@ public:
 	 * @return out
 	 */
 	friend std::ostream & operator<<(std::ostream & out, const CBuffer & self);
-	
+	/**
+	 * @return Height of the buffer
+	 */
 	size_t Height() const
 	{return m_Buffer.size();}
-	
-	size_t Width() const
-	{return LongestSize();}
+	/**
+	 * @return Longest line in the buffer
+	 */
+	size_t Width() const;
 	
 private:
-	size_t m_Width;
-	std::vector<size_t> m_Sizes;
-	std::vector<std::string> m_Buffer;
-	
-	size_t LongestSize() const;
+	size_t m_Width;						//!< Width of the buffer
+	std::vector<size_t> m_Sizes;		//!< Sizes of the individual lines - stored in order to scale buffer according to text size and not escape sequences
+	std::vector<std::string> m_Buffer;	//!< Buffer with lines
 };

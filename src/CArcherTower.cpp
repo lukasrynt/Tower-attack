@@ -26,7 +26,6 @@ bool CArcherTower::Attack(unordered_map<pos_t, shared_ptr<CTile>> & map, unorder
 	if (ArrowMove(map))
 	{
 		DamageTrooper(troops);
-		// TODO should implement recolor
 		return true;
 	}
 	map.emplace(m_ArrowPos, new CTile(' ', ETileType::BULLET, Colors::BG_RED));
@@ -36,18 +35,30 @@ bool CArcherTower::Attack(unordered_map<pos_t, shared_ptr<CTile>> & map, unorder
 bool CArcherTower::AssignArrow(unordered_map<pos_t, shared_ptr<CTile>> & map, const unordered_map<pos_t, shared_ptr<CTrooper>> & troops, int rows, int cols)
 {
 	size_t closest = m_Range;
+	deque<pos_t> path;
 	for (const auto & troop : troops)
 	{
-		if (m_Pos.Distance(troop.second->GetPosition()) > m_Range)
+		// check that the trooper is within range
+		double distance = m_Pos.Distance(troop.second->GetPosition());
+		if (distance > closest)
 			continue;
 		
-		m_ArrowPath = CPath{map, rows, cols, m_Pos, troop.second->GetPosition()}
+		// find path from tower to trooper
+		path = CPath{map, rows, cols, m_Pos, troop.second->GetPosition()}
 				.FindDiagonalPath();
+		if (path.size() > closest)
+			continue;
+		
+		// if the path to target is closer than it was - it will be our next candidate
 		if (m_ArrowPath.size() <= closest)
-			return true;
+		{
+			closest = distance;
+			m_ArrowPath = path;
+		}
 	}
-	m_ArrowPath.clear();
-	return false;
+	
+	// check that there is some path found - it can happen that the closest trooper cannot be reached
+	return !m_ArrowPath.empty();
 }
 
 void CArcherTower::DamageTrooper(unordered_map<pos_t, shared_ptr<CTrooper>> & troops)

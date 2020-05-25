@@ -1,0 +1,5 @@
+<map id="CArmoredTrooper::SaveOnMap" name="CArmoredTrooper::SaveOnMap">
+<area shape="rect" id="node2" href="$classCTrooper.html#a4aa15715b4747a87f7795233b99f60b6" title="CTrooper::SaveOnMap" alt="" coords="259,56,415,83"/>
+<area shape="rect" id="node3" href="$classCFrames.html#a000fb68d5dedf084f89a67fcccbe6fc2" title="CFrames::GetCurrent" alt="" coords="479,5,627,32"/>
+<area shape="rect" id="node4" href="$classCTrooper.html#ad705b4f82645b5312313fd6735dc700c" title="CTrooper::CreateInfoBuffer" alt="" coords="463,56,643,83"/>
+</map>

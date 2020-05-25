@@ -5,10 +5,13 @@
 
 #pragma once
 
+/**
+ * State of the game
+ */
 enum class EGameState
 {
-	GAME_RUNNING,
-	GAME_OVER,
-	GAME_WON,
-	GAME_QUIT
+	GAME_RUNNING,	//!< Game is running
+	GAME_OVER,		//!< Game has ended with player losing
+	GAME_WON,		//!< Game has ended with player winning
+	GAME_QUIT		//!< Player has quit the game
 };

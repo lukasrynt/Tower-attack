@@ -58,7 +58,7 @@ CBuffer & CBuffer::AddEscapeSequence(string sequence)
 CBuffer & CBuffer::Concat(CBuffer && other)
 {
 	const int SPACE = 20;
-	size_t longest = LongestSize();
+	size_t longest = Width();
 	
 	for (size_t i = 0; i < other.m_Buffer.size(); ++i)
 	{
@@ -76,7 +76,7 @@ CBuffer & CBuffer::Concat(CBuffer && other)
 
 CBuffer & CBuffer::CenterVertical()
 {
-	size_t longest = LongestSize();
+	size_t longest = Width();
 	if (longest > m_Width)
 		return *this;
 	for (auto & str : m_Buffer)
@@ -84,7 +84,7 @@ CBuffer & CBuffer::CenterVertical()
 	return *this;
 }
 
-size_t CBuffer::LongestSize() const
+size_t CBuffer::Width() const
 {
 	size_t tmp = 0;
 	for (size_t size : m_Sizes)

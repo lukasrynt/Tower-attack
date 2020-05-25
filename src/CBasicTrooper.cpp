@@ -26,9 +26,3 @@ CBuffer CBasicTrooper::CreateInfoBuffer(size_t width) const
 		.Append("\tCost: " + to_string(m_Price) + " ©")
 		.AddEscapeSequence(Colors::RESET));
 }
-
-void CBasicTrooper::ReceiveDamage(int damage, string bulletColor)
-{
-	CTrooper::ReceiveDamage(damage, bulletColor);
-	m_BackColor = bulletColor;
-}

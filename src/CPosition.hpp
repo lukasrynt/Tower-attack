@@ -18,10 +18,22 @@
 typedef struct CPosition
 {
 public:
-	CPosition(int x = -1, int y = -1);
+	explicit CPosition(int x = -1, int y = -1);
+	/**
+	 * @return Left neighbour
+	 */
 	CPosition left() const;
+	/**
+	 * @return Right neighbour
+	 */
 	CPosition right() const;
+	/**
+	 * @return Top neighbour
+	 */
 	CPosition up() const;
+	/**
+	 * @return Bottom neighbour
+	 */
 	CPosition down() const;
 	/**
 	 * Gets positions that are neighbouring on edges with current position
@@ -76,7 +88,10 @@ namespace std
 	};
 }
 
+/**
+ * Namespace for position out of range of the map
+ */
 namespace pos
 {
-	const pos_t npos = pos_t{-1, -1};
+	const pos_t npos = pos_t{-1, -1}; //!< Position which lies out of range of the map
 }

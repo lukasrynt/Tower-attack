@@ -1,0 +1,4 @@
+<map id="CMageTower" name="CMageTower">
+<area shape="rect" id="node2" href="$classCTower.html" title="{CTower\n|# m_AttackDamage\l# m_AttackSpeed\l# m_Range\l# m_Pos\l|+ CTower()\l+ ~CTower()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ GetPosition()\l+ SetPosition()\l+ CreateInfoBuffer()\l+ Attack()\l}" alt="" coords="11,351,149,619"/>
+<area shape="rect" id="node3" href="$classCTile.html" title="{CTile\n|# m_Char\l# m_Type\l# m_ForeColor\l# m_BackColor\l|+ CTile()\l+ CTile()\l+ CTile()\l+ ~CTile()\l+ CTile()\l+ CTile()\l+ operator=()\l+ operator=()\l+ GetChar()\l+ GetColor()\land 9 more...\l&#45; InitColor()\l&#45; InitType()\l}" alt="" coords="24,5,136,303"/>
+</map>

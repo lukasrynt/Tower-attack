@@ -1,0 +1,13 @@
+<map id="CGate::Position" name="CGate::Position">
+<area shape="rect" id="node2" href="$classCMap.html#a4811d2b75c8201a8f6df1c7bacb87eec" title="CMap::LoadTroops" alt="" coords="181,5,314,32"/>
+<area shape="rect" id="node4" href="$classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="168,56,327,83"/>
+<area shape="rect" id="node10" href="$classCMap.html#a2f29796a883ea060f6d7eccd44155acf" title="CMap::CheckSaved" alt="" coords="177,107,317,133"/>
+<area shape="rect" id="node12" href="$classCMap.html#aa5b1950670538740cd469a59e4003fda" title="CMap::FindPathsFromSpawn" alt="" coords="569,157,764,184"/>
+<area shape="rect" id="node3" href="$classCMap.html#ab21ccd540146d12fa81f103fe1038526" title="CMap::LoadEntities" alt="" coords="379,5,517,32"/>
+<area shape="rect" id="node5" href="$classCMap.html#a58a5cce6903cdf1291cf99eebdded78a" title="CMap::LoadWallChar" alt="" coords="375,56,521,83"/>
+<area shape="rect" id="node6" href="$classCMap.html#a5c16fe5d60d742419cd2fac0f8f7cc45" title="CMap::LoadWallLine" alt="" coords="819,12,962,39"/>
+<area shape="rect" id="node8" href="$classCMap.html#a370718cabddf910530db548999ed65ad" title="CMap::LoadMapCenter" alt="" coords="812,69,969,96"/>
+<area shape="rect" id="node9" href="$classCMap.html#a0e8479439f285ff1cf452d207aa0fcf4" title="CMap::LoadCenterChar" alt="" coords="587,107,747,133"/>
+<area shape="rect" id="node7" href="$classCMap.html#a389249476d55c0b2171f02ee1f657e97" title="CMap::LoadMap" alt="" coords="1017,69,1136,96"/>
+<area shape="rect" id="node11" href="$classCMap.html#a25939b64ea04fdae024dfcc16c2c2307" title="CMap::CheckNew" alt="" coords="383,107,513,133"/>
+</map>

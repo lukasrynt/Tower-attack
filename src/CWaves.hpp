@@ -12,15 +12,16 @@
 #include "CUnitStack.hpp"
 
 /**
- * Represents the stack from which the user can choose troops, add them to certain waves and launch these waves to map
+ * Represents the waves to which the user can add or delete troops and release those waves
  */
 class CWaves
 {
 public:
 	// INIT
-	CWaves() noexcept;
-	CWaves(const CWaves & src) = default;
-	CWaves & operator=(const CWaves & src) = default;
+	/**
+	 * Assigns unit stack to waves
+	 * @param unitStack Pointer to CUnitStack that we want to assign
+	 */
 	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
 	
 	// LOADING
@@ -48,10 +49,10 @@ public:
 	// RENDER
 	/**
 	 * Create buffer for further renderings
-	 * @param windowWidth Size of the window to be rendered into
+	 * @param width Size of the window to be rendered into
 	 * @return Created buffer
 	 */
-	CBuffer CreateBuffer(size_t width) const;
+	CBuffer Draw(size_t width) const;
 	
 	// INPUT PROCESSING
 	/**
@@ -90,13 +91,13 @@ public:
 	
 
 private:
-	std::vector<std::deque<std::unique_ptr<CTrooper>>> m_Waves;	//!< vector with waves (deque) initialized to the size m_WaveCnt
-	std::shared_ptr<CUnitStack> m_UnitStack;
-	size_t m_Selected;						//!< index of currently selected wave
-	size_t m_MaxSize;						//!< maximum size of one wave, specified in constructor
-	CFrames m_Frames;
-	bool m_ReleasingWave;
-	int m_Resources;
+	std::vector<std::deque<std::unique_ptr<CTrooper>>> m_Waves;	//!< Vector with waves (deque) initialized to the size m_WaveCnt
+	std::shared_ptr<CUnitStack> m_UnitStack;					//!< Unit stack with units templates
+	size_t m_Selected = 0;										//!< Index of currently selected wave
+	size_t m_MaxSize = 0;										//!< Maximum size of one wave, specified in constructor
+	CCounter m_Frames;											//!< Speed of the spawner
+	bool m_ReleasingWave = false;								//!< True if waves are currently being released
+	int m_Resources = 0;										//!< Resources given for the current game
 	
 	// LOAD
 	std::deque<std::unique_ptr<CTrooper>> LoadWaves(std::istream & in);

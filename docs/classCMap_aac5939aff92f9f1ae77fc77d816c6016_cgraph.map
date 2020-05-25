@@ -1,0 +1,4 @@
+<map id="CMap::SaveMap" name="CMap::SaveMap">
+<area shape="rect" id="node2" href="$classCTile.html#a71753c42d46222021406c64ef221efa9" title="CTile::IsTroop" alt="" coords="176,5,281,32"/>
+<area shape="rect" id="node3" href="$classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="173,56,284,83"/>
+</map>

@@ -31,9 +31,10 @@ class CMap
 {
 public:
 	// INIT
-	explicit CMap();
-	CMap(const CMap & src) = delete;
-	CMap & operator=(const CMap & src) = delete;
+	/**
+	 * Assigns unit stack to map
+	 * @param unitStack Pointer to CUnitStack that we want to assign
+	 */
 	void AssignUnitStack(std::shared_ptr<CUnitStack> unitStack);
 	
 	// LOADING
@@ -60,10 +61,25 @@ public:
 	 * @return true if the numbers are the same
 	 */
 	bool CheckSpawnCount(int count) const;
+	/**
+	 * @return True if the wave is currently running
+	 */
 	bool WaveIsRunning() const
 	{return !m_Troops.empty();}
+	/**
+	 * Places loaded troops on map
+	 * @return Reference to this
+	 */
 	CMap & PlaceTroops();
+	/**
+	 * Places loaded towers on map
+	 * @return Reference to this
+	 */
 	CMap & PlaceTowers();
+	/**
+	 * Generate towers and their positions on map
+	 * @return Reference to this
+	 */
 	CMap & GenerateTowers();
 	
 	// SAVING
@@ -81,7 +97,7 @@ public:
 	 * @param windowWidth Size of the window to be rendered into
 	 * @return Created buffer
 	 */
-	CBuffer CreateBuffer(size_t width) const;
+	CBuffer Draw(size_t width) const;
 
 	// UPDATE
 	/**
@@ -101,15 +117,24 @@ public:
 	 */
 	std::map<int, bool> SpawnsFree() const;
 	
-	// TESTING STUFF
-	void VisualizePath(pos_t start, pos_t goal);
+	// TESTING
+	/**
+	 * Visualizes path from start to goal
+	 * @param start Start position
+	 * @param goal Goal position
+	 */
+	void Visualize(pos_t start, pos_t goal);
+	/**
+	 * Visualizes positions on the map
+	 * @param positions Positions to be visualized
+	 */
 	void Visualize(const std::deque<pos_t> & positions);
 private:
 	// VARIABLES
 	CGate m_Gate;
-	int m_Cols;													//!< map's columns
-	int m_Rows;													//!< map's rows
-	size_t m_TowerCount;
+	int m_Cols = 0;												//!< map's columns
+	int m_Rows = 0;												//!< map's rows
+	size_t m_TowerCount = 0;									//!< number of towers we want to place
 	std::vector<std::shared_ptr<CTrooper>> m_Troops;			//!< pointers to troopers on the map
 	std::deque<std::shared_ptr<CTower>> m_Towers;				//!< pointers to towers on the map
 	std::unordered_map<pos_t,std::shared_ptr<CTile>> m_Map; 	//!< two dimensional map
@@ -125,7 +150,7 @@ private:
 	void LoadMapCenter(std::istream & in, int row);
 	bool LoadWallChar(char ch, pos_t position);
 	bool LoadCenterChar(char ch, pos_t position);
-	bool LoadEntity(pos_t position, char ch);
+	bool LoadEntityChar(pos_t position, char ch);
 	static void DeleteWs(std::istream & in);
 	bool InitSpawner(pos_t position, char ch);
 	bool InitGatePosition(pos_t position);
@@ -136,7 +161,8 @@ private:
 	void LoadTowers(std::istream & in, char ch);
 	
 	// RENDER
-	CBuffer RenderMap(size_t width) const;
+	CBuffer DrawMap(size_t width) const;
+	CBuffer DrawTroopsOnMap(size_t width) const;
 	
 	// SAVING
 	void SaveMapInfo(std::ostream & out) const;

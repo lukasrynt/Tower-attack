@@ -1,0 +1,8 @@
+<map id="CBuffer::CenterHorizontal" name="CBuffer::CenterHorizontal">
+<area shape="rect" id="node2" href="$classCBuffer.html#a8f1e64c35674f28ec6bf8a7ed14d03da" title="CBuffer::CBuffer" alt="" coords="258,5,378,32"/>
+<area shape="rect" id="node3" href="$classCInterface.html#a8538268df8c9bbb90030ac55cc870aef" title="CInterface::Menu" alt="" coords="257,56,379,83"/>
+<area shape="rect" id="node4" href="$classCInterface.html#a6d0c1f01720b5c3c820499b0c0aec567" title="CInterface::Winner" alt="" coords="252,107,384,133"/>
+<area shape="rect" id="node5" href="$classCInterface.html#a2f406f0b3d4e9766e63146c8ef5d014d" title="CInterface::GameOver" alt="" coords="241,157,395,184"/>
+<area shape="rect" id="node6" href="$classCInterface.html#a02fe09d34fc6fc422615bb4be624f76a" title="CInterface::CreateCommon\lLegendScreen" alt="" coords="227,209,409,250"/>
+<area shape="rect" id="node7" href="$classCInterface.html#ae3fc7bfb36b11b6cd5873c32904777a3" title="CInterface::CreateTrooper\lLegendScreen" alt="" coords="231,274,405,315"/>
+</map>

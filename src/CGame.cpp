@@ -14,7 +14,7 @@ istream & operator>>(istream & in, CGame & self)
 {
 	set<char> signs;
 	bool end = false;
-	self.SetUnitStack();
+	self.AssignUnitStack();
 	
 	while (!end)
 		self.LoadObjects(in, signs, end);
@@ -27,7 +27,7 @@ istream & operator>>(istream & in, CGame & self)
 	return in;
 }
 
-void CGame::SetUnitStack()
+void CGame::AssignUnitStack()
 {
 	m_UnitStack = make_shared<CUnitStack>();
 	m_Map.AssignUnitStack(m_UnitStack);
@@ -125,9 +125,9 @@ void CGame::Update()
 CBuffer CGame::CreateBuffer(size_t width) const
 {
 	return move(CBuffer{width}
-		.Append(move(m_Waves.CreateBuffer(width).Concat(m_UnitStack->CreateBuffer(width)).CenterVertical()))
+		.Append(move(m_Waves.Draw(width).Concat(m_UnitStack->CreateBuffer(width)).CenterVertical()))
 		.Append(move(CBuffer{width}.Append().Append()))
-		.Append(m_Map.CreateBuffer(width)));
+		.Append(m_Map.Draw(width)));
 }
 
 void CGame::Visualize(const deque<pos_t> & positions)

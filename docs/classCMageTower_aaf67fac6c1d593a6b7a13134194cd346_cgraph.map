@@ -1,0 +1,8 @@
+<map id="CMageTower::SaveOnMap" name="CMageTower::SaveOnMap">
+<area shape="rect" id="node2" href="$classCTower.html#aa9ea3633475f4a0cb37ca9f34e1aadde" title="CTower::SaveOnMap" alt="" coords="261,5,409,32"/>
+<area shape="rect" id="node4" href="$classCFrames.html#a000fb68d5dedf084f89a67fcccbe6fc2" title="CFrames::GetCurrent" alt="" coords="485,56,633,83"/>
+<area shape="rect" id="node5" href="$classCMageTower.html#a538749fc2b4e3028abc1197e96bf25d4" title="CMageTower::CreateInfoBuffer" alt="" coords="233,107,437,133"/>
+<area shape="rect" id="node7" href="$classCMageTower.html#aca878427e69f9435bf4e06bd0264e0e4" title="CMageTower::Attack" alt="" coords="262,157,409,184"/>
+<area shape="rect" id="node3" href="$classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="504,5,615,32"/>
+<area shape="rect" id="node6" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="500,107,619,133"/>
+</map>

@@ -16,22 +16,22 @@ CPosition::CPosition(int x, int y)
 
 CPosition CPosition::left() const
 {
-	return {m_X - 1, m_Y};
+	return CPosition{m_X - 1, m_Y};
 }
 
 CPosition CPosition::right() const
 {
-	return {m_X + 1, m_Y};
+	return CPosition{m_X + 1, m_Y};
 }
 
 CPosition CPosition::up() const
 {
-	return {m_X, m_Y - 1};
+	return CPosition{m_X, m_Y - 1};
 }
 
 CPosition CPosition::down() const
 {
-	return {m_X, m_Y + 1};
+	return CPosition{m_X, m_Y + 1};
 }
 
 list<CPosition> CPosition::GetCrossNeighbours() const
@@ -56,9 +56,9 @@ std::list<CPosition> CPosition::GetDiagNeighbours() const
 
 bool CPosition::LiesInRange(int rows, int cols) const
 {
-	return (m_Y <= rows
+	return (m_Y < rows
 			&& m_Y >= 0
-			&& m_X <= cols
+			&& m_X < cols
 			&& m_X >= 0);
 }
 

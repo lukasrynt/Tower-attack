@@ -46,6 +46,7 @@ deque<pos_t> CPath::TraceBack(const function<list<pos_t>(pos_t)> & getNeighbours
 	deque<pos_t> path;
 	path.push_back(m_Goal);
 	
+	// go through the nodes until we reach start again
 	for (CNode curr = m_NodeMap.at(m_Goal); curr.m_Pos != m_Start;)
 	{
 		int minDist = INT32_MAX;
@@ -61,7 +62,10 @@ deque<pos_t> CPath::TraceBack(const function<list<pos_t>(pos_t)> & getNeighbours
 		path.push_back(curr.m_Pos);
 		m_NodeMap.erase(curr.m_Pos);
 	}
+	
+	// we backtrace so we need to reverse the path
 	reverse(path.begin(), path.end());
+	
 	// we don't want the start point to be present in the list
 	path.pop_front();
 	return path;
@@ -119,7 +123,7 @@ void CPath::QueueNeighbours(pos_t neighbour, set<pos_t> & visited, queue<CNode> 
 {
 	if (neighbour.LiesInRange(m_Rows, m_Cols)
 		&& !visited.count(neighbour)
-		&& !m_TileMap.count(neighbour))
+		&& (!m_TileMap.count(neighbour) || m_TileMap.at(neighbour)->IsTroop()))
 	{
 		cells.push({neighbour, cells.front().m_Dist + 1});
 		m_NodeMap.insert({neighbour, {neighbour, cells.front().m_Dist + 1}});

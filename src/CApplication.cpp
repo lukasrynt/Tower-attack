@@ -46,7 +46,7 @@ void CApplication::MainLoop()
 		ProcessInput();
 		m_Game->Update();
 		m_Interface.GameScreen(*m_Game);
-		CInterface::Sleep(start - CInterface::GetCurrentTime() + 30ms);
+		CInterface::Sleep(start - CInterface::GetCurrentTime() + 16ms);
 	}
 	EndGame();
 }

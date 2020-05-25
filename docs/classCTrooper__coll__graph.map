@@ -1,0 +1,5 @@
+<map id="CTrooper" name="CTrooper">
+<area shape="rect" id="node2" href="$classCTile.html" title="{CTile\n|# m_Char\l# m_Type\l# m_ForeColor\l# m_BackColor\l|+ CTile()\l+ CTile()\l+ CTile()\l+ ~CTile()\l+ CTile()\l+ CTile()\l+ operator=()\l+ operator=()\l+ GetChar()\l+ GetColor()\land 9 more...\l&#45; InitColor()\l&#45; InitType()\l}" alt="" coords="5,5,117,303"/>
+<area shape="rect" id="node3" href="$structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetCrossNeighbours()\l+ GetDiagNeighbours()\l+ LiesInRange()\l+ GetRadius()\l+ Distance()\l}" alt="" coords="142,42,306,266"/>
+<area shape="rect" id="node4" href="$classCFrames.html" title="{CFrames\n|&#45; m_Speed\l&#45; m_CurrFrame\l&#45; MAX_FRAME_CNT\l|+ CFrames()\l+ ActionAllowed()\l+ GetSpeed()\l+ GetCurrent()\l+ SetCurrent()\l}" alt="" coords="330,71,478,237"/>
+</map>

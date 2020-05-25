@@ -1,0 +1,5 @@
+<map id="CTile::IsWall" name="CTile::IsWall">
+<area shape="rect" id="node2" href="$classCMap.html#ae6ba9555ee5f7d25f8b99da1b06f2186" title="CMap::PlaceTowers" alt="" coords="152,5,293,32"/>
+<area shape="rect" id="node4" href="$classCMap.html#a657dc4e12bb92720eafdc072ea764acf" title="CMap::LoadTowers" alt="" coords="155,56,291,83"/>
+<area shape="rect" id="node3" href="$classCMap.html#a90fabe75887f5bd9bbbe8792bb9c9611" title="CMap::WaveIsRunning" alt="" coords="341,5,500,32"/>
+</map>

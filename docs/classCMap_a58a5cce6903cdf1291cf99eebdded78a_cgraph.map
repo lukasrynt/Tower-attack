@@ -1,0 +1,5 @@
+<map id="CMap::LoadWallChar" name="CMap::LoadWallChar">
+<area shape="rect" id="node2" href="$classCMap.html#a88e3a346b11583bcac5b53e39502c33e" title="CMap::InitSpawner" alt="" coords="212,5,347,32"/>
+<area shape="rect" id="node3" href="$classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="200,56,359,83"/>
+<area shape="rect" id="node4" href="$classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="407,56,521,83"/>
+</map>

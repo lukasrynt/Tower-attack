@@ -1,0 +1,5 @@
+<map id="CInterface::GameScreen" name="CInterface::GameScreen">
+<area shape="rect" id="node2" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="511,5,629,32"/>
+<area shape="rect" id="node3" href="$classCGame.html#a2c1fe42628d4fca79efc6b59244a006e" title="CGame::CreateBuffer" alt="" coords="267,31,416,57"/>
+<area shape="rect" id="node4" href="$namespaceEscapes.html#a7dbda29c6f07ab25212d9a44d5b9a2a8" title="Escapes::CHANGE_WINDOW_SIZE" alt="" coords="220,81,463,108"/>
+</map>

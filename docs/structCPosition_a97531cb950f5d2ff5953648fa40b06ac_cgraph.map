@@ -1,0 +1,7 @@
+<map id="CPosition::GetDiagNeighbours" name="CPosition::GetDiagNeighbours">
+<area shape="rect" id="node2" href="$structCPosition.html#ab67b5cc5823f6a0f02be12d0f9ff1757" title="CPosition::GetCrossNeighbours" alt="" coords="255,100,464,127"/>
+<area shape="rect" id="node3" href="$structCPosition.html#a9486f04aa59bf6bdac30ef26812b4ea9" title="CPosition::left" alt="" coords="519,5,624,32"/>
+<area shape="rect" id="node4" href="$structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c" title="CPosition::right" alt="" coords="515,63,627,89"/>
+<area shape="rect" id="node5" href="$structCPosition.html#a114c7b43da16023e32f8557d3bc90b65" title="CPosition::up" alt="" coords="521,125,622,152"/>
+<area shape="rect" id="node6" href="$structCPosition.html#a5d814dc0e8b552491ad93212ba57c901" title="CPosition::down" alt="" coords="512,188,631,215"/>
+</map>

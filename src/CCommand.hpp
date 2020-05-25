@@ -8,11 +8,13 @@
 #include <functional>
 #include <utility>
 
-
+/**
+ * Command from the user with help associated with it
+ */
 class CCommand
 {
 public:
-	CCommand(std::function<void()> command, std::string help = "", std::string color = "")
+	explicit CCommand(std::function<void()> command, std::string help = "", std::string color = "")
 		: m_Command(std::move(command)),
 		  m_Help(std::move(help)),
 		  m_Color(std::move(color))
@@ -28,7 +30,7 @@ public:
 	{return m_Color;}
 
 private:
-	std::function<void()> m_Command;
-	std::string m_Help;
-	std::string m_Color;
+	std::function<void()> m_Command;	//!< Command to be executed
+	std::string m_Help;					//!< Help for the command
+	std::string m_Color;				//!< Color of the command help
 };

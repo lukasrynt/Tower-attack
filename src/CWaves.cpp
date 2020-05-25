@@ -13,15 +13,6 @@ using namespace std;
 
 /**********************************************************************************************************************/
 // INIT
-CWaves::CWaves() noexcept
-	: m_Waves(0),
-	  m_Selected(0),
-	  m_MaxSize(0),
-	  m_Frames(0),
-	  m_ReleasingWave(false),
-	  m_Resources(0)
-{}
-
 void CWaves::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 {m_UnitStack = move(unitStack);}
 
@@ -46,6 +37,8 @@ istream & operator>>(istream & in, CWaves & waves)
 		}
 		
 		// load the troopers in the wawes
+		if (pos == waves.m_Waves.size())
+			in.setstate(ios::failbit);
 		waves.m_Waves[pos++] = waves.LoadWaves(in);
 	}
 	return in;
@@ -119,7 +112,7 @@ bool CWaves::CheckNew() const
 ostream & operator<<(ostream & out, const CWaves & waves)
 {
 	out << "(W)" << endl;
-	out << waves.m_ReleasingWave << ' ' << waves.m_Frames << ' ' << waves.m_Resources << endl;
+	out << waves.m_ReleasingWave << ' ' << waves.m_Waves.size() << ' ' << waves.m_Frames << ' ' << waves.m_Resources << endl;
 	for (const auto & wave : waves.m_Waves)
 	{
 		out << '[';
@@ -132,7 +125,7 @@ ostream & operator<<(ostream & out, const CWaves & waves)
 
 /**********************************************************************************************************************/
 // RENDER
-CBuffer CWaves::CreateBuffer(size_t width) const
+CBuffer CWaves::Draw(size_t width) const
 {
 	CBuffer buffer{width};
 	buffer.Append("Waves:", Colors::FG_GREEN)

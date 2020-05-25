@@ -11,6 +11,9 @@
 #include "CPosition.hpp"
 #include "CTile.hpp"
 
+/**
+ * Finds path from start to goal
+ */
 class CPath
 {
 public:
@@ -30,7 +33,7 @@ private:
 	void QueueNeighbours(pos_t neighbour, std::set<pos_t> & visited, std::queue<CNode> & cells);
 	
 	
-	std::unordered_map<pos_t, CNode> m_NodeMap;
+	std::unordered_map<pos_t, CNode> m_NodeMap;								//!< Nodes mapped to positions
 	const std::unordered_map<pos_t, std::shared_ptr<CTile>> & m_TileMap;
 	int m_Rows;
 	int m_Cols;

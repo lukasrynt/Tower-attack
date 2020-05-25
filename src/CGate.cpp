@@ -20,7 +20,7 @@ istream & operator>>(istream & in, CGate & self)
 	return in;
 }
 
-CBuffer CGate::Render(size_t width) const
+CBuffer CGate::Draw(size_t width) const
 {
 	int part = 0;
 	if (m_Hp > 0)

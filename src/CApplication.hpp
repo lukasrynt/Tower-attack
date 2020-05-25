@@ -11,6 +11,9 @@
 #include "CCommand.hpp"
 #include <functional>
 
+/**
+ * The main part of the program, launches the game and handles users commands
+ */
 class CApplication
 {
 public:

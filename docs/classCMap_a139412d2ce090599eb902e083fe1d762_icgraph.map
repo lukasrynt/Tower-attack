@@ -1,0 +1,4 @@
+<map id="CMap::MoveTroops" name="CMap::MoveTroops">
+<area shape="rect" id="node2" href="$classCMap.html#ac30276b0b79f4076d48fc7b42f3135ec" title="CMap::Update" alt="" coords="191,5,297,32"/>
+<area shape="rect" id="node3" href="$classCMap.html#a90fabe75887f5bd9bbbe8792bb9c9611" title="CMap::WaveIsRunning" alt="" coords="345,5,504,32"/>
+</map>
