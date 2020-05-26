@@ -17,10 +17,27 @@
 class CPath
 {
 public:
-	CPath(const std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, int rows, int cols, pos_t start, pos_t goal);
+	CPath(const std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, int rows, int cols, pos_t start, pos_t goal)
+			: m_TileMap(map),
+			  m_Rows(rows),
+			  m_Cols(cols),
+			  m_Start(start),
+			  m_Goal(goal)
+	{}
+	/**
+	 * Finds path from start to goal in which the points are neighbouring on sides
+	 * @return Path
+	 */
 	std::deque<pos_t> FindStraightPath();
+	/**
+	 * Finds path from start to goal in which the points are neighbouring on vertices
+	 * @return Path
+	 */
 	std::deque<pos_t> FindDiagonalPath();
 private:
+	/**
+	 * Structure with position and distance from start
+	 */
 	struct CNode
 	{
 		pos_t m_Pos;
@@ -33,10 +50,10 @@ private:
 	void QueueNeighbours(pos_t neighbour, std::set<pos_t> & visited, std::queue<CNode> & cells);
 	
 	
-	std::unordered_map<pos_t, CNode> m_NodeMap;								//!< Nodes mapped to positions
-	const std::unordered_map<pos_t, std::shared_ptr<CTile>> & m_TileMap;
-	int m_Rows;
-	int m_Cols;
-	pos_t m_Start;
-	pos_t m_Goal;
+	std::unordered_map<pos_t, int> m_DistMap;								//!< Positions and their distances from start
+	const std::unordered_map<pos_t, std::shared_ptr<CTile>> & m_TileMap;	//!< Reference to original map with tiles
+	int m_Rows;																//!< Number of rows of the map
+	int m_Cols;																//!< Number of columns of the map
+	pos_t m_Start;															//!< Starting point of the path
+	pos_t m_Goal;															//!< End point of the path
 };

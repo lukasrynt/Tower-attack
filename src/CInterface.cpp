@@ -133,7 +133,7 @@ bool CInterface::TryLoading(const char * filename, CGame & game) const
 		return false;
 	}
 	
-	inFile.exceptions(ios::failbit | ios::eofbit | ios::badbit);
+	inFile.exceptions(ios::failbit | ios::badbit);
 	// load game
 	try
 	{
@@ -219,11 +219,11 @@ void CInterface::Menu(const map<char, CCommand> & commands) const
 	ResetScreen();
 	m_Out << CBuffer{m_WindowWidth}
 		.Append(CreateGameHeader())
-		.Append(CreateMenuOptions(commands))
+		.Append(DrawMenuOptions(commands))
 		.CenterHorizontal(m_WindowHeight);
 }
 
-CBuffer CInterface::CreateMenuOptions(const map<char, CCommand> & commands)
+CBuffer CInterface::DrawMenuOptions(const map<char, CCommand> & commands)
 {
 	CBuffer tmp{m_WindowWidth};
 	tmp.Append()
@@ -323,7 +323,7 @@ void CInterface::GameScreen(const CGame & game) const
 void CInterface::HelpScreen(const map<char, CCommand> & commands, const CUnitStack & stack) const
 {
 	vector<CBuffer> screens;
-	screens.emplace_back(CreateCommandsHelpScreen(commands));
+	screens.emplace_back(DrawCommandsHelpScreen(commands));
 	screens.emplace_back(CreateCommonLegendScreen());
 	screens.emplace_back(CreateTrooperLegendScreen(stack));
 	screens.emplace_back(CreateTowerLegendScreen(stack));
@@ -346,16 +346,16 @@ void CInterface::HelpScreen(const map<char, CCommand> & commands, const CUnitSta
 	}
 }
 
-CBuffer CInterface::CreateCommandsHelpScreen(const std::map<char, CCommand> & commands)
+CBuffer CInterface::DrawCommandsHelpScreen(const std::map<char, CCommand> & commands)
 {
 	return move(CBuffer{m_WindowWidth}
 		.Append(CreateCommandsHeader())
-		.Append(CreateGameOptions(commands))
+		.Append(DrawGameOptions(commands))
 		.Append(CreateHelpOptions()))
 		.CenterHorizontal(m_WindowHeight);
 }
 
-CBuffer CInterface::CreateGameOptions(const map<char, CCommand> & commands)
+CBuffer CInterface::DrawGameOptions(const map<char, CCommand> & commands)
 {
 	CBuffer tmp{m_WindowWidth};
 	for (const auto & command : commands)
@@ -559,14 +559,14 @@ string CInterface::PromptFileName(const string & message) const
 			.AddEscapeSequence(Colors::RESET)
 			.Append(string(20, ' '), Colors::BG_WHITE)
 			.CenterVertical();
-	int height = tmp.Height();
-	int width = tmp.Width();
+	size_t height = m_WindowHeight / 2 + tmp.Height() / 2;
+	size_t width = m_WindowWidth / 2 - tmp.Width() / 2;
 	ResetScreen();
 	m_Out << tmp.CenterHorizontal(m_WindowHeight);
 	
 	// reposition cursor and set color to white
 	(m_Out << Escapes::SHOW_CURSOR
-		<< Escapes::REPOSITION_CURSOR((m_WindowHeight) / 2 + height / 2, m_WindowWidth / 2 - width / 2)
+		<< Escapes::REPOSITION_CURSOR(height % 2 == 0 ? height : height + 1, width)
 		<< string(Colors::BG_WHITE) + Colors::FG_BLACK).flush();
 	
 	string filename;

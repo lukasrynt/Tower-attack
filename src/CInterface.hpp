@@ -105,13 +105,14 @@ private:
 	std::ostream & m_Out;					//!< output stream
 	termios m_Term;							//!< original terminal settings
 	static const int m_WindowWidth = 150;	//!< width of the window
-	static const int m_WindowHeight = 50;	//!< height of the window
+	static const int m_WindowHeight = 55;	//!< height of the window
 	
 	// MENU SCREEN
-	static CBuffer CreateMenuOptions(const std::map<char, CCommand> & commands);
-	
-	// GAME SCREEN
-	static CBuffer CreateGameOptions(const std::map<char, CCommand> & commands);
+	/**
+	 * Draws options in the main menu
+	 * @param commands Commands which we want to draw
+	 */
+	static CBuffer DrawMenuOptions(const std::map<char, CCommand> & commands);
 	
 	// SAVING GAME
 	void SavedScreen() const;
@@ -121,7 +122,16 @@ private:
 	bool TryLoading(const char * filename, CGame & game) const;
 	
 	// HELP SCREEN
-	static CBuffer CreateCommandsHelpScreen(const std::map<char, CCommand> & commands);
+	/**
+	 * Draws in game options for help screen
+	 * @param Commands which we want to draw
+	 */
+	static CBuffer DrawGameOptions(const std::map<char, CCommand> & commands);
+	/**
+	 * Draws help screen with information about command
+	 * @pararm Commands which we want to draw
+	 */
+	static CBuffer DrawCommandsHelpScreen(const std::map<char, CCommand> & commands);
 	static CBuffer CreateCommonLegendScreen();
 	static CBuffer CreateTrooperLegendScreen(const CUnitStack & stack);
 	static CBuffer CreateTowerLegendScreen(const CUnitStack & stack);
@@ -138,8 +148,19 @@ private:
 	
 	
 	// COMMON
+	/**
+	 * Draws the screen in which we prompt the user to enter filename
+	 * @param message Message we want to show the user in the prompt screen
+	 * @return Filename
+	 */
 	std::string PromptFileName(const std::string & message) const;
+	/**
+	 * Changes read attributes so that it will return instantly without waiting for input
+	 */
 	static void NullTimeout();
+	/**
+	 * Deletes the screen and moves cursor up
+	 */
 	void ResetScreen() const;
 };
 

@@ -12,12 +12,11 @@ using namespace std;
 // LOADING
 istream & operator>>(istream & in, CGame & self)
 {
-	set<char> signs;
-	bool end = false;
 	self.AssignUnitStack();
 	
-	while (!end)
-		self.LoadObjects(in, signs, end);
+	// load individual objects until we reach character that isn't defined
+	set<char> signs;
+	while (self.LoadObjects(in, signs));
 	
 	self.m_WaveOn = self.m_Map.WaveIsRunning();
 	
@@ -34,7 +33,7 @@ void CGame::AssignUnitStack()
 	m_Waves.AssignUnitStack(m_UnitStack);
 }
 
-void CGame::LoadObjects(istream & in, set<char> & signs, bool & end)
+bool CGame::LoadObjects(istream & in, set<char> & signs)
 {
 	// load signature char
 	char ch = CGame::LoadSignatureChar(in);
@@ -48,14 +47,33 @@ void CGame::LoadObjects(istream & in, set<char> & signs, bool & end)
 			in >> *m_UnitStack;
 			break;
 		case 'W':
-			in >> m_Waves;
+			try
+			{
+				in >> m_Waves;
+			}
+			catch (const ios::failure & e)
+			{
+				if (in.eof())
+					return false;
+				in.clear(ios::goodbit);
+			}
 			break;
 		case 'M':
-			in >> m_Map;
+			try
+			{
+				in >> m_Map;
+			}
+			catch (const ios::failure & e)
+			{
+				if (in.eof())
+					return false;
+				in.clear(ios::goodbit);
+			}
 			break;
 		default:
-			end = true;
+			return false;
 	}
+	return true;
 }
 
 bool CGame::CheckDefined(const set<char> & signs)
@@ -133,5 +151,5 @@ CBuffer CGame::CreateBuffer(size_t width) const
 void CGame::Visualize(const deque<pos_t> & positions)
 {
 	m_Map.Visualize(positions);
-	//m_Map.Render(cout);
+	cout << m_Map.Draw(50);
 }

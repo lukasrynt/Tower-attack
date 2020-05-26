@@ -15,8 +15,8 @@ using namespace std;
 int main ()
 {
 
-	ifstream inFile("/home/lukas/School/PA2/semestralka/maps/test2.map");
-	inFile.exceptions(ios::failbit | ios::badbit | ios::eofbit);
+	ifstream inFile("/home/lukas/School/PA2/semestralka/saves/test6.sav");
+	inFile.exceptions(ios::failbit | ios::badbit);
 
 	CGame game;
 	try
@@ -28,11 +28,11 @@ int main ()
 		if (!inFile.eof())
 			return 2;
 	}
-	if (!game.CheckNew())
+	if (!game.CheckSaved())
 		return 3;
 	cout << game.CreateBuffer(150);
-	game.AddTroop();
-	game.ReleaseWaves();
+//	game.AddTroop();
+//	game.ReleaseWaves();
 //	game.Update();
 //	for (int i = 0; i < 5; ++i)
 //		game.AddTroop();

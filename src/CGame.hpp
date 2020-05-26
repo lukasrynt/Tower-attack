@@ -82,19 +82,29 @@ public:
 	
 	void Quit()
 	{m_GameState = EGameState::GAME_QUIT;}
-	
+	/**
+	 * Move wave selection to next wave
+	 */
 	void CycleWaves()
 	{m_Waves.Cycle();}
-	
+	/**
+	 * Move trooper selection to next trooper
+	 */
 	void CycleTroops()
 	{m_UnitStack->Cycle();}
-	
+	/**
+	 * Deletes trooper from current wave
+	 */
 	void DeleteTroop()
 	{m_Waves.DeleteTroop();}
-	
+	/**
+	 * Adds trooper to current wave
+	 */
 	void AddTroop()
 	{m_Waves.AddTroop();}
-	
+	/**
+	 * Relesease all waves
+	 */
 	void ReleaseWaves()
 	{m_Waves.Release(m_WaveOn);}
 	
@@ -109,7 +119,23 @@ private:
 	EGameState m_GameState = EGameState::GAME_RUNNING;	//!< Current state of the game
 	
 	// LOADING
-	void LoadObjects(std::istream & in, std::set<char> & signs, bool & end);
+	/**
+	 * Load individual objects from input stream
+	 * @param in Input stream
+	 * @param signs Set with defined characters - prevents redefinition of object
+	 * @return True if character is among the defined characters and was loaded succesfully
+	 */
+	bool LoadObjects(std::istream & in, std::set<char> & signs);
+	/**
+	 * Load character in format '(C)' where C is the character defining one object in the game
+	 * Allowed characters are M (map), W (waves), U (unit stack)
+	 * @param in Input stream
+	 * @return Character loaded
+	 */
 	static char LoadSignatureChar(std::istream & in);
+	/**
+	 * Checks if every object in the game has been defined
+	 * @return True if everything is alright
+	 */
 	bool CheckDefined(const std::set<char> & signs);
 };

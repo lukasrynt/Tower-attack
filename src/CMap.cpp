@@ -55,7 +55,7 @@ CMap & CMap::GenerateTowers()
 		while (true)
 		{
 			size_t charIdx = disChar(gen);
-			pos_t point = {disCol(gen), disRow(gen)};
+			pos_t point = pos_t{disCol(gen), disRow(gen)};
 			
 			// check if the position is ok - towers are not somewhere on blank spaces - would block troops paths
 			if (!m_Map.count(point)
@@ -152,9 +152,9 @@ void CMap::LoadWallLine(istream & in, int row)
 	{
 		in.get(ch);
 		if (m_UnitStack->IsTowerChar(ch))
-			LoadEntityChar({col, row}, ch);
+			LoadEntityChar(pos_t{col, row}, ch);
 		else
-			LoadWallChar(ch, {col, row});
+			LoadWallChar(ch, pos_t{col, row});
 	}
 }
 
@@ -162,16 +162,16 @@ void CMap::LoadMapCenter(istream & in, int row)
 {
 	// read left wall boundary - skip enter
 	DeleteWs(in);
-	if (!LoadWallChar(in.get(), {0, row}))
+	if (!LoadWallChar(in.get(), pos_t{0, row}))
 		in.setstate(ios::failbit);
 	
 	// load characters inside map
 	for (int col = 1; col < m_Cols - 1; ++col)
-		if (!LoadCenterChar(in.get(), {col, row}))
+		if (!LoadCenterChar(in.get(), pos_t{col, row}))
 			in.setstate(ios::failbit);
 	
 	// load right wall boundary
-	if (!LoadWallChar(in.get(), {m_Cols - 1, row}))
+	if (!LoadWallChar(in.get(), pos_t{m_Cols - 1, row}))
 		in.setstate(ios::failbit);
 }
 
@@ -291,12 +291,12 @@ void CMap::SaveMap(ostream & out) const
 		string line;
 		for (int j = 0; j < m_Cols; ++j)
 		{
-			if (!m_Map.count({j,i}) || m_Map.at({j,i})->IsTroop())	// skip troops while saving the map
+			if (!m_Map.count(pos_t{j,i}) || m_Map.at(pos_t{j,i})->IsTroop())	// skip troops while saving the map
 				line += ' ';
-			else if (m_Map.at({j,i})->IsTower())
+			else if (m_Map.at(pos_t{j,i})->IsTower())
 				line += '#';
 			else
-				line += m_Map.at({j, i})->GetChar();
+				line += m_Map.at(pos_t{j, i})->GetChar();
 		}
 		out << line << endl;
 	}
@@ -329,10 +329,10 @@ CBuffer CMap::DrawMap(size_t width) const
 		buffer.Append();
 		for (int j = 0; j < m_Cols; ++j)
 		{
-			if (!m_Map.count({j,i}))
+			if (!m_Map.count(pos_t{j,i}))
 				buffer << " ";
 			else
-				buffer << *m_Map.at({j, i});
+				buffer << *m_Map.at(pos_t{j, i});
 		}
 	}
 	buffer.Append(DrawTroopsOnMap(width));

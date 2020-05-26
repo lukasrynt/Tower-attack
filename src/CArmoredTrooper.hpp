@@ -75,7 +75,7 @@ public:
 	 * @return out
 	 */
 	std::ostream & SaveOnMap(std::ostream & out) const final
-	{return CTrooper::SaveOnMap(out) << ' ' << m_Armor.GetCurrent() << m_ArmorOn;}
+	{return CTrooper::SaveOnMap(out) << ' ' << m_Armor.GetCurrent() << ' ' << m_ArmorOn;}
 
 private:
 	CCounter m_Armor;	//!< Counter for armor state - unit can ignore one attack if armor is up

@@ -96,14 +96,14 @@ void CApplication::InitCommands()
 
 CCommand CApplication::QuitCommand()
 {
-	return {[this](){m_AppOn = false;},
+	return CCommand{[this](){m_AppOn = false;},
 		 "Quit game",
 		 Colors::FG_RED};
 }
 
 CCommand CApplication::LoadNewCommand()
 {
-	return {[this]()
+	return CCommand{[this]()
 		{
 			m_Game = make_unique<CGame>();
 			if (m_Interface.LoadNewGame(*m_Game))
@@ -115,7 +115,7 @@ CCommand CApplication::LoadNewCommand()
 
 CCommand CApplication::LoadSavedCommand()
 {
-	return {[this]()
+	return CCommand{[this]()
 		{
 			m_Game = make_unique<CGame>();
 			if (m_Interface.LoadSavedGame(*m_Game))
@@ -127,48 +127,48 @@ CCommand CApplication::LoadSavedCommand()
 
 CCommand CApplication::AddTroopCommand()
 {
-	return {[this](){m_Game->AddTroop();},
+	return CCommand{[this](){m_Game->AddTroop();},
 		 "Add trooper to current wave."};
 }
 
 CCommand CApplication::DeleteTroopCommand()
 {
-	return {[this](){m_Game->DeleteTroop();},
+	return CCommand{[this](){m_Game->DeleteTroop();},
 		 "Delete trooper from current wave"};
 }
 
 CCommand CApplication::CycleTroopsCommand()
 {
-	return {[this](){m_Game->CycleTroops();},
+	return CCommand{[this](){m_Game->CycleTroops();},
 		 "Move cursor to next trooper."};
 }
 
 CCommand CApplication::CycleWavesCommand()
 {
-	return {[this](){m_Game->CycleWaves();},
+	return CCommand{[this](){m_Game->CycleWaves();},
 			"Move cursor to next wave"};
 }
 
 CCommand CApplication::ReleaseWavesCommand()
 {
-	return {[this](){m_Game->ReleaseWaves();},
+	return CCommand{[this](){m_Game->ReleaseWaves();},
 		 "Release all waves. Careful once this is done no more troops can be released until the map is empty."};
 }
 
 CCommand CApplication::HelpCommand()
 {
-	return {[this](){m_Interface.HelpScreen(m_GameCommands, m_Game->GetStack());},
+	return CCommand{[this](){m_Interface.HelpScreen(m_GameCommands, m_Game->GetStack());},
 		 "Show this screen"};
 }
 
 CCommand CApplication::SaveCommand()
 {
-	return {[this](){m_Interface.Save(*m_Game);},
+	return CCommand{[this](){m_Interface.Save(*m_Game);},
 		"Save current game"};
 }
 
 CCommand CApplication::QuitGameCommand()
 {
-	return {[this](){m_Game->Quit();},
+	return CCommand{[this](){m_Game->Quit();},
 			"Quit game"};
 }

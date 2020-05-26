@@ -7,6 +7,9 @@
 
 #include <stdexcept>
 
+/**
+ * Exception when user has entered invalid input
+ */
 class invalid_input : public std::runtime_error
 {
 public:

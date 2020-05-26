@@ -54,7 +54,7 @@ bool CTrooper::Move(const unordered_map<pos_t,shared_ptr<CTile>> & map, bool & e
 istream & CTrooper::LoadOnMap(istream & in)
 {
 	int current;
-	in >> m_Pos >> current;
+	in >> m_Pos >> current >> m_SpawnIdx;
 	m_Frames.SetCurrent(current);
 	return in;
 }

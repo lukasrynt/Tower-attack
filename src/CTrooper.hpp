@@ -101,7 +101,7 @@ public:
 	 * @return out
 	 */
 	virtual std::ostream & SaveOnMap(std::ostream & out) const
-	{return out << m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent();}
+	{return out << m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent() << ' ' << m_SpawnIdx;}
 	
 	// RENDERING
 	/**
@@ -136,7 +136,7 @@ public:
 	int GetPrice() const
 	{return m_Price;}
 protected:
-	pos_t m_Pos;
+	pos_t m_Pos;				//!< Position of the trooper on map
 	int m_Hp = 0;				//!< Number of health points of the unit
 	int m_Attack = 0;			//!< Attack damage of the trooper
 	int m_Price = 0;			//!< Price of the unit

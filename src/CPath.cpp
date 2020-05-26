@@ -10,16 +10,6 @@
 using namespace std;
 
 /**********************************************************************************************************************/
-// INIT
-CPath::CPath(const unordered_map<pos_t, shared_ptr<CTile>> & map, int rows, int cols, pos_t start, pos_t goal)
-	: m_TileMap(map),
-	  m_Rows(rows),
-	  m_Cols(cols),
-	  m_Start(start),
-	  m_Goal(goal)
-{}
-
-/**********************************************************************************************************************/
 // PATHFINDING
 deque<pos_t> CPath::FindStraightPath()
 {
@@ -47,20 +37,20 @@ deque<pos_t> CPath::TraceBack(const function<list<pos_t>(pos_t)> & getNeighbours
 	path.push_back(m_Goal);
 	
 	// go through the nodes until we reach start again
-	for (CNode curr = m_NodeMap.at(m_Goal); curr.m_Pos != m_Start;)
+	for (CNode curr = {m_Goal, m_DistMap.at(m_Goal)}; curr.m_Pos != m_Start;)
 	{
 		int minDist = INT32_MAX;
 		for (const auto & neighbour : getNeighbours(curr.m_Pos))
 		{
-			if (!m_NodeMap.count(neighbour)
-				|| m_NodeMap.at(neighbour).m_Dist > minDist)
+			if (!m_DistMap.count(neighbour)
+				|| m_DistMap.at(neighbour) > minDist)
 				continue;
-			curr = m_NodeMap.at(neighbour);
-			m_NodeMap.erase(neighbour);
+			curr = {neighbour, m_DistMap.at(neighbour)};
+			m_DistMap.erase(neighbour);
 			minDist = curr.m_Dist;
 		}
 		path.push_back(curr.m_Pos);
-		m_NodeMap.erase(curr.m_Pos);
+		m_DistMap.erase(curr.m_Pos);
 	}
 	
 	// we backtrace so we need to reverse the path
@@ -83,8 +73,8 @@ bool CPath::BFS(const function<list<pos_t>(pos_t)> & getNeighbours)
 	// insert the starting point and set it to visited
 	queue<CNode> cells;
 	cells.push({m_Start});
-	m_NodeMap.insert({m_Start, {m_Start}});
-	visited.insert(m_Start);
+	m_DistMap.emplace(m_Start, 0);
+	visited.emplace(m_Start);
 	
 	while (!cells.empty())
 	{
@@ -111,7 +101,7 @@ bool CPath::IterateNeighbours(set<pos_t> & visited, queue<CNode> & cells, const 
 		// found finish
 		if (neighbour == m_Goal)
 		{
-			m_NodeMap.insert({neighbour, {neighbour, cells.front().m_Dist + 1}});
+			m_DistMap.emplace(neighbour, cells.front().m_Dist + 1);
 			return true;
 		}
 		QueueNeighbours(neighbour, visited, cells);
@@ -126,7 +116,7 @@ void CPath::QueueNeighbours(pos_t neighbour, set<pos_t> & visited, queue<CNode> 
 		&& (!m_TileMap.count(neighbour) || m_TileMap.at(neighbour)->IsTroop()))
 	{
 		cells.push({neighbour, cells.front().m_Dist + 1});
-		m_NodeMap.insert({neighbour, {neighbour, cells.front().m_Dist + 1}});
+		m_DistMap.emplace(neighbour, cells.front().m_Dist + 1);
 	}
-	visited.insert(neighbour);
+	visited.emplace(neighbour);
 }

@@ -54,7 +54,12 @@ bool CArmoredTrooper::Update()
 istream & CArmoredTrooper::LoadOnMap(istream & in)
 {
 	int tmp;
-	return CTrooper::LoadOnMap(in) >> tmp >> m_ArmorOn;
+	CTrooper::LoadOnMap(in) >> tmp >> m_ArmorOn;
 	m_Armor.SetCurrent(tmp);
-	
+	if (m_ArmorOn)
+	{
+		m_BackColor = Colors::BG_CYAN;
+		m_ForeColor = Colors::FG_BLACK;
+	}
+	return in;
 }

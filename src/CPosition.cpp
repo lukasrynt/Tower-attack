@@ -66,7 +66,7 @@ deque<CPosition> CPosition::GetRadius(int distance) const
 {
 	set<CPosition> visited;
 	deque<CPosition> positions, res;
-	visited.insert({m_X, m_Y});
+	visited.emplace(m_X, m_Y);
 	positions.emplace_back(m_X, m_Y);
 	while (!positions.empty())
 	{
