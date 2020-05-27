@@ -1,7 +1,0 @@
-<map id="CPath::TraceBack" name="CPath::TraceBack">
-<area shape="rect" id="node2" href="$classCPath.html#adf9752e5300e9ff333e10279cf78bd4f" title="CPath::FindStraightPath" alt="" coords="187,56,351,83"/>
-<area shape="rect" id="node5" href="$classCPath.html#acb5e1e3ab50bd7063354c03cb2105879" title="CPath::FindDiagonalPath" alt="" coords="184,107,355,133"/>
-<area shape="rect" id="node3" href="$classCMap.html#a4811d2b75c8201a8f6df1c7bacb87eec" title="CMap::LoadTroops" alt="" coords="433,5,567,32"/>
-<area shape="rect" id="node4" href="$classCMap.html#aa5b1950670538740cd469a59e4003fda" title="CMap::FindPathsFromSpawn" alt="" coords="403,56,597,83"/>
-<area shape="rect" id="node6" href="$classCArcherTower.html#aa848eae43ad4931b62ca2d6ab9ceada5" title="CArcherTower::AssignArrow" alt="" coords="406,107,594,133"/>
-</map>

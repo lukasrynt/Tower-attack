@@ -1,5 +1,0 @@
-<map id="CGate::ReceiveDamage" name="CGate::ReceiveDamage">
-<area shape="rect" id="node2" href="$classCMap.html#a139412d2ce090599eb902e083fe1d762" title="CMap::MoveTroops" alt="" coords="219,5,356,32"/>
-<area shape="rect" id="node3" href="$classCMap.html#ac30276b0b79f4076d48fc7b42f3135ec" title="CMap::Update" alt="" coords="404,5,511,32"/>
-<area shape="rect" id="node4" href="$classCMap.html#a90fabe75887f5bd9bbbe8792bb9c9611" title="CMap::WaveIsRunning" alt="" coords="559,5,717,32"/>
-</map>

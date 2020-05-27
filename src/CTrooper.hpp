@@ -101,7 +101,7 @@ public:
 	 * @return out
 	 */
 	virtual std::ostream & SaveOnMap(std::ostream & out) const
-	{return out << m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent() << ' ' << m_SpawnIdx;}
+	{return out << m_Char << ' ' << m_Pos << ' ' << m_Frames.GetCurrent() << ' ' << m_SpawnIdx << ' ' << m_Hp;}
 	
 	// RENDERING
 	/**
@@ -114,6 +114,9 @@ public:
 	// GETTERS/ SETTERS
 	int GetHp() const
 	{return m_Hp;}
+	
+	int GetSpeed() const
+	{return m_Frames.GetSpeed();}
 
 	bool Died() const
 	{return m_Hp <= 0;}

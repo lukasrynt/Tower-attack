@@ -43,11 +43,33 @@ private:
 		pos_t m_Pos;
 		int m_Dist = 0;
 	};
-	
+	/**
+	 * Traces the path back from goal to start calculating the shortest distance
+	 * @param getNeighbours Function that returns neighbours of the point
+	 * @return Path
+	 */
 	std::deque<pos_t> TraceBack(const std::function<std::list<pos_t>(pos_t)> & getNeighbours);
+	/**
+	 * Implements Breadth first search to spread through the map and find path from start to goal
+	 * @param getNeighbours Function that returns neighbours of the point
+	 * @return True if some path was found
+	 */
 	bool BFS(const std::function<std::list<pos_t>(pos_t)> & getNeighbours);
+	/**
+	 * Iterates the neighbours of current point
+	 * @param visited Set of positions we have been to
+	 * @param cells All cells left to explore
+	 * @param getNeighbours Function that returns neighbours of the point
+	 * @return True if goal was reached
+	 */
 	bool IterateNeighbours(std::set<pos_t> & visited, std::queue<CNode> & cells, const std::function<std::list<pos_t>(pos_t)> & getNeighbours);
-	void QueueNeighbours(pos_t neighbour, std::set<pos_t> & visited, std::queue<CNode> & cells);
+	/**
+	 * Queues the neighbouring cells if they haven't been visited and are in the range of map
+	 * @param neighbour Cell we want to queue
+	 * @param visited Set of positions we have been to
+	 * @param cells All cells left to explore
+	 */
+	void QueueNeighbour(pos_t neighbour, std::set<pos_t> & visited, std::queue<CNode> & cells);
 	
 	
 	std::unordered_map<pos_t, int> m_DistMap;								//!< Positions and their distances from start

@@ -1,7 +1,0 @@
-<map id="CArmoredTrooper::Clone" name="CArmoredTrooper::Clone">
-<area shape="rect" id="node2" href="$classCArmoredTrooper.html#ad453faa915211bea20873080e7354b3d" title="CArmoredTrooper::CArmored\lTrooper" alt="" coords="221,5,413,47"/>
-<area shape="rect" id="node3" href="$classCArmoredTrooper.html#a1e90759a9f4c9601e05bfee2c5572a2b" title="CArmoredTrooper::Receive\lDamage" alt="" coords="227,71,408,112"/>
-<area shape="rect" id="node5" href="$classCArmoredTrooper.html#a79662216de07a5ec6d395070c5e3565b" title="CArmoredTrooper::CreateInfo\lBuffer" alt="" coords="220,136,415,177"/>
-<area shape="rect" id="node4" href="$classCTrooper.html#abedb8490f3737c8d54d4af1ced3dcf33" title="CTrooper::ReceiveDamage" alt="" coords="463,78,644,105"/>
-<area shape="rect" id="node6" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="494,143,613,170"/>
-</map>

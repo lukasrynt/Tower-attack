@@ -1,0 +1,22 @@
+<map id="src/CInterface.hpp" name="src/CInterface.hpp">
+<area shape="rect" id="node5" href="$CGame_8hpp.html" title="CGame.hpp" alt="" coords="1511,80,1603,107"/>
+<area shape="rect" id="node31" href="$CBuffer_8hpp.html" title="CBuffer.hpp" alt="" coords="334,528,426,555"/>
+<area shape="rect" id="node41" href="$CCommand_8hpp.html" title="CCommand.hpp" alt="" coords="1583,453,1700,480"/>
+<area shape="rect" id="node9" href="$CUnitStack_8hpp.html" title="CUnitStack.hpp" alt="" coords="929,229,1044,256"/>
+<area shape="rect" id="node37" href="$CMap_8hpp.html" title="CMap.hpp" alt="" coords="693,155,776,181"/>
+<area shape="rect" id="node39" href="$CWaves_8hpp.html" title="CWaves.hpp" alt="" coords="1373,155,1472,181"/>
+<area shape="rect" id="node40" href="$EGameState_8hpp.html" title="EGameState.hpp" alt="" coords="1496,155,1619,181"/>
+<area shape="rect" id="node10" href="$CTrooper_8hpp.html" title="CTrooper.hpp" alt="" coords="1235,453,1336,480"/>
+<area shape="rect" id="node33" href="$CTower_8hpp.html" title="CTower.hpp" alt="" coords="837,379,931,405"/>
+<area shape="rect" id="node34" href="$CArmoredTrooper_8hpp.html" title="CArmoredTrooper.hpp" alt="" coords="958,379,1109,405"/>
+<area shape="rect" id="node35" href="$CArcherTower_8hpp.html" title="CArcherTower.hpp" alt="" coords="972,304,1103,331"/>
+<area shape="rect" id="node36" href="$CMageTower_8hpp.html" title="CMageTower.hpp" alt="" coords="772,304,897,331"/>
+<area shape="rect" id="node15" href="$escape__sequences_8h.html" title="escape_sequences.h" alt="" coords="395,603,541,629"/>
+<area shape="rect" id="node18" href="$CTile_8hpp.html" title="CTile.hpp" alt="" coords="870,603,949,629"/>
+<area shape="rect" id="node26" href="$CPath_8hpp.html" title="CPath.hpp" alt="" coords="1022,528,1106,555"/>
+<area shape="rect" id="node28" href="$CCounter_8hpp.html" title="CCounter.hpp" alt="" coords="1427,528,1530,555"/>
+<area shape="rect" id="node20" href="$CPosition_8hpp.html" title="CPosition.hpp" alt="" coords="488,677,592,704"/>
+<area shape="rect" id="node25" href="$ETileType_8hpp.html" title="ETileType.hpp" alt="" coords="920,677,1027,704"/>
+<area shape="rect" id="node29" href="$ExInvalidFormat_8hpp.html" title="ExInvalidFormat.hpp" alt="" coords="1427,603,1570,629"/>
+<area shape="rect" id="node38" href="$CGate_8hpp.html" title="CGate.hpp" alt="" coords="144,453,229,480"/>
+</map>

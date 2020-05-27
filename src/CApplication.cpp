@@ -12,16 +12,6 @@
 
 using namespace std;
 /**********************************************************************************************************************/
-// TERMIOS
-CApplication::CApplication(const CInterface & interface) noexcept
-	: m_Interface(interface),
-	  m_Game(make_unique<CGame>()),
-	  m_AppOn(true)
-{
-	InitCommands();
-}
-
-/**********************************************************************************************************************/
 // MAIN LOOP
 void CApplication::Run()
 {
@@ -39,13 +29,13 @@ void CApplication::Run()
 void CApplication::MainLoop()
 {
 	//	http://gameprogrammingpatterns.com/game-loop.html
-	while (m_Game->Running())
+	while (m_Game.Running())
 	{
 		// get time stamp
 		auto start = CInterface::GetCurrentTime();
 		ProcessInput();
-		m_Game->Update();
-		m_Interface.GameScreen(*m_Game);
+		m_Game.Update();
+		m_Interface.GameScreen(m_Game);
 		CInterface::Sleep(start - CInterface::GetCurrentTime() + 16ms);
 	}
 	EndGame();
@@ -53,12 +43,12 @@ void CApplication::MainLoop()
 
 void CApplication::EndGame()
 {
-	if (m_Game->Won())
+	if (m_Game.Won())
 		m_Interface.Winner();
-	else if (m_Game->Lost())
+	else if (m_Game.Lost())
 		m_Interface.GameOver();
 	CInterface::ResetTimeout();
-	m_Game = nullptr;
+	m_Game = {};
 }
 
 /**********************************************************************************************************************/
@@ -105,8 +95,7 @@ CCommand CApplication::LoadNewCommand()
 {
 	return CCommand{[this]()
 		{
-			m_Game = make_unique<CGame>();
-			if (m_Interface.LoadNewGame(*m_Game))
+			if (m_Interface.LoadNewGame(m_Game))
 				MainLoop();
 		},
 		"New game",
@@ -117,8 +106,7 @@ CCommand CApplication::LoadSavedCommand()
 {
 	return CCommand{[this]()
 		{
-			m_Game = make_unique<CGame>();
-			if (m_Interface.LoadSavedGame(*m_Game))
+			if (m_Interface.LoadSavedGame(m_Game))
 				MainLoop();
 		},
 		"Load game",
@@ -127,48 +115,48 @@ CCommand CApplication::LoadSavedCommand()
 
 CCommand CApplication::AddTroopCommand()
 {
-	return CCommand{[this](){m_Game->AddTroop();},
+	return CCommand{[this](){m_Game.AddTroop();},
 		 "Add trooper to current wave."};
 }
 
 CCommand CApplication::DeleteTroopCommand()
 {
-	return CCommand{[this](){m_Game->DeleteTroop();},
+	return CCommand{[this](){m_Game.DeleteTroop();},
 		 "Delete trooper from current wave"};
 }
 
 CCommand CApplication::CycleTroopsCommand()
 {
-	return CCommand{[this](){m_Game->CycleTroops();},
+	return CCommand{[this](){m_Game.CycleTroops();},
 		 "Move cursor to next trooper."};
 }
 
 CCommand CApplication::CycleWavesCommand()
 {
-	return CCommand{[this](){m_Game->CycleWaves();},
+	return CCommand{[this](){m_Game.CycleWaves();},
 			"Move cursor to next wave"};
 }
 
 CCommand CApplication::ReleaseWavesCommand()
 {
-	return CCommand{[this](){m_Game->ReleaseWaves();},
+	return CCommand{[this](){m_Game.ReleaseWaves();},
 		 "Release all waves. Careful once this is done no more troops can be released until the map is empty."};
 }
 
 CCommand CApplication::HelpCommand()
 {
-	return CCommand{[this](){m_Interface.HelpScreen(m_GameCommands, m_Game->GetStack());},
+	return CCommand{[this](){m_Interface.HelpScreen(m_GameCommands, m_Game.GetStack());},
 		 "Show this screen"};
 }
 
 CCommand CApplication::SaveCommand()
 {
-	return CCommand{[this](){m_Interface.Save(*m_Game);},
+	return CCommand{[this](){if (!m_Interface.Save(m_Game)) m_Game.Quit();},
 		"Save current game"};
 }
 
 CCommand CApplication::QuitGameCommand()
 {
-	return CCommand{[this](){m_Game->Quit();},
+	return CCommand{[this](){m_Game.Quit();},
 			"Quit game"};
 }

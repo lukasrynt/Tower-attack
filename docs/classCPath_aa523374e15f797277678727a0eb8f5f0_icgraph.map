@@ -1,7 +1,0 @@
-<map id="CPath::BFS" name="CPath::BFS">
-<area shape="rect" id="node2" href="$classCPath.html#adf9752e5300e9ff333e10279cf78bd4f" title="CPath::FindStraightPath" alt="" coords="150,56,314,83"/>
-<area shape="rect" id="node5" href="$classCPath.html#acb5e1e3ab50bd7063354c03cb2105879" title="CPath::FindDiagonalPath" alt="" coords="147,107,317,133"/>
-<area shape="rect" id="node3" href="$classCMap.html#a4811d2b75c8201a8f6df1c7bacb87eec" title="CMap::LoadTroops" alt="" coords="396,5,529,32"/>
-<area shape="rect" id="node4" href="$classCMap.html#aa5b1950670538740cd469a59e4003fda" title="CMap::FindPathsFromSpawn" alt="" coords="365,56,560,83"/>
-<area shape="rect" id="node6" href="$classCArcherTower.html#aa848eae43ad4931b62ca2d6ab9ceada5" title="CArcherTower::AssignArrow" alt="" coords="369,107,557,133"/>
-</map>

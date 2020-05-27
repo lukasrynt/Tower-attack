@@ -104,12 +104,12 @@ bool CPath::IterateNeighbours(set<pos_t> & visited, queue<CNode> & cells, const 
 			m_DistMap.emplace(neighbour, cells.front().m_Dist + 1);
 			return true;
 		}
-		QueueNeighbours(neighbour, visited, cells);
+		QueueNeighbour(neighbour, visited, cells);
 	}
 	return false;
 }
 
-void CPath::QueueNeighbours(pos_t neighbour, set<pos_t> & visited, queue<CNode> & cells)
+void CPath::QueueNeighbour(pos_t neighbour, set<pos_t> & visited, queue<CNode> & cells)
 {
 	if (neighbour.LiesInRange(m_Rows, m_Cols)
 		&& !visited.count(neighbour)

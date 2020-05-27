@@ -1,0 +1,9 @@
+<map id="CBuffer::AddEscapeSequence" name="CBuffer::AddEscapeSequence">
+<area shape="rect" id="node2" href="$classCBasicTrooper.html#a8fd2e449e2062778d716fac529f54a9d" title="CBasicTrooper::CreateInfo\lBuffer" alt="" coords="267,5,445,47"/>
+<area shape="rect" id="node4" href="$classCBuffer.html#a8f1e64c35674f28ec6bf8a7ed14d03da" title="CBuffer::CBuffer" alt="" coords="296,71,416,98"/>
+<area shape="rect" id="node5" href="$classCInterface.html#aa86bf3f0ffcdcabbc790ce09434ab7a6" title="CInterface::DrawGameHeader" alt="" coords="257,122,455,149"/>
+<area shape="rect" id="node6" href="$classCInterface.html#ac607f05b9d62cf36e62d8e6b3b475160" title="CInterface::DrawWinnerHeader" alt="" coords="253,173,459,199"/>
+<area shape="rect" id="node7" href="$classCInterface.html#a772b8c6835619c6a38922d66fdfa657e" title="CInterface::DrawGameOver\lHeader" alt="" coords="263,224,449,265"/>
+<area shape="rect" id="node8" href="$classCInterface.html#a0294e585cd72938d405f2a90bccfe6fd" title="CInterface::PromptFileName" alt="" coords="261,290,451,317"/>
+<area shape="rect" id="node3" href="$classCBasicTrooper.html#a5cadf60e852106be7320cbd3289e9a81" title="CBasicTrooper::SaveOnMap" alt="" coords="507,13,696,39"/>
+</map>

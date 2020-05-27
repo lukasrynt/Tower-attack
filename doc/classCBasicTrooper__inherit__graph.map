@@ -1,0 +1,4 @@
+<map id="CBasicTrooper" name="CBasicTrooper">
+<area shape="rect" id="node2" href="$classCTrooper.html" title="{CTrooper\n|# m_Pos\l# m_Hp\l# m_Attack\l# m_Price\l# m_Frames\l# m_SpawnIdx\l# m_Path\l|+ CTrooper()\l+ ~CTrooper()\l+ Clone()\l+ Spawn()\l+ Update()\l+ Move()\l+ Attack()\l+ ReceiveDamage()\l+ LoadTemplate()\l+ LoadOnMap()\land 12 more...\l}" alt="" coords="5,351,144,663"/>
+<area shape="rect" id="node3" href="$classCTile.html" title="{CTile\n|# m_Char\l# m_Type\l# m_ForeColor\l# m_BackColor\l|+ CTile()\l+ CTile()\l+ CTile()\l+ ~CTile()\l+ CTile()\l+ CTile()\l+ operator=()\l+ operator=()\l+ GetChar()\l+ GetColor()\land 7 more...\l&#45; InitColor()\l&#45; InitType()\l}" alt="" coords="19,5,131,303"/>
+</map>

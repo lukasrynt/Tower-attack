@@ -1,6 +1,0 @@
-<map id="CGate::ReceiveDamage" name="CGate::ReceiveDamage">
-<area shape="rect" id="node2" href="$classCGate.html#ab078db9f2c122af6620a02e0a20c986d" title="CGate::Render" alt="" coords="219,56,329,83"/>
-<area shape="rect" id="node3" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="397,5,516,32"/>
-<area shape="rect" id="node4" href="$classCBuffer.html#ab896eab1ef3ec891a0a2d6e0190e7204" title="CBuffer::AddText" alt="" coords="395,56,519,83"/>
-<area shape="rect" id="node5" href="$classCBuffer.html#ae62ee6373a52d76b27a77da1e2c1d83a" title="CBuffer::CenterVertical" alt="" coords="377,107,536,133"/>
-</map>

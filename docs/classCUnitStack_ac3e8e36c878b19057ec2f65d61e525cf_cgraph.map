@@ -1,6 +1,0 @@
-<map id="CUnitStack::CreateTrooperAt" name="CUnitStack::CreateTrooperAt">
-<area shape="rect" id="node2" href="$classCTrooper.html#a95079e78dd8cb5f4f64a26e532653b4d" title="CTrooper::Clone" alt="" coords="248,56,367,83"/>
-<area shape="rect" id="node3" href="$classCTrooper.html#a1b4903c545e770960a415bdb93d5a492" title="CTrooper::CTrooper" alt="" coords="415,5,553,32"/>
-<area shape="rect" id="node4" href="$classCTrooper.html#aea596f6e661b4bde969c5481b10567f1" title="CTrooper::Spawn" alt="" coords="422,56,546,83"/>
-<area shape="rect" id="node5" href="$classCTrooper.html#a3b95d797e970c4489e929cf111f1dcda" title="CTrooper::Move" alt="" coords="426,107,542,133"/>
-</map>

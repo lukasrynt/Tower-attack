@@ -1,0 +1,10 @@
+<map id="CArmoredTrooper::Clone" name="CArmoredTrooper::Clone">
+<area shape="rect" id="node2" href="$classCArmoredTrooper.html#a9716388c48144e8c50e756c2cb60e567" title="CArmoredTrooper::Receive\lDamage" alt="" coords="227,5,408,47"/>
+<area shape="rect" id="node4" href="$classCArmoredTrooper.html#a0abf07e312142e68da2784c027c54527" title="CArmoredTrooper::CreateInfo\lBuffer" alt="" coords="220,71,415,112"/>
+<area shape="rect" id="node6" href="$classCArmoredTrooper.html#af50502e90c6404f6fa4b10090d35ba52" title="CArmoredTrooper::Update" alt="" coords="230,137,405,163"/>
+<area shape="rect" id="node3" href="$classCTrooper.html#ac9d8950e9c59a0173eb62e9a78413c61" title="CTrooper::ReceiveDamage" alt="" coords="463,13,644,39"/>
+<area shape="rect" id="node5" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="494,78,613,105"/>
+<area shape="rect" id="node7" href="$classCTrooper.html#a3cb34333bff521fcefe59f1862569aeb" title="CTrooper::Update" alt="" coords="490,137,617,163"/>
+<area shape="rect" id="node8" href="$classCCounter.html#a2e2444cea8a2b14999725e2bc87dd14c" title="CCounter::ActionAllowed" alt="" coords="692,111,861,138"/>
+<area shape="rect" id="node9" href="$classCTrooper.html#a3b95d797e970c4489e929cf111f1dcda" title="CTrooper::Move" alt="" coords="719,162,835,189"/>
+</map>

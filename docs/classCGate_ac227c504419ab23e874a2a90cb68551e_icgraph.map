@@ -1,7 +1,0 @@
-<map id="CGate::Render" name="CGate::Render">
-<area shape="rect" id="node2" href="$classCGate.html#a81387cd161ba2b6abe89e3959fc670cc" title="CGate::ReceiveDamage" alt="" coords="164,5,329,32"/>
-<area shape="rect" id="node6" href="$classCMap.html#a3fb18696b7b6c529c300f5897fabc821" title="CMap::CreateBuffer" alt="" coords="377,56,516,83"/>
-<area shape="rect" id="node3" href="$classCMap.html#a139412d2ce090599eb902e083fe1d762" title="CMap::MoveTroops" alt="" coords="378,5,515,32"/>
-<area shape="rect" id="node4" href="$classCMap.html#ac30276b0b79f4076d48fc7b42f3135ec" title="CMap::Update" alt="" coords="564,5,671,32"/>
-<area shape="rect" id="node5" href="$classCMap.html#a90fabe75887f5bd9bbbe8792bb9c9611" title="CMap::WaveIsRunning" alt="" coords="719,31,877,57"/>
-</map>

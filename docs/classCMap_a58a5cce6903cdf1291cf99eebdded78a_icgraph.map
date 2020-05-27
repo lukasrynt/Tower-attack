@@ -1,6 +1,0 @@
-<map id="CMap::LoadWallChar" name="CMap::LoadWallChar">
-<area shape="rect" id="node2" href="$classCMap.html#a5c16fe5d60d742419cd2fac0f8f7cc45" title="CMap::LoadWallLine" alt="" coords="415,5,558,32"/>
-<area shape="rect" id="node4" href="$classCMap.html#a370718cabddf910530db548999ed65ad" title="CMap::LoadMapCenter" alt="" coords="408,56,565,83"/>
-<area shape="rect" id="node5" href="$classCMap.html#a0e8479439f285ff1cf452d207aa0fcf4" title="CMap::LoadCenterChar" alt="" coords="200,107,360,133"/>
-<area shape="rect" id="node3" href="$classCMap.html#a389249476d55c0b2171f02ee1f657e97" title="CMap::LoadMap" alt="" coords="613,31,732,57"/>
-</map>

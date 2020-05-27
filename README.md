@@ -68,7 +68,7 @@ Po načtení mapy a definice útočníku ze souboru se spustí samotná hra. Ve 
 ### Definice souboru
 Soubory ve kterých jsou uložené rozehrané hry nebo nové mapy mají podobnou strukturu. Je pevně daná - každý řádek začíná určitým znakem ve formátu `(C)`, kde C je znak který určuje objekt, který načítáme. Každý znak se může v souboru vyskytovat jen jednou, to zamezuje redefinici dat. Následuje ukázka souboru ve kterém je uložená rozehraná hra.
 
-Mapa má přípustné rozdílné hodnoty v případě, že se jedná o rozehranou hru (jsou povoleny rozmístěné věže a útočníci). Stejně tak ve vlnách je povoleno mít jednotky pouze v případě, že je hra rozehraná.
+Mapa má přípustné rozdílné hodnoty v případě, že se jedná o rozehranou hru (jsou povoleny rozmístěné věže a útočníci). Stejně tak ve vlnách je povoleno mít jednotky pouze v případě, že je hra rozehraná. Jakákoliv rychlost ať už je to rychlost pohybu jednotek nebo rychlost střílení věži se pohybuje v rozmezí od 0 do 100
 ```
 --Zásobník vzorů--
 (U)
@@ -92,14 +92,15 @@ R * 20 20 3                 -- lukostřelecká věž: znak, rychlost, útok, dos
 1   #
 #   #
 #   #
-#####                           --Vojáci a věže na mapě--
-@ (10 10) 10                -- znak, pozice, aktuální frame
-$ (1 1) 2, 20               -- znak, pozice, aktuální frame, stav brnění
-% (2 2) 10                  -- znak, pozice, aktuální frame, aktuální vlna
+#####                           
+--Vojáci a věže na mapě--
+@ (10 10) 10                -- znak, pozice, aktuální frame, index vlny, životy
+$ (1 1) 2 1 80 0 1          -- znak, pozice, aktuální frame, index vlny, životy, counter brnění, 1 když je brnění zapnuto
+% (2 2) 10 0                -- znak, pozice, aktuální frame, aktuální vlna
 * (2 2) 10                  -- znak, pozice, aktuální frame
 ```
 > Ukázka souboru
->
+
 ### Pravidla hry
 Cílem hráče je dostat co největší množství svých jednotek přes věže, které budou na vojáky přirozeně útočit, aby jim zabránily v postupu. V průběhu hry hráč spotřebovává prostředky, díky kterým může vysílat lepší jednotky do boje. V případě, že útočník dorazí až do cíle, poškodí bránu. V případě zabití nepřítele přirozené vyhrává hráč. Prohra nastává v případě, kdy hráči došly všechny prostředky a brána stále stojí.
 

@@ -1,5 +1,0 @@
-<map id="CMap::CheckTroopsDeaths" name="CMap::CheckTroopsDeaths">
-<area shape="rect" id="node2" href="$classCMap.html#a0ae585eb162d65dc06322b3303170f42" title="CMap::TowerAttack" alt="" coords="239,5,377,32"/>
-<area shape="rect" id="node3" href="$classCMap.html#ac30276b0b79f4076d48fc7b42f3135ec" title="CMap::Update" alt="" coords="425,5,532,32"/>
-<area shape="rect" id="node4" href="$classCMap.html#a90fabe75887f5bd9bbbe8792bb9c9611" title="CMap::WaveIsRunning" alt="" coords="580,5,739,32"/>
-</map>

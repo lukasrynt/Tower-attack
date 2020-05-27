@@ -5,6 +5,7 @@
 
 #include "CGame.hpp"
 #include "ExInvalidInput.hpp"
+#include "ExInvalidFormat.hpp"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ istream & operator>>(istream & in, CGame & self)
 	
 	// check if everything was defined correctly
 	if (!self.CheckDefined(signs))
-		in.setstate(ios::failbit);
+		throw invalid_format("Not all objects have been defined.");
 	return in;
 }
 
@@ -38,7 +39,7 @@ bool CGame::LoadObjects(istream & in, set<char> & signs)
 	// load signature char
 	char ch = CGame::LoadSignatureChar(in);
 	if (!signs.insert(ch).second)
-		in.setstate(ios::failbit);
+		throw invalid_format("Redefinition of object is not allowed.");
 	
 	// load appropriate object
 	switch (ch)
@@ -78,7 +79,7 @@ bool CGame::LoadObjects(istream & in, set<char> & signs)
 
 bool CGame::CheckDefined(const set<char> & signs)
 {
-	m_Map.CheckSpawnCount(m_Waves.GetWaveSize());
+	m_Map.CheckSpawnCount(m_Waves.GetWaveCnt());
 	set<char> check{'U', 'M', 'W'};
 	for (const auto & ch : check)
 		if (signs.find(ch) == signs.end())
@@ -140,10 +141,10 @@ void CGame::Update()
 		m_GameState = EGameState::GAME_OVER;
 }
 
-CBuffer CGame::CreateBuffer(size_t width) const
+CBuffer CGame::Draw(size_t width) const
 {
 	return move(CBuffer{width}
-		.Append(move(m_Waves.Draw(width).Concat(m_UnitStack->CreateBuffer(width)).CenterVertical()))
+		.Append(move(m_Waves.Draw(width).Concat(m_UnitStack->Draw(width)).CenterVertical()))
 		.Append(move(CBuffer{width}.Append().Append()))
 		.Append(m_Map.Draw(width)));
 }

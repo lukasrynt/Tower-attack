@@ -82,13 +82,18 @@ public:
 	 * @return Created buffer
 	 */
 	CBuffer DrawTroopsInfo(size_t width) const;
+	/**
+	 * Creates buffer with information about individual towers
+	 * @param width Width of the window
+	 * @return Created buffer
+	 */
 	CBuffer DrawTowersInfo(size_t width) const;
 	/**
 	 * Creates buffer with troopers in unit stack and current selection
 	 * @param width Width of the window
 	 * @return Created buffer
 	 */
-	CBuffer CreateBuffer(size_t width) const;
+	CBuffer Draw(size_t width) const;
 	/**
 	 * Cycle through trooper selection
 	 */
@@ -117,11 +122,37 @@ private:
 	constexpr static const char * const FORBIDDEN_CHARS = "#12345O";	//!< Characters that are used by the map and we can't use them for troops or tower
 	
 	// RENDER
-	std::string RenderTroops() const;
+	/**
+	 * Creates line with all the troopers in unit stack and current selection
+	 * @return Created line
+	 */
+	std::string DrawTroops() const;
 	
 	// LOADING
+	/**
+	 * Creates entity template based on what character was loaded
+	 * @param in Input stream
+	 * @param ch Character defining type of entity
+	 * @param origTroops Basic versions of troopers - only hollow derived objects
+	 * @param origTowers Basic versions of towers - only hollow derived objects
+	 * @return True if there is still something to be loaded
+	 */
 	bool LoadUnit(std::istream & in, char ch, const std::map<char,std::unique_ptr<CTrooper>> & origTroops, const std::map<char,std::unique_ptr<CTower>> & origTowers);
+	/**
+	 * Creates vector with troopers and towers filled with hollow objects
+	 * @param origTroops Basic versions of troopers - only hollow derived objects
+	 * @param origTowers Basic versions of towers - only hollow derived objects
+	 */
 	static void CreateOriginals(std::map<char,std::unique_ptr<CTrooper>> & origTroops, std::map<char,std::unique_ptr<CTower>> & origTowers);
+	/**
+	 * Checks that the character is not amongst the forbidden ones
+	 * @param ch Character to be checked
+	 * @return True if the character is valid
+	 */
 	static bool CharIsValid(char ch);
+	/**
+	 * Converts currently selected trooper to it's character representation
+	 * @return
+	 */
 	char FindSelected() const;
 };

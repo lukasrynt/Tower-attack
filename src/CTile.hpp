@@ -31,6 +31,7 @@ public:
 	 */
 	CTile(char ch, ETileType type);
 	/**
+	 *
 	 * Constructor in which we know everything - generally used in derived classes
 	 * @param ch Character representing the tile
 	 * @param type Type of the tile
@@ -80,6 +81,13 @@ protected:
 	std::string m_BackColor;	//!< Background color of the tile
 	
 private:
+	/**
+	 * Initializes the color of tile based on type - used in constructor
+	 */
 	void InitColor();
+	/**
+	 * Initializes the type based on character - used in constructor
+	 * @return Deduced type
+	 */
 	ETileType InitType() const;
 };

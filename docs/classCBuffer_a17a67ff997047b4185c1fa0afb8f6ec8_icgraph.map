@@ -1,8 +1,0 @@
-<map id="CBuffer::AddLines" name="CBuffer::AddLines">
-<area shape="rect" id="node2" href="$classCBuffer.html#a8f1e64c35674f28ec6bf8a7ed14d03da" title="CBuffer::CBuffer" alt="" coords="227,5,347,32"/>
-<area shape="rect" id="node3" href="$classCInterface.html#a47a5cf80d3fc3efa7a0004e5747c66a3" title="CInterface::CreateCommon\lHeader" alt="" coords="195,57,378,98"/>
-<area shape="rect" id="node4" href="$classCInterface.html#ad495cd155e0e331b5d2f7ee9d6034fff" title="CInterface::CreateTowerHeader" alt="" coords="183,123,391,149"/>
-<area shape="rect" id="node5" href="$classCInterface.html#a4ad50e77b29dad76e7d19a0e747442d7" title="CInterface::CreateTrooper\lHeader" alt="" coords="199,174,374,215"/>
-<area shape="rect" id="node6" href="$classCInterface.html#acd6693e15d7ccdf70db58c51173f5d98" title="CInterface::CreateCommands\lHeader" alt="" coords="188,239,385,281"/>
-<area shape="rect" id="node7" href="$classCInterface.html#a0294e585cd72938d405f2a90bccfe6fd" title="CInterface::PromptFileName" alt="" coords="192,305,381,332"/>
-</map>

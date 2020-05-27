@@ -1,5 +1,0 @@
-<map id="CPath::BFS" name="CPath::BFS">
-<area shape="rect" id="node2" href="$structCPosition.html#a41b9b18e2f0bc9f3d3078616c141758e" title="CPosition::LiesInRange" alt="" coords="584,5,744,32"/>
-<area shape="rect" id="node3" href="$classCPath.html#aa7ae409ee0f40064ddd39d1c7216ffe8" title="CPath::IterateNeighbours" alt="" coords="147,31,317,57"/>
-<area shape="rect" id="node4" href="$classCPath.html#ac5244a2bb8753bb6b464b7abc6b8622b" title="CPath::QueueNeighbours" alt="" coords="365,31,536,57"/>
-</map>

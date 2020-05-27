@@ -9,6 +9,7 @@
 #include <random>
 #include "CMap.hpp"
 #include "CMageTower.hpp"
+#include "ExInvalidFormat.hpp"
 
 using namespace std;
 /**********************************************************************************************************************/
@@ -20,7 +21,6 @@ void CMap::AssignUnitStack(shared_ptr<CUnitStack> unitStack)
 
 /**********************************************************************************************************************/
 // LOADING
-
 istream & operator>>(istream & in, CMap & self)
 {
 	self.LoadMapInfo(in)
@@ -93,15 +93,16 @@ CMap & CMap::LoadMap(istream & in)
 	
 	LoadWallLine(in, m_Rows - 1);
 	
-	if (!FindPathsFromSpawn())
-		in.setstate(ios::failbit);
+	
+	if (!FindPathsFromSpawner())
+		throw invalid_format("No path from spawner to gate has been found.");
 	return *this;
 }
 
 CMap & CMap::LoadEntities(istream & in)
 {
 	if (!m_UnitStack)
-		in.setstate(ios::failbit);
+		throw invalid_format("Unit stack not defined.");
 	
 	while (true)
 	{
@@ -126,7 +127,7 @@ void CMap::LoadTroops(istream & in, char ch)
 	unique_ptr<CTrooper> trooper(m_UnitStack->CreateTrooperAt(ch));
 	trooper->LoadOnMap(in);
 	if (m_Map.count(trooper->GetPosition()))
-		in.setstate(ios::failbit);
+		throw invalid_format("Trooper cannot be placed on occupied spot.");
 	auto path = CPath{m_Map, m_Rows, m_Cols, trooper->GetPosition(), m_Gate.Position()}.FindStraightPath();
 	trooper->SetPath(path);
 	m_Troops.emplace_back(move(trooper));
@@ -137,7 +138,7 @@ void CMap::LoadTowers(istream & in, char ch)
 	shared_ptr<CTower> tower(m_UnitStack->CreateTowerAt(ch));
 	tower->LoadOnMap(in);
 	if (!m_Map.count(tower->GetPosition()) || !m_Map.at(tower->GetPosition())->IsWall())
-		in.setstate(ios::failbit);
+		throw invalid_format("Tower can only be placed on position occupied by wall.");
 	m_Towers.push_back(tower);
 }
 
@@ -145,7 +146,8 @@ void CMap::LoadWallLine(istream & in, int row)
 {
 	// skip whitespaces until first character and return the character itself back
 	char ch = 0;
-	DeleteWs(in);
+	in >> ch;
+	in.putback(ch);
 	
 	// load the wall line
 	for (int col = 0; col < m_Cols; ++col)
@@ -154,25 +156,26 @@ void CMap::LoadWallLine(istream & in, int row)
 		if (m_UnitStack->IsTowerChar(ch))
 			LoadEntityChar(pos_t{col, row}, ch);
 		else
-			LoadWallChar(ch, pos_t{col, row});
+			if (!LoadWallChar(ch, pos_t{col, row}))
+				throw invalid_format("Invalid character detected on the edge of map.");
 	}
 }
 
 void CMap::LoadMapCenter(istream & in, int row)
 {
 	// read left wall boundary - skip enter
-	DeleteWs(in);
+	in.get();
 	if (!LoadWallChar(in.get(), pos_t{0, row}))
-		in.setstate(ios::failbit);
+		throw invalid_format("Invalid character detected on the edge of map.");
 	
 	// load characters inside map
 	for (int col = 1; col < m_Cols - 1; ++col)
 		if (!LoadCenterChar(in.get(), pos_t{col, row}))
-			in.setstate(ios::failbit);
+			throw invalid_format("Invalid character in the center of the map.");
 	
 	// load right wall boundary
 	if (!LoadWallChar(in.get(), pos_t{m_Cols - 1, row}))
-		in.setstate(ios::failbit);
+		throw invalid_format("Invalid character detected on the edge of map.");
 }
 
 bool CMap::LoadWallChar(char ch, pos_t position)
@@ -181,12 +184,12 @@ bool CMap::LoadWallChar(char ch, pos_t position)
 	if (tile.IsSpawn())
 	{
 		if (!InitSpawner(position, ch))
-			return false;
+			throw invalid_format("Redefinition of spawner is not allowed.");
 	}
 	else if (tile.IsGate())
 	{
 		if (!InitGatePosition(position))
-			return false;
+			throw invalid_format("Redefinition of gate is not allowed.");
 	}
 	else if (!tile.IsWall())
 		return false;
@@ -207,13 +210,6 @@ bool CMap::LoadCenterChar(char ch, pos_t position)
 	// if it's not load entity
 	else
 		return LoadEntityChar(position, ch);
-}
-
-void CMap::DeleteWs(istream & in)
-{
-	char ch = 0;
-	in >> ch;
-	in.putback(ch);
 }
 
 bool CMap::InitGatePosition(pos_t position)
@@ -268,6 +264,7 @@ bool CMap::CheckSaved() const
 	return !(m_Gate.Position() == pos::npos)
 		&& !m_Spawns.empty();
 }
+
 /**********************************************************************************************************************/
 // SAVING
 ostream & operator<<(ostream & out, const CMap & self)
@@ -313,7 +310,7 @@ void CMap::SaveEntities(ostream & out) const
 }
 
 /**********************************************************************************************************************/
-// RENDER
+// DRAW
 CBuffer CMap::Draw(size_t width) const
 {
 	return move(CBuffer{width}
@@ -385,7 +382,7 @@ void CMap::Spawn(vector<unique_ptr<CTrooper>> & spawns)
 	}
 }
 
-bool CMap::FindPathsFromSpawn()
+bool CMap::FindPathsFromSpawner()
 {
 	for (const auto & position : m_Spawns)
 	{

@@ -28,12 +28,19 @@ public:
 	/**
 	 * Loads waves from input file stream
 	 * @param in Input stream
-	 * @param self Waves to be loaded
+	 * @param waves Waves to be loaded
 	 * @return in
+	 * @throws invalid_format if there are too many waves
 	 */
 	friend std::istream & operator>>(std::istream & in, CWaves & waves);
+	/**
+	 * Checks that there are no troops in each wave - new game
+	 * @return True if the waves are correctly setup for new game
+	 */
 	bool CheckNew() const;
-	int GetWaveSize() const;
+	/**
+	 * @return Number of waves
+	 */
 	int GetWaveCnt() const
 	{return m_Waves.size();}
 	
@@ -41,7 +48,7 @@ public:
 	/**
 	 * Saves the waves on the given output stream
 	 * @param out Output stream
-	 * @param self Waves to be saved
+	 * @param waves Waves to be saved
 	 * @return out
 	 */
 	friend std::ostream & operator<<(std::ostream & out, const CWaves & waves);
@@ -100,8 +107,21 @@ private:
 	int m_Resources = 0;										//!< Resources given for the current game
 	
 	// LOAD
+	/**
+	 * Loads waves from input and creates single wave with troopers in it
+	 * @param in Input stream
+	 * @return Created wave
+	 * @throws invalid_format if the wave's format is wrong
+	 */
 	std::deque<std::unique_ptr<CTrooper>> LoadWaves(std::istream & in);
+	/**
+	 * Checks that all waves are equally long
+	 * @param counter Counter of characters in one wave
+	 * @return True if the wave is as long as max size
+	 */
 	bool CheckCounter(size_t counter);
-	
+	/**
+	 * @return True if all waves are empty
+	 */
 	bool Empty() const;
 };

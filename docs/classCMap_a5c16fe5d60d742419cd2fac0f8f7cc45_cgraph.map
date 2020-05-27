@@ -1,8 +1,0 @@
-<map id="CMap::LoadWallLine" name="CMap::LoadWallLine">
-<area shape="rect" id="node2" href="$classCMap.html#a190d791da7fe99b185c6053e6867fdb1" title="CMap::DeleteWs" alt="" coords="208,5,331,32"/>
-<area shape="rect" id="node3" href="$classCMap.html#a2b0927db5c6060c7f0a7298d12027839" title="CMap::LoadEntity" alt="" coords="206,56,333,83"/>
-<area shape="rect" id="node4" href="$classCMap.html#a58a5cce6903cdf1291cf99eebdded78a" title="CMap::LoadWallChar" alt="" coords="196,107,343,133"/>
-<area shape="rect" id="node5" href="$classCMap.html#a88e3a346b11583bcac5b53e39502c33e" title="CMap::InitSpawner" alt="" coords="403,81,537,108"/>
-<area shape="rect" id="node6" href="$classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="391,132,549,159"/>
-<area shape="rect" id="node7" href="$classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="597,132,712,159"/>
-</map>

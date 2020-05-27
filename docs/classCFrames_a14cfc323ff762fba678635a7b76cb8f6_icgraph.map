@@ -1,7 +1,0 @@
-<map id="CFrames::ActionAllowed" name="CFrames::ActionAllowed">
-<area shape="rect" id="node2" href="$classCTrooper.html#a3cb34333bff521fcefe59f1862569aeb" title="CTrooper::Update" alt="" coords="220,31,347,57"/>
-<area shape="rect" id="node3" href="$classCArmoredTrooper.html#af50502e90c6404f6fa4b10090d35ba52" title="CArmoredTrooper::Update" alt="" coords="395,5,569,32"/>
-<area shape="rect" id="node5" href="$classCBasicTrooper.html#adbe76f3685376c165575a13b0dd09a8c" title="CBasicTrooper::Update" alt="" coords="403,56,561,83"/>
-<area shape="rect" id="node4" href="$classCArmoredTrooper.html#a8cbcdda9a796eed18c2dfa7d2ec8394e" title="CArmoredTrooper::Clone" alt="" coords="629,5,795,32"/>
-<area shape="rect" id="node6" href="$classCBasicTrooper.html#a5cadf60e852106be7320cbd3289e9a81" title="CBasicTrooper::SaveOnMap" alt="" coords="617,56,807,83"/>
-</map>

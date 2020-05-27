@@ -32,6 +32,7 @@ public:
 	 * Loads the game from input file stream
 	 * @param in Input stream
 	 * @param self Game to be loaded
+	 * @throws invalid_format if not all objects have been defined
 	 * @return in
 	 */
 	friend std::istream & operator>>(std::istream & in, CGame & self);
@@ -66,10 +67,10 @@ public:
 	void Update();
 	/**
 	 * Creates buffer for further renderings
-	 * @param windowWidth size of the window
+	 * @param width size of the window
 	 * @return Created buffer
 	 */
-	CBuffer CreateBuffer(size_t height) const;
+	CBuffer Draw(size_t width) const;
 	
 	bool Won() const
 	{return m_GameState == EGameState::GAME_WON;}
@@ -123,7 +124,8 @@ private:
 	 * Load individual objects from input stream
 	 * @param in Input stream
 	 * @param signs Set with defined characters - prevents redefinition of object
-	 * @return True if character is among the defined characters and was loaded succesfully
+	 * @return True if character is among the defined characters and was loaded successfully
+	 * @throws invalid_format if object is being redefined
 	 */
 	bool LoadObjects(std::istream & in, std::set<char> & signs);
 	/**

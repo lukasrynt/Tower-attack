@@ -1,0 +1,10 @@
+<map id="CPosition::right" name="CPosition::right">
+<area shape="rect" id="node2" href="$structCPosition.html#ab67b5cc5823f6a0f02be12d0f9ff1757" title="CPosition::GetCrossNeighbours" alt="" coords="165,95,375,121"/>
+<area shape="rect" id="node7" href="$structCPosition.html#a97531cb950f5d2ff5953648fa40b06ac" title="CPosition::GetDiagNeighbours" alt="" coords="423,145,624,172"/>
+<area shape="rect" id="node3" href="$classCPath.html#adf9752e5300e9ff333e10279cf78bd4f" title="CPath::FindStraightPath" alt="" coords="441,69,605,96"/>
+<area shape="rect" id="node4" href="$classCMap.html#a4811d2b75c8201a8f6df1c7bacb87eec" title="CMap::LoadTroops" alt="" coords="708,5,841,32"/>
+<area shape="rect" id="node5" href="$classCMap.html#a8702ff3471ea32759f6aab942a23b4f5" title="CMap::FindPathsFromSpawner" alt="" coords="672,56,877,83"/>
+<area shape="rect" id="node6" href="$classCPath.html#a43b26e8289ca42713ce4b13932d327f5" title="CPath::CPath" alt="" coords="967,107,1071,133"/>
+<area shape="rect" id="node8" href="$classCPath.html#acb5e1e3ab50bd7063354c03cb2105879" title="CPath::FindDiagonalPath" alt="" coords="689,157,860,184"/>
+<area shape="rect" id="node9" href="$classCArcherTower.html#aa848eae43ad4931b62ca2d6ab9ceada5" title="CArcherTower::AssignArrow" alt="" coords="925,157,1113,184"/>
+</map>

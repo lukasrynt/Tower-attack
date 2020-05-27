@@ -115,36 +115,101 @@ private:
 	static CBuffer DrawMenuOptions(const std::map<char, CCommand> & commands);
 	
 	// SAVING GAME
+	/**
+	 * Screen asking user to return to game after saving it
+	 * @return True if user wants to return to game
+	 */
 	void SavedScreen() const;
+	/**
+	 * Screen prompting user to save the game
+	 * @param game Game to be saved
+	 * @return True if saving was successful, false if user wants to return
+	 */
 	bool PromptSave(const CGame & game);
 	
 	// LOADING
+	/**
+	 * Tries to load the game with the given filename
+	 * @param filename Filename of the input file
+	 * @param game Game to be loaded
+	 * @return True if game was successfully loaded
+	 */
 	bool TryLoading(const char * filename, CGame & game) const;
 	
 	// HELP SCREEN
 	/**
 	 * Draws in game options for help screen
-	 * @param Commands which we want to draw
+	 * @param commands which we want to draw
+	 * @return Created buffer
 	 */
 	static CBuffer DrawGameOptions(const std::map<char, CCommand> & commands);
 	/**
 	 * Draws help screen with information about command
-	 * @pararm Commands which we want to draw
+	 * @param commands which we want to draw
+	 * @return Created buffer
 	 */
-	static CBuffer DrawCommandsHelpScreen(const std::map<char, CCommand> & commands);
-	static CBuffer CreateCommonLegendScreen();
-	static CBuffer CreateTrooperLegendScreen(const CUnitStack & stack);
-	static CBuffer CreateTowerLegendScreen(const CUnitStack & stack);
-	static CBuffer CreateHelpOptions();
+	static CBuffer DrawCommandsHelp(const std::map<char, CCommand> & commands);
+	/**
+	 * Draws help screen with information about common game objects
+	 * @return Created buffer
+	 */
+	static CBuffer DrawCommonLegend();
+	/**
+	 * Draws help screen with information about individual troops present in the game
+	 * @param stack Stack through which we can access the troops information
+	 * @return Created buffer
+	 */
+	static CBuffer DrawTrooperLegend(const CUnitStack & stack);
+	/**
+	 * Draws help screen with information about individual towers present in the game
+	 * @param stack Stack through which we can access the towers information
+	 * @return Created buffer
+	 */
+	static CBuffer DrawTowerLegend(const CUnitStack & stack);
+	/**
+	 * Draws options available in all help screens
+	 * @return Created buffer
+	 */
+	static CBuffer DrawHelpOptions();
 	
 	// HEADERS
-	static CBuffer CreateGameHeader();
-	static CBuffer CreateTowerHeader();
-	static CBuffer CreateTrooperHeader();
-	static CBuffer CreateCommonHeader();
-	static CBuffer CreateCommandsHeader();
-	static CBuffer CreateWinnerHeader(std::string color);
-	static CBuffer CreateGameOverHeader(std::string color);
+	/**
+	 * Create game header (INCURSION title)
+	 * @return Created buffer
+	 */
+	static CBuffer DrawGameHeader();
+	/**
+	 * Create tower legend header (TOWERS)
+	 * @return Created buffer
+	 */
+	static CBuffer DrawTowerHeader();
+	/**
+	 * Create trooper legend header (TROOPERS)
+	 * @return Created buffer
+	 */
+	static CBuffer DrawTrooperHeader();
+	/**
+	 * Create common legend header (COMMON)
+	 * @return Created buffer
+	 */
+	static CBuffer DrawCommonHeader();
+	/**
+	 * Create commands legend header (COMMANDS)
+	 * @return Created buffer
+	 */
+	static CBuffer DrawCommandsHeader();
+	/**
+	 * Create winner header (WINNER)
+	 * @param color Color of the text
+	 * @return Created buffer
+	 */
+	static CBuffer DrawWinnerHeader(std::string color);
+	/**
+	 * Create game over header (GAME OVER)
+	 * @param color Color of the text
+	 * @return Created buffer
+	 */
+	static CBuffer DrawGameOverHeader(std::string color);
 	
 	
 	// COMMON

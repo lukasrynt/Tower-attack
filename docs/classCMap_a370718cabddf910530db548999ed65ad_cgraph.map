@@ -1,9 +1,0 @@
-<map id="CMap::LoadMapCenter" name="CMap::LoadMapCenter">
-<area shape="rect" id="node2" href="$classCMap.html#a190d791da7fe99b185c6053e6867fdb1" title="CMap::DeleteWs" alt="" coords="229,5,352,32"/>
-<area shape="rect" id="node3" href="$classCMap.html#a58a5cce6903cdf1291cf99eebdded78a" title="CMap::LoadWallChar" alt="" coords="419,56,565,83"/>
-<area shape="rect" id="node7" href="$classCMap.html#a0e8479439f285ff1cf452d207aa0fcf4" title="CMap::LoadCenterChar" alt="" coords="211,107,371,133"/>
-<area shape="rect" id="node4" href="$classCMap.html#a88e3a346b11583bcac5b53e39502c33e" title="CMap::InitSpawner" alt="" coords="625,31,760,57"/>
-<area shape="rect" id="node5" href="$classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61" title="CMap::InitGatePosition" alt="" coords="613,81,772,108"/>
-<area shape="rect" id="node6" href="$classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="820,81,935,108"/>
-<area shape="rect" id="node8" href="$classCMap.html#a2b0927db5c6060c7f0a7298d12027839" title="CMap::LoadEntity" alt="" coords="429,107,555,133"/>
-</map>

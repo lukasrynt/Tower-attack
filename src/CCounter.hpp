@@ -6,6 +6,7 @@
 #pragma once
 
 #include <iostream>
+#include "ExInvalidFormat.hpp"
 
 /**
  * Serves as counter for actions.
@@ -39,9 +40,15 @@ public:
 	 * @param in Input stream
 	 * @param self Counter
 	 * @return in
+	 * @throws invalid_format if speed isn't withing interval of 0 to MAX_CNT
 	 */
 	friend std::istream & operator>>(std::istream & in, CCounter & self)
-	{return in >> self.m_Speed;}
+	{
+		in >> self.m_Speed;
+		if (self.m_Speed > MAX_CNT || self.m_Speed <= 0)
+			throw invalid_format(("Provided speed is not within interval 1 - " + std::to_string(MAX_CNT) + '.').c_str());
+		return in;
+	}
 	/**
 	 * Saves the speed of the counter to output stream
 	 * @param out Output stream
@@ -53,5 +60,5 @@ public:
 private:
 	int m_Speed = 0;				//!< Speed of the counter
 	int m_CurrFrame = 0;			//!< Current frame
-	static const int MAX_CNT = 60;	//!< Maximum number of frames - MAX_CNT/speed is the peak of the counter in which action is allowed
+	static const int MAX_CNT = 100;	//!< Maximum number of frames - MAX_CNT/speed is the peak of the counter in which action is allowed
 };

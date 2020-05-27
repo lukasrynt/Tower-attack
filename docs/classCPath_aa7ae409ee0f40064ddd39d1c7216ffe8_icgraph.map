@@ -1,8 +1,0 @@
-<map id="CPath::IterateNeighbours" name="CPath::IterateNeighbours">
-<area shape="rect" id="node2" href="$classCPath.html#aa523374e15f797277678727a0eb8f5f0" title="CPath::BFS" alt="" coords="224,81,317,108"/>
-<area shape="rect" id="node3" href="$classCPath.html#adf9752e5300e9ff333e10279cf78bd4f" title="CPath::FindStraightPath" alt="" coords="369,56,533,83"/>
-<area shape="rect" id="node6" href="$classCPath.html#acb5e1e3ab50bd7063354c03cb2105879" title="CPath::FindDiagonalPath" alt="" coords="365,107,536,133"/>
-<area shape="rect" id="node4" href="$classCMap.html#a4811d2b75c8201a8f6df1c7bacb87eec" title="CMap::LoadTroops" alt="" coords="615,5,748,32"/>
-<area shape="rect" id="node5" href="$classCMap.html#aa5b1950670538740cd469a59e4003fda" title="CMap::FindPathsFromSpawn" alt="" coords="584,56,779,83"/>
-<area shape="rect" id="node7" href="$classCArcherTower.html#aa848eae43ad4931b62ca2d6ab9ceada5" title="CArcherTower::AssignArrow" alt="" coords="587,107,775,133"/>
-</map>

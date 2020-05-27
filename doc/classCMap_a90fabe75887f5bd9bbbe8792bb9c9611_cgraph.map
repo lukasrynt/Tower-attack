@@ -1,0 +1,11 @@
+<map id="CMap::WaveIsRunning" name="CMap::WaveIsRunning">
+<area shape="rect" id="node2" href="$classCMap.html#abb0ddcf396c254b3cdba2ca3fda94ada" title="CMap::PlaceTroops" alt="" coords="223,5,362,32"/>
+<area shape="rect" id="node3" href="$classCMap.html#ae6ba9555ee5f7d25f8b99da1b06f2186" title="CMap::PlaceTowers" alt="" coords="222,56,363,83"/>
+<area shape="rect" id="node4" href="$classCMap.html#a052dcebe1b4c2e896fda8d1cc8abb976" title="CMap::GenerateTowers" alt="" coords="212,107,373,133"/>
+<area shape="rect" id="node5" href="$classCMap.html#a6e15e9e668853d53ae2f54c42247de03" title="CMap::Draw" alt="" coords="245,157,341,184"/>
+<area shape="rect" id="node7" href="$classCMap.html#a9ea1dc49a004efdf13024df8c6e8bf27" title="CMap::Spawn" alt="" coords="240,208,345,235"/>
+<area shape="rect" id="node8" href="$classCMap.html#ac30276b0b79f4076d48fc7b42f3135ec" title="CMap::Update" alt="" coords="239,259,346,285"/>
+<area shape="rect" id="node9" href="$classCMap.html#ac9b254ded5b15382fc184fb0765c7dc0" title="CMap::SpawnsFree" alt="" coords="223,309,362,336"/>
+<area shape="rect" id="node10" href="$classCMap.html#ac4f55c45206bc558b3be8c5f289dccf9" title="CMap::Visualize" alt="" coords="233,360,352,387"/>
+<area shape="rect" id="node6" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="421,157,540,184"/>
+</map>

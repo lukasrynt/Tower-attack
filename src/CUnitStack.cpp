@@ -113,13 +113,16 @@ unique_ptr<CTrooper> CUnitStack::CreateSelected() const
 	return nullptr;
 }
 
-CBuffer CUnitStack::CreateBuffer(size_t width) const
+CBuffer CUnitStack::Draw(size_t width) const
 {
 	return move(CBuffer{width}
 		.Append("Units:", Colors::FG_CYAN)
 		.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
-		.Append(RenderTroops())
-		.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN));
+		.Append(DrawTroops())
+		.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
+		.Append("Cost: ", Colors::FG_CYAN).AddText(to_string(GetSelectedPrice())).AddText(" © ", Colors::FG_YELLOW)
+		.Append("HP: ", Colors::FG_CYAN).AddText(to_string(m_Troops.at(FindSelected())->GetHp()))
+		.Append("Speed: ", Colors::FG_CYAN).AddText(to_string(m_Troops.at(FindSelected())->GetSpeed())));
 }
 
 CBuffer CUnitStack::DrawTroopsInfo(size_t width) const
@@ -165,7 +168,7 @@ CBuffer CUnitStack::DrawTowersInfo(size_t width) const
 	return buffer;
 }
 
-string CUnitStack::RenderTroops() const
+string CUnitStack::DrawTroops() const
 {
 	size_t idx = 0;
 	string line;

@@ -1,5 +1,0 @@
-<map id="CInterface::CreateTrooperLegendScreen" name="CInterface::CreateTrooperLegendScreen">
-<area shape="rect" id="node2" href="$classCUnitStack.html#a639c16e1b2241766eb0c9e9af56713f0" title="CUnitStack::CreateTroops\lInfoBuffer" alt="" coords="228,5,405,47"/>
-<area shape="rect" id="node4" href="$classCBuffer.html#a417b6a06923d7299bb48a37961547282" title="CBuffer::CenterHorizontal" alt="" coords="230,71,403,98"/>
-<area shape="rect" id="node3" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="453,42,572,69"/>
-</map>

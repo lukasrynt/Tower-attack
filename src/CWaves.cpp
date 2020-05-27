@@ -6,8 +6,8 @@
 #include "CWaves.hpp"
 #include "escape_sequences.h"
 #include "CArmoredTrooper.hpp"
-#include "CMageTower.hpp"
 #include "ExInvalidInput.hpp"
+#include "ExInvalidFormat.hpp"
 
 using namespace std;
 
@@ -28,7 +28,7 @@ istream & operator>>(istream & in, CWaves & waves)
 	
 	while (pos < 10)
 	{
-		// if we have read something else than [ on the beggining of the row we need to quit
+		// if we have read something else than [ on the beginning of the row we need to quit
 		in >> ch;
 		if (ch != '[')
 		{
@@ -36,9 +36,9 @@ istream & operator>>(istream & in, CWaves & waves)
 			break;
 		}
 		
-		// load the troopers in the wawes
+		// load the troopers in the waves
 		if (pos == waves.m_Waves.size())
-			in.setstate(ios::failbit);
+			throw invalid_format("There are more waves than described earlier.");
 		waves.m_Waves[pos++] = waves.LoadWaves(in);
 	}
 	return in;
@@ -47,7 +47,7 @@ istream & operator>>(istream & in, CWaves & waves)
 deque<unique_ptr<CTrooper>> CWaves::LoadWaves(istream & in)
 {
 	if (!m_UnitStack)
-		in.setstate(ios::failbit);
+		throw invalid_format("Unit stack not defined.");
 	
 	deque<unique_ptr<CTrooper>> wave;
 	size_t counter = 0;
@@ -74,11 +74,11 @@ deque<unique_ptr<CTrooper>> CWaves::LoadWaves(istream & in)
 			wave.emplace_back(m_UnitStack->CreateTrooperAt(ch));
 		}
 		else
-			in.setstate(ios::failbit);
+			throw invalid_format("Character in wave not defined in unit stack.");
 	}
 	
 	if(!CheckCounter(counter))
-		in.setstate(ios::failbit);
+		throw invalid_format("Not all waves are equally long.");
 	return wave;
 }
 
@@ -91,11 +91,6 @@ bool CWaves::CheckCounter(size_t counter)
 	if (!m_MaxSize)
 		m_MaxSize = counter;
 	return true;
-}
-
-int CWaves::GetWaveSize() const
-{
-	return m_Waves.size();
 }
 
 bool CWaves::CheckNew() const
@@ -124,7 +119,7 @@ ostream & operator<<(ostream & out, const CWaves & waves)
 }
 
 /**********************************************************************************************************************/
-// RENDER
+// DRAW
 CBuffer CWaves::Draw(size_t width) const
 {
 	CBuffer buffer{width};

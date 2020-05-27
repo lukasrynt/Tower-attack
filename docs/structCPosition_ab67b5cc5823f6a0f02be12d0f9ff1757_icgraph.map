@@ -1,8 +1,0 @@
-<map id="CPosition::GetCrossNeighbours" name="CPosition::GetCrossNeighbours">
-<area shape="rect" id="node2" href="$classCPath.html#adf9752e5300e9ff333e10279cf78bd4f" title="CPath::FindStraightPath" alt="" coords="281,56,445,83"/>
-<area shape="rect" id="node5" href="$structCPosition.html#a97531cb950f5d2ff5953648fa40b06ac" title="CPosition::GetDiagNeighbours" alt="" coords="263,107,464,133"/>
-<area shape="rect" id="node3" href="$classCMap.html#a4811d2b75c8201a8f6df1c7bacb87eec" title="CMap::LoadTroops" alt="" coords="543,5,676,32"/>
-<area shape="rect" id="node4" href="$classCMap.html#aa5b1950670538740cd469a59e4003fda" title="CMap::FindPathsFromSpawn" alt="" coords="512,56,707,83"/>
-<area shape="rect" id="node6" href="$classCPath.html#acb5e1e3ab50bd7063354c03cb2105879" title="CPath::FindDiagonalPath" alt="" coords="524,107,695,133"/>
-<area shape="rect" id="node7" href="$classCArcherTower.html#aa848eae43ad4931b62ca2d6ab9ceada5" title="CArcherTower::AssignArrow" alt="" coords="755,107,943,133"/>
-</map>

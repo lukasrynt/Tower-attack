@@ -1,5 +1,0 @@
-<map id="CMap::LoadEntities" name="CMap::LoadEntities">
-<area shape="rect" id="node2" href="$classCMap.html#a4811d2b75c8201a8f6df1c7bacb87eec" title="CMap::LoadTroops" alt="" coords="192,5,325,32"/>
-<area shape="rect" id="node4" href="$classCMap.html#a657dc4e12bb92720eafdc072ea764acf" title="CMap::LoadTowers" alt="" coords="191,56,327,83"/>
-<area shape="rect" id="node3" href="$classCGate.html#a1faf69622ddd22e775e489df6960b055" title="CGate::Position" alt="" coords="375,5,489,32"/>
-</map>

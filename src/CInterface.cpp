@@ -10,6 +10,7 @@
 #include "CInterface.hpp"
 #include "escape_sequences.h"
 #include "ExInvalidInput.hpp"
+#include "ExInvalidFormat.hpp"
 
 using namespace std;
 CInterface::CInterface(ostream & out) noexcept(false)
@@ -76,7 +77,7 @@ bool CInterface::LoadNewGame(CGame & game)
 		}
 		
 		// check input stream
-		string filename = "maps/" + response + ".map";
+		string filename = "examples/maps/" + response + ".map";
 		if (!TryLoading(filename.c_str(), game))
 			continue;
 		
@@ -108,7 +109,7 @@ bool CInterface::LoadSavedGame(CGame & game)
 		}
 		
 		// check input stream
-		string filename = "saves/" + response + ".sav";
+		string filename = "examples/saves/" + response + ".sav";
 		if (!TryLoading(filename.c_str(), game))
 			continue;
 		
@@ -145,8 +146,12 @@ bool CInterface::TryLoading(const char * filename, CGame & game) const
 		if (inFile.eof())
 			return true;
 		InvalidInput("Incorrect file format.");
-		return false;
 	}
+	catch (const invalid_format & e)
+	{
+		InvalidInput(e.what());
+	}
+	return false;
 }
 
 /**********************************************************************************************************************/
@@ -184,8 +189,14 @@ bool CInterface::PromptSave(const CGame & game)
 		}
 		
 		// check output stream
-		string filename = "saves/" + response + ".sav";
+		string filename = "examples/saves/" + response + ".sav";
 		ofstream outFile(filename);
+		if (!outFile)
+		{
+			(m_Out << Colors::RESET).flush();
+			InvalidInput("File not found.");
+			return false;
+		}
 		outFile.exceptions(ios::failbit | ios::badbit | ios::eofbit);
 		
 		// save game
@@ -218,7 +229,7 @@ void CInterface::Menu(const map<char, CCommand> & commands) const
 {
 	ResetScreen();
 	m_Out << CBuffer{m_WindowWidth}
-		.Append(CreateGameHeader())
+		.Append(DrawGameHeader())
 		.Append(DrawMenuOptions(commands))
 		.CenterHorizontal(m_WindowHeight);
 }
@@ -246,30 +257,13 @@ void CInterface::Winner() const
 	{
 		ResetScreen();
 		m_Out << CBuffer{m_WindowWidth}
-			.Append(CreateWinnerHeader(col ? Colors::FG_GREEN : Colors::FG_BLUE))
+			.Append(DrawWinnerHeader(col ? Colors::FG_GREEN : Colors::FG_BLUE))
 			.CenterHorizontal(m_WindowHeight);
 		col = !col;
 		if (GetChar() == 'q')
 			break;
 		Sleep(60ms);
 	}
-}
-
-CBuffer CInterface::CreateWinnerHeader(string color)
-{
-	CBuffer tmp{m_WindowWidth};
-	tmp.AddEscapeSequence(move(color))
-			.Append(R"(         _________ _        _        _______  _______ )")
-			.Append(R"(|\     /|\__   __/( (    /|( (    /|(  ____ \(  ____ ))")
-			.Append(R"(| )   ( |   ) (   |  \  ( ||  \  ( || (    \/| (    )|)")
-			.Append(R"(| | _ | |   | |   |   \ | ||   \ | || (__    | (____)|)")
-			.Append(R"(| |( )| |   | |   | (\ \) || (\ \) ||  __)   |     __))")
-			.Append(R"(| || || |   | |   | | \   || | \   || (      | (\ (   )")
-			.Append(R"(| () () |___) (___| )  \  || )  \  || (____/\| ) \ \__)")
-			.Append(R"((_______)\_______/|/    )_)|/    )_)(_______/|/   \__/)")
-			.CenterVertical()
-			.AddEscapeSequence(Colors::RESET);
-	return tmp;
 }
 
 void CInterface::GameOver() const
@@ -279,7 +273,7 @@ void CInterface::GameOver() const
 	{
 		ResetScreen();
 		m_Out << CBuffer{m_WindowWidth}
-			.Append(CreateGameOverHeader(col ? Colors::FG_RED : Colors::FG_BLACK))
+			.Append(DrawGameOverHeader(col ? Colors::FG_RED : Colors::FG_BLACK))
 			.CenterHorizontal(m_WindowHeight);
 		col = !col;
 		if (GetChar() == 'q')
@@ -288,31 +282,14 @@ void CInterface::GameOver() const
 	}
 }
 
-CBuffer CInterface::CreateGameOverHeader(string color)
-{
-	CBuffer tmp{m_WindowWidth};
-	tmp.AddEscapeSequence(move(color))
-			.Append(R"( _______  _______  _______  _______    _______           _______  _______ )")
-			.Append(R"((  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ ))")
-			.Append(R"(| (    \/| (   ) || () () || (    \/  | (   ) || )   ( || (    \/| (    )|)")
-			.Append(R"(| |      | (___) || || || || (__      | |   | || |   | || (__    | (____)|)")
-			.Append(R"(| | ____ |  ___  || |(_)| ||  __)     | |   | |( (   ) )|  __)   |     __))")
-			.Append(R"(| | \_  )| (   ) || |   | || (        | |   | | \ \_/ / | (      | (\ (   )")
-			.Append(R"(| (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__)")
-			.Append(R"((_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/)")
-			.CenterVertical()
-			.AddEscapeSequence(Colors::RESET);
-	return tmp;
-}
-
 /**********************************************************************************************************************/
 // GAME SCREEN
 void CInterface::GameScreen(const CGame & game) const
 {
 	ResetScreen();
 	CBuffer buffer{m_WindowWidth};
-	buffer.Append(CreateGameHeader())
-		.Append(game.CreateBuffer(m_WindowWidth));
+	buffer.Append(DrawGameHeader())
+		.Append(game.Draw(m_WindowWidth));
 	if (buffer.Height() > m_WindowHeight)
 		(m_Out << Escapes::CHANGE_WINDOW_SIZE(buffer.Height(), m_WindowWidth)).flush();
 	m_Out << buffer;
@@ -323,10 +300,10 @@ void CInterface::GameScreen(const CGame & game) const
 void CInterface::HelpScreen(const map<char, CCommand> & commands, const CUnitStack & stack) const
 {
 	vector<CBuffer> screens;
-	screens.emplace_back(DrawCommandsHelpScreen(commands));
-	screens.emplace_back(CreateCommonLegendScreen());
-	screens.emplace_back(CreateTrooperLegendScreen(stack));
-	screens.emplace_back(CreateTowerLegendScreen(stack));
+	screens.emplace_back(DrawCommandsHelp(commands));
+	screens.emplace_back(DrawCommonLegend());
+	screens.emplace_back(DrawTrooperLegend(stack));
+	screens.emplace_back(DrawTowerLegend(stack));
 	cout << screens.size();
 	
 	size_t idx = 0;
@@ -346,12 +323,12 @@ void CInterface::HelpScreen(const map<char, CCommand> & commands, const CUnitSta
 	}
 }
 
-CBuffer CInterface::DrawCommandsHelpScreen(const std::map<char, CCommand> & commands)
+CBuffer CInterface::DrawCommandsHelp(const std::map<char, CCommand> & commands)
 {
 	return move(CBuffer{m_WindowWidth}
-		.Append(CreateCommandsHeader())
+		.Append(DrawCommandsHeader())
 		.Append(DrawGameOptions(commands))
-		.Append(CreateHelpOptions()))
+		.Append(DrawHelpOptions()))
 		.CenterHorizontal(m_WindowHeight);
 }
 
@@ -366,9 +343,9 @@ CBuffer CInterface::DrawGameOptions(const map<char, CCommand> & commands)
 	return tmp;
 }
 
-CBuffer CInterface::CreateCommonLegendScreen()
+CBuffer CInterface::DrawCommonLegend()
 {
-	return move(CreateCommonHeader().CenterVertical()
+	return move(DrawCommonHeader().CenterVertical()
 		.Append()
 		.Append("(#) Wall", string(Colors::BG_WHITE) + Colors::FG_BLACK)
 		.Append("● Obstacle through which neither troops, nor bullets can pass.", Colors::FG_WHITE)
@@ -382,27 +359,27 @@ CBuffer CInterface::CreateCommonLegendScreen()
 		.Append(" ● Health points of the gate are displayed above the map.", Colors::FG_MAGENTA)
 		.Append(" ● The goal of the player is to destroy the gate.", Colors::FG_MAGENTA)
 		.Append()
-		.Append(CreateHelpOptions()))
+		.Append(DrawHelpOptions()))
 		.CenterHorizontal(m_WindowHeight);
 }
 
-CBuffer CInterface::CreateTrooperLegendScreen(const CUnitStack & stack)
+CBuffer CInterface::DrawTrooperLegend(const CUnitStack & stack)
 {
-	return move(CreateTrooperHeader().CenterVertical()
+	return move(DrawTrooperHeader().CenterVertical()
 		.Append(stack.DrawTroopsInfo(m_WindowWidth))
-		.Append(CreateHelpOptions()))
+		.Append(DrawHelpOptions()))
 		.CenterHorizontal(m_WindowHeight);
 }
 
-CBuffer CInterface::CreateTowerLegendScreen(const CUnitStack & stack)
+CBuffer CInterface::DrawTowerLegend(const CUnitStack & stack)
 {
-	return move(CreateTowerHeader().CenterVertical()
+	return move(DrawTowerHeader().CenterVertical()
 		.Append(stack.DrawTowersInfo(m_WindowWidth))
-		.Append(CreateHelpOptions())
+		.Append(DrawHelpOptions())
 		.CenterHorizontal(m_WindowHeight));
 }
 
-CBuffer CInterface::CreateHelpOptions()
+CBuffer CInterface::DrawHelpOptions()
 {
 	return move(CBuffer{m_WindowWidth}
 		.Append()
@@ -413,7 +390,7 @@ CBuffer CInterface::CreateHelpOptions()
 /**********************************************************************************************************************/
 // HEADERS
 
-CBuffer CInterface::CreateGameHeader()
+CBuffer CInterface::DrawGameHeader()
 {
 	// http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 	CBuffer tmp{m_WindowWidth};
@@ -434,7 +411,7 @@ CBuffer CInterface::CreateGameHeader()
 	return tmp;
 }
 
-CBuffer CInterface::CreateCommonHeader()
+CBuffer CInterface::DrawCommonHeader()
 {
 	return move(CBuffer{m_WindowWidth}
 						.AddLines(R"(  __ ___ _ __  _ __  ___ _ _
@@ -443,7 +420,7 @@ CBuffer CInterface::CreateCommonHeader()
                               )", Colors::FG_WHITE));
 }
 
-CBuffer CInterface::CreateTowerHeader()
+CBuffer CInterface::DrawTowerHeader()
 {
 	return move(CBuffer{m_WindowWidth}
 						.AddLines(R"(  _
@@ -453,7 +430,7 @@ CBuffer CInterface::CreateTowerHeader()
                             )", Colors::FG_RED));
 }
 
-CBuffer CInterface::CreateTrooperHeader()
+CBuffer CInterface::DrawTrooperHeader()
 {
 	return move(CBuffer{m_WindowWidth}
 						.AddLines(R"(  _
@@ -463,7 +440,7 @@ CBuffer CInterface::CreateTrooperHeader()
                   |_|               )", Colors::FG_YELLOW));
 }
 
-CBuffer CInterface::CreateCommandsHeader()
+CBuffer CInterface::DrawCommandsHeader()
 {
 	return move(CBuffer{m_WindowWidth}
 						.AddLines(R"(   ___                              _
@@ -471,6 +448,40 @@ CBuffer CInterface::CreateCommandsHeader()
  | (__/ _ \ '  \| '  \/ _` | ' \/ _` (_-<
   \___\___/_|_|_|_|_|_\__,_|_||_\__,_/__/
                                          )", Colors::FG_MAGENTA).CenterVertical());
+}
+
+CBuffer CInterface::DrawWinnerHeader(string color)
+{
+	CBuffer tmp{m_WindowWidth};
+	tmp.AddEscapeSequence(move(color))
+			.Append(R"(         _________ _        _        _______  _______ )")
+			.Append(R"(|\     /|\__   __/( (    /|( (    /|(  ____ \(  ____ ))")
+			.Append(R"(| )   ( |   ) (   |  \  ( ||  \  ( || (    \/| (    )|)")
+			.Append(R"(| | _ | |   | |   |   \ | ||   \ | || (__    | (____)|)")
+			.Append(R"(| |( )| |   | |   | (\ \) || (\ \) ||  __)   |     __))")
+			.Append(R"(| || || |   | |   | | \   || | \   || (      | (\ (   )")
+			.Append(R"(| () () |___) (___| )  \  || )  \  || (____/\| ) \ \__)")
+			.Append(R"((_______)\_______/|/    )_)|/    )_)(_______/|/   \__/)")
+			.CenterVertical()
+			.AddEscapeSequence(Colors::RESET);
+	return tmp;
+}
+
+CBuffer CInterface::DrawGameOverHeader(string color)
+{
+	CBuffer tmp{m_WindowWidth};
+	tmp.AddEscapeSequence(move(color))
+			.Append(R"( _______  _______  _______  _______    _______           _______  _______ )")
+			.Append(R"((  ____ \(  ___  )(       )(  ____ \  (  ___  )|\     /|(  ____ \(  ____ ))")
+			.Append(R"(| (    \/| (   ) || () () || (    \/  | (   ) || )   ( || (    \/| (    )|)")
+			.Append(R"(| |      | (___) || || || || (__      | |   | || |   | || (__    | (____)|)")
+			.Append(R"(| | ____ |  ___  || |(_)| ||  __)     | |   | |( (   ) )|  __)   |     __))")
+			.Append(R"(| | \_  )| (   ) || |   | || (        | |   | | \ \_/ / | (      | (\ (   )")
+			.Append(R"(| (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__)")
+			.Append(R"((_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/)")
+			.CenterVertical()
+			.AddEscapeSequence(Colors::RESET);
+	return tmp;
 }
 
 /**********************************************************************************************************************/

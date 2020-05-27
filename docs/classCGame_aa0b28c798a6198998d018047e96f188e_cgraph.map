@@ -1,9 +1,0 @@
-<map id="CGame::CGame" name="CGame::CGame">
-<area shape="rect" id="node2" href="$classCGame.html#a9e9f65e4470e740c409eb32632eac6c4" title="CGame::Visualize" alt="" coords="186,5,314,32"/>
-<area shape="rect" id="node3" href="$classCGame.html#a6336ec5ccf52001473f0eb1828de4a21" title="CGame::SetUnitStack" alt="" coords="173,56,327,83"/>
-<area shape="rect" id="node4" href="$classCGame.html#ab972a5167af93258c3aeb72e223a764e" title="CGame::CheckNew" alt="" coords="180,107,320,133"/>
-<area shape="rect" id="node5" href="$classCGame.html#a027250380540b2be1e7b253971258214" title="CGame::CheckSaved" alt="" coords="175,157,325,184"/>
-<area shape="rect" id="node6" href="$classCGame.html#a260c9cd2f12851ead8c8818cffc6954e" title="CGame::Update" alt="" coords="191,208,309,235"/>
-<area shape="rect" id="node7" href="$classCGame.html#a2c1fe42628d4fca79efc6b59244a006e" title="CGame::CreateBuffer" alt="" coords="175,259,325,285"/>
-<area shape="rect" id="node8" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="375,259,493,285"/>
-</map>

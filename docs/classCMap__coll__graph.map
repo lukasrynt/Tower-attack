@@ -1,4 +1,0 @@
-<map id="CMap" name="CMap">
-<area shape="rect" id="node2" href="$classCGate.html" title="{CGate\n|&#45; m_Hp\l&#45; m_MaxHp\l|+ Fallen()\l+ ReceiveDamage()\l+ Render()\l+ Position()\l+ Position()\l+ Full()\l}" alt="" coords="18,292,157,457"/>
-<area shape="rect" id="node3" href="$structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetCrossNeighbours()\l+ GetDiagNeighbours()\l+ LiesInRange()\l+ GetRadius()\l+ Distance()\l}" alt="" coords="5,5,169,229"/>
-</map>

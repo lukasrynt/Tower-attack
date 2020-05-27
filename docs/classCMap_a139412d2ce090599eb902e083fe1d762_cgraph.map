@@ -1,8 +1,0 @@
-<map id="CMap::MoveTroops" name="CMap::MoveTroops">
-<area shape="rect" id="node2" href="$classCMap.html#aacef1ec836b59082243962961d12c4ee" title="CMap::MoveOnMap" alt="" coords="204,5,343,32"/>
-<area shape="rect" id="node3" href="$classCGate.html#a81387cd161ba2b6abe89e3959fc670cc" title="CGate::ReceiveDamage" alt="" coords="191,56,356,83"/>
-<area shape="rect" id="node4" href="$classCGate.html#ac227c504419ab23e874a2a90cb68551e" title="CGate::Render" alt="" coords="404,56,515,83"/>
-<area shape="rect" id="node5" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="565,5,684,32"/>
-<area shape="rect" id="node6" href="$classCBuffer.html#ab896eab1ef3ec891a0a2d6e0190e7204" title="CBuffer::AddText" alt="" coords="563,56,687,83"/>
-<area shape="rect" id="node7" href="$classCBuffer.html#a065d323ebbee8fb7bfe67b8f8a7035a1" title="CBuffer::Center" alt="" coords="567,107,682,133"/>
-</map>
