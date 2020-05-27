@@ -19,25 +19,18 @@ public:
 	{return std::make_unique<CArcherTower>(*this);}
 	
 	// LOAD
-	std::istream & LoadTemplate(std::istream & in) override
-	{return CTower::LoadTemplate(in);}
-	
 	std::istream & LoadOnMap(std::istream & in) override
 	{return CTower::LoadOnMap(in);}
 	
 	// SAVE
-	std::ostream & SaveTemplate(std::ostream & out) const override
-	{return CTower::SaveTemplate(out);}
-	
 	std::ostream & SaveOnMap(std::ostream & out) const override
 	{return CTower::SaveOnMap(out);}
 	
 	// ACTIONS
-	CBuffer CreateInfoBuffer(size_t width) const override;
+	CBuffer DrawHelpInfo(size_t width) const override;
 	bool Attack(std::unordered_map<pos_t, std::shared_ptr<CTile>> & map, std::unordered_map<pos_t, std::shared_ptr<CTrooper>> & troops, int rows, int cols) override;
 
 private:
-	CCounter m_ArrowSpeed;	//TODO
 	pos_t m_ArrowPos;
 	std::deque<pos_t> m_ArrowPath;
 	

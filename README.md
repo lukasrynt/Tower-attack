@@ -72,10 +72,12 @@ Mapa má přípustné rozdílné hodnoty v případě, že se jedná o rozehrano
 ```
 --Zásobník vzorů--
 (U)
-T @ 20 60 50 30             -- pěšák: znak, cena, život, rychlost, útok
-A $ 20 80 40 40 90          -- obrněná jednotka: znak, cena, život, rychlost, útok, brnění
-M % 20 20 3 30              -- mágova věž: znak, rychlost, útok, dostřel, rychlost šíření vln
-R * 20 20 3                 -- lukostřelecká věž: znak, rychlost, útok, dostřel
+    --Vojáci--
+T @ 20 60 50 30             -- pěšák:             znak, útok, rychlost, cena, život
+A $ 20 80 40 40 90          -- obrněná jednotka:  znak, útok, rychlost, cena, život, brnění
+    --Věže--
+M % 20 20 3                 -- mágova věž:        znak, útok, rychlost, dostřel
+R * 20 20 3                 -- lukostřelecká věž: znak, útok, rychlost, dostřel
 
 
 --Vlny--

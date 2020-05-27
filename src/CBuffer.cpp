@@ -7,36 +7,35 @@
 
 using namespace std;
 
-CBuffer & CBuffer::Append(string line, string color)
+CBuffer & CBuffer::Append(const string & line, const string & color)
 {
-	string res = move(line);
-	m_Sizes.push_back(res.length());
+	m_Sizes.push_back(line.length());
+	string res = line;
 	if (!color.empty())
-		res = move(color) + res + Colors::RESET;
+		res = color + line + Colors::RESET;
 	m_Buffer.emplace_back(move(res));
 	return *this;
 }
 
-CBuffer & CBuffer::AddText(string text, string color)
+CBuffer & CBuffer::AddText(const string & text, const string & color)
 {
 	if (m_Sizes.empty())
 		m_Sizes.emplace_back();
-	string res = move(text);
-	m_Sizes.back() += res.length();
+	m_Sizes.back() += text.length();
+	string res = text;
 	if (!color.empty())
-		res = move(color) + res + Colors::RESET;
+		res = color + text + Colors::RESET;
 	if (m_Buffer.empty())
 		m_Buffer.emplace_back();
 	m_Buffer.back() += res;
 	return *this;
 }
 
-CBuffer & CBuffer::AddLines(const string & lines, string color)
+CBuffer & CBuffer::AddLines(const string & lines, const string & color)
 {
-	string col = move(color);
-	bool empty = col.empty();
+	bool empty = color.empty();
 	if (!empty)
-		AddEscapeSequence(move(col));
+		AddEscapeSequence(color);
 	stringstream ss(lines);
 	string line;
 	while (getline(ss, line))
@@ -46,12 +45,11 @@ CBuffer & CBuffer::AddLines(const string & lines, string color)
 	return *this;
 }
 
-CBuffer & CBuffer::AddEscapeSequence(string sequence)
+CBuffer & CBuffer::AddEscapeSequence(const string & sequence)
 {
 	if (m_Buffer.empty())
 		m_Buffer.emplace_back();
-	string res = move(sequence);
-	m_Buffer.back() += res;
+	m_Buffer.back() += sequence;
 	return *this;
 }
 
@@ -74,7 +72,7 @@ CBuffer & CBuffer::Concat(CBuffer && other)
 	return *this;
 }
 
-CBuffer & CBuffer::CenterVertical()
+CBuffer & CBuffer::CenterHorizontal()
 {
 	size_t longest = Width();
 	if (longest > m_Width)
@@ -93,13 +91,14 @@ size_t CBuffer::Width() const
 	return tmp;
 }
 
-CBuffer & CBuffer::Append(CBuffer other)
+CBuffer & CBuffer::Append(CBuffer && other)
 {
 	move(other.m_Buffer.begin(), other.m_Buffer.end(), back_inserter(m_Buffer));
+	move (other.m_Sizes.begin(), other.m_Sizes.end(), back_inserter(m_Sizes));
 	return *this;
 }
 
-CBuffer & CBuffer::operator+=(CBuffer other)
+CBuffer & CBuffer::operator+=(CBuffer && other)
 {
 	return Append(move(other));
 }
@@ -113,9 +112,9 @@ ostream & operator<<(ostream & out, const CBuffer & self)
 	return out;
 }
 
-CBuffer & CBuffer::operator<<(string line)
+CBuffer & CBuffer::operator<<(const string & line)
 {
-	return AddText(move(line));
+	return AddText(line);
 }
 
 CBuffer & CBuffer::operator<<(const CTile & tile)
@@ -124,32 +123,31 @@ CBuffer & CBuffer::operator<<(const CTile & tile)
 	return *this;
 }
 
-CBuffer & CBuffer::operator+=(string line)
+CBuffer & CBuffer::operator+=(const string & line)
 {
-	return Append(move(line));
+	return Append(line);
 }
 
-CBuffer & CBuffer::AddTextAt(size_t idx, string text, string color)
+CBuffer & CBuffer::AddTextAt(size_t idx, const string & text, const string & color)
 {
 	if (m_Sizes.empty())
 		m_Sizes.emplace_back();
-	string res = move(text);
+	string res = text;
 	if (!color.empty())
-		res = move(color) + res + Colors::RESET;
+		res = color + res + Colors::RESET;
 	At(idx) += res;
 	return *this;
 }
 
-std::string & CBuffer::At(size_t idx)
+string & CBuffer::At(size_t idx)
 {
 	if (idx > m_Buffer.size())
 		throw out_of_range("Given index is out of bounds of buffer");
 	return m_Buffer[idx];
 }
 
-CBuffer & CBuffer::CenterHorizontal(size_t height)
+CBuffer & CBuffer::CenterVertical(size_t height)
 {
-	// center horizontally
 	CBuffer tmp{m_Width};
 	if (Height() < height)
 		for (size_t i = 0; i < (height - Height()) / 2; ++i)

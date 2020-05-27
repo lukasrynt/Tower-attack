@@ -26,10 +26,10 @@ CBuffer CGate::Draw(size_t width) const
 	if (m_Hp > 0)
 		part = round<int>(m_Hp / static_cast<double> (m_MaxHp) * 10);
 	return move(CBuffer{width}
-		.Append("Gate: [")
-		.AddText(string(part, ' '), Colors::BG_RED)
-		.AddText(string(10 - part, ' ') + ']')
-		.Append()
-		.Append()
-		.CenterVertical());
+						.Append("Gate: [")
+						.AddText(string(part, ' '), Colors::BG_RED)
+						.AddText(string(10 - part, ' ') + ']')
+						.Append()
+						.Append()
+						.CenterHorizontal());
 }

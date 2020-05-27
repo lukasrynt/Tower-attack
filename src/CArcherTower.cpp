@@ -86,7 +86,7 @@ void CArcherTower::ArrowClear(unordered_map<pos_t,shared_ptr<CTile>> & map)
 	m_ArrowPos = pos::npos;
 }
 
-CBuffer CArcherTower::CreateInfoBuffer(size_t width) const
+CBuffer CArcherTower::DrawHelpInfo(size_t width) const
 {
 	return move(CBuffer{width}
 		.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_RED) + Colors::FG_BLACK)

@@ -333,7 +333,7 @@ CBuffer CMap::DrawMap(size_t width) const
 		}
 	}
 	buffer.Append(DrawTroopsOnMap(width));
-	buffer.CenterVertical();
+	buffer.CenterHorizontal();
 	return buffer;
 }
 
@@ -348,8 +348,8 @@ CBuffer CMap::DrawTroopsOnMap(size_t width) const
 			lines.emplace(troop->GetSpawn(), CBuffer{width}.Append("Wave " + to_string(troop->GetSpawn()) + ": ", Colors::FG_GREEN));
 		lines.at(troop->GetSpawn()).AddText(to_string(troop->GetHp()), troop->GetColor()).AddText(" ");
 	}
-	for (const auto & line : lines)
-		buffer.Append(line.second);
+	for (auto & line : lines)
+		buffer.Append(move(line.second));
 	return buffer;
 }
 

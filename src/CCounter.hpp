@@ -34,7 +34,7 @@ public:
 	{return m_CurrFrame;}
 	
 	void SetCurrent(int current)
-	{m_CurrFrame = current > MAX_CNT / m_Speed ? 0 : current;}
+	{m_CurrFrame = current % (MAX_CNT / m_Speed);}
 	/**
 	 * Loads the speed of the counter from input stream
 	 * @param in Input stream

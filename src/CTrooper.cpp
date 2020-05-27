@@ -49,6 +49,23 @@ bool CTrooper::Move(const unordered_map<pos_t,shared_ptr<CTile>> & map, bool & e
 	return false;
 }
 
+void CTrooper::ReceiveDamage(int damage, std::string bulletColor)
+{
+	m_Hp -= damage;
+	// if it hasn't been hit by another turret recolor it
+	if(m_BackColor.empty())
+		m_BackColor = move(bulletColor);
+}
+
+CBuffer CTrooper::DrawShortInfo(size_t width) const
+{
+	return move(CBuffer{width})
+		.Append("Attack: ", Colors::FG_CYAN).AddText(to_string(m_Attack))
+		.Append("Speed: ", Colors::FG_CYAN).AddText(to_string(m_Frames.GetSpeed()))
+		.Append("Cost: ", Colors::FG_CYAN).AddText(to_string(m_Price)).AddText(" C ", Colors::FG_YELLOW)
+		.Append("HP: ", Colors::FG_CYAN).AddText(to_string(m_Hp));
+}
+
 /**********************************************************************************************************************/
 // LOADING
 istream & CTrooper::LoadOnMap(istream & in)
@@ -59,10 +76,15 @@ istream & CTrooper::LoadOnMap(istream & in)
 	return in;
 }
 
-void CTrooper::ReceiveDamage(int damage, std::string bulletColor)
+std::istream & CTrooper::LoadTemplate(istream & in)
 {
-	m_Hp -= damage;
-	// if it hasn't been hit by another turret recolor it
-	if(m_BackColor.empty())
-		m_BackColor = move(bulletColor);
+	
+	in >> m_Char >> m_Attack >> m_Frames >> m_Price >> m_Hp;
+	if (m_Price <= 0
+		|| m_Hp <= 0
+		|| m_Attack <= 0)
+		throw invalid_format(("Some of the trooper"s + m_Char + "template attributes are zero or negative.").c_str());
+	return in;
 }
+
+

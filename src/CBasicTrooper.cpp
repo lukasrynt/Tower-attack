@@ -15,14 +15,12 @@ bool CBasicTrooper::Update()
 	return true;
 }
 
-CBuffer CBasicTrooper::CreateInfoBuffer(size_t width) const
+CBuffer CBasicTrooper::DrawHelpInfo(size_t width) const
 {
 	return move(CBuffer{width}
 		.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_YELLOW) + Colors::FG_BLACK)
-		.AddEscapeSequence(Colors::FG_YELLOW)
-		.Append("\tHP: " + to_string(m_Hp))
-		.Append("\tSpeed: " + to_string(m_Frames.GetSpeed()))
-		.Append("\tAttack: " + to_string(m_Attack))
-		.Append("\tCost: " + to_string(m_Price) + " ©")
-		.AddEscapeSequence(Colors::RESET));
+		.Append("\tHP: " + to_string(m_Hp), Colors::FG_YELLOW)
+		.Append("\tSpeed: " + to_string(m_Frames.GetSpeed()), Colors::FG_YELLOW)
+		.Append("\tAttack: " + to_string(m_Attack), Colors::FG_YELLOW)
+		.Append("\tCost: " + to_string(m_Price) + " ©", Colors::FG_YELLOW));
 }

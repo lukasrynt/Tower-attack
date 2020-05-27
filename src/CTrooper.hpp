@@ -34,7 +34,12 @@ public:
 		: CTile(ch, type, move(color))
 	{}
 	
+	// RULE OF FIVE
 	~CTrooper() override = default;
+	CTrooper(const CTrooper & src) = default;
+	CTrooper & operator=(const CTrooper & src) = default;
+	CTrooper(CTrooper && src) = default;
+	CTrooper & operator=(CTrooper && src) = default;
 	
 	/**
 	 * @return Cloned unit
@@ -77,9 +82,9 @@ public:
 	 * Loads template unit from input stream
 	 * @param in Input stream
 	 * @return in
+	 * @throws invalid_format if any argument iss negative or zero
 	 */
-	virtual std::istream & LoadTemplate(std::istream & in)
-	{return in >> m_Char >> m_Price >> m_Hp >> m_Frames >> m_Attack;}
+	virtual std::istream & LoadTemplate(std::istream & in);
 	/**
 	 * Loads unit on map - with state of his frames
 	 * @param in Input stream
@@ -94,7 +99,7 @@ public:
 	 * @return out
 	 */
 	virtual std::ostream & SaveTemplate(std::ostream & out) const
-	{return out << m_Type << ' ' << m_Char << ' ' << m_Price << ' ' << m_Hp << ' ' << m_Frames << ' ' << m_Attack;};
+	{return out << m_Type << ' ' << m_Char << ' ' << m_Attack << ' ' << m_Frames << ' ' << m_Price << ' ' << m_Hp;};
 	/**
 	 * Saves unit on map to output stream
 	 * @param out Output stream
@@ -107,9 +112,15 @@ public:
 	/**
 	 * Creates buffer with information about the unit
 	 * @param width Width of the screen
-	 * @return created buffer
+	 * @return Created buffer
 	 */
-	virtual CBuffer CreateInfoBuffer(size_t width) const = 0;
+	virtual CBuffer DrawHelpInfo(size_t width) const = 0;
+	/**
+	 * Creates buffer with only short information common to all units - will be displayed in game
+	 * @param width Width of the screen
+	 * @return Created buffer
+	 */
+	CBuffer DrawShortInfo(size_t width) const;
 	
 	// GETTERS/ SETTERS
 	int GetHp() const

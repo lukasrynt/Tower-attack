@@ -22,7 +22,7 @@ void CArmoredTrooper::ReceiveDamage(int damage, string bulletColor)
 	}
 }
 
-CBuffer CArmoredTrooper::CreateInfoBuffer(size_t width) const
+CBuffer CArmoredTrooper::DrawHelpInfo(size_t width) const
 {
 	return move(CBuffer{width}
 		.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_CYAN) + Colors::FG_BLACK)

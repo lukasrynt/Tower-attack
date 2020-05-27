@@ -69,7 +69,7 @@ public:
 	 * @param width Width of the screen
 	 * @return created buffer
 	 */
-	CBuffer CreateInfoBuffer(size_t width) const override;
+	CBuffer DrawHelpInfo(size_t width) const override;
 	/**
 	 * Receive damage
 	 * @param damage Damage received

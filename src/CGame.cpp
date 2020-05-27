@@ -144,7 +144,7 @@ void CGame::Update()
 CBuffer CGame::Draw(size_t width) const
 {
 	return move(CBuffer{width}
-		.Append(move(m_Waves.Draw(width).Concat(m_UnitStack->Draw(width)).CenterVertical()))
+		.Append(move(m_Waves.Draw(width).Concat(m_UnitStack->Draw(width)).CenterHorizontal()))
 		.Append(move(CBuffer{width}.Append().Append()))
 		.Append(m_Map.Draw(width)));
 }

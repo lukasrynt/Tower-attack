@@ -139,8 +139,7 @@ CBuffer CWaves::Draw(size_t width) const
 		buffer.Append(line, color ? Colors::BG_GREEN : "");
 	}
 	buffer.Append(string(10 + m_MaxSize, '-'), Colors::FG_GREEN)
-			.Append(to_string(m_Resources))
-			.Append(" ©", Colors::FG_YELLOW);
+			.Append(to_string(m_Resources)).AddText(" C", Colors::FG_YELLOW);
 	return buffer;
 }
 

@@ -203,13 +203,13 @@ private:
 	 * @param color Color of the text
 	 * @return Created buffer
 	 */
-	static CBuffer DrawWinnerHeader(std::string color);
+	static CBuffer DrawWinnerHeader(const std::string& color);
 	/**
 	 * Create game over header (GAME OVER)
 	 * @param color Color of the text
 	 * @return Created buffer
 	 */
-	static CBuffer DrawGameOverHeader(std::string color);
+	static CBuffer DrawGameOverHeader(const std::string& color);
 	
 	
 	// COMMON

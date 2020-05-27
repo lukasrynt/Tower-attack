@@ -120,9 +120,7 @@ CBuffer CUnitStack::Draw(size_t width) const
 		.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
 		.Append(DrawTroops())
 		.Append(string(4 * m_Troops.size(), '-'), Colors::FG_CYAN)
-		.Append("Cost: ", Colors::FG_CYAN).AddText(to_string(GetSelectedPrice())).AddText(" © ", Colors::FG_YELLOW)
-		.Append("HP: ", Colors::FG_CYAN).AddText(to_string(m_Troops.at(FindSelected())->GetHp()))
-		.Append("Speed: ", Colors::FG_CYAN).AddText(to_string(m_Troops.at(FindSelected())->GetSpeed())));
+		.Append(m_Troops.at(FindSelected())->DrawShortInfo(width)));
 }
 
 CBuffer CUnitStack::DrawTroopsInfo(size_t width) const
@@ -135,7 +133,7 @@ CBuffer CUnitStack::DrawTroopsInfo(size_t width) const
 	for (const auto & troop : m_Troops)
 		// for this way of formatting i see no other way than this, i want to have some common info on the troops and then the units
 		if (troop.second->GetType() == ETileType::BASIC_TROOP)
-			buffer.Append(troop.second->CreateInfoBuffer(width));
+			buffer.Append(troop.second->DrawHelpInfo(width));
 	
 	
 	buffer.Append("Basic trooper", string(Colors::BG_CYAN) + Colors::FG_BLACK)
@@ -143,7 +141,7 @@ CBuffer CUnitStack::DrawTroopsInfo(size_t width) const
 			.Append(" ● He can wall up to prevent incoming damage, before his shields deplete.", Colors::FG_CYAN);
 	for (const auto & troop : m_Troops)
 		if (troop.second->GetType() == ETileType::ARMORED_TROOP)
-			buffer.Append(troop.second->CreateInfoBuffer(width));
+			buffer.Append(troop.second->DrawHelpInfo(width));
 	return buffer;
 }
 
@@ -156,7 +154,7 @@ CBuffer CUnitStack::DrawTowersInfo(size_t width) const
 			.Append(" ● Can focus only one trooper at once and it will be always the closest.", Colors::FG_RED);
 	for (const auto & tower : m_Towers)
 		if (tower.second->GetType() == ETileType::ARCHER_TOWER)
-			buffer.Append(tower.second->CreateInfoBuffer(width));
+			buffer.Append(tower.second->DrawHelpInfo(width));
 	
 	buffer.Append("Mage tower", string(Colors::BG_BLUE) + Colors::FG_BLACK)
 			.Append(" ● Mage tower which can cast magic attacks", Colors::FG_BLUE)
@@ -164,7 +162,7 @@ CBuffer CUnitStack::DrawTowersInfo(size_t width) const
 					Colors::FG_BLUE);
 	for (const auto & tower : m_Towers)
 		if (tower.second->GetType() == ETileType::MAGE_TOWER)
-			buffer.Append(tower.second->CreateInfoBuffer(width));
+			buffer.Append(tower.second->DrawHelpInfo(width));
 	return buffer;
 }
 

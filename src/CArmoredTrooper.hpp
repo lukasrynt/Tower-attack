@@ -39,7 +39,7 @@ public:
 	 * @param width Width of the screen
 	 * @return created buffer
 	 */
-	CBuffer CreateInfoBuffer(size_t width) const final;
+	CBuffer DrawHelpInfo(size_t width) const final;
 	/**
 	 * Updates the state of the unit - takes care of armor
 	 * @return True if the unit can do something

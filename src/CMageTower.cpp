@@ -8,22 +8,12 @@
 using namespace std;
 
 /**********************************************************************************************************************/
-// LOADING
-istream & CMageTower::LoadOnMap(istream & in)
-{
-	int curr;
-	CTower::LoadOnMap(in) >> curr;
-	m_AttackSpeed.SetCurrent(curr);
-	return in;
-}
-
-/**********************************************************************************************************************/
 // ATTACK
 bool CMageTower::Attack(unordered_map<pos_t, shared_ptr<CTile>> & map, unordered_map<pos_t, shared_ptr<CTrooper>> & troops, int rows, int cols)
 {
 	// if the wave hasn't started yet - either create it or return if the perimeter wasn't breached
 	// or the action is not allowed
-	(void) rows;
+	(void) rows;	// not necessary because we don't need to know the path from one point to another
 	(void) cols;
 	if (!m_WaveLevel)
 	{
@@ -40,7 +30,7 @@ bool CMageTower::Attack(unordered_map<pos_t, shared_ptr<CTile>> & map, unordered
 	ClearLastWave(map);
 	SendNewWave(map, troops);
 	
-	if (m_WaveLevel++ == m_Range + 1)
+	if (m_WaveLevel++ > m_Range)
 		m_WaveLevel = 0;
 	return true;
 }
@@ -55,7 +45,7 @@ void CMageTower::ClearLastWave(unordered_map<pos_t, shared_ptr<CTile>> & map) co
 bool CMageTower::PerimeterBreached(const unordered_map<pos_t, shared_ptr<CTrooper>> & troops) const
 {
 	for (const auto & troop : troops)
-		if (m_Pos.Distance(troop.second->GetPosition()) < m_Range)
+		if (m_Pos.Distance(troop.second->GetPosition()) <= m_Range)
 			return true;
 	return false;
 }
@@ -72,7 +62,7 @@ void CMageTower::SendNewWave(unordered_map<pos_t, shared_ptr<CTile>> & map, unor
 	}
 }
 
-CBuffer CMageTower::CreateInfoBuffer(size_t width) const
+CBuffer CMageTower::DrawHelpInfo(size_t width) const
 {
 	return move(CBuffer{width}
 						.Append("   ").Append("("s + m_Char + ")", string(Colors::BG_BLUE) + Colors::FG_BLACK)
