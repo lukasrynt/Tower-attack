@@ -22,11 +22,18 @@ public:
 	 * @throws ios::failure when there was an error during setting the terminal to raw mode
 	 */
 	explicit CInterface(std::ostream & out) noexcept(false);
+	
+	// RULE OF FIVE
 	/**
 	 * Disables raw mode and return terminal back to original state
 	 * @throws ios::failure when there was an error during resetting the terminal back to original
 	 */
 	~CInterface() noexcept(false);
+	CInterface(const CInterface & src) = default;
+	CInterface & operator=(const CInterface & src) = delete; // because streams can't be assigned
+	CInterface(CInterface && src) = default;
+	CInterface & operator=(CInterface && src) = delete;	// because streams can't be assigned
+	
 	
 	// SCREENS
 	/**

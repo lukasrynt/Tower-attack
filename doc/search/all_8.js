@@ -4,7 +4,7 @@ var searchData=
   ['initcolor',['InitColor',['../classCTile.html#aaf609b302a0a06b146d0f38454bda236',1,'CTile']]],
   ['initcommands',['InitCommands',['../classCApplication.html#ac7d98126b9c1cb60ff4c5bd8a647dba1',1,'CApplication']]],
   ['initgateposition',['InitGatePosition',['../classCMap.html#a87fc3352f0c0f4f1f292d0f09376ad61',1,'CMap']]],
-  ['initspawner',['InitSpawner',['../classCMap.html#a88e3a346b11583bcac5b53e39502c33e',1,'CMap']]],
+  ['initspawner',['InitSpawner',['../classCMap.html#a8aa256614e89de54794f0efec1dbca22',1,'CMap']]],
   ['inittype',['InitType',['../classCTile.html#a79011276f91ed86f03f82a707d527ce1',1,'CTile']]],
   ['invalid',['INVALID',['../ETileType_8hpp.html#ab295e0c47e59e87fd8b91e419b8f7f4caccc0377a8afbf50e7094f5c23a8af223',1,'ETileType.hpp']]],
   ['invalid_5fformat',['invalid_format',['../classinvalid__format.html',1,'invalid_format'],['../classinvalid__format.html#aab5ddaa87d6dbe2609bce2c3f9097d43',1,'invalid_format::invalid_format()']]],

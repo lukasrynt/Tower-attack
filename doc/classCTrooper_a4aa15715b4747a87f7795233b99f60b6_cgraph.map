@@ -1,4 +1,7 @@
 <map id="CTrooper::SaveOnMap" name="CTrooper::SaveOnMap">
-<area shape="rect" id="node2" href="$classCCounter.html#a4f17b2c27140315abc53f566847f58b3" title="CCounter::GetCurrent" alt="" coords="224,5,375,32"/>
-<area shape="rect" id="node3" href="$classCTrooper.html#ad705b4f82645b5312313fd6735dc700c" title="CTrooper::CreateInfoBuffer" alt="" coords="209,56,389,83"/>
+<area shape="rect" id="node2" href="$classCCounter.html#a4f17b2c27140315abc53f566847f58b3" title="CCounter::GetCurrent" alt="" coords="218,5,369,32"/>
+<area shape="rect" id="node3" href="$classCTrooper.html#a69551903516266f87a3f3c76769e1ead" title="CTrooper::DrawHelpInfo" alt="" coords="211,56,375,83"/>
+<area shape="rect" id="node4" href="$classCTrooper.html#a7ed56faa387bcdd69ecee791d5e1090c" title="CTrooper::DrawShortInfo" alt="" coords="209,107,377,133"/>
+<area shape="rect" id="node5" href="$classCBuffer.html#a22d594ca0a213020f1626da6684ed353" title="CBuffer::AddText" alt="" coords="425,81,549,108"/>
+<area shape="rect" id="node6" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="428,132,547,159"/>
 </map>

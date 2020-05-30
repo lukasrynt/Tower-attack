@@ -81,6 +81,8 @@ CMap & CMap::PlaceTroops()
 CMap & CMap::LoadMapInfo(istream & in)
 {
 	in >> m_Rows >> m_Cols >> m_Gate >> m_TowerCount;
+	if (static_cast<int>(m_TowerCount) <= 0 || static_cast<int>(m_TowerCount) > m_Rows * m_Cols / 2)
+		throw invalid_format("Too few or too many towers placed on the map.");
 	return *this;
 }
 
@@ -154,7 +156,7 @@ void CMap::LoadWallLine(istream & in, int row)
 	{
 		in.get(ch);
 		if (m_UnitStack->IsTowerChar(ch))
-			LoadEntityChar(pos_t{col, row}, ch);
+			LoadEntityChar(ch, pos_t{col, row});
 		else
 			if (!LoadWallChar(ch, pos_t{col, row}))
 				throw invalid_format("Invalid character detected on the edge of map.");
@@ -183,7 +185,7 @@ bool CMap::LoadWallChar(char ch, pos_t position)
 	CTile tile{ch};
 	if (tile.IsSpawn())
 	{
-		if (!InitSpawner(position, ch))
+		if (!InitSpawner(ch, position))
 			throw invalid_format("Redefinition of spawner is not allowed.");
 	}
 	else if (tile.IsGate())
@@ -209,7 +211,7 @@ bool CMap::LoadCenterChar(char ch, pos_t position)
 	
 	// if it's not load entity
 	else
-		return LoadEntityChar(position, ch);
+		return LoadEntityChar(ch, position);
 }
 
 bool CMap::InitGatePosition(pos_t position)
@@ -220,7 +222,7 @@ bool CMap::InitGatePosition(pos_t position)
 	return true;
 }
 
-bool CMap::LoadEntityChar(pos_t position, char ch)
+bool CMap::LoadEntityChar(char ch, pos_t position)
 {
 	if (!m_UnitStack)
 		return false;
@@ -234,7 +236,7 @@ bool CMap::LoadEntityChar(pos_t position, char ch)
 	return true;
 }
 
-bool CMap::InitSpawner(pos_t position, char ch)
+bool CMap::InitSpawner(char ch, pos_t position)
 {
 	// redefinition is not allowed
 	if (m_Spawns.count(ch - '0'))

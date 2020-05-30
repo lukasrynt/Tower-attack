@@ -1,8 +1,8 @@
 <map id="CInterface::PromptFileName" name="CInterface::PromptFileName">
-<area shape="rect" id="node2" href="$classCBuffer.html#a455acd760b863d14f134d1769fd2c44c" title="CBuffer::AddEscapeSequence" alt="" coords="243,5,443,32"/>
-<area shape="rect" id="node3" href="$classCBuffer.html#a17a67ff997047b4185c1fa0afb8f6ec8" title="CBuffer::AddLines" alt="" coords="278,56,407,83"/>
-<area shape="rect" id="node4" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="283,107,402,133"/>
-<area shape="rect" id="node5" href="$classCBuffer.html#ae62ee6373a52d76b27a77da1e2c1d83a" title="CBuffer::CenterVertical" alt="" coords="263,157,422,184"/>
+<area shape="rect" id="node2" href="$classCBuffer.html#ae0c6c55a9775cd34918d4ab8effe7687" title="CBuffer::AddEscapeSequence" alt="" coords="243,5,443,32"/>
+<area shape="rect" id="node3" href="$classCBuffer.html#a26febd4f715950a829f6c9888dabf082" title="CBuffer::AddLines" alt="" coords="278,56,407,83"/>
+<area shape="rect" id="node4" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="283,107,402,133"/>
+<area shape="rect" id="node5" href="$classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title="CBuffer::CenterHorizontal" alt="" coords="256,157,429,184"/>
 <area shape="rect" id="node6" href="$classCBuffer.html#ac81bb7036bd339bccf438b8aec160fe0" title="CBuffer::Height" alt="" coords="286,208,399,235"/>
 <area shape="rect" id="node8" href="$namespaceEscapes.html#acb681e8b5597ec7b09c48d7482ea74ef" title="Escapes::REPOSITION\l_CURSOR" alt="" coords="261,259,425,301"/>
 <area shape="rect" id="node7" href="$classCBuffer.html#a0e36cdc1b35108e3f37eda3fa74f1207" title="CBuffer::Width" alt="" coords="491,208,600,235"/>

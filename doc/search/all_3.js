@@ -14,10 +14,12 @@ var searchData=
   ['drawcommonlegend',['DrawCommonLegend',['../classCInterface.html#a9fd9ea484761ab035849c6869c52cfb8',1,'CInterface']]],
   ['drawgameheader',['DrawGameHeader',['../classCInterface.html#aa86bf3f0ffcdcabbc790ce09434ab7a6',1,'CInterface']]],
   ['drawgameoptions',['DrawGameOptions',['../classCInterface.html#ace2363a515d17739138d8e71d92c9267',1,'CInterface']]],
-  ['drawgameoverheader',['DrawGameOverHeader',['../classCInterface.html#a772b8c6835619c6a38922d66fdfa657e',1,'CInterface']]],
+  ['drawgameoverheader',['DrawGameOverHeader',['../classCInterface.html#a9b08d2a69da5a1b8d7faf890ada077d1',1,'CInterface']]],
+  ['drawhelpinfo',['DrawHelpInfo',['../classCArcherTower.html#a1ba9ea31f5aef560d9ae8106f3a422c5',1,'CArcherTower::DrawHelpInfo()'],['../classCArmoredTrooper.html#aace41abc380db1a186dfdea249db8337',1,'CArmoredTrooper::DrawHelpInfo()'],['../classCBasicTrooper.html#a40fc960eaa461aa6e9e197b64cacd2f7',1,'CBasicTrooper::DrawHelpInfo()'],['../classCMageTower.html#af4b93934910c129e12846fc65b562c04',1,'CMageTower::DrawHelpInfo()'],['../classCTower.html#a38406a2362aa6801cea69e0173583fae',1,'CTower::DrawHelpInfo()'],['../classCTrooper.html#a69551903516266f87a3f3c76769e1ead',1,'CTrooper::DrawHelpInfo()']]],
   ['drawhelpoptions',['DrawHelpOptions',['../classCInterface.html#a35005234159f114fb50130390a46f2e7',1,'CInterface']]],
   ['drawmap',['DrawMap',['../classCMap.html#aed96a241fd1715b589aaab802ec32aad',1,'CMap']]],
   ['drawmenuoptions',['DrawMenuOptions',['../classCInterface.html#a6b27599ac7a3280f432198ebb06b2b23',1,'CInterface']]],
+  ['drawshortinfo',['DrawShortInfo',['../classCTrooper.html#a7ed56faa387bcdd69ecee791d5e1090c',1,'CTrooper']]],
   ['drawtowerheader',['DrawTowerHeader',['../classCInterface.html#a0a920e39d7e0f57ad31cd516cbdcf21a',1,'CInterface']]],
   ['drawtowerlegend',['DrawTowerLegend',['../classCInterface.html#a8676fd11905787598551ca7b41269652',1,'CInterface']]],
   ['drawtowersinfo',['DrawTowersInfo',['../classCUnitStack.html#ac2158780669bf0f3cec114c4c4e45224',1,'CUnitStack']]],
@@ -26,5 +28,5 @@ var searchData=
   ['drawtroops',['DrawTroops',['../classCUnitStack.html#aeb6397a100e74172e73d30c8203ce55b',1,'CUnitStack']]],
   ['drawtroopsinfo',['DrawTroopsInfo',['../classCUnitStack.html#a4fac33dd9f468c9820a02aafc759eac9',1,'CUnitStack']]],
   ['drawtroopsonmap',['DrawTroopsOnMap',['../classCMap.html#ad1ff3c624da44e0ecca048a35d3f0823',1,'CMap']]],
-  ['drawwinnerheader',['DrawWinnerHeader',['../classCInterface.html#ac607f05b9d62cf36e62d8e6b3b475160',1,'CInterface']]]
+  ['drawwinnerheader',['DrawWinnerHeader',['../classCInterface.html#ae8be79c0c35ae1d3f823f1cd66fe58a4',1,'CInterface']]]
 ];

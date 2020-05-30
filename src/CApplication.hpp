@@ -31,6 +31,25 @@ public:
 	 * Runs the application menu screen
 	 */
 	void Run();
+	
+	// RULE OF FIVE
+	~CApplication() = default;
+	/**
+	 * There can only be one instance of application so it can't be copied
+	 */
+	CApplication(const CApplication & src) = delete;
+	/**
+	 * There can only be one instance of application so it can't be copied
+	 */
+	CApplication & operator=(const CApplication & src) = delete;
+	/**
+	 * There can only be one instance of application so it can't be moved
+	 */
+	CApplication(CApplication && src) = delete;
+	/**
+	 * There can only be one instance of application so it can't be moved
+	 */
+	CApplication & operator=(CApplication && src) = delete;
 private:
 	CInterface m_Interface;						//!< Interface, handles I/O operations
 	CGame m_Game;								//!< Game, comprises individual game objects and handles loading and saving

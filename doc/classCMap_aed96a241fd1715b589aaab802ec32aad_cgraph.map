@@ -1,4 +1,4 @@
 <map id="CMap::DrawMap" name="CMap::DrawMap">
-<area shape="rect" id="node2" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="195,5,313,32"/>
-<area shape="rect" id="node3" href="$classCBuffer.html#ae62ee6373a52d76b27a77da1e2c1d83a" title="CBuffer::CenterVertical" alt="" coords="175,56,333,83"/>
+<area shape="rect" id="node2" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="202,5,321,32"/>
+<area shape="rect" id="node3" href="$classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title="CBuffer::CenterHorizontal" alt="" coords="175,56,348,83"/>
 </map>

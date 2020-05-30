@@ -1,4 +1,5 @@
 <map id="CTower::CTower" name="CTower::CTower">
 <area shape="rect" id="node2" href="$classCTower.html#a5909c31c4126d6c87a001911ffa2639b" title="CTower::~CTower" alt="" coords="176,5,307,32"/>
-<area shape="rect" id="node3" href="$classCTower.html#afcb23d37874f3c8e124bd588897da693" title="CTower::Clone" alt="" coords="186,56,297,83"/>
+<area shape="rect" id="node3" href="$classCTower.html#a42c97f48cea70bdb1913666144f7a5eb" title="CTower::operator=" alt="" coords="176,56,307,83"/>
+<area shape="rect" id="node4" href="$classCTower.html#afcb23d37874f3c8e124bd588897da693" title="CTower::Clone" alt="" coords="186,107,297,133"/>
 </map>

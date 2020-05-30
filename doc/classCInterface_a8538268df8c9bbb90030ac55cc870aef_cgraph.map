@@ -1,4 +1,4 @@
 <map id="CInterface::Menu" name="CInterface::Menu">
-<area shape="rect" id="node2" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="397,5,516,32"/>
-<area shape="rect" id="node3" href="$classCBuffer.html#a417b6a06923d7299bb48a37961547282" title="CBuffer::CenterHorizontal" alt="" coords="176,31,349,57"/>
+<area shape="rect" id="node2" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="383,5,501,32"/>
+<area shape="rect" id="node3" href="$classCBuffer.html#a5b65792c600999cfe2776aaf26faaca7" title="CBuffer::CenterVertical" alt="" coords="176,31,335,57"/>
 </map>

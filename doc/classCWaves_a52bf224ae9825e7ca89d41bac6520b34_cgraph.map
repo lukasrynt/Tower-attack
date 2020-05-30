@@ -1,10 +1,11 @@
 <map id="CWaves::GetWaveCnt" name="CWaves::GetWaveCnt">
-<area shape="rect" id="node2" href="$classCWaves.html#a108bc94fba2faeb9129dfdc2002c52e9" title="CWaves::Draw" alt="" coords="231,5,343,32"/>
-<area shape="rect" id="node4" href="$classCWaves.html#ab159241e2b59bca7d5905055751c41f6" title="CWaves::Cycle" alt="" coords="229,56,344,83"/>
-<area shape="rect" id="node5" href="$classCWaves.html#a024707668a137e4d0714b05f2e97215b" title="CWaves::AddTroop" alt="" coords="218,107,355,133"/>
-<area shape="rect" id="node6" href="$classCWaves.html#a36a9b266de65181dc8a23c309e9dbb6a" title="CWaves::DeleteTroop" alt="" coords="211,157,363,184"/>
-<area shape="rect" id="node7" href="$classCWaves.html#a9e5eacab078c2b55116c8615c4f52b4d" title="CWaves::Release" alt="" coords="222,208,351,235"/>
-<area shape="rect" id="node8" href="$classCWaves.html#a59aec540027d15c93b13863c931330f3" title="CWaves::Update" alt="" coords="225,259,348,285"/>
-<area shape="rect" id="node9" href="$classCWaves.html#abf9eb5faf442f5ed168c2244e1e94313" title="CWaves::Lost" alt="" coords="233,309,340,336"/>
-<area shape="rect" id="node3" href="$classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="411,5,529,32"/>
+<area shape="rect" id="node2" href="$classCWaves.html#a108bc94fba2faeb9129dfdc2002c52e9" title="CWaves::Draw" alt="" coords="231,31,343,57"/>
+<area shape="rect" id="node5" href="$classCWaves.html#ab159241e2b59bca7d5905055751c41f6" title="CWaves::Cycle" alt="" coords="229,81,344,108"/>
+<area shape="rect" id="node6" href="$classCWaves.html#a024707668a137e4d0714b05f2e97215b" title="CWaves::AddTroop" alt="" coords="218,132,355,159"/>
+<area shape="rect" id="node7" href="$classCWaves.html#a36a9b266de65181dc8a23c309e9dbb6a" title="CWaves::DeleteTroop" alt="" coords="211,183,363,209"/>
+<area shape="rect" id="node8" href="$classCWaves.html#a9e5eacab078c2b55116c8615c4f52b4d" title="CWaves::Release" alt="" coords="222,233,351,260"/>
+<area shape="rect" id="node9" href="$classCWaves.html#a59aec540027d15c93b13863c931330f3" title="CWaves::Update" alt="" coords="225,284,348,311"/>
+<area shape="rect" id="node10" href="$classCWaves.html#abf9eb5faf442f5ed168c2244e1e94313" title="CWaves::Lost" alt="" coords="233,335,340,361"/>
+<area shape="rect" id="node3" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="413,5,532,32"/>
+<area shape="rect" id="node4" href="$classCBuffer.html#a22d594ca0a213020f1626da6684ed353" title="CBuffer::AddText" alt="" coords="411,56,535,83"/>
 </map>

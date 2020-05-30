@@ -155,6 +155,7 @@ private:
 	 * m_Rows m_Cols m_Gate m_TowerCount
 	 * @param in Input stream
 	 * @return Reference to this
+	 * @throws invalid_format if there are too many or too few towers on the map
 	 */
 	CMap & LoadMapInfo(std::istream & in);
 	/**
@@ -196,18 +197,18 @@ private:
 	/**
 	 * Checks entity character and skips it (replace tower with wall and trooper with space).
 	 * Entities themselves are loaded independently
-	 * @param position Current position
 	 * @param ch Character
+	 * @param position Current position
 	 * @return True if the character is allowed
 	 */
-	bool LoadEntityChar(pos_t position, char ch);
+	bool LoadEntityChar(char ch, pos_t position);
 	/**
 	 * Initializes the spawner and checks if it hasn't been defined already (we can only have one 1 spawner etc.)
-	 * @param position Current position
 	 * @param ch Character
+	 * @param position Current position
 	 * @return True if the spawner is alright
 	 */
-	bool InitSpawner(pos_t position, char ch);
+	bool InitSpawner(char ch, pos_t position);
 	/**
 	 * Initializes gate position and check if it hasn't been defined already
 	 * @param position Current position

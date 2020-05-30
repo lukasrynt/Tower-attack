@@ -349,7 +349,7 @@ CBuffer CInterface::DrawCommonLegend()
 	return move(DrawCommonHeader().CenterHorizontal()
 						.Append()
 						.Append("(#) Wall", string(Colors::BG_WHITE) + Colors::FG_BLACK)
-						.Append("● Obstacle through which neither troops, nor bullets can pass.", Colors::FG_WHITE)
+						.Append("● Obstacle through which neither troops, nor bullets can pass.")
 						.Append()
 						.Append("(#) Wall", string(Colors::BG_CYAN) + Colors::FG_BLACK)
 						.Append(" ● Point from which troopers will be spawned.", Colors::FG_CYAN)
@@ -418,7 +418,7 @@ CBuffer CInterface::DrawCommonHeader()
 						.AddLines(R"(  __ ___ _ __  _ __  ___ _ _
  / _/ _ \ '  \| '  \/ _ \ ' \
  \__\___/_|_|_|_|_|_\___/_||_|
-                              )", Colors::FG_WHITE));
+                              )"));
 }
 
 CBuffer CInterface::DrawTowerHeader()

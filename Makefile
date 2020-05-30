@@ -57,7 +57,7 @@ doc: doc src/*.hpp
 # ZIP the directories
 zip: 	
 	@ mkdir ryntluka; \
-	cp -r src examples Makefile Doxyfile zadani.txt prohlaseni.txt README.md ryntluka; \
+	cp -r src testing examples Makefile Doxyfile zadani.txt prohlaseni.txt README.md ryntluka; \
 	zip -r ryntluka.zip ryntluka; \
 	rm -r ryntluka; \
  	echo "Zip created..."

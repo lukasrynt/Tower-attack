@@ -77,6 +77,8 @@ $(function() {
 Collaboration diagram for CInterface:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface__coll__graph.png" border="0" usemap="#CInterface_coll__map" alt="Collaboration graph"/></div>
+<map name="CInterface_coll__map" id="CInterface_coll__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -85,6 +87,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a56cbcdbb45e1850aa20665260bd48521"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a748a28512ede230907062f6ad3cba030"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#a748a28512ede230907062f6ad3cba030">~CInterface</a> () noexcept(false)</td></tr>
 <tr class="separator:a748a28512ede230907062f6ad3cba030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87379c87a866e2d727df9a8c49d2df13"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#a87379c87a866e2d727df9a8c49d2df13">CInterface</a> (const <a class="el" href="classCInterface.html">CInterface</a> &amp;src)=default</td></tr>
+<tr class="separator:a87379c87a866e2d727df9a8c49d2df13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54154e8971344f3cc64de1c9679b75b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCInterface.html">CInterface</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#a54154e8971344f3cc64de1c9679b75b4">operator=</a> (const <a class="el" href="classCInterface.html">CInterface</a> &amp;src)=delete</td></tr>
+<tr class="separator:a54154e8971344f3cc64de1c9679b75b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0947ac91b21fe1d85423f2e782af63d8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#a0947ac91b21fe1d85423f2e782af63d8">CInterface</a> (<a class="el" href="classCInterface.html">CInterface</a> &amp;&amp;src)=default</td></tr>
+<tr class="separator:a0947ac91b21fe1d85423f2e782af63d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a482fb9796d7e78f04002f9a4f0e709"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCInterface.html">CInterface</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#a2a482fb9796d7e78f04002f9a4f0e709">operator=</a> (<a class="el" href="classCInterface.html">CInterface</a> &amp;&amp;src)=delete</td></tr>
+<tr class="separator:a2a482fb9796d7e78f04002f9a4f0e709"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0bf4715bcc8ad5eca905496874970f7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#ad0bf4715bcc8ad5eca905496874970f7">Save</a> (const <a class="el" href="classCGame.html">CGame</a> &amp;game)</td></tr>
 <tr class="separator:ad0bf4715bcc8ad5eca905496874970f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aace161479e917e7058ac108820c37ff2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#aace161479e917e7058ac108820c37ff2">LoadNewGame</a> (<a class="el" href="classCGame.html">CGame</a> &amp;game)</td></tr>
@@ -154,10 +164,10 @@ Static Private Member Functions</h2></td></tr>
 <tr class="separator:a91f29aceb2ccccf39da3e4f0237b7269"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26221387a4f36675722120051d1a2561"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCBuffer.html">CBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#a26221387a4f36675722120051d1a2561">DrawCommandsHeader</a> ()</td></tr>
 <tr class="separator:a26221387a4f36675722120051d1a2561"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac607f05b9d62cf36e62d8e6b3b475160"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCBuffer.html">CBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#ac607f05b9d62cf36e62d8e6b3b475160">DrawWinnerHeader</a> (std::string color)</td></tr>
-<tr class="separator:ac607f05b9d62cf36e62d8e6b3b475160"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a772b8c6835619c6a38922d66fdfa657e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCBuffer.html">CBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#a772b8c6835619c6a38922d66fdfa657e">DrawGameOverHeader</a> (std::string color)</td></tr>
-<tr class="separator:a772b8c6835619c6a38922d66fdfa657e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8be79c0c35ae1d3f823f1cd66fe58a4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCBuffer.html">CBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#ae8be79c0c35ae1d3f823f1cd66fe58a4">DrawWinnerHeader</a> (const std::string &amp;color)</td></tr>
+<tr class="separator:ae8be79c0c35ae1d3f823f1cd66fe58a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b08d2a69da5a1b8d7faf890ada077d1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classCBuffer.html">CBuffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#a9b08d2a69da5a1b8d7faf890ada077d1">DrawGameOverHeader</a> (const std::string &amp;color)</td></tr>
+<tr class="separator:a9b08d2a69da5a1b8d7faf890ada077d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15e8de71d734c5aa6c7c0352cf2bec54"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCInterface.html#a15e8de71d734c5aa6c7c0352cf2bec54">NullTimeout</a> ()</td></tr>
 <tr class="separator:a15e8de71d734c5aa6c7c0352cf2bec54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -184,7 +194,7 @@ Static Private Attributes</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>02/05/2020. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a56cbcdbb45e1850aa20665260bd48521"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56cbcdbb45e1850aa20665260bd48521">&#9670;&nbsp;</a></span>CInterface()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a56cbcdbb45e1850aa20665260bd48521">&#9670;&nbsp;</a></span>CInterface() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,14 +228,6 @@ Static Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classCInterface_a56cbcdbb45e1850aa20665260bd48521_cgraph.png" border="0" usemap="#classCInterface_a56cbcdbb45e1850aa20665260bd48521_cgraph" alt=""/></div>
-<map name="classCInterface_a56cbcdbb45e1850aa20665260bd48521_cgraph" id="classCInterface_a56cbcdbb45e1850aa20665260bd48521_cgraph">
-<area shape="rect" id="node2" href="namespaceEscapes.html#a7dbda29c6f07ab25212d9a44d5b9a2a8" title="Escapes::CHANGE_WINDOW_SIZE" alt="" coords="205,5,448,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -260,6 +262,58 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a87379c87a866e2d727df9a8c49d2df13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87379c87a866e2d727df9a8c49d2df13">&#9670;&nbsp;</a></span>CInterface() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CInterface::CInterface </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classCInterface.html">CInterface</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0947ac91b21fe1d85423f2e782af63d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0947ac91b21fe1d85423f2e782af63d8">&#9670;&nbsp;</a></span>CInterface() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CInterface::CInterface </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCInterface.html">CInterface</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a26221387a4f36675722120051d1a2561"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a26221387a4f36675722120051d1a2561">&#9670;&nbsp;</a></span>DrawCommandsHeader()</h2>
@@ -289,8 +343,8 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a26221387a4f36675722120051d1a2561_cgraph.png" border="0" usemap="#classCInterface_a26221387a4f36675722120051d1a2561_cgraph" alt=""/></div>
 <map name="classCInterface_a26221387a4f36675722120051d1a2561_cgraph" id="classCInterface_a26221387a4f36675722120051d1a2561_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#a17a67ff997047b4185c1fa0afb8f6ec8" title="CBuffer::AddLines" alt="" coords="257,5,387,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#ae62ee6373a52d76b27a77da1e2c1d83a" title="CBuffer::CenterVertical" alt="" coords="243,56,401,83"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a26febd4f715950a829f6c9888dabf082" title="CBuffer::AddLines" alt="" coords="265,5,394,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title="CBuffer::CenterHorizontal" alt="" coords="243,56,416,83"/>
 </map>
 </div>
 
@@ -331,7 +385,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_ad2a74b76129debdd7cccaa89094de80a_cgraph.png" border="0" usemap="#classCInterface_ad2a74b76129debdd7cccaa89094de80a_cgraph" alt=""/></div>
 <map name="classCInterface_ad2a74b76129debdd7cccaa89094de80a_cgraph" id="classCInterface_ad2a74b76129debdd7cccaa89094de80a_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="269,5,388,32"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="269,5,388,32"/>
 </map>
 </div>
 
@@ -365,7 +419,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a91f29aceb2ccccf39da3e4f0237b7269_cgraph.png" border="0" usemap="#classCInterface_a91f29aceb2ccccf39da3e4f0237b7269_cgraph" alt=""/></div>
 <map name="classCInterface_a91f29aceb2ccccf39da3e4f0237b7269_cgraph" id="classCInterface_a91f29aceb2ccccf39da3e4f0237b7269_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#a17a67ff997047b4185c1fa0afb8f6ec8" title="CBuffer::AddLines" alt="" coords="271,5,400,32"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a26febd4f715950a829f6c9888dabf082" title="CBuffer::AddLines" alt="" coords="271,5,400,32"/>
 </map>
 </div>
 
@@ -399,8 +453,8 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a9fd9ea484761ab035849c6869c52cfb8_cgraph.png" border="0" usemap="#classCInterface_a9fd9ea484761ab035849c6869c52cfb8_cgraph" alt=""/></div>
 <map name="classCInterface_a9fd9ea484761ab035849c6869c52cfb8_cgraph" id="classCInterface_a9fd9ea484761ab035849c6869c52cfb8_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#a417b6a06923d7299bb48a37961547282" title="CBuffer::CenterHorizontal" alt="" coords="271,5,444,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="492,5,611,32"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a5b65792c600999cfe2776aaf26faaca7" title="CBuffer::CenterVertical" alt="" coords="271,5,429,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="477,5,596,32"/>
 </map>
 </div>
 
@@ -434,9 +488,9 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_aa86bf3f0ffcdcabbc790ce09434ab7a6_cgraph.png" border="0" usemap="#classCInterface_aa86bf3f0ffcdcabbc790ce09434ab7a6_cgraph" alt=""/></div>
 <map name="classCInterface_aa86bf3f0ffcdcabbc790ce09434ab7a6_cgraph" id="classCInterface_aa86bf3f0ffcdcabbc790ce09434ab7a6_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#a455acd760b863d14f134d1769fd2c44c" title="CBuffer::AddEscapeSequence" alt="" coords="252,5,452,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="293,56,411,83"/>
-<area shape="rect" id="node4" href="classCBuffer.html#ae62ee6373a52d76b27a77da1e2c1d83a" title="CBuffer::CenterVertical" alt="" coords="273,107,431,133"/>
+<area shape="rect" id="node2" href="classCBuffer.html#ae0c6c55a9775cd34918d4ab8effe7687" title="CBuffer::AddEscapeSequence" alt="" coords="252,5,452,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="293,56,411,83"/>
+<area shape="rect" id="node4" href="classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title="CBuffer::CenterHorizontal" alt="" coords="265,107,439,133"/>
 </map>
 </div>
 
@@ -477,14 +531,14 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_ace2363a515d17739138d8e71d92c9267_cgraph.png" border="0" usemap="#classCInterface_ace2363a515d17739138d8e71d92c9267_cgraph" alt=""/></div>
 <map name="classCInterface_ace2363a515d17739138d8e71d92c9267_cgraph" id="classCInterface_ace2363a515d17739138d8e71d92c9267_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="256,5,375,32"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="256,5,375,32"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a772b8c6835619c6a38922d66fdfa657e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a772b8c6835619c6a38922d66fdfa657e">&#9670;&nbsp;</a></span>DrawGameOverHeader()</h2>
+<a id="a9b08d2a69da5a1b8d7faf890ada077d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b08d2a69da5a1b8d7faf890ada077d1">&#9670;&nbsp;</a></span>DrawGameOverHeader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -495,7 +549,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname"><a class="el" href="classCBuffer.html">CBuffer</a> CInterface::DrawGameOverHeader </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>color</em></td><td>)</td>
           <td></td>
         </tr>
@@ -516,11 +570,11 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCInterface_a772b8c6835619c6a38922d66fdfa657e_cgraph.png" border="0" usemap="#classCInterface_a772b8c6835619c6a38922d66fdfa657e_cgraph" alt=""/></div>
-<map name="classCInterface_a772b8c6835619c6a38922d66fdfa657e_cgraph" id="classCInterface_a772b8c6835619c6a38922d66fdfa657e_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#a455acd760b863d14f134d1769fd2c44c" title="CBuffer::AddEscapeSequence" alt="" coords="239,5,439,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="279,56,398,83"/>
-<area shape="rect" id="node4" href="classCBuffer.html#ae62ee6373a52d76b27a77da1e2c1d83a" title="CBuffer::CenterVertical" alt="" coords="259,107,418,133"/>
+<div class="center"><img src="classCInterface_a9b08d2a69da5a1b8d7faf890ada077d1_cgraph.png" border="0" usemap="#classCInterface_a9b08d2a69da5a1b8d7faf890ada077d1_cgraph" alt=""/></div>
+<map name="classCInterface_a9b08d2a69da5a1b8d7faf890ada077d1_cgraph" id="classCInterface_a9b08d2a69da5a1b8d7faf890ada077d1_cgraph">
+<area shape="rect" id="node2" href="classCBuffer.html#ae0c6c55a9775cd34918d4ab8effe7687" title="CBuffer::AddEscapeSequence" alt="" coords="239,5,439,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="279,56,398,83"/>
+<area shape="rect" id="node4" href="classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title="CBuffer::CenterHorizontal" alt="" coords="252,107,425,133"/>
 </map>
 </div>
 
@@ -554,7 +608,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a35005234159f114fb50130390a46f2e7_cgraph.png" border="0" usemap="#classCInterface_a35005234159f114fb50130390a46f2e7_cgraph" alt=""/></div>
 <map name="classCInterface_a35005234159f114fb50130390a46f2e7_cgraph" id="classCInterface_a35005234159f114fb50130390a46f2e7_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="248,5,367,32"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="248,5,367,32"/>
 </map>
 </div>
 
@@ -594,8 +648,8 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a6b27599ac7a3280f432198ebb06b2b23_cgraph.png" border="0" usemap="#classCInterface_a6b27599ac7a3280f432198ebb06b2b23_cgraph" alt=""/></div>
 <map name="classCInterface_a6b27599ac7a3280f432198ebb06b2b23_cgraph" id="classCInterface_a6b27599ac7a3280f432198ebb06b2b23_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="272,5,391,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#ae62ee6373a52d76b27a77da1e2c1d83a" title="CBuffer::CenterVertical" alt="" coords="252,56,411,83"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="279,5,398,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title="CBuffer::CenterHorizontal" alt="" coords="252,56,425,83"/>
 </map>
 </div>
 
@@ -629,7 +683,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a0a920e39d7e0f57ad31cd516cbdcf21a_cgraph.png" border="0" usemap="#classCInterface_a0a920e39d7e0f57ad31cd516cbdcf21a_cgraph" alt=""/></div>
 <map name="classCInterface_a0a920e39d7e0f57ad31cd516cbdcf21a_cgraph" id="classCInterface_a0a920e39d7e0f57ad31cd516cbdcf21a_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#a17a67ff997047b4185c1fa0afb8f6ec8" title="CBuffer::AddLines" alt="" coords="253,5,383,32"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a26febd4f715950a829f6c9888dabf082" title="CBuffer::AddLines" alt="" coords="253,5,383,32"/>
 </map>
 </div>
 
@@ -671,7 +725,7 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classCInterface_a8676fd11905787598551ca7b41269652_cgraph.png" border="0" usemap="#classCInterface_a8676fd11905787598551ca7b41269652_cgraph" alt=""/></div>
 <map name="classCInterface_a8676fd11905787598551ca7b41269652_cgraph" id="classCInterface_a8676fd11905787598551ca7b41269652_cgraph">
 <area shape="rect" id="node2" href="classCUnitStack.html#ac2158780669bf0f3cec114c4c4e45224" title="CUnitStack::DrawTowersInfo" alt="" coords="253,5,448,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="496,5,615,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="496,5,615,32"/>
 </map>
 </div>
 
@@ -705,7 +759,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a96b1adeffa535d75f4ba1eeb42990d37_cgraph.png" border="0" usemap="#classCInterface_a96b1adeffa535d75f4ba1eeb42990d37_cgraph" alt=""/></div>
 <map name="classCInterface_a96b1adeffa535d75f4ba1eeb42990d37_cgraph" id="classCInterface_a96b1adeffa535d75f4ba1eeb42990d37_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#a17a67ff997047b4185c1fa0afb8f6ec8" title="CBuffer::AddLines" alt="" coords="261,5,391,32"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a26febd4f715950a829f6c9888dabf082" title="CBuffer::AddLines" alt="" coords="261,5,391,32"/>
 </map>
 </div>
 
@@ -747,15 +801,15 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classCInterface_a6106e7dd8f7a89de8ad4e7ec6bbc3c4c_cgraph.png" border="0" usemap="#classCInterface_a6106e7dd8f7a89de8ad4e7ec6bbc3c4c_cgraph" alt=""/></div>
 <map name="classCInterface_a6106e7dd8f7a89de8ad4e7ec6bbc3c4c_cgraph" id="classCInterface_a6106e7dd8f7a89de8ad4e7ec6bbc3c4c_cgraph">
 <area shape="rect" id="node2" href="classCUnitStack.html#a4fac33dd9f468c9820a02aafc759eac9" title="CUnitStack::DrawTroopsInfo" alt="" coords="261,5,452,32"/>
-<area shape="rect" id="node4" href="classCBuffer.html#a417b6a06923d7299bb48a37961547282" title="CBuffer::CenterHorizontal" alt="" coords="270,56,443,83"/>
-<area shape="rect" id="node3" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="500,31,619,57"/>
+<area shape="rect" id="node4" href="classCBuffer.html#a5b65792c600999cfe2776aaf26faaca7" title="CBuffer::CenterVertical" alt="" coords="277,56,436,83"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="500,31,619,57"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ac607f05b9d62cf36e62d8e6b3b475160"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac607f05b9d62cf36e62d8e6b3b475160">&#9670;&nbsp;</a></span>DrawWinnerHeader()</h2>
+<a id="ae8be79c0c35ae1d3f823f1cd66fe58a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8be79c0c35ae1d3f823f1cd66fe58a4">&#9670;&nbsp;</a></span>DrawWinnerHeader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -766,7 +820,7 @@ Here is the call graph for this function:</div>
         <tr>
           <td class="memname"><a class="el" href="classCBuffer.html">CBuffer</a> CInterface::DrawWinnerHeader </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>color</em></td><td>)</td>
           <td></td>
         </tr>
@@ -787,11 +841,11 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classCInterface_ac607f05b9d62cf36e62d8e6b3b475160_cgraph.png" border="0" usemap="#classCInterface_ac607f05b9d62cf36e62d8e6b3b475160_cgraph" alt=""/></div>
-<map name="classCInterface_ac607f05b9d62cf36e62d8e6b3b475160_cgraph" id="classCInterface_ac607f05b9d62cf36e62d8e6b3b475160_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#a455acd760b863d14f134d1769fd2c44c" title="CBuffer::AddEscapeSequence" alt="" coords="259,5,459,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="299,56,418,83"/>
-<area shape="rect" id="node4" href="classCBuffer.html#ae62ee6373a52d76b27a77da1e2c1d83a" title="CBuffer::CenterVertical" alt="" coords="279,107,438,133"/>
+<div class="center"><img src="classCInterface_ae8be79c0c35ae1d3f823f1cd66fe58a4_cgraph.png" border="0" usemap="#classCInterface_ae8be79c0c35ae1d3f823f1cd66fe58a4_cgraph" alt=""/></div>
+<map name="classCInterface_ae8be79c0c35ae1d3f823f1cd66fe58a4_cgraph" id="classCInterface_ae8be79c0c35ae1d3f823f1cd66fe58a4_cgraph">
+<area shape="rect" id="node2" href="classCBuffer.html#ae0c6c55a9775cd34918d4ab8effe7687" title="CBuffer::AddEscapeSequence" alt="" coords="259,5,459,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="299,56,418,83"/>
+<area shape="rect" id="node4" href="classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title="CBuffer::CenterHorizontal" alt="" coords="272,107,445,133"/>
 </map>
 </div>
 
@@ -817,8 +871,8 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a2f406f0b3d4e9766e63146c8ef5d014d_cgraph.png" border="0" usemap="#classCInterface_a2f406f0b3d4e9766e63146c8ef5d014d_cgraph" alt=""/></div>
 <map name="classCInterface_a2f406f0b3d4e9766e63146c8ef5d014d_cgraph" id="classCInterface_a2f406f0b3d4e9766e63146c8ef5d014d_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="429,5,548,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#a417b6a06923d7299bb48a37961547282" title="CBuffer::CenterHorizontal" alt="" coords="208,31,381,57"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="415,5,533,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a5b65792c600999cfe2776aaf26faaca7" title="CBuffer::CenterVertical" alt="" coords="208,31,367,57"/>
 </map>
 </div>
 
@@ -850,7 +904,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a6118a7a9c0ed8e8ddf2a0d2b693a6042_cgraph.png" border="0" usemap="#classCInterface_a6118a7a9c0ed8e8ddf2a0d2b693a6042_cgraph" alt=""/></div>
 <map name="classCInterface_a6118a7a9c0ed8e8ddf2a0d2b693a6042_cgraph" id="classCInterface_a6118a7a9c0ed8e8ddf2a0d2b693a6042_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="511,5,629,32"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="511,5,629,32"/>
 <area shape="rect" id="node3" href="classCGame.html#a0bdfb40717c3d67fb0a0c87ad07acab1" title="CGame::Draw" alt="" coords="288,31,395,57"/>
 <area shape="rect" id="node4" href="namespaceEscapes.html#a7dbda29c6f07ab25212d9a44d5b9a2a8" title="Escapes::CHANGE_WINDOW_SIZE" alt="" coords="220,81,463,108"/>
 </map>
@@ -989,8 +1043,8 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a60d2014907a7b234780bb35e340c498c_cgraph.png" border="0" usemap="#classCInterface_a60d2014907a7b234780bb35e340c498c_cgraph" alt=""/></div>
 <map name="classCInterface_a60d2014907a7b234780bb35e340c498c_cgraph" id="classCInterface_a60d2014907a7b234780bb35e340c498c_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="232,5,351,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#ae62ee6373a52d76b27a77da1e2c1d83a" title="CBuffer::CenterVertical" alt="" coords="212,56,371,83"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="239,5,358,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title="CBuffer::CenterHorizontal" alt="" coords="212,56,385,83"/>
 </map>
 </div>
 
@@ -1088,8 +1142,8 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a8538268df8c9bbb90030ac55cc870aef_cgraph.png" border="0" usemap="#classCInterface_a8538268df8c9bbb90030ac55cc870aef_cgraph" alt=""/></div>
 <map name="classCInterface_a8538268df8c9bbb90030ac55cc870aef_cgraph" id="classCInterface_a8538268df8c9bbb90030ac55cc870aef_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="397,5,516,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#a417b6a06923d7299bb48a37961547282" title="CBuffer::CenterHorizontal" alt="" coords="176,31,349,57"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="383,5,501,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a5b65792c600999cfe2776aaf26faaca7" title="CBuffer::CenterVertical" alt="" coords="176,31,335,57"/>
 </map>
 </div>
 
@@ -1118,6 +1172,58 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 <p>Changes read attributes so that it will return instantly without waiting for input </p>
+
+</div>
+</div>
+<a id="a54154e8971344f3cc64de1c9679b75b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54154e8971344f3cc64de1c9679b75b4">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCInterface.html">CInterface</a>&amp; CInterface::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classCInterface.html">CInterface</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2a482fb9796d7e78f04002f9a4f0e709"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a482fb9796d7e78f04002f9a4f0e709">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCInterface.html">CInterface</a>&amp; CInterface::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCInterface.html">CInterface</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -1156,10 +1262,10 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a0294e585cd72938d405f2a90bccfe6fd_cgraph.png" border="0" usemap="#classCInterface_a0294e585cd72938d405f2a90bccfe6fd_cgraph" alt=""/></div>
 <map name="classCInterface_a0294e585cd72938d405f2a90bccfe6fd_cgraph" id="classCInterface_a0294e585cd72938d405f2a90bccfe6fd_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#a455acd760b863d14f134d1769fd2c44c" title="CBuffer::AddEscapeSequence" alt="" coords="243,5,443,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#a17a67ff997047b4185c1fa0afb8f6ec8" title="CBuffer::AddLines" alt="" coords="278,56,407,83"/>
-<area shape="rect" id="node4" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="283,107,402,133"/>
-<area shape="rect" id="node5" href="classCBuffer.html#ae62ee6373a52d76b27a77da1e2c1d83a" title="CBuffer::CenterVertical" alt="" coords="263,157,422,184"/>
+<area shape="rect" id="node2" href="classCBuffer.html#ae0c6c55a9775cd34918d4ab8effe7687" title="CBuffer::AddEscapeSequence" alt="" coords="243,5,443,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a26febd4f715950a829f6c9888dabf082" title="CBuffer::AddLines" alt="" coords="278,56,407,83"/>
+<area shape="rect" id="node4" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="283,107,402,133"/>
+<area shape="rect" id="node5" href="classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title="CBuffer::CenterHorizontal" alt="" coords="256,157,429,184"/>
 <area shape="rect" id="node6" href="classCBuffer.html#ac81bb7036bd339bccf438b8aec160fe0" title="CBuffer::Height" alt="" coords="286,208,399,235"/>
 <area shape="rect" id="node8" href="namespaceEscapes.html#acb681e8b5597ec7b09c48d7482ea74ef" title="Escapes::REPOSITION\l_CURSOR" alt="" coords="261,259,425,301"/>
 <area shape="rect" id="node7" href="classCBuffer.html#a0e36cdc1b35108e3f37eda3fa74f1207" title="CBuffer::Width" alt="" coords="491,208,600,235"/>
@@ -1416,8 +1522,8 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classCInterface_a6d0c1f01720b5c3c820499b0c0aec567_cgraph.png" border="0" usemap="#classCInterface_a6d0c1f01720b5c3c820499b0c0aec567_cgraph" alt=""/></div>
 <map name="classCInterface_a6d0c1f01720b5c3c820499b0c0aec567_cgraph" id="classCInterface_a6d0c1f01720b5c3c820499b0c0aec567_cgraph">
-<area shape="rect" id="node2" href="classCBuffer.html#afee98528fe9c2b04b121e775e38cee56" title="CBuffer::Append" alt="" coords="407,5,525,32"/>
-<area shape="rect" id="node3" href="classCBuffer.html#a417b6a06923d7299bb48a37961547282" title="CBuffer::CenterHorizontal" alt="" coords="185,31,359,57"/>
+<area shape="rect" id="node2" href="classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="392,5,511,32"/>
+<area shape="rect" id="node3" href="classCBuffer.html#a5b65792c600999cfe2776aaf26faaca7" title="CBuffer::CenterVertical" alt="" coords="185,31,344,57"/>
 </map>
 </div>
 

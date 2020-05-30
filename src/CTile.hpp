@@ -39,6 +39,8 @@ public:
 	 * @param backColor Background color of the tile
 	 */
 	CTile(char ch, ETileType type, std::string foreColor, std::string backColor = "");
+	
+	// RULE OF FIVE
 	virtual ~CTile() noexcept = default;
 	CTile(const CTile & src) = default;
 	CTile(CTile && src) = default;
