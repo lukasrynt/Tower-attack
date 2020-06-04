@@ -131,6 +131,7 @@ bool CInterface::TryLoading(const char * filename, CGame & game) const
 	{
 		(m_Out << Colors::RESET).flush();
 		InvalidInput("File not found.");
+		game = {};
 		return false;
 	}
 	
@@ -145,11 +146,13 @@ bool CInterface::TryLoading(const char * filename, CGame & game) const
 	{
 		if (inFile.eof())
 			return true;
+		game = {};
 		InvalidInput("Incorrect file format.");
 	}
 	catch (const invalid_format & e)
 	{
 		InvalidInput(e.what());
+		game = {};
 	}
 	return false;
 }

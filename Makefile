@@ -2,9 +2,9 @@ CXX         	:= g++
 CXX_FLAGS    	:= -Wall -pedantic -std=c++14
 BUILD_DIR   	:= bin
 SOURCE_DIR      := src
-DEP_DIR		:= dep
-SOURCES		:= $(wildcard $(SOURCE_DIR)/*.cpp)
-DEP_TARGET	:= Make.d
+DEP_DIR			:= dep
+SOURCES			:= $(wildcard $(SOURCE_DIR)/*.cpp)
+DEP_TARGET		:= Make.d
 OBJS	    	:= $(patsubst $(SOURCE_DIR)/%.cpp,$(BUILD_DIR)/%.o, $(SOURCES))
 COMPILE_TARGET	:= ryntluka
 
