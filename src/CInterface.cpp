@@ -354,7 +354,7 @@ CBuffer CInterface::DrawCommonLegend()
 						.Append("(#) Wall", string(Colors::BG_WHITE) + Colors::FG_BLACK)
 						.Append("● Obstacle through which neither troops, nor bullets can pass.")
 						.Append()
-						.Append("(#) Wall", string(Colors::BG_CYAN) + Colors::FG_BLACK)
+						.Append("(1) Spawn", string(Colors::BG_CYAN) + Colors::FG_BLACK)
 						.Append(" ● Point from which troopers will be spawned.", Colors::FG_CYAN)
 						.Append(" ● Numbered from 1 to 5 - each point point is tied to one wave in order.",
 								Colors::FG_CYAN)
@@ -466,6 +466,9 @@ CBuffer CInterface::DrawWinnerHeader(const string & color)
 			.Append(R"(| || || |   | |   | | \   || | \   || (      | (\ (   )")
 			.Append(R"(| () () |___) (___| )  \  || )  \  || (____/\| ) \ \__)")
 			.Append(R"((_______)\_______/|/    )_)|/    )_)(_______/|/   \__/)")
+			.Append()
+			.AddEscapeSequence(Colors::FG_GREEN)
+			.Append("Press q to quit")
 			.CenterHorizontal()
 			.AddEscapeSequence(Colors::RESET);
 	return tmp;
@@ -483,6 +486,9 @@ CBuffer CInterface::DrawGameOverHeader(const string & color)
 			.Append(R"(| | \_  )| (   ) || |   | || (        | |   | | \ \_/ / | (      | (\ (   )")
 			.Append(R"(| (___) || )   ( || )   ( || (____/\  | (___) |  \   /  | (____/\| ) \ \__)")
 			.Append(R"((_______)|/     \||/     \|(_______/  (_______)   \_/   (_______/|/   \__/)")
+			.Append()
+			.AddEscapeSequence(Colors::FG_RED)
+			.Append("Press q to quit")
 			.CenterHorizontal()
 			.AddEscapeSequence(Colors::RESET);
 	return tmp;

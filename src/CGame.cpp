@@ -144,7 +144,9 @@ void CGame::Update()
 CBuffer CGame::Draw(size_t width) const
 {
 	return move(CBuffer{width}
-		.Append(move(m_Waves.Draw(width).Concat(m_UnitStack->Draw(width)).CenterHorizontal()))
+		.Append(move(m_Waves.Draw(width)
+			.Concat(m_UnitStack->Draw(width))
+			.CenterHorizontal()))
 		.Append(move(CBuffer{width}.Append().Append()))
 		.Append(m_Map.Draw(width)));
 }
@@ -153,4 +155,18 @@ void CGame::Visualize(const deque<pos_t> & positions)
 {
 	m_Map.Visualize(positions);
 	cout << m_Map.Draw(50);
+}
+
+CBuffer CGame::RenderInGameOptions(size_t width)
+{
+	CBuffer buffer{width};
+	buffer.Append("(q) - quit")
+		.Append("(1) - next wave")
+		.Append("(2) - next troop")
+		.Append("(a) - add troop")
+		.Append("(d) - delete troop")
+		.Append("(h) - help screen")
+		.Append("(r) - release waves")
+		.Append("(s) - save game");
+	return buffer;
 }

@@ -140,4 +140,10 @@ private:
 	 * @return True if everything is alright
 	 */
 	bool CheckDefined(const std::set<char> & signs);
+	/**
+	 * Creates a buffer with ingame options
+	 * @param width size of the buffer
+	 * @return Created buffer
+	 */
+	static CBuffer RenderInGameOptions(size_t width);
 };

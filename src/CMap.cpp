@@ -323,6 +323,24 @@ CBuffer CMap::Draw(size_t width) const
 CBuffer CMap::DrawMap(size_t width) const
 {
 	CBuffer buffer{width};
+	CBuffer options{width};
+	options.AddEscapeSequence(Colors::BG_BLUE)
+				.AddText("(q)").AddEscapeSequence(Colors::RESET).AddText(" quit	")
+			.AddEscapeSequence(Colors::BG_BLUE)
+				.AddText("(a)").AddEscapeSequence(Colors::RESET).AddText(" add troop	")
+			.AddEscapeSequence(Colors::BG_BLUE)
+				.AddText("(d)").AddEscapeSequence(Colors::RESET).AddText(" delete troop	")
+			.AddEscapeSequence(Colors::BG_BLUE)
+				.AddText("(h)").AddEscapeSequence(Colors::RESET).AddText(" help	")
+			.AddEscapeSequence(Colors::RESET)
+			.AddLines("\n")
+			.AddEscapeSequence(Colors::BG_BLUE)
+			.AddText("(1)").AddEscapeSequence(Colors::RESET).AddText(" cycle waves	")
+			.AddEscapeSequence(Colors::BG_BLUE)
+			.AddText("(2)").AddEscapeSequence(Colors::RESET).AddText(" cycle troops	")
+			.AddEscapeSequence(Colors::BG_BLUE)
+			.AddText("(r)").AddEscapeSequence(Colors::RESET).AddText(" release waves	")
+			.AddEscapeSequence(Colors::RESET);
 	for (int i = 0; i < m_Rows; ++i)
 	{
 		buffer.Append();
@@ -334,8 +352,9 @@ CBuffer CMap::DrawMap(size_t width) const
 				buffer << *m_Map.at(pos_t{j, i});
 		}
 	}
-	buffer.Append(DrawTroopsOnMap(width));
-	buffer.CenterHorizontal();
+	buffer.Append(DrawTroopsOnMap(width))
+		.Append(move(options))
+		.CenterHorizontal();
 	return buffer;
 }
 
