@@ -1,5 +1,6 @@
 <map id="CInterface::DrawTrooperLegend" name="CInterface::DrawTrooperLegend">
-<area shape="rect" id="node2" href="$classCUnitStack.html#a4fac33dd9f468c9820a02aafc759eac9" title="CUnitStack::DrawTroopsInfo" alt="" coords="261,5,452,32"/>
-<area shape="rect" id="node4" href="$classCBuffer.html#a5b65792c600999cfe2776aaf26faaca7" title="CBuffer::CenterVertical" alt="" coords="277,56,436,83"/>
-<area shape="rect" id="node3" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="500,31,619,57"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,232,57"/>
+<area shape="rect" id="node2" href="$classCBuffer.html#a5b65792c600999cfe2776aaf26faaca7" title=" " alt="" coords="296,5,467,32"/>
+<area shape="rect" id="node4" href="$classCUnitStack.html#a4fac33dd9f468c9820a02aafc759eac9" title=" " alt="" coords="280,56,483,83"/>
+<area shape="rect" id="node3" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title=" " alt="" coords="531,31,657,57"/>
 </map>

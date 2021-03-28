@@ -1,3 +1,5 @@
 <map id="CMap::DrawTroopsOnMap" name="CMap::DrawTroopsOnMap">
-<area shape="rect" id="node2" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="232,5,351,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,195,57"/>
+<area shape="rect" id="node2" href="$classCBuffer.html#a22d594ca0a213020f1626da6684ed353" title=" " alt="" coords="243,5,373,32"/>
+<area shape="rect" id="node3" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title=" " alt="" coords="245,56,371,83"/>
 </map>

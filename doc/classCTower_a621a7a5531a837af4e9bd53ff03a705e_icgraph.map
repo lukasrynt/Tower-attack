@@ -1,5 +1,5 @@
 <map id="CTower::LoadOnMap" name="CTower::LoadOnMap">
-<area shape="rect" id="node2" href="$classCArcherTower.html#a4de732a4c3a7c80bfcb5642719f04db4" title="CArcherTower::LoadOnMap" alt="" coords="200,5,384,32"/>
-<area shape="rect" id="node3" href="$classCMageTower.html#aa5bc595a8676b2f104f884e9b7d816a4" title="CMageTower::LoadOnMap" alt="" coords="203,56,381,83"/>
-<area shape="rect" id="node4" href="$classCTower.html#ad864ed1ad9d7e082fe4f6b552cd3af11" title="CTower::LoadTemplate" alt="" coords="213,107,371,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="249,31,404,57"/>
+<area shape="rect" id="node2" href="$classCArcherTower.html#a4de732a4c3a7c80bfcb5642719f04db4" title=" " alt="" coords="5,5,201,32"/>
+<area shape="rect" id="node3" href="$classCMageTower.html#aa5bc595a8676b2f104f884e9b7d816a4" title=" " alt="" coords="8,56,199,83"/>
 </map>

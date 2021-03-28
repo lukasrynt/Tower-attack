@@ -1,8 +1,9 @@
 <map id="CPath::FindDiagonalPath" name="CPath::FindDiagonalPath">
-<area shape="rect" id="node2" href="$structCPosition.html#a97531cb950f5d2ff5953648fa40b06ac" title="CPosition::GetDiagNeighbours" alt="" coords="224,100,425,127"/>
-<area shape="rect" id="node3" href="$structCPosition.html#ab67b5cc5823f6a0f02be12d0f9ff1757" title="CPosition::GetCrossNeighbours" alt="" coords="473,100,683,127"/>
-<area shape="rect" id="node4" href="$structCPosition.html#a9486f04aa59bf6bdac30ef26812b4ea9" title="CPosition::left" alt="" coords="737,5,843,32"/>
-<area shape="rect" id="node5" href="$structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c" title="CPosition::right" alt="" coords="734,63,846,89"/>
-<area shape="rect" id="node6" href="$structCPosition.html#a114c7b43da16023e32f8557d3bc90b65" title="CPosition::up" alt="" coords="739,125,841,152"/>
-<area shape="rect" id="node7" href="$structCPosition.html#a5d814dc0e8b552491ad93212ba57c901" title="CPosition::down" alt="" coords="731,188,849,215"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,100,185,127"/>
+<area shape="rect" id="node2" href="$structCPosition.html#a97531cb950f5d2ff5953648fa40b06ac" title=" " alt="" coords="233,100,452,127"/>
+<area shape="rect" id="node3" href="$structCPosition.html#a5d814dc0e8b552491ad93212ba57c901" title=" " alt="" coords="772,5,899,32"/>
+<area shape="rect" id="node4" href="$structCPosition.html#ab67b5cc5823f6a0f02be12d0f9ff1757" title=" " alt="" coords="500,100,724,127"/>
+<area shape="rect" id="node5" href="$structCPosition.html#a9486f04aa59bf6bdac30ef26812b4ea9" title=" " alt="" coords="779,63,891,89"/>
+<area shape="rect" id="node6" href="$structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c" title=" " alt="" coords="775,125,896,152"/>
+<area shape="rect" id="node7" href="$structCPosition.html#a114c7b43da16023e32f8557d3bc90b65" title=" " alt="" coords="782,188,889,215"/>
 </map>

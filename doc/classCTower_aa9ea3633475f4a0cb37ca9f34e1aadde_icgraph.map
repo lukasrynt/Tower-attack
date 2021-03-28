@@ -1,4 +1,5 @@
 <map id="CTower::SaveOnMap" name="CTower::SaveOnMap">
-<area shape="rect" id="node2" href="$classCArcherTower.html#a1c338d9553c514785e89cbd4c30b248d" title="CArcherTower::SaveOnMap" alt="" coords="201,5,388,32"/>
-<area shape="rect" id="node3" href="$classCMageTower.html#aaf67fac6c1d593a6b7a13134194cd346" title="CMageTower::SaveOnMap" alt="" coords="205,56,385,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="251,31,405,57"/>
+<area shape="rect" id="node2" href="$classCArcherTower.html#a1c338d9553c514785e89cbd4c30b248d" title=" " alt="" coords="5,5,203,32"/>
+<area shape="rect" id="node3" href="$classCMageTower.html#aaf67fac6c1d593a6b7a13134194cd346" title=" " alt="" coords="9,56,199,83"/>
 </map>

@@ -1,6 +1,5 @@
 <map id="CTrooper::Update" name="CTrooper::Update">
-<area shape="rect" id="node2" href="$classCArmoredTrooper.html#af50502e90c6404f6fa4b10090d35ba52" title="CArmoredTrooper::Update" alt="" coords="180,5,355,32"/>
-<area shape="rect" id="node4" href="$classCBasicTrooper.html#adbe76f3685376c165575a13b0dd09a8c" title="CBasicTrooper::Update" alt="" coords="188,56,347,83"/>
-<area shape="rect" id="node3" href="$classCArmoredTrooper.html#a8cbcdda9a796eed18c2dfa7d2ec8394e" title="CArmoredTrooper::Clone" alt="" coords="414,5,581,32"/>
-<area shape="rect" id="node5" href="$classCBasicTrooper.html#a5cadf60e852106be7320cbd3289e9a81" title="CBasicTrooper::SaveOnMap" alt="" coords="403,56,592,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="244,31,379,57"/>
+<area shape="rect" id="node2" href="$classCArmoredTrooper.html#af50502e90c6404f6fa4b10090d35ba52" title=" " alt="" coords="5,5,196,32"/>
+<area shape="rect" id="node3" href="$classCBasicTrooper.html#adbe76f3685376c165575a13b0dd09a8c" title=" " alt="" coords="16,56,185,83"/>
 </map>

@@ -1,8 +1,9 @@
 <map id="CTile" name="CTile">
-<area shape="rect" id="node2" href="$classCTower.html" title="{CTower\n|# m_AttackDamage\l# m_AttackSpeed\l# m_Range\l# m_Pos\l|+ CTower()\l+ ~CTower()\l+ CTower()\l+ operator=()\l+ CTower()\l+ operator=()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ GetPosition()\l+ SetPosition()\l+ DrawHelpInfo()\l+ Attack()\l}" alt="" coords="165,351,304,677"/>
-<area shape="rect" id="node5" href="$classCTrooper.html" title="{CTrooper\n|# m_Pos\l# m_Hp\l# m_Attack\l# m_Price\l# m_Frames\l# m_SpawnIdx\l# m_Path\l|+ CTrooper()\l+ ~CTrooper()\l+ CTrooper()\l+ operator=()\l+ CTrooper()\l+ operator=()\l+ Clone()\l+ Spawn()\l+ Update()\l+ Move()\land 17 more...\l}" alt="" coords="352,358,461,670"/>
-<area shape="rect" id="node3" href="$classCArcherTower.html" title="{CArcherTower\n|&#45; m_ArrowPos\l&#45; m_ArrowPath\l|+ CArcherTower()\l+ Clone()\l+ LoadOnMap()\l+ SaveOnMap()\l+ DrawHelpInfo()\l+ Attack()\l&#45; ArrowMove()\l&#45; ArrowClear()\l&#45; AssignArrow()\l&#45; DamageTrooper()\l}" alt="" coords="5,725,136,949"/>
-<area shape="rect" id="node4" href="$classCMageTower.html" title="{CMageTower\n|&#45; m_WaveLevel\l&#45; m_LastWave\l|+ CMageTower()\l+ Clone()\l+ LoadOnMap()\l+ SaveOnMap()\l+ DrawHelpInfo()\l+ Attack()\l&#45; PerimeterBreached()\l&#45; ClearLastWave()\l&#45; SendNewWave()\l}" alt="" coords="160,733,309,942"/>
-<area shape="rect" id="node6" href="$classCArmoredTrooper.html" title="{CArmoredTrooper\n|&#45; m_Armor\l&#45; m_ArmorOn\l|+ CArmoredTrooper()\l+ Clone()\l+ ReceiveDamage()\l+ DrawHelpInfo()\l+ Update()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l}" alt="" coords="334,733,479,942"/>
-<area shape="rect" id="node7" href="$classCBasicTrooper.html" title="{CBasicTrooper\n||+ CBasicTrooper()\l+ Clone()\l+ LoadTemplate()\l+ LoadOnMap()\l+ SaveTemplate()\l+ SaveOnMap()\l+ Update()\l+ DrawHelpInfo()\l+ ReceiveDamage()\l}" alt="" coords="504,740,643,935"/>
+<area shape="rect" id="node1" title=" " alt="" coords="289,5,412,303"/>
+<area shape="rect" id="node2" href="$classCTower.html" title=" " alt="" coords="180,351,335,677"/>
+<area shape="rect" id="node5" href="$classCTrooper.html" title=" " alt="" coords="385,358,505,670"/>
+<area shape="rect" id="node3" href="$classCArcherTower.html" title=" " alt="" coords="5,725,149,949"/>
+<area shape="rect" id="node4" href="$classCMageTower.html" title=" " alt="" coords="174,733,341,942"/>
+<area shape="rect" id="node6" href="$classCArmoredTrooper.html" title=" " alt="" coords="365,733,525,942"/>
+<area shape="rect" id="node7" href="$classCBasicTrooper.html" title=" " alt="" coords="549,740,704,935"/>
 </map>

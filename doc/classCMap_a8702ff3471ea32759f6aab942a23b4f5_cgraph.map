@@ -1,8 +1,9 @@
 <map id="CMap::FindPathsFromSpawner" name="CMap::FindPathsFromSpawner">
-<area shape="rect" id="node2" href="$classCPath.html#adf9752e5300e9ff333e10279cf78bd4f" title="CPath::FindStraightPath" alt="" coords="259,81,423,108"/>
-<area shape="rect" id="node3" href="$structCPosition.html#ab67b5cc5823f6a0f02be12d0f9ff1757" title="CPosition::GetCrossNeighbours" alt="" coords="471,81,680,108"/>
-<area shape="rect" id="node4" href="$structCPosition.html#a9486f04aa59bf6bdac30ef26812b4ea9" title="CPosition::left" alt="" coords="735,5,840,32"/>
-<area shape="rect" id="node5" href="$structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c" title="CPosition::right" alt="" coords="731,56,843,83"/>
-<area shape="rect" id="node6" href="$structCPosition.html#a114c7b43da16023e32f8557d3bc90b65" title="CPosition::up" alt="" coords="737,107,838,133"/>
-<area shape="rect" id="node7" href="$structCPosition.html#a5d814dc0e8b552491ad93212ba57c901" title="CPosition::down" alt="" coords="728,157,847,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,224,108"/>
+<area shape="rect" id="node2" href="$classCPath.html#adf9752e5300e9ff333e10279cf78bd4f" title=" " alt="" coords="272,81,445,108"/>
+<area shape="rect" id="node3" href="$structCPosition.html#ab67b5cc5823f6a0f02be12d0f9ff1757" title=" " alt="" coords="493,81,717,108"/>
+<area shape="rect" id="node4" href="$structCPosition.html#a5d814dc0e8b552491ad93212ba57c901" title=" " alt="" coords="765,5,892,32"/>
+<area shape="rect" id="node5" href="$structCPosition.html#a9486f04aa59bf6bdac30ef26812b4ea9" title=" " alt="" coords="773,56,885,83"/>
+<area shape="rect" id="node6" href="$structCPosition.html#afc6b827fe8b9c117f5c434458f1bed0c" title=" " alt="" coords="768,107,889,133"/>
+<area shape="rect" id="node7" href="$structCPosition.html#a114c7b43da16023e32f8557d3bc90b65" title=" " alt="" coords="775,157,882,184"/>
 </map>

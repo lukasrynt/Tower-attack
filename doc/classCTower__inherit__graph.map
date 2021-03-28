@@ -1,5 +1,6 @@
 <map id="CTower" name="CTower">
-<area shape="rect" id="node3" href="$classCArcherTower.html" title="{CArcherTower\n|&#45; m_ArrowPos\l&#45; m_ArrowPath\l|+ CArcherTower()\l+ Clone()\l+ LoadOnMap()\l+ SaveOnMap()\l+ DrawHelpInfo()\l+ Attack()\l&#45; ArrowMove()\l&#45; ArrowClear()\l&#45; AssignArrow()\l&#45; DamageTrooper()\l}" alt="" coords="5,725,136,949"/>
-<area shape="rect" id="node4" href="$classCMageTower.html" title="{CMageTower\n|&#45; m_WaveLevel\l&#45; m_LastWave\l|+ CMageTower()\l+ Clone()\l+ LoadOnMap()\l+ SaveOnMap()\l+ DrawHelpInfo()\l+ Attack()\l&#45; PerimeterBreached()\l&#45; ClearLastWave()\l&#45; SendNewWave()\l}" alt="" coords="160,733,309,942"/>
-<area shape="rect" id="node2" href="$classCTile.html" title="{CTile\n|# m_Char\l# m_Type\l# m_ForeColor\l# m_BackColor\l|+ CTile()\l+ CTile()\l+ CTile()\l+ ~CTile()\l+ CTile()\l+ CTile()\l+ operator=()\l+ operator=()\l+ GetChar()\l+ GetColor()\land 7 more...\l&#45; InitColor()\l&#45; InitType()\l}" alt="" coords="96,5,208,303"/>
+<area shape="rect" id="node1" title=" " alt="" coords="89,351,244,677"/>
+<area shape="rect" id="node3" href="$classCArcherTower.html" title=" " alt="" coords="5,725,149,949"/>
+<area shape="rect" id="node4" href="$classCMageTower.html" title=" " alt="" coords="174,733,341,942"/>
+<area shape="rect" id="node2" href="$classCTile.html" title=" " alt="" coords="105,5,228,303"/>
 </map>

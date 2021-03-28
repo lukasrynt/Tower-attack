@@ -1,7 +1,8 @@
 <map id="CTile::GetChar" name="CTile::GetChar">
-<area shape="rect" id="node2" href="$classCBuffer.html#ae037c7fe05fcb7a58ab8c805847cfdc6" title="CBuffer::operator\&lt;\&lt;" alt="" coords="175,5,313,32"/>
-<area shape="rect" id="node3" href="$classCTower.html#a9d3dec7916a9e19ebc6493762a0cdd40" title="CTower::SaveTemplate" alt="" coords="164,56,324,83"/>
-<area shape="rect" id="node4" href="$classCTower.html#aa9ea3633475f4a0cb37ca9f34e1aadde" title="CTower::SaveOnMap" alt="" coords="170,107,318,133"/>
-<area shape="rect" id="node5" href="$classCArcherTower.html#a1c338d9553c514785e89cbd4c30b248d" title="CArcherTower::SaveOnMap" alt="" coords="372,81,559,108"/>
-<area shape="rect" id="node6" href="$classCMageTower.html#aaf67fac6c1d593a6b7a13134194cd346" title="CMageTower::SaveOnMap" alt="" coords="375,132,555,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="468,56,584,83"/>
+<area shape="rect" id="node2" href="$classCBuffer.html#ae037c7fe05fcb7a58ab8c805847cfdc6" title=" " alt="" coords="258,5,413,32"/>
+<area shape="rect" id="node3" href="$classCTower.html#aa9ea3633475f4a0cb37ca9f34e1aadde" title=" " alt="" coords="258,56,413,83"/>
+<area shape="rect" id="node6" href="$classCTower.html#a9d3dec7916a9e19ebc6493762a0cdd40" title=" " alt="" coords="251,107,420,133"/>
+<area shape="rect" id="node4" href="$classCArcherTower.html#a1c338d9553c514785e89cbd4c30b248d" title=" " alt="" coords="5,31,203,57"/>
+<area shape="rect" id="node5" href="$classCMageTower.html#aaf67fac6c1d593a6b7a13134194cd346" title=" " alt="" coords="9,81,199,108"/>
 </map>

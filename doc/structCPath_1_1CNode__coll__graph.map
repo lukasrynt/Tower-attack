@@ -1,3 +1,4 @@
 <map id="CPath::CNode" name="CPath::CNode">
-<area shape="rect" id="node2" href="$structCPosition.html" title="{CPosition\n|+ m_X\l+ m_Y\l|+ CPosition()\l+ left()\l+ right()\l+ up()\l+ down()\l+ GetCrossNeighbours()\l+ GetDiagNeighbours()\l+ LiesInRange()\l+ GetRadius()\l+ Distance()\l}" alt="" coords="5,5,169,229"/>
+<area shape="rect" id="node1" title=" " alt="" coords="40,292,151,369"/>
+<area shape="rect" id="node2" href="$structCPosition.html" title=" " alt="" coords="5,5,185,229"/>
 </map>

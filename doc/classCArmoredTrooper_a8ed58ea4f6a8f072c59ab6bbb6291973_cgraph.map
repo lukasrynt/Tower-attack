@@ -1,5 +1,4 @@
 <map id="CArmoredTrooper::LoadTemplate" name="CArmoredTrooper::LoadTemplate">
-<area shape="rect" id="node2" href="$classCTrooper.html#a86ff2484dfdcbb8a81b914a7cbccbdfc" title="CTrooper::LoadTemplate" alt="" coords="286,5,453,32"/>
-<area shape="rect" id="node3" href="$classCArmoredTrooper.html#a561be734a7966f47d23d760e3a9d7ab8" title="CArmoredTrooper::LoadOnMap" alt="" coords="268,56,471,83"/>
-<area shape="rect" id="node4" href="$classCTrooper.html#aab37105ac02d4e8d7d21391280bff0c8" title="CTrooper::LoadOnMap" alt="" coords="519,56,673,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,240,32"/>
+<area shape="rect" id="node2" href="$classCTrooper.html#a86ff2484dfdcbb8a81b914a7cbccbdfc" title=" " alt="" coords="288,5,467,32"/>
 </map>

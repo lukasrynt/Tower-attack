@@ -1,4 +1,5 @@
 <map id="CInterface::DrawCommonLegend" name="CInterface::DrawCommonLegend">
-<area shape="rect" id="node2" href="$classCBuffer.html#a5b65792c600999cfe2776aaf26faaca7" title="CBuffer::CenterVertical" alt="" coords="271,5,429,32"/>
-<area shape="rect" id="node3" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="477,5,596,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,243,32"/>
+<area shape="rect" id="node2" href="$classCBuffer.html#a5b65792c600999cfe2776aaf26faaca7" title=" " alt="" coords="291,5,461,32"/>
+<area shape="rect" id="node3" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title=" " alt="" coords="509,5,636,32"/>
 </map>

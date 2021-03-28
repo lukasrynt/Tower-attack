@@ -1,7 +1,4 @@
 <map id="CApplication::CApplication" name="CApplication::CApplication">
-<area shape="rect" id="node2" href="$classCApplication.html#ac7d98126b9c1cb60ff4c5bd8a647dba1" title="CApplication::InitCommands" alt="" coords="232,5,421,32"/>
-<area shape="rect" id="node3" href="$classCApplication.html#aa069063a23e53ea9858995f3ca34d6fb" title="CApplication::Run" alt="" coords="263,56,391,83"/>
-<area shape="rect" id="node5" href="$classCApplication.html#a840574e9aef1f808c06ade2dd8af8717" title="CApplication::~CApplication" alt="" coords="233,107,420,133"/>
-<area shape="rect" id="node6" href="$classCApplication.html#a12adbb763d86e3a123f8d61d4c0bfb4b" title="CApplication::operator=" alt="" coords="247,157,406,184"/>
-<area shape="rect" id="node4" href="$classCInterface.html#a5c2aefa571493d6d8dd19cc7f076e065" title="CInterface::GetChar" alt="" coords="469,56,609,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,200,32"/>
+<area shape="rect" id="node2" href="$classCApplication.html#ac7d98126b9c1cb60ff4c5bd8a647dba1" title=" " alt="" coords="248,5,455,32"/>
 </map>

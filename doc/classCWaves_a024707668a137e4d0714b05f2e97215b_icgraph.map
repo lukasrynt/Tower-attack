@@ -1,4 +1,4 @@
 <map id="CWaves::AddTroop" name="CWaves::AddTroop">
-<area shape="rect" id="node2" href="$classCGame.html#ac6ba7c1b9a62f9b6643068468056e31a" title="CGame::AddTroop" alt="" coords="204,5,335,32"/>
-<area shape="rect" id="node3" href="$classCWaves.html#a52bf224ae9825e7ca89d41bac6520b34" title="CWaves::GetWaveCnt" alt="" coords="191,56,348,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="192,5,335,32"/>
+<area shape="rect" id="node2" href="$classCGame.html#ac6ba7c1b9a62f9b6643068468056e31a" title=" " alt="" coords="5,5,144,32"/>
 </map>

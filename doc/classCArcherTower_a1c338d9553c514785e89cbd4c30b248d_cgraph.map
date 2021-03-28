@@ -1,8 +1,6 @@
 <map id="CArcherTower::SaveOnMap" name="CArcherTower::SaveOnMap">
-<area shape="rect" id="node2" href="$classCTower.html#aa9ea3633475f4a0cb37ca9f34e1aadde" title="CTower::SaveOnMap" alt="" coords="263,56,411,83"/>
-<area shape="rect" id="node5" href="$classCArcherTower.html#a1ba9ea31f5aef560d9ae8106f3a422c5" title="CArcherTower::DrawHelpInfo" alt="" coords="240,107,435,133"/>
-<area shape="rect" id="node7" href="$classCArcherTower.html#a5fe2cf25e44cb63c885ad9bc7a58d7df" title="CArcherTower::Attack" alt="" coords="261,157,413,184"/>
-<area shape="rect" id="node3" href="$classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="503,5,613,32"/>
-<area shape="rect" id="node4" href="$classCCounter.html#a4f17b2c27140315abc53f566847f58b3" title="CCounter::GetCurrent" alt="" coords="483,56,633,83"/>
-<area shape="rect" id="node6" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="499,107,617,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,203,57"/>
+<area shape="rect" id="node2" href="$classCTower.html#aa9ea3633475f4a0cb37ca9f34e1aadde" title=" " alt="" coords="251,31,405,57"/>
+<area shape="rect" id="node3" href="$classCTile.html#aead279d70cc3e08d556947c9e17b586e" title=" " alt="" coords="476,5,592,32"/>
+<area shape="rect" id="node4" href="$classCCounter.html#a4f17b2c27140315abc53f566847f58b3" title=" " alt="" coords="453,56,615,83"/>
 </map>

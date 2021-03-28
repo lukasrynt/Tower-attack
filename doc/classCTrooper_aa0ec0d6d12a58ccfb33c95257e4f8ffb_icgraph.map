@@ -1,4 +1,5 @@
 <map id="CTrooper::SaveTemplate" name="CTrooper::SaveTemplate">
-<area shape="rect" id="node2" href="$classCArmoredTrooper.html#a9e777b218fb113ddd1cb7f9e69b93d5c" title="CArmoredTrooper::SaveTemplate" alt="" coords="221,5,439,32"/>
-<area shape="rect" id="node3" href="$classCBasicTrooper.html#a369cb4e3dc0b79c4a03e31f44928afeb" title="CBasicTrooper::SaveTemplate" alt="" coords="229,56,431,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="288,31,467,57"/>
+<area shape="rect" id="node2" href="$classCBasicTrooper.html#a369cb4e3dc0b79c4a03e31f44928afeb" title=" " alt="" coords="15,5,230,32"/>
+<area shape="rect" id="node3" href="$classCArmoredTrooper.html#a9e777b218fb113ddd1cb7f9e69b93d5c" title=" " alt="" coords="5,56,240,83"/>
 </map>

@@ -1,13 +1,5 @@
 <map id="CBasicTrooper::SaveOnMap" name="CBasicTrooper::SaveOnMap">
-<area shape="rect" id="node2" href="$classCTrooper.html#a4aa15715b4747a87f7795233b99f60b6" title="CTrooper::SaveOnMap" alt="" coords="263,81,419,108"/>
-<area shape="rect" id="node8" href="$classCBasicTrooper.html#adbe76f3685376c165575a13b0dd09a8c" title="CBasicTrooper::Update" alt="" coords="262,208,421,235"/>
-<area shape="rect" id="node12" href="$classCBasicTrooper.html#a40fc960eaa461aa6e9e197b64cacd2f7" title="CBasicTrooper::DrawHelpInfo" alt="" coords="243,157,440,184"/>
-<area shape="rect" id="node3" href="$classCCounter.html#a4f17b2c27140315abc53f566847f58b3" title="CCounter::GetCurrent" alt="" coords="497,5,647,32"/>
-<area shape="rect" id="node4" href="$classCTrooper.html#a69551903516266f87a3f3c76769e1ead" title="CTrooper::DrawHelpInfo" alt="" coords="490,56,654,83"/>
-<area shape="rect" id="node5" href="$classCTrooper.html#a7ed56faa387bcdd69ecee791d5e1090c" title="CTrooper::DrawShortInfo" alt="" coords="488,107,656,133"/>
-<area shape="rect" id="node6" href="$classCBuffer.html#a22d594ca0a213020f1626da6684ed353" title="CBuffer::AddText" alt="" coords="727,107,851,133"/>
-<area shape="rect" id="node7" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="729,157,848,184"/>
-<area shape="rect" id="node9" href="$classCTrooper.html#a3cb34333bff521fcefe59f1862569aeb" title="CTrooper::Update" alt="" coords="509,208,635,235"/>
-<area shape="rect" id="node10" href="$classCCounter.html#a2e2444cea8a2b14999725e2bc87dd14c" title="CCounter::ActionAllowed" alt="" coords="704,208,873,235"/>
-<area shape="rect" id="node11" href="$classCTrooper.html#a3b95d797e970c4489e929cf111f1dcda" title="CTrooper::Move" alt="" coords="731,259,847,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,205,32"/>
+<area shape="rect" id="node2" href="$classCTrooper.html#a4aa15715b4747a87f7795233b99f60b6" title=" " alt="" coords="253,5,419,32"/>
+<area shape="rect" id="node3" href="$classCCounter.html#a4f17b2c27140315abc53f566847f58b3" title=" " alt="" coords="467,5,628,32"/>
 </map>

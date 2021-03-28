@@ -1,4 +1,5 @@
 <map id="CTower::SaveOnMap" name="CTower::SaveOnMap">
-<area shape="rect" id="node2" href="$classCTile.html#aead279d70cc3e08d556947c9e17b586e" title="CTile::GetChar" alt="" coords="221,5,332,32"/>
-<area shape="rect" id="node3" href="$classCCounter.html#a4f17b2c27140315abc53f566847f58b3" title="CCounter::GetCurrent" alt="" coords="201,56,352,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,160,57"/>
+<area shape="rect" id="node2" href="$classCTile.html#aead279d70cc3e08d556947c9e17b586e" title=" " alt="" coords="231,5,347,32"/>
+<area shape="rect" id="node3" href="$classCCounter.html#a4f17b2c27140315abc53f566847f58b3" title=" " alt="" coords="208,56,369,83"/>
 </map>

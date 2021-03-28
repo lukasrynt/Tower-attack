@@ -1,5 +1,6 @@
 <map id="CInterface::DrawGameHeader" name="CInterface::DrawGameHeader">
-<area shape="rect" id="node2" href="$classCBuffer.html#ae0c6c55a9775cd34918d4ab8effe7687" title="CBuffer::AddEscapeSequence" alt="" coords="252,5,452,32"/>
-<area shape="rect" id="node3" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title="CBuffer::Append" alt="" coords="293,56,411,83"/>
-<area shape="rect" id="node4" href="$classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title="CBuffer::CenterHorizontal" alt="" coords="265,107,439,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,223,83"/>
+<area shape="rect" id="node2" href="$classCBuffer.html#ae0c6c55a9775cd34918d4ab8effe7687" title=" " alt="" coords="271,5,483,32"/>
+<area shape="rect" id="node3" href="$classCBuffer.html#a481e95070ae237f59dce65ff7e58845b" title=" " alt="" coords="313,56,440,83"/>
+<area shape="rect" id="node4" href="$classCBuffer.html#a14d95f246cb6cd36d8e50322719db0a8" title=" " alt="" coords="283,107,471,133"/>
 </map>
